@@ -67,16 +67,95 @@ $('aside .aside-wrap .sideMenuBar .mngBar > div').click(function(e) {
   }
 });
 
+// fragment 부분 window.innerWidth에 따른 UI 설정
+function resizeFragment() {
+  if($('aside .aside-wrap .sideMenuBarBtn').hasClass("active")) {
+
+    if(this.window.innerWidth < 1480) {
+      $('.section-outer1').css({marginLeft: "160px", padding:"60px 50px 30px 80px"});
+      $('.section-outer2').css("marginTop", "10px");
+      $('.fragment').css("width", "auto");
+
+      $('.main-header').css({marginLeft: "200px"});
+      $('.main-header-contents').css("width", "auto");
+
+      $('.footer-outer').css({marginLeft: "200px"});
+      $('footer').css("width", "auto");
+
+      $('.menuTable-outer').css({marginLeft: "200px"});
+      $('.menuTable-header').css("width", "auto");
+
+    } else {
+      $('.section-outer1').css({marginLeft: "0px", padding:"0px"});
+      $('.section-outer2').css("marginTop", "70px");
+      $('.fragment').css("width", "1080px");
+
+      $('.main-header').css({marginLeft: "0px"});
+      $('.main-header-contents').css("width", "1080px");
+
+      $('.footer-outer').css({marginLeft: "0px"});
+      $('footer').css("width", "1080px");
+
+      $('.menuTable-outer').css({marginLeft: "0px"});
+      $('.menuTable-header').css("width", "1080px");
+    }
+  
+  } else {
+
+    if(this.window.innerWidth < 1200) {
+      $('.section-outer1').css({width: "100%", marginLeft: "60px", padding:"0px"});
+      $('.section-outer2').css("marginTop", "70px");
+      $('.fragment').css("width", "auto");
+
+      $('.main-header').css({marginLeft: "60px"});
+      $('.main-header-contents').css("width", "auto");
+
+      $('.footer-outer').css({marginLeft: "26px"});
+      $('footer').css("width", "auto");
+
+      $('.menuTable-outer').css({marginLeft: "60px"});
+      $('.menuTable-header').css("width", "auto");
+
+    } else {
+      $('.section-outer1').css({width: "100%", marginLeft: "0px", padding:"0px"});
+      $('.section-outer2').css("marginTop", "70px");
+      $('.fragment').css("width", "1080px");
+
+      $('.main-header').css({marginLeft: "0px"});
+      $('.main-header-contents').css("width", "1080px");
+
+      $('.footer-outer').css({marginLeft: "0px"});
+      $('footer').css("width", "1080px");
+
+      $('.menuTable-outer').css({marginLeft: "0px"});
+      $('.menuTable-header').css("width", "1080px");
+    }
+  }
+}
+window.addEventListener('resize', resizeFragment);
+
 // 사이드 메뉴바 전체 열고 닫기
 $('aside .aside-wrap .sideMenuBarBtn').click(function(){
+
   if($('aside .aside-wrap .sideMenuBarBtn').hasClass("active")){
-    $('aside .aside-wrap').css("width", "24px");
+    $('aside .aside-wrap').css("width", "26px");
     $('aside .aside-wrap .sideMenuBarBtn').removeClass("active");
-    $('.section-outer1').css("marginLeft", 0);
-  
+
   } else {
     $('aside .aside-wrap').css("width", "200px");
     $('aside .aside-wrap .sideMenuBarBtn').addClass("active");
-    $('.section-outer1').css("marginLeft", "160px");
+    // $('.section-outer1').css("marginLeft", "160px");
   }
+  resizeFragment();
 });
+
+// 푸터 고정
+var fragment = document.querySelector(".fragment");
+function footerFixed() {
+  if(fragment.scrollHeight + 290 < window.innerHeight) {
+    $(".footer-outer").css({position: "fixed", bottom: "0px"});
+
+  } else {
+    $(".footer-outer").css({position: "static",})
+  }
+}

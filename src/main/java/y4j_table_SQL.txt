@@ -13,12 +13,14 @@ CREATE TABLE `admin_order` (
   `admin_order_id` VARCHAR(45) NOT NULL,
   `admin_order_prod_no` INT NOT NULL DEFAULT 0,
   `admin_order_album_no` INT NOT NULL DEFAULT 0,
+  `admin_order_prod_category` VARCHAR(45) NOT NULL,
   `admin_order_prod_cnt` VARCHAR(45) NOT NULL,
   `admin_order_sizetype` VARCHAR(45) NOT NULL,
   `admin_order_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
   `admin_order_price` VARCHAR(45) NOT NULL,
   `admin_order_company` VARCHAR(100) NOT NULL,
   PRIMARY KEY (`admin_order_no`));
+  
 
 
 CREATE TABLE `audition_cv` (
@@ -98,15 +100,17 @@ CREATE TABLE `order_history` (
 
 CREATE TABLE `product` (
   `prod_no` INT NOT NULL AUTO_INCREMENT,
-  `product_type` VARCHAR(45) NOT NULL,
-  `product_name` VARCHAR(100) NOT NULL,
-  `product_artist` VARCHAR(45) NOT NULL,
-  `product_price` VARCHAR(45) NOT NULL,
-  `product_discount_rate` INT NULL DEFAULT 0,
-  `product_stock` INT NULL DEFAULT 0,
-  `product_img_path` VARCHAR(100) NULL,
-  `product_info_img_path` VARCHAR(100) NULL,
-  `product_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `prod_type` VARCHAR(45) NOT NULL,
+  `prod_name` VARCHAR(100) NOT NULL,
+  `prod_category` VARCHAR(100) NOT NULL,
+  `prod_sizetype` VARCHAR(45) NOT NULL,
+  `prod_artist` VARCHAR(45) NOT NULL,
+  `prod_price` VARCHAR(45) NOT NULL,
+  `prod_discount_rate` INT NULL DEFAULT 0,
+  `prod_stock` INT NULL DEFAULT 0,
+  `prod_img_path` VARCHAR(100) NULL,
+  `prod_info_img_path` VARCHAR(100) NULL,
+  `prod_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
   PRIMARY KEY (`prod_no`));
 
 
