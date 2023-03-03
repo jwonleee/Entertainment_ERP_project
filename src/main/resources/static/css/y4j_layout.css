@@ -1,0 +1,343 @@
+* {
+  margin: 0 auto;
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+}
+
+.outer {
+  width: 100%;
+}
+
+/* main-header */
+.main-header {
+  width: 100%;
+}
+
+.main-header .main-header-contents {
+  overflow: hidden;
+  width: 1080px;
+  box-sizing: border-box;
+  padding: 10px 5px 5px;
+}
+
+.main-header .main-header-inner1 {
+  float: left;
+}
+
+.main-header .main-header-inner1>a {
+  height: 53px;
+}
+
+.main-header .main-header-inner1>a>img {
+  width: 110px;
+  height: 80px;
+}
+
+.main-header .main-header-inner2 {
+  float: right;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-content: center;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.main-header .main-header-inner2 li a {
+  display: block;
+  text-decoration: none;
+  cursor: default;
+}
+
+.main-header .main-header-inner2 .header_middle_user img {
+  width: 45px;
+  height: 45px;
+  margin: 10px 22px 0px;
+  cursor: pointer;
+}
+
+.main-header .main-header-inner2 li span {
+  display: block;
+  text-align: center;
+  font-size: 10pt;
+  color: #777;
+}
+
+/* header-bottom menu_bar */
+.header-bottom-outer {
+  position: absolute;
+}
+
+.header-bottom {
+  border-bottom: 1px solid lightgray;
+  height: 60px;
+  transition: height ease-out 0.5s 0s;
+  background-color: white;
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100vw;
+}
+
+.header-bottom .header-bottom-inner {
+  height: 60px;
+  z-index: 5;
+  background-image: linear-gradient(to right, rgb(111, 111, 111), rgb(166, 166, 166) 50%, rgb(222, 222, 222));
+}
+
+.header-bottom .menuTable-header {
+  width: 1080px;
+  box-sizing: border-box;
+}
+
+.header-bottom .menu_bar {
+  float: left;
+  margin-top: 4px;
+  position: absolute;
+}
+
+.sticky-logo {
+  position: relative;
+  top: -65px;
+  left: -120px;
+  display: none;
+  width: 80px;
+  height: 52px;
+  cursor: pointer;
+}
+
+.header-bottom .search_bar {
+  float: right;
+  margin-right: 16px;
+  margin-top: 9px;
+}
+
+.header-bottom .menu_bar > ul {
+  padding-left: 0;
+}
+
+.header-bottom .menu_bar > ul > li {
+  display: inline-block;
+  padding: 5px 0px;
+  margin-right: 60px;
+}
+
+.header-bottom .menu_bar > ul > li > span {
+  display: inline-block;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.header-bottom .menu_bar > ul > li > span > a {
+  color: black;
+  text-decoration: none;
+}
+
+.header-bottom .search_bar .search_bar_inner1 {
+  width: 230px;
+  height: 24px;
+  border-left: 1px solid #777;
+  border-right: 1px solid #777;
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+.header-bottom .search_bar .search_bar_inner1 input {
+  border: none;
+  width: 180px;
+  height: 24px;
+  font-size: 18px;
+  padding: 0px 5px;
+  box-sizing: border-box;
+}
+
+.header-bottom .search_bar .search_bar_inner1 img {
+  margin: 0 2px 0 6px;
+}
+
+.header-bottom .search_bar .search_bar_inner1 img:hover {
+  cursor: pointer;
+}
+
+.menu_bar > ul > li > .snb > .snbLi1 {
+  font-weight: 700;
+  font-size: 16px;
+  margin-bottom: 5px;
+  cursor: default;
+}
+
+.menu_bar > ul > li > .snb > li > span > a {
+  text-decoration: none;
+  color: black;
+}
+
+/* 메뉴바 드롭다운 부분 */
+.menu_bar > ul > li > .snb {
+  width: 100%;
+  height: 0px;
+  position: absolute;
+  z-index: 5;
+  background-color: white;
+  margin-top: 11px;
+  overflow: hidden;
+  transition: height ease-out 0.5s 0s;
+}
+
+.menu_bar .snb li {
+ position: relative;
+ top: 10px;
+ left: -32px;
+}
+
+/* 메뉴바 상단 고정 관련 CSS */
+.header-bottom.sticky {
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  z-index: 5;
+  width: 100%;
+}
+
+
+/* section */
+.section-outer1 {
+  width: (100vw-50px);
+  margin-left: 160px;
+  padding: 80px 50px 30px 80px;
+  box-sizing: border-box;
+}
+
+.section-outer2 {
+  margin-top: 10px;
+}
+
+.section-outer1 ul {
+  padding: 0;
+}
+
+section {
+  padding-right: 20px;
+}
+
+.fragment {
+  overflow: hidden;
+}
+
+
+/* footer */
+.footer-outer {
+  /* position: fixed;
+  bottom: 0px; */
+  width: 100%;
+  background-image: linear-gradient(to right, rgb(222, 222, 222), rgb(166, 166, 166) 50%, rgb(111, 111, 111));
+}
+
+footer {
+  width: 1080px;
+  height: 120px;
+  padding: 20px 0px;
+
+}
+
+footer .footer-inner {
+  overflow: hidden;
+}
+
+footer .footer-inner .footer-left {
+  float: left;
+}
+
+footer .footer-inner .footer-left img {
+  width: 120px;
+  height: 80px;
+  display: inline-block;
+}
+
+footer .footer-inner .footer-left > div {
+  font-size: 12px;
+  margin: 0px 0 0 30px;
+}
+
+footer .footer-inner .footer-left2 {
+  margin-top: 10px;
+}
+
+footer .footer-inner .footer-left2 > .footer-left2-div3 {
+  color: #777;
+}
+
+footer .footer-inner .footer-right {
+  float: right;
+  margin-top: 10px;
+}
+
+footer .footer-inner .footer-right span {
+  font-size: 13px;
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+
+/* aside */
+aside {
+  position: absolute;
+  top: 106px;
+  left: 0px;
+  z-index: 2;
+  padding-top: 60px;
+  display: inline-block;
+}
+
+aside .aside-wrap {
+  /* width: 100%; */
+  background-color: #777;
+  width: 200px;
+  height: 100vh;
+  overflow: hidden;
+  transition: width ease-out 0.5s 0s;
+}
+
+aside .aside-wrap .sideMenuBar {
+  font-size: 17px;
+  padding-left: 32px;
+  z-index: 2;
+}
+
+aside .aside-wrap .sideMenuBarBtn {
+  width: 24px;
+  height: 30px;
+  cursor: pointer;
+  background-color: #777;
+}
+
+aside .aside-wrap .sideMenuBar .mngBar > div {
+  border: 2px solid black;
+  border-bottom: 6px solid black;
+  padding-left: 10px;
+  cursor: pointer;
+}
+
+aside .aside-wrap .sideMenuBar .mngBar > ul {
+  width: 100%;
+  height: 0;
+  overflow: hidden;
+  transition: height ease-out 0.5s 0s;
+}
+
+aside .aside-wrap .sideMenuBar .mngBar > ul > li {
+  cursor: pointer;
+}

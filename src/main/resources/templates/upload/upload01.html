@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	
+	<h2>upload01</h2>
+	
+	<h3>단일 파일 업로드</h3>
+	<form action="upload_complete" method="post" enctype="multipart/form-data" >
+		파일: <input type="file" name="testFile" /><br/><br/>
+		<input type="submit" value="업로드" />
+	</form>
+	<hr/>
+	
+	<h3>다중 파일 업로드</h3>
+	<form action="upload_complete2" method="post" enctype="multipart/form-data" >
+		파일: <input type="file" name="testFile" multiple="multiple" /><br/><br/>
+		<input type="submit" value="업로드" />
+	</form>
+	<hr/>
+	
+	<h3>복수 태그로 여러 파일 업로드</h3>
+	<form action="upload_complete3" method="post" enctype="multipart/form-data" >
+		파일1: <input type="file" name="testFile" multiple="multiple" /><br/>
+		파일2: <input type="file" name="testFile" multiple="multiple" /><br/>
+		파일3: <input type="file" name="testFile" multiple="multiple" /><br/>
+		<input type="submit" value="업로드" />
+	</form>
+	<hr/>
+	
+	<h3>비동기 방식의 업로드</h3>
+	<div>
+		파일1: <input type="file" name="testFile" id="a" /><br/>
+		작성자 : <input type="text" name="writer" id="writer" /><br/>
+		<input id="btn" type="button" value="업로드" />
+	</div>
+	
+	<script src="https://code.jquery.com/jquery-3.6.3.js"></script>
+	<script>
+		$("#btn").click(function() {
+			//파일 데이터 추출
+			var testFile = $("#a");
+			console.log(testFile[0]);  //순수한 태그 //<input type="file" name="testFile" id="a">
+			console.dir(testFile[0]);  //상세  정보
+			console.dir(testFile[0].files[0]);  //파일 데이터
+			
+			//사용자가 입력한 text 값
+			var writer = $("#writer").val();
+			
+			//폼태그로 추가
+			var formData = new FormData();  //폼 객체
+			formData.append("testFile", testFile[0].files[0]);  //.append(name, 값)
+			formData.append("writer", writer);
+			
+			$.ajax({
+				url: "upload_complete4",
+				type: "post",
+				data : formData,
+				contentType: false,  //보내는 데이터 타입: false -> "multipart/form-data"로 선언된다.
+				processData: false, //폼데이터가 name=값&name=값 형식으로 자동 변경되는 것을 막아준다.
+				success: function(result) {  //콜백 함수
+					console.log(result);
+				},
+				error: function(err) {  //에러 발생시 실행
+					alert("Error occur while uploading!");
+				}
+			})
+		})
+	</script>
+
+</body>
+</html>

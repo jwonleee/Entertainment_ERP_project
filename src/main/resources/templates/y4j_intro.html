@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1" />
+  <title>y4j_intro</title>
+  <link rel="stylesheet" href="css/y4j_intro.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+</head>
+
+<body>
+  <div class="outer">
+    <div class="menu-outer">
+      <div class="menuTable-outer">
+        <div class="menuTable-header">
+          <div class="menuTable-header-inner">
+            <img class="menuTableCloseBtn" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_close.svg" />
+            <img class="menuTable-header-companyLogo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png">
+          </div>
+        </div>
+        <div class="menuTable">
+          <div class="snb">
+            <ul>
+              <li class="snbLi1">COMPANY</li>
+              <li>INTRODUCTION</li>
+              <li>BUSINESS</li>
+            </ul>
+          </div>
+          <div class="snb">
+            <ul>
+              <li class="snbLi1">ENTERTAINER</li>
+              <li>NEWJEANS</li>
+              <li>BLACKPINK</li>
+              <li>IVE</li>
+              <li>JANG KIYONG</li>
+              <li>CHAE SOOBIN</li>
+            </ul>
+          </div>
+          <div class="snb">
+            <ul>
+              <li class="snbLi1">PRODUCTION</li>
+              <li>ALBUM</li>
+              <li>GOODS</li>
+              <li>MAGAZINE</li>
+              <li>PICTURE CARD</li>
+            </ul>
+          </div>
+          <div class="snb">
+            <ul>
+              <li class="snbLi1">AUDITION</li>
+              <li>AUDITION</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="companyLogo-outer">
+        <img class="companyLogo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png">
+      </div>
+      <div class="menu">
+        <div class="top-left">
+          <img class="menuTableOpenBtn" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_menu.svg" />
+        </div>
+        <div class="top-right">
+          <img class="login" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png" />
+          <img class="join" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png" />
+        </div>
+      </div>
+    </div>
+
+    <!-- Swiper -->
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https://i.namu.wiki/s/d161f6afefc8174624ba37e07bd5cc0c85eec45b1188684b22747d0c9808fedd4c3664a09a617cb99ec16bf9ba5fa2fb0dc066e805067de01ce373558a78e607b8762b4f1d6b8ff8b79427f31e6539f57dbe96a818c4695c5d615f34f676c8c1"
+            autoplay loop muted></video>
+        </div>
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https://smtown-cdn.smtown.com/upload/smtown/main/video/30baa23d0fbf451d9775684632cfb433_2023-01-16-09-46-25.mp4"
+            autoplay loop muted></video>
+        </div>
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https://blackpinkofficial.com/worldtourbornpink/assets3/BP_MainLogo_Loop_Web_v08.mp4" autoplay loop
+            muted></video>
+        </div>
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https://i.namu.wiki/s/c014411134adbe1a5f5ad8c1ea236cae3a31c6397d35a591fc0980c904d397551992acdc55c316d66e33239adddc7da744f9d885e5ab13da2e8eac2a6f827fc8a4086df5b0b46bad46798ac2c56d83c8a0b03535f3f6c82500b18cb4ed9922a6"
+            autoplay loop muted></video>
+        </div>
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https://i.namu.wiki/s/a9dd6bfe4079ed52053395501727c18b75633606b9695d95bb76ef305e32f87aefe3189a01aa09d65b47fecd6e52288df145e1e4e9f5fde803c93608182ed0cf0928e0d2cd3f36b4bdccebb4ba8f8436ac16aa22091c40e8c29f788833e1b95f"
+            autoplay loop muted></video>
+        </div>
+        <div class="swiper-slide">
+          <video id="videoPlayer"
+            src="https:////i.namu.wiki/s/c29a03177ad707494b6132d6def9aa1296cb66ce99fef6c17342bbb8fa673457b15076974044f9da2c2337e1468ae2c0c7a9d08a32f6b615a88a338268b96cf324eb6cd9e096addf090fec8a20d21afb7f3dbafa32f4f897e73d702fc5397a52"
+            autoplay loop muted></video>
+        </div>
+      </div>
+      <div class="swiper-pagination"></div>
+    </div>
+
+    <div class="y4j-sns-link">
+      <ul>
+        <li><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_instagram.svg" /></li>
+        <li><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_facebook.svg" /></li>
+        <li><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_youtube.svg" /></li>
+        <li><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_twitter.svg" /></li>
+        <li><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_tiktok.svg" /></li>
+      </ul>
+    </div>
+
+    <div class="bottom-banner">
+      <div class="bottom-banner-left">
+        <span>ⓒY4J All Rights Reserved</span>
+      </div>
+      <div class="bottom-banner-right">
+        <span>개인정보처리방침</span>
+        <span>▼ 관련 사이트</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      direction: "horizontal",
+      effect: "coverflow",
+      mousewheel: {
+        invert: false,
+        sensitivity: 1,
+        thresholdDelta: 30
+      },
+      grabCursor: true,
+      slidesPerView: "1",
+      centeredSlides: true,
+      loop: false,
+      coverflowEffect: {
+        rotate: 50,
+        stretch: 0,
+        depth: 100,
+        modifier: 1,
+        slideShadows: true,
+      },
+      pagination: {
+        el: ".swiper-pagination",
+        type: "progressbar",
+      }
+    });
+  </script>
+  <script>
+    setTimeout(function () {
+      document.querySelector(".swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal").style.top = "revert";
+      document.querySelector(".swiper-pagination-progressbar .swiper-pagination-progressbar-fill").style.background = "rgb(170, 170, 170)";
+    }, 100);
+  </script>
+  <script src="js/y4j_intro.js"></script>
+</body>
+
+</html>

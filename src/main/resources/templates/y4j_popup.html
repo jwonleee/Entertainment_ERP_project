@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>y4j_popup</title>
+  <style>
+    * {
+      margin: 0 auto;
+      padding: 0;
+      list-style: none;
+    }
+    img {
+      margin: 0;
+      max-width: 100%;
+      height: auto;
+    }
+    .popupPage {
+      padding: 20px;
+      background-color: #fff;
+      box-shadow: 10px 10px 20px rgb(0, 0, 0, 0.3);
+    }
+    .popupPage>.popupImage>.swipeImg {
+      display: none;
+    }
+    .swipeImgControll {
+      margin-left: 5px;
+    }
+    .popupPage>.popupImage>.swipeImg.active {
+      width: 320px;
+      height: 250px;
+      display: block;
+      animation: fadeIn 1s ease-in-out;
+      border-radius: 10px;
+    }
+    @keyframes fadeIn {
+      from {
+        opacity: 0.5;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .popupControll {
+      overflow: hidden;
+      position: relative;
+      margin-top: 15px;
+      font-size: 11pt;
+      height: 21px;
+      line-height: 21px;
+    }
+    .popupControll .cookieControll {
+      position: absolute;
+      top: 1px;
+      right: 5px;
+      color: #999;
+    }
+    .playStopBtnImg {
+      float: left;
+      display: inline;
+      margin-top: 1px;
+    }
+    .playStopBtnToggle {
+      display: inline-block;
+    }
+    .popupControll .swipeImgControll .playStopBtn .playStopBtnImg > img:hover {
+      cursor: pointer;
+    }
+    .pagination {
+      float: left;
+      margin-left: 8px;
+    }
+    .pagination .pagination-bullet {
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      margin-left: 2px;
+      border-radius: 100%;
+      background-color: rgb(196, 194, 194);
+    }
+    .pagination .pagination-bullet:hover {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="popupPage">
+    <div class="popupImage">
+      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/newjeans_popup.jpeg" alt="0" class="swipeImg active">
+      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_popup.jpeg" alt="1" class="swipeImg">
+      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_popup.jpeg" alt="2" class="swipeImg">
+      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" alt="3" class="swipeImg">
+    </div>
+    <div class="popupControll">
+      <div class="swipeImgControll">
+        <div class="playStopBtn">
+          <div class="playStopBtnImg">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/popupStopIcon.png" alt="stopIcon" class="playStopBtnToggle">
+          </div>
+          <div class="pagination">
+            <span class="pagination-bullet" data-pagination="0"></span>
+            <span class="pagination-bullet" data-pagination="1"></span>
+            <span class="pagination-bullet" data-pagination="2"></span>
+            <span class="pagination-bullet" data-pagination="3"></span>
+          </div>
+        </div>
+      </div>
+      <div class="cookieControll">
+        <input type="checkbox"><span> 오늘 하루 이 창을 보지 않기</span>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/y4j_popup.js"></script>
+
+</body>
+
+</html>

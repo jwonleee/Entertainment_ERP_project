@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!-- 타임리프 -->
+<html xmlns:th="http://www.thymleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+	<!-- 제이쿼리 -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+	<!-- 제이쿼리 플러그인-->
+	<!-- jquery-ui css -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <!-- jquery-ui -->
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+</head>
+<body>
+	<h3>HI!</h3>
+	<div>
+		<button type="button" id="showBtn">이미지 보기</button>
+		<div id="imgDiv"></div>
+	</div>
+	
+	
+</body>
+<script th:inline="javascript">
+	$(document).ready(()=>{alert("안녕!")});
+	$("#showBtn").click(()=>{
+		$.ajax({
+			url:"/s3/show",
+			type:"get",
+			success:(data)=>{
+				$("#imgDiv").append("<img src='"+data+"'/>");
+			},
+			error:(err)=>{console.log(err)}
+		})
+	});
+</script>
+</html>

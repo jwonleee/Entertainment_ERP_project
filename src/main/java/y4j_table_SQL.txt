@@ -1,0 +1,201 @@
+
+CREATE TABLE `song` (
+  `song_no` INT NOT NULL AUTO_INCREMENT,
+  `song_artist` VARCHAR(45) NOT NULL,
+  `song_title` VARCHAR(100) NOT NULL,
+  `song_album_no` INT NOT NULL,
+  `song_length` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`song_no`));
+
+
+CREATE TABLE `admin_order` (
+  `admin_order_no` INT NOT NULL AUTO_INCREMENT,
+  `admin_order_id` VARCHAR(45) NOT NULL,
+  `admin_order_prod_no` INT NOT NULL DEFAULT 0,
+  `admin_order_album_no` INT NOT NULL DEFAULT 0,
+  `admin_order_prod_cnt` VARCHAR(45) NOT NULL,
+  `admin_order_sizetype` VARCHAR(45) NOT NULL,
+  `admin_order_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `admin_order_price` VARCHAR(45) NOT NULL,
+  `admin_order_company` VARCHAR(100) NOT NULL,
+  PRIMARY KEY (`admin_order_no`));
+
+
+CREATE TABLE `audition_cv` (
+  `audition_cv_no` INT NOT NULL AUTO_INCREMENT,
+  `audition_cv_user_id` VARCHAR(45) NOT NULL,
+  `audition_cv_name` VARCHAR(45) NOT NULL,
+  `audition_cv_gender` VARCHAR(45) NOT NULL,
+  `audition_cv_age` VARCHAR(45) NOT NULL,
+  `audition_cv_height` VARCHAR(45) NOT NULL,
+  `audition_cv_weight` VARCHAR(45) NOT NULL,
+  `audition_cv_contact` VARCHAR(45) NOT NULL,
+  `audition_cv_email` VARCHAR(45) NOT NULL,
+  `audition_cv_applydate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `audition_cv_progress` VARCHAR(45) NULL,
+  PRIMARY KEY (`audition_cv_no`));
+
+
+
+CREATE TABLE `audition_cv_upload` (
+  `audition_cv_upload_no` INT NOT NULL AUTO_INCREMENT,
+  `audition_cv_no` INT NOT NULL,
+  `audition_cv_file_path` VARCHAR(100) NULL,
+  PRIMARY KEY (`audition_cv_upload_no`));
+
+
+CREATE TABLE `authority_mng` (
+  `authority_mng_no` INT NOT NULL AUTO_INCREMENT,
+  `authority_mng_admin_name` VARCHAR(45) NOT NULL,
+  `authority_mng_admin_id` VARCHAR(45) NOT NULL,
+  `authority_mng_admin_original_type` VARCHAR(45) NOT NULL,
+  `authority_mng_admin_apply_type` VARCHAR(45) NOT NULL,
+  `authority_mng_apply_date` TIMESTAMP NOT NULL,
+  `authority_mng_authorize_date` TIMESTAMP NULL,
+  PRIMARY KEY (`authority_mng_no`));
+
+
+CREATE TABLE `category` (
+  `category_id` INT NOT NULL AUTO_INCREMENT,
+  `category_group_id` VARCHAR(45) NOT NULL,
+  `category_lv` INT NULL,
+  `category_nm` VARCHAR(100) NULL,
+  `category_detail_lv` INT NULL,
+  `category_detail_nm` VARCHAR(100) NULL,
+  `category_parent_lv` INT NULL,
+  `category_detail_parent_lv` INT NULL,
+  PRIMARY KEY (`category_id`));
+
+
+CREATE TABLE `product_type` (
+  `product_type_no` INT NOT NULL,
+  `product_type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`product_type_no`));
+
+
+CREATE TABLE `users` (
+  `user_no` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(45) NOT NULL,
+  `user_pw` VARCHAR(45) NOT NULL,
+  `user_name` VARCHAR(45) NOT NULL,
+  `user_contact` VARCHAR(45) NOT NULL,
+  `user_address` VARCHAR(200) NOT NULL,
+  `user_email` VARCHAR(45) NOT NULL,
+  `user_gender` VARCHAR(1) NOT NULL,
+  PRIMARY KEY (`user_no`),
+  UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE);
+
+
+CREATE TABLE `order_history` (
+  `order_no` INT NOT NULL AUTO_INCREMENT,
+  `user_id` VARCHAR(45) NOT NULL,
+  `prod_no` INT NOT NULL,
+  `order_date` TIMESTAMP NULL DEFAULT current_timestamp,
+  `order_cnt` INT NOT NULL DEFAULT 1,
+  `order_price` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`order_no`));
+
+
+CREATE TABLE `product` (
+  `prod_no` INT NOT NULL AUTO_INCREMENT,
+  `product_type` VARCHAR(45) NOT NULL,
+  `product_name` VARCHAR(100) NOT NULL,
+  `product_artist` VARCHAR(45) NOT NULL,
+  `product_price` VARCHAR(45) NOT NULL,
+  `product_discount_rate` INT NULL DEFAULT 0,
+  `product_stock` INT NULL DEFAULT 0,
+  `product_img_path` VARCHAR(100) NULL,
+  `product_info_img_path` VARCHAR(100) NULL,
+  `product_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  PRIMARY KEY (`prod_no`));
+
+
+CREATE TABLE `cart` (
+  `cart_no` INT NOT NULL AUTO_INCREMENT,
+  `cart_prod_no` INT NOT NULL,
+  `cart_prod_name` VARCHAR(45) NOT NULL,
+  `cart_prod_cnt` VARCHAR(45) NOT NULL,
+  `cart_prod_price` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cart_no`));
+
+
+CREATE TABLE `album` (
+  `album_no` INT NOT NULL AUTO_INCREMENT,
+  `album_artist` VARCHAR(45) NOT NULL,
+  `album_title` VARCHAR(100) NOT NULL,
+  `album_price` VARCHAR(45) NOT NULL,
+  `album_release_date` TIMESTAMP NOT NULL,
+  `album_discount_rate` INT NULL DEFAULT 0,
+  `album_img_path` VARCHAR(100) NULL,
+  PRIMARY KEY (`album_no`));
+
+
+CREATE TABLE `entertainer_type` (
+  `entertainer_type_no` INT NOT NULL AUTO_INCREMENT,
+  `entertainer_type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`entertainer_type_no`));
+
+
+CREATE TABLE `group` (
+  `group_no` INT NOT NULL AUTO_INCREMENT,
+  `group_name` VARCHAR(45) NOT NULL,
+  `group_note` VARCHAR(300) NULL DEFAULT '',
+  PRIMARY KEY (`group_no`));
+
+
+CREATE TABLE `entertainer` (
+  `ent_no` INT NOT NULL AUTO_INCREMENT,
+  `ent_name` VARCHAR(45) NOT NULL,
+  `ent_birth` TIMESTAMP NOT NULL,
+  `ent_debut_date` TIMESTAMP NOT NULL,
+  `ent_contract_startdate` TIMESTAMP NOT NULL,
+  `ent_contract_enddate` TIMESTAMP NOT NULL,
+  `ent_contract_cnt` VARCHAR(45) NOT NULL,
+  `ent_gender` VARCHAR(45) NOT NULL,
+  `ent_type` VARCHAR(45) NOT NULL,
+  `ent_group_name` VARCHAR(45) NULL DEFAULT 'none',
+  `ent_note` VARCHAR(300) NOT NULL,
+  `ent_img_path` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`ent_no`));
+
+
+CREATE TABLE `schedule` (
+  `schedule_no` INT NOT NULL AUTO_INCREMENT,
+  `schedule_start_time` TIMESTAMP NOT NULL,
+  `schedule_end_time` TIMESTAMP NULL,
+  `schedule_ent_name` VARCHAR(45) NOT NULL,
+  `schedule_type` VARCHAR(45) NOT NULL,
+  `schedule_content` VARCHAR(100) NOT NULL,
+  `schedule_location` VARCHAR(200) NOT NULL,
+  PRIMARY KEY (`schedule_no`));
+
+
+CREATE TABLE `activity` (
+  `activity_no` INT NOT NULL AUTO_INCREMENT,
+  `ent_name` VARCHAR(45) NOT NULL,
+  `activity_title` VARCHAR(100) NOT NULL,
+  `activity_date` TIMESTAMP NOT NULL,
+  `activity_type` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`activity_no`));
+
+
+CREATE TABLE `administrator` (
+  `admin_no` INT NOT NULL AUTO_INCREMENT,
+  `admin_type` VARCHAR(45) NOT NULL,
+  `admin_id` VARCHAR(45) NOT NULL,
+  `admin_pw` VARCHAR(45) NOT NULL,
+  `admin_name` VARCHAR(45) NOT NULL,
+  `admin_contact` VARCHAR(45) NOT NULL,
+  `admin_gender` VARCHAR(45) NOT NULL,
+  `admin_email` VARCHAR(45) NOT NULL,
+  `ent_name` VARCHAR(45) NULL DEFAULT 'none',
+  PRIMARY KEY (`admin_no`),
+  UNIQUE INDEX `admin_id_UNIQUE` (`admin_id` ASC) VISIBLE);
+
+
+CREATE TABLE `entertainer_schedule` (
+  `no` INT NOT NULL AUTO_INCREMENT,
+  `ent_name` VARCHAR(45) NOT NULL,
+  `schedule_no` INT NOT NULL,
+  PRIMARY KEY (`no`));
+
