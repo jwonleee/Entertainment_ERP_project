@@ -1,7 +1,7 @@
-package com.y4j.final_project.command;
+package com.y4j.final_project.util;
 
 import java.util.ArrayList;
-import com.y4j.final_project.util.Criteria;
+
 import lombok.Data;
 
 @Data

@@ -19,9 +19,6 @@ a {
   width: 100%;
 }
 
-
-
-
 /* main-header */
 .main-header {
   width: 100%;
@@ -359,6 +356,24 @@ aside .aside-wrap .sideMenuBar .mngBar > ul {
   transition: height ease-out 0.5s 0s;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > ul > li {
-  cursor: pointer;
+aside .aside-wrap .sideMenuBar .mngBar > ul > li > a {
+  text-decoration: none;
+  color: black;
+}
+
+/* 사이드 메뉴 선택 시 효과 */
+aside .aside-wrap .smt.on {
+  font-weight: 900;
+  background-color: black;
+  color: white;
+}
+
+aside .aside-wrap .sideMenuBar .mngBar > ul > li.on {
+  box-sizing: content-box;
+  margin-bottom: 2px;
+}
+
+aside .aside-wrap .sideMenuBar .mngBar > ul > li > a.on {
+  font-weight: 700;
+  color: whitesmoke;
 }

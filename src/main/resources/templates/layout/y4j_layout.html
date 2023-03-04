@@ -1,15 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
 <th:block th:fragment="funcLayout(content)">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>y4j_layout</title>
-  	<!-- 스와이퍼 -->
-  	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-  	<link rel="stylesheet" href="/css/admin_audition.css">
-	<!-- jquery -->
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>y4j_layout</title>
+    <!-- 스와이퍼 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+    <link rel="stylesheet" href="/css/admin_audition.css">
+    <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
@@ -20,187 +21,212 @@
     <!-- 부트스트랩 테마가 필요하면 이쯤 추가 -->
     <!-- js링크 -->
     <script src="/js/bootstrapjs/bootstrap.min.js"></script>
-  	<!-- 폰트 -->
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-	<style>body,html{font-family: 'Noto Sans KR', sans-serif;}</style>
-	<!-- 개별 css -->
-  	<link rel="stylesheet" href="/css/y4j_layout.css">
-</head>
+    <script src="/js/bootstrapjs/bootstrap.bundle.min.js"></script>
+    <!-- 폰트 -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      body,
+      html {
+        font-family: 'Noto Sans KR', sans-serif;
+      }
+    </style>
+    <!-- 개별 css -->
+    <link rel="stylesheet" href="/css/y4j_layout.css">
+  </head>
 
-<body>
-  <div class="outer">
+  <body>
+    <div class="outer">
 
-    <div class="header-outer">
-      <header>
-        <div class="header-top">
-          <div class="menu-outer">
-            <div class="main-header">
-              <div class="main-header-contents">
-                <div class="main-header-inner main-header-inner1">
-                  <a href="#"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
+      <div class="header-outer">
+        <header>
+          <div class="header-top">
+            <div class="menu-outer">
+              <div class="main-header">
+                <div class="main-header-contents">
+                  <div class="main-header-inner main-header-inner1">
+                    <a href="#"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
+                  </div>
+                  <ul class="main-header-inner main-header-inner2">
+                    <li class="header_middle_user">
+                      <a href="../admin/admin_login">
+                        <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+                        <span>LOGIN</span>
+                      </a>
+                    </li>
+                    <li class="header_middle_user">
+                      <a href="../admin/admin_join">
+                        <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+                        <span>JOIN</span>
+                      </a>
+                    </li>
+                    <li class="header_middle_user">
+                      <a href="#">
+                        <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+                        <span>MY PAGE</span>
+                      </a>
+                    </li>
+                  </ul>
                 </div>
-                <ul class="main-header-inner main-header-inner2">
-                  <li class="header_middle_user">
-                    <a href="#">
-                      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
-                      <span>LOGIN</span>
-                    </a>
-                  </li>
-                  <li class="header_middle_user">
-                    <a href="#">
-                      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
-                      <span>JOIN</span>
-                    </a>
-                  </li>
-                  <li class="header_middle_user">
-                    <a href="#">
-                      <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
-                      <span>MY PAGE</span>
-                    </a>
-                  </li>
+              </div>
+              <div class="header-bottom-outer">
+                <div class="header-bottom">
+                  <div class="header-bottom-inner">
+                    <div class="menuTable-header">
+                      <div class="menuTable-outer">
+                        <div class="menu_bar">
+                          <ul>
+                            <li>
+                              <span><a href="#">COMPANY</a></span>
+                              <ul class="snb">
+                                <li class="snbLi1">COMPANY</li>
+                                <li><span><a href="#">INTRODUCTION</a></span></li>
+                                <li><span><a href="#">BUSINESS</a></span></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span><a href="#">ENTERTAINER</a></span>
+                              <ul class="snb">
+                                <li class="snbLi1">ENTERTAINER</li>
+                                <li><span><a href="#">NEWJEANS</a></span></li>
+                                <li><span><a href="#">BLACKPINK</a></span></li>
+                                <li><span><a href="#">IVE</a></span></li>
+                                <li><span><a href="#">JAGN KIYONG</a></span></li>
+                                <li><span><a href="#">CHAE SOOBIN</a></span></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span><a href="#">PRODUCTION</a></span>
+                              <ul class="snb">
+                                <li class="snbLi1">PRODUCTION</li>
+                                <li><span><a href="#">ALBUM</a></span></li>
+                                <li><span><a href="#">GOODS</a></span></li>
+                                <li><span><a href="#">MAGAZINE</a></span></li>
+                                <li><span><a href="#">PICTURE CARD</a></span></li>
+                              </ul>
+                            </li>
+                            <li>
+                              <span><a href="#">AUDITION</a></span>
+                              <ul class="snb">
+                                <li class="snbLi1">AUDITION</li>
+                                <li><span><a href="#">AUDITION</a></span></li>
+                              </ul>
+                            </li>
+                          </ul>
+                          <img class="sticky-logo"
+                            src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png" />
+                        </div>
+                      </div>
+                      <div class="search_bar">
+                        <div class="search_bar_inner1">
+                          <input type="text" placeholder="Search">
+                          <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/icon_search.png"
+                            style="width: 26px; height: 26px">
+                        </div>
+                      </div>
+                    </div>
+                    <!-- <img class="sticky-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      </div>
+
+      <aside>
+        <div class="aside-wrap">
+          <div class="aside-left">
+            <img class="sideMenuBarBtn active" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_menu.svg" />
+          </div>
+          <div class="aside=right">
+            <div class="sideMenuBar">
+              <div class="authorityMng mngBar">
+                <div class="smt mngBar3">권한 관리</div>
+                <ul class="sub_menu">
+                  <li><a href="/authority/admin_authority_list">회원 권한 조회</a></li>
+                  <li><a href="/authority/admin_authority_apply_list">권한 신청 목록</a></li>
+                  <li><a href="/authority/admin_authority_register">권한 등록</a></li>
+                </ul>
+              </div>
+              <div class="productMng mngBar">
+                <div class="smt mngBar3">상품 관리</div>
+                <ul class="sub_menu">
+                  <li><a href="#">상품 등록</a></li>
+                  <li><a href="#">상품 조회</a></li>
+                  <li><a href="#">상품 발주</a></li>
+                </ul>
+              </div>
+              <div class="scheduleMng mngBar">
+                <div class="smt mngBar2">일정 관리</div>
+                <ul class="sub_menu">
+                  <li><a href="#">일정 등록</a></li>
+                  <li><a href="#">일정 목록</a></li>
+                </ul>
+              </div>
+              <div class="auditionMng mngBar">
+                <div class="smt mngBar2">오디션 관리</div>
+                <ul class="sub_menu">
+                  <li><a href="/audition/admin_audition_list">오디션 신청 목록</a></li>
+                  <li><a href="/audition/admin_audition_register">오디션 결과 등록</a></li>
                 </ul>
               </div>
             </div>
-            <div class="header-bottom-outer">
-              <div class="header-bottom">
-                <div class="header-bottom-inner">
-                  <div class="menuTable-header">
-                    <div class="menuTable-outer">
-                      <div class="menu_bar">
-                        <ul>
-                          <li>
-                            <span><a href="#">COMPANY</a></span>
-                            <ul class="snb">
-                              <li class="snbLi1">COMPANY</li>
-                              <li><span><a href="#">INTRODUCTION</a></span></li>
-                              <li><span><a href="#">BUSINESS</a></span></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <span><a href="#">ENTERTAINER</a></span>
-                            <ul class="snb">
-                              <li class="snbLi1">ENTERTAINER</li>
-                              <li><span><a href="#">NEWJEANS</a></span></li>
-                              <li><span><a href="#">BLACKPINK</a></span></li>
-                              <li><span><a href="#">IVE</a></span></li>
-                              <li><span><a href="#">JAGN KIYONG</a></span></li>
-                              <li><span><a href="#">CHAE SOOBIN</a></span></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <span><a href="#">PRODUCTION</a></span>
-                            <ul class="snb">
-                              <li class="snbLi1">PRODUCTION</li>
-                              <li><span><a href="#">ALBUM</a></span></li>
-                              <li><span><a href="#">GOODS</a></span></li>
-                              <li><span><a href="#">MAGAZINE</a></span></li>
-                              <li><span><a href="#">PICTURE CARD</a></span></li>
-                            </ul>
-                          </li>
-                          <li>
-                            <span><a href="#">AUDITION</a></span>
-                            <ul class="snb">
-                              <li class="snbLi1">AUDITION</li>
-                              <li><span><a href="#">AUDITION</a></span></li>
-                            </ul>
-                          </li>
-                        </ul>
-                        <img class="sticky-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/>
-                      </div>
-                    </div>
-                    <div class="search_bar">
-                      <div class="search_bar_inner1">
-                        <input type="text" placeholder="Search">
-                        <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/icon_search.png" style="width: 26px; height: 26px">
-                      </div>
-                    </div>
-                  </div>
-                  <!-- <img class="sticky-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/> -->
-                </div>
-              </div>
-            </div>
           </div>
         </div>
-      </header>
-    </div>
+      </aside>
 
-    <aside>
-      <div class="aside-wrap">
-        <div class="aside-left">
-          <img class="sideMenuBarBtn active" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_menu.svg" />
-        </div>
-        <div class="aside=right">
-          <div class="sideMenuBar">
-            <div class="authorityMng mngBar">
-              <div class="smt mngBar3">권한 관리</div>
-              <ul>
-                <li>회원 권한 조회</li>
-                <li>권한 신청 목록</li>
-                <li>권한 등록 및 수정</li>
-              </ul>
-            </div>
-            <div class="productMng mngBar">
-              <div class="smt mngBar3">상품 관리</div>
-              <ul>
-                <li>상품 등록</li>
-                <li>상품 조회</li>
-                <li>상품 발주</li>
-              </ul>
-            </div>
-            <div class="scheduleMng mngBar">
-              <div class="smt mngBar2">일정 관리</div>
-              <ul>
-                <li>일정 등록</li>
-                <li>일정 목록</li>
-              </ul>
-            </div>
-            <div class="auditionMng mngBar">
-              <div class="smt mngBar2">오디션 관리</div>
-              <ul>
-                <li>오디션 신청 목록</li>
-                <li>오디션 결과 등록</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
-
-    <div class="section-outer1">
+      <div class="section-outer1">
         <div class="section-outer2">
-        <section th:replace="${content}">
+          <section th:replace="${content}">
 
-        </section>
-      </div>
-    </div>
-
-    <div class="footer-outer">
-      <footer>
-        <div class="footer-inner">
-          <div class="footer-left">
-            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
-          </div>
-          <div class="footer-left footer-left2">
-            <div>개인정보 취급 방침 ⎮ 이용약관 ⎮ 고객센터/문의하기</div>
-            <div>서울시 강남구 테헤란로 7길 7 ⎮ TEL. 02)123-4567 ⎮ FAX. 02)345-6789</div>
-            <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
-          </div>
-          <div class="footer-right">
-            <span>개인정보처리방침</span>
-            <span>▼ 관련 사이트</span>
-          </div>
+          </section>
         </div>
-      </footer>
-    </div>
+      </div>
 
-  </div>
-  <script src="/js/y4j_layout.js"></script>
-  <script>
-    $(document).ready(resizeFragment());
-    $(document).ready(footerFixed());
-  </script>
-</body>
+      <div class="footer-outer">
+        <footer>
+          <div class="footer-inner">
+            <div class="footer-left">
+              <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
+            </div>
+            <div class="footer-left footer-left2">
+              <div>개인정보 취급 방침 ⎮ 이용약관 ⎮ 고객센터/문의하기</div>
+              <div>서울시 강남구 테헤란로 7길 7 ⎮ TEL. 02)123-4567 ⎮ FAX. 02)345-6789</div>
+              <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
+            </div>
+            <div class="footer-right">
+              <span>개인정보처리방침</span>
+              <span>▼ 관련 사이트</span>
+            </div>
+          </div>
+        </footer>
+      </div>
+
+    </div>
+    <script src="/js/y4j_layout.js"></script>
+    <script>
+      $(document).ready(resizeFragment());
+      $(document).ready(footerFixed());
+    </script>
+    <script th:inline="javascript">
+      var menu = JSON.parse('[[${uri}]]');
+
+      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
+      $('a[href*=' + '[[${uri}]]' + ']').parent().addClass("on");
+      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().addClass("on");
+
+      if ($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().hasClass("mngBar3")) {
+        $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "90px");
+      } else {
+        $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "65px");
+      }
+
+      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("border", "6px solid black");
+      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().css("border-bottom", "none");
+    </script>
+  </body>
 </th:block>
+
 </html>

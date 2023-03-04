@@ -28,6 +28,6 @@ public class AwsS3Controller {
     
     @RequestMapping("/show")
     public String imgSrc() {
-    	return awsS3Service.getThumbnailPath("NewJeans-test1.jpeg");
+    	return awsS3Service.getThumbnailPath("upload/fall.jpg");
     }
 }
