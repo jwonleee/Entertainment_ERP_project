@@ -7,12 +7,31 @@
   
   	<select id="getOrderTotal" resultType="int">
   		select count(*) as total from admin_order where admin_order_id=#{user_id}
+		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
+  			<![CDATA[and admin_order_album_no >=100]]>
+  		</if>
+  		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
+  			<![CDATA[and admin_order_prod_no >=9900]]>
+  		</if>
+  		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
+  			<![CDATA[and admin_order_album_no >=1]]>
+  		</if>
   	</select>
   
   
   
   	<select id="getOrderList" resultType="Admin_orderVO">
-  		SELECT * FROM admin_order where admin_order_id=#{user_id} order by admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
+  		SELECT * FROM admin_order where admin_order_id=#{user_id}
+  		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
+  			<![CDATA[and admin_order_album_no >=100]]>
+  		</if>
+  		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
+  			<![CDATA[and admin_order_prod_no >=9900]]>
+  		</if>
+  		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
+  			<![CDATA[and admin_order_album_no >=1]]>
+  		</if>
+  		 order by admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
   	</select>
   	
   	<insert id="testRegist" parameterType="Admin_orderVO">
@@ -33,5 +52,13 @@
   				#{admin_order_prod_no},
   				#{admin_order_sizetype})
   	</insert>
+  	
+  	<select id="getDetail" resultType="Admin_orderVO" parameterType="string">
+  		select * from admin_order where admin_order_no=#{admin_order_no}
+  	</select>
+  	
+  	
+  	
+  	
   </mapper>
   

@@ -3,6 +3,19 @@
     margin: 0;
     list-style: none;
 }
+/* ******** 검색********* */
+.search_wrap{
+    overflow:hidden;
+}
+
+.search_form{
+    float: right;
+}
+
+.title_right{
+    float:left;
+}
+
 
 /****** 게시글 ********/
 .listwrap{

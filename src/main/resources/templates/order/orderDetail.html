@@ -2,15 +2,11 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <!-- css -->
 <link rel="stylesheet" href="/css/admin_order/admin_orderDetail.css">
-<!-- js -->
-<script src="/js/admin_order/admin_orderDetail.js"></script>
-<th:block
-	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
-
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
-		<h3 style="text-align: center; margin-bottom: 50px;">여기는 오더
-			상세페이지입니다</h3>
+		<h3 style="text-align: center; margin-bottom: 50px;">여기는 상품
+			상세 페이지입니다</h3>
 
 		<section class="formSection">
 			<div class="regist_wrap"></div>
@@ -25,23 +21,23 @@
 										<table class="regTable">
 											<tr>
 												<th>발주자ID</th>
-												<td><input type="text" class="regId" readonly /></td>
+												<td><input type="text" class="regId" readonly th:value="${vo.admin_order_id}"/></td>
 											</tr>
 											<tr>
 												<th>상품번호</th>
-												<td><input type="number" required="required" /></td>
+												<td><input type="number" required="required" th:value="${vo.admin_order_prod_no}" readonly/></td>
 											</tr>
 											<tr>
 												<th>상품명</th>
-												<td><input type="text" required="required" /></td>
+												<td><input type="text" required="required" value="조인한 상품명" readonly/></td>
 											</tr>
 											<tr>
 												<th>카테고리</th>
-												<td><input type="text" required="required" /></td>
+												<td><input type="text" required="required" th:value="${vo.admin_order_prod_category}" readonly/></td>
 											</tr>
 											<tr>
 												<th>재고</th>
-												<td><input type="number" required="required" /></td>
+												<td><input type="number" required="required" th:placeholder="${vo.admin_order_prod_cnt}"/></td>
 											</tr>
 											<tr>
 												<th>사이즈/타입</th>
@@ -64,8 +60,8 @@
 
 										</table>
 										<div class="btn_area">
-											<input type="submit" value="추가발주" /> <input type="button"
-												value="취소" />
+											<input type="submit" value="추가발주" /> 
+											<input id="rediList" type="button" value="취소"/>
 										</div>
 									</li>
 								</ul>
@@ -77,4 +73,6 @@
 		</section>
 	</div>
 </th:block>
+<!-- js -->
+<script src="/js/admin_order/admin_orderDetail.js"></script>
 </html>

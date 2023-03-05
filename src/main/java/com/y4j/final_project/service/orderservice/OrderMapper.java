@@ -15,4 +15,6 @@ public interface OrderMapper {
 	 
 	public int getOrderTotal(@Param("user_id")String user_id, @Param("cri")Criteria cri); //전체게시글수 조회
 	public ArrayList<Admin_orderVO> getOrderList(@Param("user_id")String user_id, @Param("cri")Criteria cri);//발주목록
+	public Admin_orderVO getDetail(String admin_order_no);//상세조회
+	
 }

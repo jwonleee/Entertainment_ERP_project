@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.y4j.final_project.command.PageVO;
@@ -23,9 +24,15 @@ public class OrderController {
 	@Autowired
 	@Qualifier("orderService")
 	private OrderService orderService;
+	
 
+	
+
+	//상세화면
 	@GetMapping("/orderDetail")
-	public String orderDetail() {
+	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
+		Admin_orderVO vo = orderService.getDetail(admin_order_no);
+		model.addAttribute("vo",vo);
 		return "/order/orderDetail";
 	}
 	
@@ -52,8 +59,20 @@ public class OrderController {
 		return "/order/orderList";
 	}
 	
+	//등록화면
 	@GetMapping("orderReg")
-	public String orderReg() {
+	public String orderReg(HttpSession session, Model model) {
+		//로그인 했다고 가정
+		session.setAttribute("user_id", "orderadministrator");
+		String user_id=(String)session.getAttribute("user_id");
+		//발주관리자가 아니라면
+		if(!user_id.equals("orderadministrator")) {
+			return "redirect:/admin/hold";
+		}
+		
+		model.addAttribute("admin_id",user_id);
+		
+		
 		return "/order/orderReg";
 	}
 	

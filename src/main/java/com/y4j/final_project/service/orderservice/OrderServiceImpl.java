@@ -16,7 +16,6 @@ public class OrderServiceImpl implements OrderService{
 
 	
 	
-	
 	@Override
 	public int getOrderTotal(String user_id, Criteria cri) {
 		return orderMapper.getOrderTotal(user_id, cri);
@@ -25,6 +24,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public ArrayList<Admin_orderVO> getOrderList(String user_id,Criteria cri) {
 		return orderMapper.getOrderList(user_id,cri);
+	}
+
+	@Override
+	public Admin_orderVO getDetail(String admin_order_no) {
+		return orderMapper.getDetail(admin_order_no);
 	}
 
 	

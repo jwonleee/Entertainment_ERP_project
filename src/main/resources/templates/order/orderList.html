@@ -5,81 +5,119 @@
 <th:block
 	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	<div class="fragment">
-		<h3 style="text-align: center">여긴 오더입니다.</h3>
+		<h3 style="text-align: center">여긴 상품 조회 페이지입니다.</h3>
 		<!-- 부트스트랩 -->
 		<section class="intro listwrap">
 			<div class="bg-image h-100" style="background-color: #f5f7fa;">
 				<div class="mask d-flex align-items-center h-100">
 					<div class="container">
 						<div class="row justify-content-center">
-							<div class="col-12">
-								<div class="card">
-									<div class="card-body p-0">
-										<caption>
+							<div class="col-12"></div>
+							<div class="card">
+								<div class="card-body p-0">
+									<div class="search_wrap">
+										<div class="title_right">
 											<strong>발주</strong>
-										</caption>
-
-										<table class="table table-striped mb-0 orderTable">
-											<thead style="background-color: #002d72; color: white;">
-												<tr>
-													<th scope="col">상품번호</th>
-													<th scope="col">상품명</th>
-													<th scope="col">카테고리</th>
-													<th scope="col">재고</th>
-													<th scope="col">사이즈/타입</th>
-													<th scope="col">발주일자</th>
-													<th scope="col">발주가격</th>
-													<th scope="col">회사</th>
-												</tr>
-											</thead>
-											<tbody>
-												<tr th:each="vo, status:${orderList}">
-													<td th:if="${status.index%2==0}"><a class="toDetail"
-														href="/order/orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_album_no}]]</a></td>
-													<td th:if="${status.index%2!=0}"><a class="toDetail"
-														href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_prod_no}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">Join한 상품/앨범명</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_prod_category}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_prod_cnt}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_sizetype}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${#dates.format(vo.admin_order_regdate,'yyyy-MM-dd')}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_price}]]</a></td>
-													<td><a class="toDetail" href="orderDetail"
-														style="text-decoration: none; color: black">[[${vo.admin_order_company}]]</a></td>
-												</tr>
-											</tbody>
-										</table>
-										<section class="pagination_section">
-											<div class="pagination">
-												<ul class="pages">
-													<li><a th:href="@{orderList(pageNum=1,amount=${pageVO.amount})}" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-double-left size" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" /><path fill-rule="evenodd" d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" /></svg></a></li>
-													<th:block th:if="${pageVO.prev}"><li><a th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount})}" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-left size" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" /></svg></a></li></th:block>
-													<th:block th:each="pageNum:${pageVO.pageList}">
-														<li><a th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount})}" th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a></li>
-													</th:block>
-													<th:block th:if="${pageVO.next}"><li><a th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount})}" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-compact-right size" viewBox="0 0 16 16"><path fill-rule="evenodd" d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" /></svg></a></li></th:block>
-													<li><a th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount})}"><svg
-																xmlns="http://www.w3.org/2000/svg" width="16"
-																height="16" fill="currentColor"
-																class="bi bi-chevron-double-right size"
-																viewBox="0 0 16 16">
-                            <path fill-rule="evenodd"
-																	d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
-                            <path fill-rule="evenodd"
-																	d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
-                        </svg></a></li>
-												</ul>
+										</div>
+										<form action="orderList" method="get" name="actionForm">
+											<input type="hidden" name="amount" th:value="${pageVO.amount}"/>
+											<div class="search_form">
+												<select id="handleType" name="searchContent">
+													<option value="all" th:selected="${pageVO.cri.searchContent}=='all'">전체보기</option>
+													<option value="album" th:selected="${pageVO.cri.searchContent}=='album'">앨범</option>
+													<option value="product" th:selected="${pageVO.cri.searchContent}=='product'">상품</option>
+												</select>
+												<input type="submit" value="검색" />
 											</div>
-										</section>
-										<!-- end 페이지네이션 -->
+
+											<table class="table table-striped mb-0 orderTable">
+												<thead style="background-color: #002d72; color: white;">
+													<tr>
+														<th scope="col">상품번호</th>
+														<th scope="col">상품명</th>
+														<th scope="col">카테고리</th>
+														<th scope="col">재고</th>
+														<th scope="col">사이즈/타입</th>
+														<th scope="col">발주일자</th>
+														<th scope="col">발주가격</th>
+														<th scope="col">회사</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="vo, status:${orderList}">
+														<td th:if="${status.index%2==0}">[[${vo.admin_order_album_no}]]</td>
+														<td th:if="${status.index%2!=0}">[[${vo.admin_order_prod_no}]]</td>
+														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: black">Join한 상품/앨범명</a></td>
+														<td>[[${vo.admin_order_prod_category}]]</td>
+														<td>[[${vo.admin_order_prod_cnt}]]</td>
+														<td>[[${vo.admin_order_sizetype}]]</td>
+														<td>[[${#dates.format(vo.admin_order_regdate,'yyyy-MM-dd')}]]</td>
+														<td>[[${vo.admin_order_price}]]</td>
+														<td>[[${vo.admin_order_company}]]</td>
+													</tr>
+												</tbody>
+											</table>
+											<section class="pagination_section">
+												<div class="pagination">
+													<ul class="pages">
+														<li><a
+															th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+															class="page_num"><svg
+																	xmlns="http://www.w3.org/2000/svg" width="16"
+																	height="16" fill="currentColor"
+																	class="bi bi-chevron-double-left size"
+																	viewBox="0 0 16 16">
+															<path fill-rule="evenodd"
+																		d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+															<path fill-rule="evenodd"
+																		d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+														</svg></a></li>
+														<th:block th:if="${pageVO.prev}">
+															<li><a
+																th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																class="page_num"><svg
+																		xmlns="http://www.w3.org/2000/svg" width="16"
+																		height="16" fill="currentColor"
+																		class="bi bi-chevron-compact-left size"
+																		viewBox="0 0 16 16">
+																<path fill-rule="evenodd"
+																			d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
+															</svg></a></li>
+														</th:block>
+														<th:block th:each="pageNum:${pageVO.pageList}">
+															<li><a
+																th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a>
+															</li>
+														</th:block>
+														<th:block th:if="${pageVO.next}">
+															<li><a
+																th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																class="page_num"><svg
+																		xmlns="http://www.w3.org/2000/svg" width="16"
+																		height="16" fill="currentColor"
+																		class="bi bi-chevron-compact-right size"
+																		viewBox="0 0 16 16">
+																<path fill-rule="evenodd"
+																			d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
+															</svg></a></li>
+														</th:block>
+														<li><a
+															th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"><svg
+																	xmlns="http://www.w3.org/2000/svg" width="16"
+																	height="16" fill="currentColor"
+																	class="bi bi-chevron-double-right size"
+																	viewBox="0 0 16 16">
+															<path fill-rule="evenodd"
+																		d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+															<path fill-rule="evenodd"
+																		d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+														</svg></a></li>
+													</ul>
+												</div>
+											</section>
+											<!-- end 페이지네이션 -->
+										</form>
 									</div>
 								</div>
 							</div>
@@ -100,9 +138,9 @@
 							<div class="col-12">
 								<div class="card">
 									<div class="card-body p-0">
-										<caption>
+										<div>
 											<strong>상품</strong>
-										</caption>
+										</div>
 										<div class="table-responsive table-scroll"
 											data-mdb-perfect-scrollbar="true"
 											style="position: relative; height: 300px">
@@ -138,20 +176,20 @@
 	</div>
 </th:block>
 <script>
-        var arr = ['testno', 'testname', 'textcategory', 'testcnt', 'testsize', 'testdate', 'testprice', 'testcomapny'];
-        var tdarr = [];
-        for (let i = 1; i <= 7; i++) {
-            var arr2 = [];
-            arr2 = arr.map(item => item + i);
-            tdarr = [...tdarr, arr2];
-        }
-        tdarr = [arr, ...tdarr];
-        const tdmap = [];
-        for (let i = 0; i < tdarr.length; i++) {
-            tdmap[i] = [tdarr[i].map((item, index) => `<td key=${index} style="border:1px solid #777;"><a class="toDetail" href="/order/orderDetail" style="text-decoration:none; color:black">${item}</a></td>`)];
-        }
-        const trmap = tdmap.map((item, index) => `<tr key=${index} style="border: 1px solid #777">${item}</tr>`);
+	var arr = ['testno', 'testname', 'textcategory', 'testcnt', 'testsize', 'testdate', 'testprice', 'testcomapny'];
+	var tdarr = [];
+	for (let i = 1; i <= 7; i++) {
+		var arr2 = [];
+		arr2 = arr.map(item => item + i);
+		tdarr = [...tdarr, arr2];
+	}
+	tdarr = [arr, ...tdarr];
+	const tdmap = [];
+	for (let i = 0; i < tdarr.length; i++) {
+		tdmap[i] = [tdarr[i].map((item, index) => `<td key=${index} style="border:1px solid #777;"><a class="toDetail" href="/order/orderDetail" style="text-decoration:none; color:black">${item}</a></td>`)];
+	}
+	const trmap = tdmap.map((item, index) => `<tr key=${index} style="border: 1px solid #777">${item}</tr>`);
 
-        $("#tbody2").append(trmap);
-    </script>
+	$("#tbody2").append(trmap);
+</script>
 </html>
