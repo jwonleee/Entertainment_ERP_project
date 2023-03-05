@@ -9,7 +9,6 @@
     <title>y4j_layout</title>
     <!-- 스와이퍼 -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <link rel="stylesheet" href="/css/admin_audition.css">
     <!-- jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
@@ -26,6 +25,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
+    <!-- 뷰 파일 css -->
+    <link rel="stylesheet" href="/css/admin_authority_list.css">
     <style>
       body,
       html {
@@ -46,7 +47,7 @@
               <div class="main-header">
                 <div class="main-header-contents">
                   <div class="main-header-inner main-header-inner1">
-                    <a href="#"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
+                    <a href="../admin/admin_home"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
                   </div>
                   <ul class="main-header-inner main-header-inner2">
                     <li class="header_middle_user">
@@ -126,7 +127,6 @@
                         </div>
                       </div>
                     </div>
-                    <!-- <img class="sticky-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/> -->
                   </div>
                 </div>
               </div>
@@ -145,8 +145,8 @@
               <div class="authorityMng mngBar">
                 <div class="smt mngBar3">권한 관리</div>
                 <ul class="sub_menu">
-                  <li><a href="/authority/admin_authority_list">회원 권한 조회</a></li>
-                  <li><a href="/authority/admin_authority_apply_list">권한 신청 목록</a></li>
+                  <li><a href="/authority/admin_authority_list?searchValue=&pageNum=1&amount=10">관리자 권한 조회</a></li>
+                  <li><a href="/authority/admin_authority_apply_list?searchValue=&pageNum=1&amount=10">권한 신청 목록</a></li>
                   <li><a href="/authority/admin_authority_register">권한 등록</a></li>
                 </ul>
               </div>
@@ -212,9 +212,11 @@
     </script>
     <script th:inline="javascript">
       var menu = JSON.parse('[[${uri}]]');
-
+      //a태그
       $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
+      //.sub_menu
       $('a[href*=' + '[[${uri}]]' + ']').parent().addClass("on");
+      //.smt
       $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().addClass("on");
 
       if ($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().hasClass("mngBar3")) {
@@ -225,6 +227,9 @@
 
       $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("border", "6px solid black");
       $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().css("border-bottom", "none");
+
+      $('.sideMenuTitle').html($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().html());
+      $('.sideMenuContent').html($('a[href*=' + '[[${uri}]]' + ']').html());
     </script>
   </body>
 </th:block>

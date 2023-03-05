@@ -32,8 +32,8 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	//관리자 특정 1명 데이터 반환 메서드
-	public ArrayList<AdminVO> getAdminInfo(Criteria cri, String admin_id) {
-		return adminMapper.getAdminInfo(cri, admin_id);
+	public AdminVO getAdminInfo(int admin_no) {
+		return adminMapper.getAdminInfo(admin_no);
 	}
 	
 }

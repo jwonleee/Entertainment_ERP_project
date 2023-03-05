@@ -161,3 +161,4 @@ function footerFixed() {
     $(".footer-outer").css({position: "static",})
   }
 }
+window.addEventListener('resize', footerFixed);

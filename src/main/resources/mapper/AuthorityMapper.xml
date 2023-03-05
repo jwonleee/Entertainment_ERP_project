@@ -3,159 +3,34 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  <mapper namespace="com.y4j.final_project.authority.service.AuthorityMapper">
+ <mapper namespace="com.y4j.final_project.authority.service.AuthorityMapper">
   	
-  	<!-- 상품 등록 메서드
-  	<insert id="regist" parameterType="ProductVO">
-  		insert into PRODUCT(prod_endDate, prod_category, prod_writer, prod_name, prod_price,
-  			prod_count, prod_discount, prod_purchase_yn, prod_content, prod_comment)
-  		values(#{prod_endDate}, #{prod_category}, #{prod_writer}, #{prod_name}, #{prod_price},
-  			#{prod_count}, #{prod_discount}, #{prod_purchase_yn},
-  			#{prod_content}, #{prod_comment})
-  	</insert>
-  	
-  	상품 이미지 등록 메서드
-  	
-  	1. insert 전에 product 테이블의 키 값을 selectKey 태그를 이용하여 얻는다.
-	2. resultType은 조회된 결과 타입
-	3. keyPropery는 SQL에 전달되는 vo에 저장할 key 값
-	4. order : BEFORE, AFTER - 인서트 이전에 실행 or 인서트 이후에 실행
-	
-  	<insert id="registFile" parameterType="ProductUploadVO">
-  		<selectKey resultType="int" keyProperty="prod_id" order="BEFORE" >
-  			select max(prod_id) as prod_id from product where prod_writer = #{prod_writer}
-  		</selectKey>
-  		insert into product_upload(filename, filepath, uuid, prod_id, prod_writer)
-  		values (#{fileName}, #{filePath}, #{uuid}, #{prod_id}, #{prod_writer})
-  	</insert>
-
-  	리스트 조회 메서드(특정 id에 대한 정보만)
-  	<select id="getList" resultType="ProductVO">
-  		
-  		select * from product
-  		where prod_writer = #{user_id}
-  		and prod_name like concat('%', #{cri.searchName}, '%')
-  		and prod_content like concat('%', #{cri.searchContent}, '%')
-  		order by prod_id desc limit #{cri.pageStart}, #{cri.amount}
-  		
-		select p.*, c.category_nav
-		from (
-			select * from product
-			where prod_writer = #{user_id}
-			and prod_name like concat('%', #{cri.searchName}, '%')
-			and prod_content like concat('%', #{cri.searchContent}, '%')
-	  		order by prod_id desc limit #{cri.pageStart}, #{cri.amount}
-		) p
-		left outer join (
-			SELECT
-					CONCAT(A1.group_ID, A1.CATEGORY_ID) AS CATEGORY_KEY,
-					CASE A1.category_parent_LV
-						WHEN 0 THEN A1.category_detail_NM
-						WHEN 1 THEN CONCAT(A2.category_detail_NM,' > ', A1.category_detail_NM)
-						WHEN 2 THEN CONCAT(A3.category_detail_NM, ' > ', A2.category_detail_NM,' > ', A1.category_detail_NM)
-					END as CATEGORY_NAV
-			FROM PRODUCT_CATEGORY A1
-			LEFT OUTER JOIN PRODUCT_CATEGORY A2
-			ON A1.CATEGORY_PARENT_LV = A2.CATEGORY_LV AND A1.CATEGORY_DETAIL_PARENT_LV = A2.CATEGORY_DETAIL_LV AND A1.GROUP_ID = A2.GROUP_ID
-			LEFT OUTER JOIN PRODUCT_CATEGORY A3
-			ON A2.CATEGORY_PARENT_LV = A3.CATEGORY_LV AND A2.CATEGORY_DETAIL_PARENT_LV = A3.CATEGORY_DETAIL_LV	
-		) c
-		on p.prod_category = c.category_key
-  	</select>
-  	
-  	전체 게시물 수 반환 메서드
-  	<select id="getTotal" resultType="Integer">
-  		select count(*) from product
-  		where prod_writer = #{user_id}
-  		and prod_name like concat('%', #{cri.searchName}, '%')
-  		and prod_content like concat('%', #{cri.searchContent}, '%')
-  	</select>
-  	
-  	카테고리 대분류
-  	<select id="getCategory" resultType="CategoryVO">
-  		select * from product_category
-  		where category_lv = 1
-  	</select>
-
-	카테고리 중분류 & 소분류 - group_id, parent_lv, detail_parent_lv에 매칭
-	<select id="getCategoryChild" resultType="CategoryVO" parameterType="CategoryVO">
-		select * from product_category
-		where group_id = #{group_id}
-		and category_parent_lv = #{category_lv}
-		and category_detail_parent_lv = #{category_detail_lv}
-	</select>
-	
-	<select id="getProductImg" resultType="ProductUploadVO">
-		select * from product_upload where prod_id = #{prod_id}
-	</select> -->
-	
-
-	<!-- 
-	<insert id="regist" parameterType="ProductVO">
-		insert into PRODUCT(prod_enddate,
-		prod_writer,
-		prod_name,
-		prod_price,
-		prod_count,
-		prod_discount,
-		prod_purchase_yn,
-		prod_content,
-		prod_comment )
-		values( #{prod_enddate},
-		#{prod_writer},
-		#{prod_name},
-		#{prod_price},
-		#{prod_count},
-		#{prod_discount},
-		#{prod_purchase_yn},
-		#{prod_content},
-		#{prod_comment} )
+	<!-- 관리자 회원가입 완료 시, 권한 신청 정보 등록 -->
+	<insert id="applyAuthority" parameterType="com.y4j.final_project.command.AuthorityVO">
+		insert into authority_mng(
+			authority_mng_admin_no,
+			authority_mng_admin_id,
+			authority_mng_admin_name,
+			authority_mng_admin_apply_type,
+			ent_name)
+		values(
+			#{authority_mng_admin_no},
+			#{authority_mng_admin_id},
+			#{authority_mng_admin_name},
+			#{authority_mng_admin_apply_type},
+			#{ent_name})
 	</insert>
 
-	<select id="getList" resultType="ProductVO">
-		select * from PRODUCT
-		where prod_writer = #{user_id}
-
-		<if test="cri.startDate != null and cri.startDate != '' ">
-        <![CDATA[ and date_format(prod_enddate, '%Y-%m-%d') >= date_format( #{cri.startDate}, '%Y-%m-%d')]]>
-		</if>
-		<if test="cri.endDate != null and cri.endDate != '' ">
-      <![CDATA[ and date_format(prod_enddate, '%Y-%m-%d') <= date_format( #{cri.endDate}, '%Y-%m-%d')   ]]>
-		</if>
-		<if test="cri.searchName != null and cri.searchName != '' ">
-			and prod_name like concat('%', #{cri.searchName}, '%')
-		</if>
-		<if test="cri.searchContent != null and cri.searchContent != '' ">
-			and prod_content like concat('%', #{cri.searchContent}, '%')
-		</if>
-		order by
-		<if test="cri.searchPrice == 'asc' ">
-			prod_price asc,
-		</if>
-		<if test="cri.searchPrice == 'desc' ">
-			prod_price desc,
-		</if>
-		prod_id desc
-		limit #{cri.pageStart}, #{cri.amount}
+	<!-- 관리자 권한 신청 목록 조회 메서드 -->
+	<select id="getAuthorityApplyList" resultType="AuthorityVO">
+		select * from authority_mng
 	</select>
-
-	<select id="getTotal" resultType="int">
-		select count(*) as total from PRODUCT
-		where prod_writer = #{user_id}
-
-		<if test="cri.startDate != null and cri.startDate != '' ">
-        <![CDATA[ and date_format(prod_enddate, '%Y-%m-%d') >= date_format( #{cri.startDate}, '%Y-%m-%d')]]>
-		</if>
-		<if test="cri.endDate != null and cri.endDate != '' ">
-      <![CDATA[ and date_format(prod_enddate, '%Y-%m-%d') <= date_format( #{cri.endDate}, '%Y-%m-%d')   ]]>
-		</if>
-		<if test="cri.searchName != null and cri.searchName != '' ">
-			and prod_name like concat('%', #{cri.searchName}, '%')
-		</if>
-		<if test="cri.searchContent != null and cri.searchContent != '' ">
-			and prod_content like concat('%', #{cri.searchContent}, '%')
-		</if>
-	</select>
-  	 -->
+	
+	<!-- 관리자 권한 신청 총 데이터 수 반환 메서드 -->
+	<select id="getAuthorityApplyTotal" resultType="Integer">
+  		select count(*) from authority_mng
+  	</select>
   	
-  </mapper>
+  	<!-- 관리자 권한 신청 승인 및 변경 : update -->
+  	
+ </mapper>

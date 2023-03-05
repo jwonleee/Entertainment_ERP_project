@@ -19,6 +19,6 @@ public interface AdminService {
 	public int getAdminTotal(Criteria cri);
 	
 	//관리자 특정 1명 데이터 반환 메서드
-	public ArrayList<AdminVO> getAdminInfo(@Param("cri") Criteria cri, @Param("admin_id") String admin_id);
+	public AdminVO getAdminInfo(int admin_no);
 	
 }

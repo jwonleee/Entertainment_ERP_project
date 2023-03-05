@@ -5,20 +5,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin")
+@RequestMapping("/user")
 public class UserController {
 
 	
 	
-	@GetMapping("/admin_login")
+	@GetMapping("/user_login")
 	public String admin_login() {
 		
-		return "admin/admin_login";
+		return "user/user_login";
 	}
 
-	@GetMapping("/admin_join")
+	@GetMapping("/user_join")
 	public String admin_join() {
 		
-		return "admin/admin_join";
+		return "user/user_join";
 	}
+	
 }

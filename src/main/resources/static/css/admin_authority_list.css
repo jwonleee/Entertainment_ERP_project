@@ -1,0 +1,66 @@
+/* admin_authority_list CSS */
+
+/* breadcrumb & search bar */
+a {
+  color: black;
+}
+
+.aal-top {
+  overflow: hidden;
+  vertical-align: middle;
+}
+
+.aal-top-left {
+  float: left;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.aal-top-right {
+  float: right;
+}
+
+.aal-top-right > input {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  margin-right: 10px;
+}
+
+.aal-top-right > button {
+  height: 30px;
+  line-height: 16px;
+  margin-bottom: 5px;
+}
+
+/* table */
+.aal-content {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.aal-content td {
+  vertical-align: middle;
+}
+
+/* pagination */
+.page-link {
+  color: black;
+  box-sizing: border-box;
+}
+
+.page-link  span {
+  box-sizing: border-box;
+}
+
+.page-link:hover {
+  border: 2px solid #212529;
+  color: black;
+  background-color: rgb(235, 235, 235);
+}
+
+/* modal */
+.modalOpen {
+  height: 32px;
+  line-height: 16px;
+}

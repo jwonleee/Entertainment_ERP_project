@@ -242,12 +242,10 @@ a {
 }
 
 .fragment {
+  overflow: hidden;
   width: 1080px;
   /* width: auto; */
-}
-
-.fragment {
-  overflow: hidden;
+  padding-top: 20px;
 }
 
 
@@ -260,6 +258,7 @@ a {
   width: 100%;
   background-image: linear-gradient(to right, rgb(222, 222, 222), rgb(166, 166, 166) 50%, rgb(111, 111, 111));
   z-index: 5;
+  margin-top: 20px;
 }
 
 footer {
