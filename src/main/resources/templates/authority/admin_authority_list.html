@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<th:block
-	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
 		<div class="fragment-inner">
@@ -42,25 +41,27 @@
 								<td>[[${vo.admin_name}]]</td>
 								<td>[[${vo.admin_type}]]</td>
 								<td>[[${ #temporals.format(vo.admin_regdate, 'yyyy-MM-dd') }]]</td>
-								<td><button type="button" class="btn btn-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">세부 정보</button></td>
+								<td><button type="button" class="btn btn-dark showModal" data-bs-toggle="modal"
+										data-bs-target="#exampleModal">세부 정보</button></td>
 							</tr>
 						</tbody>
 					</table>
 
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-						<div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 							<div class="modal-content">
 								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-									<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+									<h1 class="modal-title fs-5" id="exampleModalLabel">관리자 세부 정보</h1>
+									<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
 								</div>
-								<div class="modal-body">
-									...
+								<div class="modal-body" style="width: 500px">
+
 								</div>
 								<div class="modal-footer">
-									<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-									<button type="button" class="btn btn-primary">Save changes</button>
+									<button type="button" class="btn btn-primary">저장</button>
+									<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
 								</div>
 							</div>
 						</div>
@@ -69,29 +70,35 @@
 					<!-- pagination -->
 					<ul class="pagination" style="display: inline-flex">
 						<li class="page-link">
-							<a th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
+							<a
+								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
 						<th:block th:if="${pageVO.prev}">
 							<li class="page-link">
-								<a th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
+								<a
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
 									<span aria-hidden="true">&lsaquo;</span>
 								</a>
 							</li>
 						</th:block>
 						<th:block th:each="p, s : ${pageVO.pageList}">
-							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link" th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a></li>
+							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
+							</li>
 						</th:block>
 						<th:block th:if="${pageVO.next}">
 							<li class="page-link">
-								<a th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
+								<a
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
 									<span aria-hidden="true">&rsaquo;</span>
 								</a>
 							</li>
 						</th:block>
 						<li class="page-link">
-							<a th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
+							<a
+								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
@@ -105,49 +112,107 @@
 </th:block>
 
 <script>
-	$(".showModal").click(function(e) {
+	$(".showModal").click(function (e) {
 
 		var admin_no = $(this).parent().prev().prev().prev().prev().html();
 
 		$.ajax({
 			url: "../getAdminInfo",
 			type: "post",
-			data: JSON.stringify({admin_no: admin_no}),
+			data: JSON.stringify({ admin_no: admin_no }),
 			contentType: "application/json",
-			success: function(result) {
-				console.log(result);
-				/*
-				str += '<div class="left">';
-				str += '<span>추가이미지</span>';
-					str += '<label class="upload-display" for="' + arr[i] + '_file">';
-						str += '<span class="upload-thumb-wrap">';
-						str += '</span>';
-					str += '</label>';
-					str += '<input class="upload-name" value="파일선택" disabled="disabled">';
-					str += '<input type="file" name="file" id="' + arr[i] + '_file" class="upload-hidden">';
-					str += '<input type="hidden" value="">';
-					str += '<input type="hidden" value="">';
-					str += '<button type="button" class="normal_btn delete_btn" style="display: block;">삭제</button>';
-					str += '<button type="button" class="normal_btn" style="display: block;" onclick="location.href=\'http://localhost:8181/download/' + result[i].filePath + '/' + result[i].uuid + '/' + result[i].fileName +'\'" >다운로드 - button 태그</button>';
-					str += '<a class="normal_btn" href="http://localhost:8181/download/' + result[i].filePath + '/' + result[i].uuid + '/' + result[i].fileName +'">다운로드 - a태그</a>';
+			success: function (vo) {
+
+				var str = '';
+
+				str += '<div class="modal-body-inner">';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">번호</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_no + '>';
 				str += '</div>';
-					
-				$(".filebox").append(str);
-				*/
+				str += '</div>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_name + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '<fieldset class="row mb-3">';
+				str += '<legend class="col-form-label col-sm-2 pt-0">유형</legend>';
+				str += '<div class="col-sm-10">';
+				str += '<div class="form-check">';
+				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios0" value="option0" disabled>';
+				str += '<label class="form-check-label" for="gridRadios0">';
+				str += '사이트 관리자';
+				str += '</label>';
+				str += '</div>';
+				str += '<div class="form-check">';
+				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1 "' + (vo.admin_type == "manager" ? "checked >" : ">");
+				str += '<label class="form-check-label" for="gridRadios1">';
+				str += '매니저';
+				str += '</label>';
+				str += '</div>';
+				str += '<div class="form-check">';
+				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2 "' + (vo.admin_type == "audition" ? "checked >" : ">");
+				str += '<label class="form-check-label" for="gridRadios2">';
+				str += '오디션 관리자';
+				str += '</label>';
+				str += '</div>';
+				str += '<div class="form-check">';
+				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3 "' + (vo.admin_type == "sale" ? "checked >" : ">");
+				str += '<label class="form-check-label" for="gridRadios3">';
+				str += '상품 관리자';
+				str += '</label>';
+				str += '</div>';
+				str += '</div>';
+				str += '</fieldset>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">그룹</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputText3" value=' + (vo.ent_name == "none" ? "-" : vo.ent_name) + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">아이디</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_id + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">연락처</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_contact + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">이메일</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputEmail3" value=' + vo.admin_email + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '<div class="row mb-3">';
+				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">등록일</label>';
+				str += '<div class="col-sm-10">';
+				str += '<input type="text" class="form-control" id="inputEmail3" value=' + vo.admin_regdate + '>';
+				str += '</div>';
+				str += '</div>';
+				str += '</div>';
+
+				$(".modal-body").append(str);
 			},
-			error: function(err) {
+			error: function (err) {
 				alert("관리자 정보 조회에 실패했습니다.");
 			}
 		});
-		
-		
+
 	});
 </script>
 <script>
 	//모달을 닫을 시, 모달 화면에 구성해줬던 이미지 정보를 삭제
-	// $(".modalOff").click(function(e) {
-	// 	$(".left").remove();
-	// });
+	$(".closeModal").click(function() {
+		$(".modal-body-inner").remove();
+	});
 </script>
 
 </html>
