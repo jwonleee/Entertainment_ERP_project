@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+
+<!-- css -->
+<link rel="stylesheet" href="../css/admin_scheduleDetail.css" type="text/css" />
+
+
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+	
+	<div class="fragment">
+		
+		<div class="table_wrap">
+			<div class="title">일정 상세보기</div>
+			<form name="#" action="#" method="post" enctype="multipart/form-data">
+				<div>
+					<ul>
+						<li>
+							<table class="table_inner">
+								<tbody>
+									<tr>
+										<th>일정 날짜</th>
+										<td class="schedule_calendar">
+											<input type="text" id="startDate" name="schedule_start_time" placeholder="시작날짜선택" style="width:100px"/>~
+											<input type="text" id="endDate" name="schedule_end_time" placeholder="종료날짜선택" style="width:100px" />
+										</td>
+									</tr>
+									<tr>
+										<th>관리자 ID</th>
+										<td>
+											<input type="text" class="form-control" name="admin_id" style="width:150px" value="매니저" readonly/>
+										</td>
+									</tr>
+									<tr>
+										<th>타입</th>
+										<td>
+											<select class="form-control selectpicker sel" name="schedule_type" style="width: 150px;">
+												<option value="tv">TV</option>
+												<option value="magazine">Magazine</option>
+												<option value="radio">Radio</option>
+												<option value="concert">Concert</option>
+												<option value="movie">Movie</option>
+												<option value="etc">ETC</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>제목</th>
+										<td>
+											<input type="text" class="input90 form-control" name="schedule_ent_name"
+												value="" required />
+										</td>
+									</tr>
+									<tr>
+										<th>아티스트 타입</th>
+										<td>
+											<label>
+												<input type="radio" name="artist_type" value="musician"
+													checked="checked" />
+												<span>
+													Musician
+												</span>
+												<input type="radio" name="artist_type" value="actor" />
+												<span>
+													Actor
+												</span>
+											</label>
+
+										</td>
+									</tr>
+									<tr>
+										<th>아티스트 이름</th>
+										<td>
+											<input type="text" name="ent_name" class="form-control" style="width:150px"
+												value="" required />
+										</td>
+									</tr>
+									<tr>
+										<th>아티스트 그룹</th>
+										<td>
+											<select class="form-control input-sm" style="width: 150px;">
+												<option value="solo">Solo</option>
+												<option value="blackpink">Blackpink</option>
+												<option value="newjeans">Newjeans</option>
+												<option value="ive">Ive</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<th>장소</th>
+										<td>
+											<input type="text" name="schedule_location" value=""/>
+										</td>
+									</tr>
+									<tr>
+										<th>세부내용</th>
+										<td>
+											<div>
+												<textarea name="schedule_content"
+													class="content form-control" value=""></textarea>
+											</div>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+
+							<div class="btn_wrap">
+								<!-- <a href="#" class="save btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">저장</a> -->
+                                <a href="admin_scheduleList.html" class="revise btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">수정</a>
+                                <a href="#" class="delete btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">삭제</a>
+
+							</div>
+
+						</li>
+					</ul>
+
+				</div>
+			</form>
+		</div>
+		
+		
+	</div>
+
+
+</th:block>
+</html>

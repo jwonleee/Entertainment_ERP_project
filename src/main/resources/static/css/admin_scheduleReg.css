@@ -1,0 +1,95 @@
+* {margin: 0; padding: 0; list-style: none;}
+a {text-decoration: none;}
+img {max-width: 100%; height: auto;}
+
+.table_wrap {
+    width: 1080px;
+}
+
+.table_wrap .title {
+    height: 60px;
+    line-height: 60px;
+    font-size: 20px;
+    background-color: #002d72;
+    color: #ffffff;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.table_wrap ul li {
+    overflow: auto;
+}
+
+.table_inner {
+    width: 100%;
+}
+
+.table_inner .schedule_calendar img{
+    width: 30px;
+}
+
+.table_inner tr th{
+    width: 140px;
+    background-color: #eaeef5;
+    text-align: center;
+    border-bottom: 1px solid #fff;
+    border-right: 1px solid #ededed;
+    font-size: 14px;
+}
+
+.table_inner tr td{
+    border-bottom: 1px solid #ededed;
+    border-right: 1px solid #ededed;
+    padding-left: 12px;
+    line-height: 30px;
+    height: 50px;
+    text-align: left;
+}
+
+.table_inner input {
+    border: 1px solid #b1b1b1;
+    height: 25px;
+    padding-left: 7px;
+}
+
+.table_inner .input90 {
+    width: 80%;
+    resize: vertical;
+}
+
+.table_inner .content {
+    width: 99%;
+    height: 300px;
+    resize: none;
+    padding: 7px 7px;
+    margin: 10px 0 10px;
+}
+
+.btn_wrap {
+    text-align: center;
+}  
+
+.custom_btn {
+    width: 140px;
+    margin: 15px;
+  }
+
+.btn_wrap .custom_btn:hover {
+    background-color: #fee192 !important;
+    color: #000 !important;
+    border: 1px solid #464646;
+}
+
+.table_inner label {
+    line-height: 2rem;
+    padding: 0.2em 0.4em;
+  }
+  
+.table_inner label input[type="radio"] {
+      vertical-align: middle;
+  }
+
+.table_inner span {
+    vertical-align: middle;
+  }
+  

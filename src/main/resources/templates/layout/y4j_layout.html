@@ -3,39 +3,47 @@
 <th:block th:fragment="funcLayout(content)">
 
   <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Y4J</title>
-    <!-- 스와이퍼 -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
-    <!-- jquery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
-    <!-- bootstrap -->
-    <!-- css링크 -->
-    <link rel="stylesheet" href="/css/bootstrapcss/bootstrap.min.css">
-    <!-- 부트스트랩 테마가 필요하면 이쯤 추가 -->
-    <!-- js링크 -->
-    <script src="/js/bootstrapjs/bootstrap.min.js"></script>
-    <script src="/js/bootstrapjs/bootstrap.bundle.min.js"></script>
-    <!-- 폰트 -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap" rel="stylesheet">
-    <!-- 뷰 파일 css -->
-    <link rel="stylesheet" href="/css/admin_authority_list.css">
-    <style>
-      body,
-      html {
-        font-family: 'Noto Sans KR', sans-serif;
-      }
-    </style>
-    <!-- 개별 css -->
-    <link rel="stylesheet" href="/css/y4j_layout.css">
-  </head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>y4j_layout</title>
+<!-- 스와이퍼 -->
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+<link rel="stylesheet" href="/css/admin_audition.css">
+<!-- jquery -->
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> -->
+
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+
+<link rel="stylesheet" type="text/css" media="screen"
+	href="../css/jquery.datetimepicker.min.css">
+<script src="../js/jquery.datetimepicker.full.min.js"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+<!-- bootstrap -->
+<!-- css링크 -->
+<link rel="stylesheet" href="/css/bootstrapcss/bootstrap.min.css">
+<!-- 부트스트랩 테마가 필요하면 이쯤 추가 -->
+<!-- js링크 -->
+<script src="/js/bootstrapjs/bootstrap.min.js"></script>
+<!-- 폰트 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap"
+	rel="stylesheet">
+<style>
+body, html {
+	font-family: 'Noto Sans KR', sans-serif;
+}
+</style>
+<!-- 개별 css -->
+<link rel="stylesheet" href="/css/y4j_layout.css">
+	</head>
 
   <body>
     <div class="outer">
@@ -232,6 +240,7 @@
       $('.sideMenuContent').html($('a[href*=' + '[[${uri}]]' + ']').html());
     </script>
   </body>
+
 </th:block>
 
 </html>
