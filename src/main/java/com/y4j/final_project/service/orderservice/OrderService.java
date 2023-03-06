@@ -10,5 +10,6 @@ public interface OrderService {
 	public ArrayList<Admin_orderVO> getOrderList(String user_id, Criteria cri); //발주목록
 	public Admin_orderVO getDetail(String admin_order_no);//상세조회
 	//신규등록
+	//public int updateOrder();//추가발주-업데이트
 	
 }

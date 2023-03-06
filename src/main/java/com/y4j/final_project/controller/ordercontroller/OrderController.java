@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.y4j.final_project.command.PageVO;
@@ -74,6 +75,20 @@ public class OrderController {
 		
 		
 		return "/order/orderReg";
+	}
+	
+	//추가발주
+	@PostMapping("/detailOrderReg")
+	public String detailOrderReg() {
+		
+		
+		
+		
+		
+		
+		
+		
+		return "redirect:/order/orderList";
 	}
 	
 	
