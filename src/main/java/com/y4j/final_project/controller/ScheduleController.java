@@ -20,17 +20,17 @@ public class ScheduleController {
 	
 	@GetMapping("/admin_scheduleReg")
 	public String reg() {
-		return "/schedule/admin_scheduleReg";
+		return "schedule/admin_scheduleReg";
 	}
 	
 	@GetMapping("/admin_scheduleList")
 	public String list() {
-		return "/schedule/admin_scheduleList";
+		return "schedule/admin_scheduleList";
 	}
 	
 	@GetMapping("/admin_scheduleDetail")
 	public String retail() {
-		return "/schedule/admin_scheduleDetail";
+		return "schedule/admin_scheduleDetail";
 	}
 	
 	

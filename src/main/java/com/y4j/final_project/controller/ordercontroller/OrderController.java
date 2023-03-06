@@ -13,10 +13,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.y4j.final_project.command.PageVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.service.orderservice.OrderService;
 import com.y4j.final_project.util.Criteria;
+import com.y4j.final_project.util.PageVO;
 
 @Controller
 @RequestMapping("/order")
