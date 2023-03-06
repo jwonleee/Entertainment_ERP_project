@@ -31,7 +31,11 @@
 											</tr>
 											<tr>
 												<th>카테고리</th>
-												<td><input type="text" required="required" name="admin_order_prod_category"/></td>
+												<td>
+													<input type="hidden" name="admin_order_prod_category" value=""/>
+													<div style="font-style: italic; color: red;">※카테고리 선택은 필수입니다.</div>
+													<div class="categoryListWrap"></div>
+												</td>
 											</tr>
 											<tr>
 												<th>재고</th>

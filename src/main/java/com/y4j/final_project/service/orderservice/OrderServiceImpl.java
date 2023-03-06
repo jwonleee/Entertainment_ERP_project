@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
+import com.y4j.final_project.command.ordercommand.CategoryVO;
 import com.y4j.final_project.util.Criteria;
 
 @Service("orderService")
@@ -29,6 +30,11 @@ public class OrderServiceImpl implements OrderService{
 	@Override
 	public Admin_orderVO getDetail(String admin_order_no) {
 		return orderMapper.getDetail(admin_order_no);
+	}
+
+	@Override
+	public ArrayList<CategoryVO> getCategory() {
+		return orderMapper.getCategory();
 	}
 
 	
