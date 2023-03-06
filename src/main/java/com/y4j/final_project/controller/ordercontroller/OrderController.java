@@ -25,17 +25,8 @@ public class OrderController {
 	@Autowired
 	@Qualifier("orderService")
 	private OrderService orderService;
-	
 
 	
-
-	//상세화면
-	@GetMapping("/orderDetail")
-	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
-		Admin_orderVO vo = orderService.getDetail(admin_order_no);
-		model.addAttribute("vo",vo);
-		return "/order/orderDetail";
-	}
 	
 	//목록화면
 	@GetMapping("/orderList")
@@ -57,10 +48,29 @@ public class OrderController {
 		PageVO pageVO=new PageVO(cri,total);
 		model.addAttribute("pageVO",pageVO);
 		
-		return "/order/orderList";
+		return "order/orderList";
 	}
 	
-	//등록화면
+	/////////////////////////////////
+	//상세화면
+	@GetMapping("/orderDetail")
+	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
+		Admin_orderVO vo = orderService.getDetail(admin_order_no);
+		model.addAttribute("vo",vo);
+		return "order/orderDetail";
+	}
+	
+	//추가발주
+	@PostMapping("/detailOrderReg")
+	public String detailOrderReg() {
+		
+		return "redirect:/order/orderList";
+	}
+	
+	
+	
+	//////////////////////////////////
+	//초기발주
 	@GetMapping("orderReg")
 	public String orderReg(HttpSession session, Model model) {
 		//로그인 했다고 가정
@@ -74,22 +84,11 @@ public class OrderController {
 		model.addAttribute("admin_id",user_id);
 		
 		
-		return "/order/orderReg";
+		return "order/orderReg";
 	}
 	
-	//추가발주
-	@PostMapping("/detailOrderReg")
-	public String detailOrderReg() {
-		
-		
-		
-		
-		
-		
-		
-		
-		return "redirect:/order/orderList";
-	}
+	
+	
 	
 	
 }

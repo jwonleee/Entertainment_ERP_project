@@ -58,7 +58,9 @@
   	</select>
   	
   	
-  	
+  	<select id="getCategory" resultType="CategoryVO">
+  		select * from category where category_lv=1
+  	</select>
   	
   </mapper>
   

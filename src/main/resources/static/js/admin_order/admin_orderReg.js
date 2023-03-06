@@ -12,3 +12,68 @@ $("#redirectList").click(()=>{
 		location.href="orderList";
 	}
 })
+
+/*카테고리*/
+// 화면 로딩시 대분류 카테고리 생성
+$(document).ready(()=>{
+		$.ajax({
+			url:"../getCategory",
+			type:"get",
+			success:(result)=>{
+				var str='';
+				str+='<ul class="categoryList" style="position:relative;" onclick="getAllCategory(event);">';
+					result.forEach((item)=>{str+='<li><a href="#" data-set='+JSON.stringify(item)+'>'+item.category_detail_nm+'</a></li>';});
+				str+='</ul>';
+
+				$(".categoryListWrap").append(str);
+			},
+			error:(err)=>{
+				alert("카테고리 조회 실패! 담당자에게 문의하세요.")
+			}
+		})
+	});
+
+//카테고리 생성
+function getAllCategory(e){
+    e.preventDefault(); //고유 이벤트 중지
+    if(e.target.tagName !='A') return; //태그 검증하기
+    var dcate=$(e.target).data("set"); //jquery 데이터셋
+
+    //카테고리 세분화
+    if(dcate.category_lv==1 || dcate.category_lv ==2){ //대분류, 중분류만
+        $(e.currentTarget).category_remove(); //이전 카테고리 삭제
+        $.ajax({
+            url:"../getCategoryChild/"+dcate.group_id+"/"+dcate.category_lv+"/"+dcate.category_detail_lv,
+            type:"get",
+            success:(result)=>{category_create(result)},
+            error:(err)=>{alert("카테고리 조회 실패! 담당자에게 문의하세요.")}
+        })
+    }
+    $(e.target).category_set();
+
+};
+
+//카테고리세팅
+$.fn.category_set=function(){
+    var category_id=this.data("set").category_id;
+    var group_id=this.data("set").group_id;
+    $("input[name='admin_order_prod_category']").val(group_id+category_id);
+};
+
+//이전 카테고리 삭제
+$.fn.category_remove=function(){
+    while(this.next().length!=0){
+        $(this).next().remove();
+    }
+};
+
+
+//다음카테고리 생성
+function category_create(data){
+    var category="";
+    category+='<ul class="categoryList" style="position:relative;" onclick="getAllCategory(event);">';
+    data.forEach((item)=>{category+='<li><a href="#" data-set='+JSON.stringify(item)+'>'+item.category_detail_nm+'</a></li>';});
+    category+='</ul>';
+    $(".categoryListWrap").append(category);
+;}
+
