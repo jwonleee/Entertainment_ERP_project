@@ -38,3 +38,4 @@ out/
 
 ## 키 들어있는 파일 ##
 application.yaml
+application.properties
