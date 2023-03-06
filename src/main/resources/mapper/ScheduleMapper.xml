@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+ <mapper namespace="com.y4j.final_project.schedule.service.ScheduleMapper">
+
+	<insert id="regist" parameterType="ScheduleVO">
+		insert into SCHEDULE(schedule_start_time,
+							  schedule_end_time,
+							  schedule_type,
+							  schedule_ent_name,
+							  schedule_location,
+							  schedule_content)
+    	values(#{schedule_start_time},
+    		   #{schedule_end_time},
+    		   #{schedule_type},
+    		   #{schedule_ent_name},
+    		   #{schedule_location},
+    		   #{schedule_content})
+	</insert>
+
+</mapper>
