@@ -1,0 +1,179 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*=========== header부분 ==============*/
+header {
+    text-align: center;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header h3 {
+    color: #011638;
+    font-size: 80px;
+    vertical-align: middle;
+}
+
+/*============ 로그인 부분 ===========*/
+.login_section {
+    padding: 80px 0;
+    text-align: center;
+    background-color: #D4DFE6;
+}
+
+.login_box {
+    padding: 50px 0;
+    margin: 0 auto;
+    width: 33.3333%;
+    border: none;
+    border-radius: 10px;
+    background-color: white;
+}
+
+.login_innerbox {
+    margin: 0 auto;
+    width: 80%;
+}
+
+/* 로그인 제목 */
+.login_box .login_title {
+    margin-bottom: 20px;
+}
+
+.login_box .login_title h3 {
+    color: #09293f;
+    font-size: 30px;
+    text-align: center;
+}
+
+/* 로그인 입력칸 */
+
+.login_content {
+    width: 100%;
+
+}
+
+.login_input {
+    width: 100%;
+    display: inline-block;
+}
+
+.login_input>input {
+    width: 100%;
+    margin-bottom: 5px;
+    font-size: 16px;
+    border: none;
+    padding: 10px 0;
+}
+
+.login_input .id {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+.login_input .pw {
+    border-bottom: 1px solid #d7d7d7;
+}
+
+/* 입력칸 아래 */
+.login_input_under {
+    font-size: 14px;
+    overflow: hidden;
+    
+}
+
+.login_input_under>.left {
+    color: #333;
+    float: left;
+    cursor: pointer;
+}
+
+.login_input_under>.right {
+    float: right;
+}
+.login_input_under .find_user_info > a{
+    color: #1F2124;
+}
+.login_input_under .find_user_info > a:hover{
+    color: rgb(211, 42, 76);
+    font-weight: 700;
+}
+
+/* 로그인 버튼 */
+.btn {
+    width: 100%;
+    margin-top: 25px;
+    overflow: hidden;
+    border-bottom: 0.5px solid #d7d7d7;
+}
+
+.btn>form>button {
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    border: none;
+    border-radius: 6px;
+    font-size: 17px;
+    cursor: pointer;
+    
+}
+.btn > form{
+    margin-bottom: 8px;
+}
+.btn .login_btn{
+    background-color: #8EC0E4;
+    color: white;
+    font-weight: bold;
+}
+.btn .login_btn:hover{
+    opacity: 0.6;
+    transition: 0.2s ease-in-out;
+  
+}
+.btn .join_btn{
+    background-color: white;
+    color: #566270;
+    font-weight: bold;
+    border: 0.5px solid #d7d7d7;
+}
+.btn .join_btn:hover{
+    opacity: 0.7;
+    transition: 0.2s ease-in-out;
+    background-color: #698597;
+    color: aliceblue;
+}
+.btn .user_login{
+    float: left;
+    color: #1F2124;
+    font-size: 13.8px;
+    margin-bottom: 40px;
+    text-decoration: underline;
+}
+.btn .user_login > a:hover{
+    color: brown;
+    font-weight: 600;
+}
+
+/* 관리자 회원가입 시 필요한 사항 */
+.join_comment{
+    margin-top: 20px;
+    font-size: 13.3px;
+    color: rgb(227, 102, 102);
+}
+
+
+
+/*============== footer부분 =============*/
+footer {
+    
+    padding: 20px;
+}
+
+footer h3 {
+    text-align: center;
+}

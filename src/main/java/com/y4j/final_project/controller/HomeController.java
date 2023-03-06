@@ -7,8 +7,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.y4j.final_project.command.UsersVO;
-import com.y4j.final_project.service.UserService;
+import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.user.service.UserService;
 
 
 @Controller
@@ -27,7 +27,7 @@ public class HomeController {
 	@GetMapping("/layout")
 	public String layout(Model model) {
 	
-		return "/layout/y4j_layout";
+		return "layout/y4j_layout";
 	}
 
 	@GetMapping("/index")
@@ -51,7 +51,7 @@ public class HomeController {
 	@GetMapping("/home")
 	public String home(Model model) {
 		
-		ArrayList<UsersVO> list = userService.getList();
+		ArrayList<UserVO> list = userService.getUserList();
 		model.addAttribute("list", list);
 		
 		return "home";
@@ -60,6 +60,11 @@ public class HomeController {
 	@GetMapping("/admin/hold")
 	public String hold() {
 		return "admin/hold";
+	}
+	
+	@GetMapping("/testHome")
+	public String testHome() {
+		return "testHome";
 	}
 	
 }

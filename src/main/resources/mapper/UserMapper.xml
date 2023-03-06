@@ -3,10 +3,29 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.y4j.final_project.service.UserMapper">
+<mapper namespace="com.y4j.final_project.user.service.UserMapper">
 
-	<select id="getList" resultType="com.y4j.final_project.command.UsersVO">
-		select * from USERS;
+	<select id="getUserList" resultType="com.y4j.final_project.command.UserVO">
+		select * from users
 	</select>
+	
+	<insert id="registUser" parameterType="UserVO">
+		insert into users(
+			user_id,
+			user_pw
+			user_name,
+			user_contact,
+			user_address,
+			user_email,
+			user_gender)
+		values(
+			#{user_id},
+			#{user_pw},
+			#{user_name},
+			#{user_contact},
+			#{user_address},
+			#{user_email},
+			#{user_gender})
+	</insert>
 
 </mapper>

@@ -8,10 +8,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/audition")
 public class AuditionController {
 
-	@GetMapping("/admin_audition")
-	public String admin_audition() {
+	@GetMapping("/admin_audition_list")
+	public String admin_audition_list() {
 		
-		return "/audition/admin_audition";
+		return "audition/admin_audition_list";
 	}
+	
+	@GetMapping("/admin_audition_register")
+	public String admin_audition_register() {
+		
+		return "audition/admin_audition_register";
+	}
+
+	
 	
 }

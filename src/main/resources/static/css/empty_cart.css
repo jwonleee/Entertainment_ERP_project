@@ -1,0 +1,133 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.cart_box {
+    margin: 0 auto;
+}
+
+/* 장바구니 헤더 */
+.cart_box .cart_header {
+    text-align: center;
+    padding: 30px;
+    margin-bottom: 30px;
+    font-size: 50px;
+    font-weight: 600;
+
+}
+
+/* 장바구니 시작 */
+.cart_innerbox {
+    margin: 0 auto;
+    width: 80%;
+   
+}
+
+/* 장바구니 양식 표 제목 */
+.cart_innerbox .cart_content_title {
+    width: 100%;
+    padding: 20px 0;
+    margin: 0 auto;
+    color: rgb(150, 149, 149);
+    font-size: 14.3px;
+    font-weight: 600;
+    border-bottom: 1px solid rgb(65, 63, 63);
+}
+.cart_innerbox .cart_content_title > div{
+    width: 100%;
+    display: inline-block;
+    
+    vertical-align: middle;
+}
+
+/* 체크박스 */
+.check_btn {
+    border: none;
+    background-color: inherit;
+    font-size: 14px;
+    font-weight: bold;
+    color: rgb(230, 83, 83);
+}
+
+/* 장바구니에 넣은 상품들 정보  */
+.cart_content_box {
+    overflow: hidden;
+    padding:20px 0; 
+    height: 140px;
+    line-height: 140px;
+    border-bottom: 0.5px solid #c4c3c3;
+}
+.cart_content_box > div{
+    text-align: center;
+}
+
+
+/* 최종 상품 주문 버튼 */
+.finally_order{
+    margin: 0 auto;
+    padding: 25px 30px;
+}
+.order_btnbox{
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+}
+.order_btnbox > a{
+    width: 200px;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px;
+}
+
+.order_btnbox > :last-child{
+    color: whitesmoke;
+    background-color: rgb(243, 69, 69);
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+/* 상단, 하단으로 가는 버튼 */
+.arrow_btn{
+    scroll-behavior: smooth;
+    display: block;
+    text-align:center;
+    margin:auto;
+    width: 350px;
+    height: 250px;
+}
+.arrow_btn a >img {
+    width: 30px;
+    height: 30px;
+}
+.arrow_btn .top_btn{
+    position:fixed;
+    bottom:100px; 
+    right:40px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+.arrow_btn .bottom_btn{
+    position:fixed;
+    bottom:50px; 
+    right:40px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    scroll-behavior: smooth;
+}
+

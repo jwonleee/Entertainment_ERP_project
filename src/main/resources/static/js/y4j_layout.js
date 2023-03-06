@@ -50,8 +50,9 @@ function sideMenuBarFixed() {
 document.addEventListener('scroll', sideMenuBarFixed);
 
 // 사이드 메뉴바 탭 열고 닫기
-$('aside .aside-wrap .sideMenuBar .mngBar > div').click(function(e) {
+function sideMenuBarOpenClose(e) {
   if(!e.target.classList.contains("smt")) return;
+
   if(e.target.nextElementSibling.style.height == "0px" || e.target.nextElementSibling.style.height == 0) {
     if(e.target.classList.contains("mngBar3")) {
       e.target.nextElementSibling.style.height = "80px";
@@ -65,7 +66,8 @@ $('aside .aside-wrap .sideMenuBar .mngBar > div').click(function(e) {
   } else {
     e.target.nextElementSibling.style.height = 0;
   }
-});
+};
+$('aside .aside-wrap .sideMenuBar .mngBar > .smt').click(sideMenuBarOpenClose);
 
 // fragment 부분 window.innerWidth에 따른 UI 설정
 function resizeFragment() {
@@ -159,3 +161,4 @@ function footerFixed() {
     $(".footer-outer").css({position: "static",})
   }
 }
+window.addEventListener('resize', footerFixed);
