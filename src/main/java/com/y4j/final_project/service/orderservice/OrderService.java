@@ -14,5 +14,6 @@ public interface OrderService {
 	//public int updateOrder();//추가발주-업데이트
 	
 	public ArrayList<CategoryVO> getCategory(); //대분류 카테고리
+	public ArrayList<CategoryVO> getCategoryChild(CategoryVO vo); //중, 소분류 카테고리
 	
 }

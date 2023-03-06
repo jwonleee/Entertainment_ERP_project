@@ -19,5 +19,6 @@ public interface OrderMapper {
 	public Admin_orderVO getDetail(String admin_order_no);//상세조회
 	
 	public ArrayList<CategoryVO> getCategory(); //대분류 카테고리
+	public ArrayList<CategoryVO> getCategoryChild(CategoryVO vo); //중, 소분류 카테고리
 	
 }

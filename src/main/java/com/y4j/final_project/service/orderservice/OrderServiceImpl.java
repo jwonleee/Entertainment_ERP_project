@@ -37,6 +37,11 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getCategory();
 	}
 
+	@Override
+	public ArrayList<CategoryVO> getCategoryChild(CategoryVO vo) {
+		return orderMapper.getCategoryChild(vo);
+	}
+
 	
 	
 

@@ -62,5 +62,12 @@
   		select * from category where category_lv=1
   	</select>
   	
+  	<select id="getCategoryChild" resultType="CategoryVO">
+  		select * from category 
+  		where category_group_id=#{category_group_id}
+  		and category_parent_lv=#{category_lv}
+  		and category_detail_parent_lv=#{category_detail_lv}
+  	</select>
+  	
   </mapper>
   
