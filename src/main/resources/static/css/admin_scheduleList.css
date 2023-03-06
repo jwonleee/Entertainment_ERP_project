@@ -1,0 +1,370 @@
+* {margin: 0; padding: 0; list-style: none;}
+a {text-decoration: none;}
+img {max-width: 100%; height: auto;}
+
+
+.search_wrap {
+    overflow: hidden;
+    width: 1080px;
+    /* 여기 맞춰서 바꾸기 */
+    margin: 0 auto;
+}
+
+.search_wrap .search_left {
+    float: left;
+}
+
+.search_wrap .search_right {
+    float: right;
+    overflow: hidden;
+}
+
+.search_wrap h1 {
+    line-height: 200px;
+    height: 200px;
+    width: 340px;
+    /* background-color: #f3f3f3; */
+    font-size: 50px;
+}
+.search_right .left_wrap {
+    float: left;
+    overflow: hidden;
+    width: 330px;
+    margin-right: 50px;
+    margin-top: 60px;
+}
+
+.search_right .title_search {
+    float: left;
+    background-color: #f3f3f3;
+    height: 100px;
+    width: 100%;
+    margin-bottom: 10px;
+    padding: 30px 15px 0;
+}
+
+.search_right .title_search input {
+    float: left;
+    width: 240px;
+}
+
+.search_right .title_search .search_btn {
+    float: right;
+    width: 55px;
+    background-color: #fee192;
+    border: 1px solid #464646;
+}
+
+.search_right .title_search .search_btn:hover { background-color: #ffffff;
+    border: 1px solid #464646;}
+
+.search_right .today_count {
+    float: left;
+    background-color: #f3f3f3;
+    width: 100%;
+    height: 100px;
+    line-height: 100px;
+    font-size: 30px;
+    font-weight: 500;
+    text-align: center;
+}
+
+.search_right .today_count .count { color: tomato; }
+
+.search_right .calendar {
+    float: left;
+}
+
+/* calendar */
+html, body {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+  }
+  
+  *, *:before, *:after {
+    box-sizing: inherit;
+  }
+  .clearfix:after {
+    content: '';
+    display: block;
+    clear: both;
+    float: none;
+  }
+  
+  /* ======== Calendar ======== */
+  .my-calendar {
+    width: 250px;
+    text-align: center;
+    cursor: default;
+    margin-top: 35px;
+    margin-right: 50px;
+  }
+  
+  .my-calendar .calendar-box {
+    width: 100%;
+  }
+  
+  .ctr-box {
+    margin-bottom: 20px;
+    font-size: 20px;
+  }
+  .ctr-box .btn-cal {
+    position: relative;
+    float: left;
+    width: 25px;
+    height: 25px;
+    margin-top: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+    background: none;
+  }
+  .ctr-box .btn-cal:after {
+    content: '<';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    line-height: 25px;
+    font-weight: bold;
+    font-size: 20px;
+  }
+  .ctr-box .btn-cal.next {
+    float: right;
+  }
+  .ctr-box .btn-cal.next:after {
+    content: '>';
+  }
+  
+  .cal-table {
+    width: 100%;
+  }
+
+  .cal-table thead th {
+    color: #000;
+  }
+
+  .cal-table th {
+    width: 14.2857%;
+    padding-bottom: 5px;
+    font-size: 16px;
+    font-weight: 900;
+  }
+  .cal-table td {
+    padding: 3px 0;
+    height: 35px;
+    font-size: 15px;
+    vertical-align: middle;
+  }
+  .cal-table td.day {
+    position: relative;
+    cursor: pointer;
+  }
+  .cal-table td.today {
+    background: #ffd255;
+    border-radius: 50%;
+    color: #fff;
+  }
+  .cal-table td.day-active {
+    background: #ff8585;
+    border-radius: 50%;
+    color: #fff;
+  }
+  .cal-table td.has-event:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 4px;
+    background: #FFC107;
+  }
+
+/* 여기 아래는 했음 */
+.table_wrap {
+    overflow: hidden;
+    text-align: center;
+    margin: 0 15px;
+}
+
+.table_title {
+    float: left;
+}
+
+.table_title h3 {
+    font-size: 30px;
+    height: 60px;
+    line-height: 60px;
+}
+
+.table_right {
+    float: right;
+}
+
+.table_right .write_btn {
+    /* background-color: #fad390; */
+    background-color: #fee192;
+    border: 1px solid #464646;
+    margin-top: 15px;
+}
+
+.table_right .write_btn:hover {
+    border: 1px solid #464646;
+}
+
+/* 스와이퍼 */
+.mySwiper {
+    width: 100%;
+}
+
+swiper-container {
+  width: 100%;
+  height: 100%;
+}
+
+swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+swiper-slide img {
+  display: block;
+  object-fit: cover;
+}
+
+swiper-slide .img-box {
+    padding: 0 15px;
+}
+
+swiper-container {
+  width: 100%;
+  height: 200px;
+  margin: 20px auto;
+}
+
+.container_block {
+    height: 140px;
+}
+
+.append-buttons {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.append-buttons button {
+  display: inline-block;
+  cursor: pointer;
+  border: 1px solid #007aff;
+  color: #007aff;
+  text-decoration: none;
+  padding: 4px 10px;
+  border-radius: 4px;
+  margin: 0 10px;
+  font-size: 13px;
+}
+
+
+/***********테이블***********/
+.intro {
+  height: 100%;
+}
+
+table td,
+table th {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+thead th {
+  color: #fff;
+}
+
+.card {
+  border-radius: .5rem;
+}
+
+.table-scroll {
+  border-radius: .5rem;
+}
+
+.table-scroll table thead th {
+  font-size: 1.25rem;
+}
+
+thead {
+  top: 0;
+  position: sticky;
+}
+
+
+.card2 {
+    background-color: white;
+}
+
+.table tr th {
+    text-align: center;
+}
+
+.table td {
+    text-align: center;
+}
+
+.table .schedule_ent_name {
+    text-align: left;
+}
+
+
+/***********pagenation***********/
+.pagination_section{
+    text-align: center;
+}
+
+.pagination{
+    margin: 0 auto;
+    width:900px;
+}
+
+.pages{
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.pages li{
+    display: inline;
+}
+
+.pages li a{
+    border:1px solid #bab9b9;
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    text-decoration: none;/* 밑줄제거 */
+    font-size:15px;
+    font-weight: 500;
+    color:black;
+}
+
+.pages a:hover{
+    background-color: rgb(126, 126, 126);
+}
+
+.size{
+    padding-top: 5px;
+}
+
+.page_num{
+    height: 30px;
+    line-height: 30px;
+}
+.page_num:hover{
+    color:white;
+}
