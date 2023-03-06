@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/user_login.css">
+
+</head>
+
+<body>
+    <header>
+        <h3>Y$J</h3>
+    </header>
+
+    <div class="login_section">
+        <div class="login_box">
+            <div class="login_innerbox">
+                <div class="login_title">
+                    <h3><em style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">User Login</em> </h3>
+                </div>
+
+                <div class="login_content" method="post">
+                    <!-- 로그인 입력 칸 -->
+                    <div class="login_input">
+                        <input type="text" class="id" placeholder="아이디" required><br />
+                        <input type="password" class="pw" placeholder="비밀번호" required><br />
+
+                        <div class="login_input_under">
+                            <span class="left"><input type="checkbox" class="save_id"> 아이디 저장</span>
+                            <span class="find_user_info right">
+                                <a href="#" class="find_id">아이디 찾기</a> /
+                                <a href="#" class="find_pw">비밀번호 찾기</a>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 로그인 및 회원가입 버튼 -->
+                <div class="btn">
+                    <form >
+                        <button type="submit" class="login_btn">로그인</button>
+                    </form>
+                    <form action="user_join.html">
+                        <button type="submit" class="join_btn">회원가입</button>
+                    </form>
+                    <div class="manager_login">
+                        <a href="admin_login.html">관리자이신가요?</a>
+                    </div>
+                </div>
+
+                <!-- 간편 로그인 부분 -->
+                <div class="simple_login_box">
+                    <div class="simple_login_btn">
+                        <h3>간편 로그인</h3>
+                        <div class="login_icon">
+                            <a href="#" class="kakao_login"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/kakao_login.png" alt="카카오로그인"></a>
+                            <a href="#" class="naver_login"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/naver_login.png" alt="네이버로그인"></a>
+                            <a href="#" class="google_login"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/google_login.png" alt="구글로그인"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <h3>Footer 입니다</h3>
+    </footer>
+</body>
+
+</html>

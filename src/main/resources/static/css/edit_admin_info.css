@@ -1,0 +1,318 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*=========== header부분 ==============*/
+header {
+   padding: 20px;
+    margin: 0 auto;
+}
+
+header > h3 {
+    color: #1F2124;
+    font-size: 60px;
+}
+button{
+    cursor: pointer;
+}
+
+/*=============== 회원가입 부분 ===============*/
+.edit_section{
+    padding: 40px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* text-align: center; */
+    
+}
+.edit_section .edit_section_title{
+    font-size: 40px;
+    height: 80px;
+    line-height: 80px;
+    color: #303541;
+    text-align: center; 
+}
+
+/* 회원가입 입력 */
+.edit_box{
+    padding: 40px 0;
+    text-align: center; 
+}
+
+.edit_box .edit_info_box{
+    padding: 30px;
+    margin: 0 auto;
+    width: 40%;
+    border: 0.5px solid #d7d7d7;
+    border-radius: 8px;
+    
+}
+.edit_info_innerbox{
+    overflow: hidden;
+    margin: 0 auto 18px;
+    align-items: center;
+    width: 100%;
+}
+.edit_info_innerbox > .left{
+    float: left;
+    width: 25%;
+}
+.edit_info_innerbox > .right{
+    float: right;
+    width: 66.6666%;
+}
+
+/* 회원가입 항목 이름 */
+.edit_info{
+    
+    margin: 0 auto;
+    padding: 10px;
+   
+}
+.edit_info > strong{
+    color: #474c54;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit_info > strong > img {
+    width: 3px;
+    height: 3px;
+    margin: 0 5px;
+}
+/* 회원가입 항목 별 내용 */
+.edit_info_content {
+    width: 66.6666%;
+    display: inline-block;
+    margin: 0 auto;
+    padding-top: 10px;
+    /* margin-left: 5px; */
+    vertical-align: text-bottom;
+}
+.edit_info_content input:focus {outline:none;}
+
+.edit_info_content .input{
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 17px;
+    vertical-align: middle;
+    align-items: center;
+    color: #3e4043;
+    font-size: 14px;
+    font-weight: 550;
+}
+
+.edit_info_content > span{
+    font-size: 14px;
+    font-weight: 550;
+    color: #2d3239;
+}
+/* 관리자 유형 */
+.admin_type{
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 22px;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+}
+.admin_type > span{
+    float: left;
+    text-align: center;
+   
+}
+
+
+/* 성별 */
+.gender{
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 22px;
+    display: flex;
+    justify-content: space-evenly;
+    text-align: left;
+}
+
+.edit_info_content .female{
+    margin-right: 50px;
+}
+/* 아이디, 비밀번호 */
+.edit_info_content input::placeholder{
+ color: #a29d9d;
+ font-size: 12px;
+}
+
+/* 휴대전화 */
+.edit_info_content .region_num{
+   width: 15%;
+    height: 22px;
+    margin-right: 7px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 550;
+    color: #4c5258;
+}
+.edit_info_content > .phone_num{
+    width: 33.3333%;
+    text-align: center;
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+    font-size: 14px;
+    font-weight: 550;
+    color: #2d3239;
+}
+
+/* 담당연예인 */
+.edit_info_content > .ent_name{
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+    margin-bottom: 10px;
+    padding-bottom: 17px;
+    vertical-align: middle;
+    align-items: center;
+    color: #3e4043;
+    font-size: 14px;
+    font-weight: 550;
+}
+
+/* 약관 동의 부분 */
+.edit_contract{
+    text-align: left;
+}
+.edit_contract h3{
+    color: #474c54;
+    font-size: 16px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    height: 55px; 
+    line-height: 55px;
+}
+.edit_contract .edit_contract_title{
+    color: #2d2f43;
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 55px;
+    border-top: 0.5px solid #dfdfdf;
+    border-bottom: 2px solid #3d435f;
+}
+/* 모든 약관 동의 */
+.edit_contract_all{
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #3d435f;
+}
+/* 약관 동의 제목들 */
+.contract_content{
+    display: flex;  
+    justify-content: space-between; 
+}
+.contract_content h3 > span{
+    font-weight: 600;
+    color: rgb(247, 70, 70);
+}
+/* 약관 내용 */
+.edit_contract_detail{
+    width: 100%;
+    height: 260px;
+    overflow: auto;
+    padding: 20px;
+    font-size: 13px;
+    font-weight: bold;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #9d9f9f;
+    box-sizing: border-box;
+    border: 1px solid #777;
+}
+/* 개인정보 제 3자 제공 */
+.detail3{
+    height: 80px;
+    padding-top: 30px;
+}
+
+
+
+/* 가입버튼, 취소버튼 */
+.edit_btn{
+    text-align: center;
+    overflow: hidden;
+    
+}
+.edit_btn button{
+    border: 0.1px solid #b8bbbb;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 15%;
+    height: 38px;
+}
+.edit_btn .edit_cancel{
+    color: #424667;
+    margin-right: 5px;
+    background-color: white;
+}
+.edit_btn .edit_complete{
+    color: white;
+    margin-right: 5px;
+    border: none;
+    background-color: #124465;
+   
+   
+}
+
+/* 상단, 하단으로 가는 버튼 */
+.arrow_btn{
+    scroll-behavior: smooth;
+    display: block;
+    text-align:center;
+    margin:auto;
+   
+    width: 350px;
+    height: 250px;
+}
+.arrow_btn a >img {
+    width: 35px;
+    height: 35px;
+}
+.arrow_btn .top_btn{
+    position:fixed;
+    bottom:100px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+.arrow_btn .bottom_btn{
+    position:fixed;
+    bottom:50px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    scroll-behavior: smooth;
+}
+
+
+
+
+/*============== footer부분 =============*/
+footer {
+    
+    padding: 20px;
+}
+
+footer h3 {
+    text-align: center;
+}

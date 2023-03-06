@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/edit_admin_info.css">
+
+    <!-- 카카오 우편번호 API -->
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script>
+        function kakaopost() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    document.querySelector("#zipcode").value = data.zonecode;
+                    document.querySelector("#address").value = data.address
+                }
+            }).open();
+        }
+    </script>
+
+     <!-- 상단, 하단 버튼 jQuery -->
+     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+     <script>
+         $(function () {
+             $(".top_btn").click(function () {
+                 $('html, body').animate({
+                     scrollTop: 0
+                 }, 400);
+                 return false;
+             });
+ 
+ 
+             $(".bottom_btn").click(function () {
+                 $('html, body').animate({
+                     scrollTop: document.body.scrollHeight
+                 }, 400);
+                 return false;
+             });
+ 
+         });
+     </script>
+
+</head>
+
+<body>
+    <header>
+        <h3>Y$J</h3>
+    </header>
+
+    <div class="edit_section">
+        <!-- 회원정보 수정 제목 -->
+        <di class="edit_info_title" style="text-align: center;">
+            <h5><em style="font-size:50px; color: rgb(31, 30, 30);"  >My Page</em><br/>회원 정보 수정 </h5>
+        </div>
+        <div class="edit_box">
+
+            <div class="edit_info_box">
+
+                <!-- 회원정보 입력 항목 -->
+
+                 <!-- 사원코드 -->
+                 <div class="edit_info_innerbox" style="margin-top: 10px;">
+                    <diV class="edit_info left">
+                        <strong>사원코드 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="text" name="email" class="input email" minlength="4" maxlength="16"
+                        pattern="^([a-z0-9_]){4,16}$" placeholder="readonly"  readonly required>
+                    </div>
+                </div>
+
+              <!-- 관리자 유형 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong class="left">관리자 유형<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right admin_type">
+                        <span>판매 관리<input type="radio" name="admin_type" class="input admin_type" style="margin-top: 10px;" checked required></span> 
+                        <span>오디션 관리<input type="radio" name="admin_type" class="input admin_type" style="margin-top: 10px;" required></span> 
+                        <span>매니저<input type="radio" name="admin_type" class="input admin_type" style="margin-top: 10px"; required></span> 
+                    </div>
+                </div>
+
+
+
+                <!-- 이름 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong class="left">이름<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="text" name="name" class="input" placeholder="readonly" readonly required>
+                    </div>
+                </div>
+
+               
+
+                <!-- 성별 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>성별 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right gender">
+                        <span>여성<input type="radio" name="gender" class="female" style="margin-left: 8px;" checked required></span> 
+                        <span>남성<input type="radio" name="gender" class="male" style="margin-left: 8px;" required></span>
+                    </div>
+
+                </div>
+
+                <!-- 아이디 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>아이디 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="text" name="id" class="input id" minlength="4" maxlength="16"
+                            pattern="^([a-z0-9_]){4,16}$" placeholder="readonly" required>
+                    </div>
+                </div>
+
+                <!-- 비밀번호 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>비밀번호 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="password" name="pw" class="input pw"
+                            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+                            minlength="8" maxlength="16" placeholder="영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자" required>
+                    </div>
+                </div>
+
+                <!-- 비밀번호 확인 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>비밀번호 확인 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="password" name="pw" class="input pw"
+                            pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+                            minlength="8" maxlength="16" required>
+                    </div>
+                </div>
+
+                <!-- 이메일주소 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>이메일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <input type="email" name="email" class="input email" placeholder="이메일 형식으로 입력하세요" required>
+                    </div>
+                </div>
+
+                <!-- 휴대전화 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>휴대전화 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="edit_info_content right">
+                        <select name="start_num" class="region_num left" required>
+                            <option value="010" selected>010</option>
+                            <option value="011">011</option>
+                            <option value="016">016</option>
+                            <option value="017">017</option>
+                            <option value="018">018</option>
+                            <option value="019">019</option>
+                        </select>
+                        <span> - </span>
+                        <input type="text" name="mid_num" class="phone_num"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                            maxlength="4" required>
+                        <span> - </span>
+                        <input type="text" name="last_num" class="phone_num"
+                            oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+                            maxlength="4" required>
+                    </div>
+                </div>
+
+                <!-- 담당 연예인 -->
+                <div class="edit_info_innerbox">
+                    <diV class="edit_info left">
+                        <strong>담당 연예인 <span></span></strong>
+                    </diV>
+                   
+                        <div class="edit_info_content right">
+                            <input type="text" name="ent_name" class="ent_name"placeholder="매니저인 경우 담당 연예인 작성 / 아닌 경우, '없음'으로 작성" required>
+                        </div>
+                       
+                       
+                    
+                </div>
+               
+                
+            </div>
+        </div>
+
+        <div class="edit_btn">
+            <a href="#" class="edit_cancel"><button class="edit_cancel">취소</button></a>
+            <a href="#" ><button class="edit_complete">수정</button></a>
+        </div>
+    </div>
+
+    <!-- 상단, 하단으로 가는 버튼 -->
+    <div class="arrow_btn">
+        <a href="#" class="top_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
+        </a><br/>
+        <a href="#" class="bottom_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">       
+        </a>
+    </div>
+
+
+
+
+    <footer>
+        <h3>Footer 입니다</h3>
+    </footer>
+</body>
+
+</html>

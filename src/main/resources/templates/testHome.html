@@ -28,6 +28,7 @@
 			url:"/s3/show",
 			type:"get",
 			success:(data)=>{
+				console.log(data);
 				$("#imgDiv").append("<img src='"+data+"'/>");
 			},
 			error:(err)=>{console.log(err)}

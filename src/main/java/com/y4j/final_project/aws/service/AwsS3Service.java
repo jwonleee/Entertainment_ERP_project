@@ -1,4 +1,4 @@
-package com.y4j.final_project.service;
+package com.y4j.final_project.aws.service;
 
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.model.AmazonS3Exception;

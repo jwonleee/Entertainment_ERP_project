@@ -1,0 +1,322 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*=========== header부분 ==============*/
+header {
+   padding: 20px;
+    margin: 0 auto;
+}
+
+header > h3 {
+    color: #1F2124;
+    font-size: 60px;
+   
+}
+button{
+    cursor: pointer;
+}
+/*=============== 회원 정보 부분 ===============*/
+.edit_info_section{
+    padding: 40px 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    /* text-align: center; */
+    
+}
+.edit_info_section > .edit_info_title{
+    font-size: 28px;
+    height: 80px;
+    line-height: 80px;
+    color: #303541;
+    text-align: center; 
+}
+
+/* 회원 정보 수정 */
+
+
+.edit_box .edit_info_box{
+    padding: 30px;
+    margin: 0 auto;
+    width: 40%;
+    border: 0.5px solid #d7d7d7;
+    
+}
+.edit_box1{
+    padding-top: 40px;
+    padding-bottom: none;
+    text-align: center; 
+}
+.edit_info_box1{
+    border-radius: 8px 8px 0 0;
+}
+
+.edit_info_innerbox{
+    border-bottom: none;
+    overflow: hidden;
+    margin: 0 auto 18px;
+    align-items: center;
+    width: 100%;
+}
+.edit_info_innerbox > .left{
+    float: left;
+    width: 20%;
+}
+.edit_info_innerbox > .right{
+    float: right;
+    width: 70%;
+}
+
+/* 회원정보 항목들 */
+.edit_info{
+    margin: 0 auto;
+    padding: 10px;
+   
+}
+.edit_info > strong{
+    color: #474c54;
+    font-size: 14px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.edit_info > strong > img {
+    width: 3px;
+    height: 3px;
+    margin: 0 5px;
+}
+/* 회원 정보 항목 별 내용 */
+.edit_info_content {
+    width: 66.6666%;
+    display: inline-block;
+    margin: 0 auto;
+    padding-top: 10px;
+    /* margin-left: 5px; */
+    vertical-align: text-bottom;
+}
+/* input 창 클릭할 때 v */
+.edit_info_content input:focus {outline:none;}
+
+.edit_info_content .input{
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 17px;
+    vertical-align: middle;
+    align-items: center;
+    color: #3e4043;
+    font-size: 14px;
+    font-weight: 550;
+}
+/* 생년월일 */
+.edit_info_content > .birth{
+    width: 26.5%;
+    text-align: center;
+    padding: 5.2px;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+}
+.edit_info_content > span{
+    font-size: 14px;
+    font-weight: 550;
+    color: #2d3239;
+}
+/* 성별 */
+.gender{
+    border-bottom: 0.5px solid #dfdfdf;
+    padding-bottom: 22px;
+    
+    text-align: left;
+}
+.edit_info_content .female{
+    margin-right: 50px;
+}
+/* 아이디, 비밀번호 */
+.edit_info_content input::placeholder{
+ color: #a29d9d;
+ font-size: 12px;
+}
+
+/* 휴대전화 */
+.edit_info_content .region_num{
+   width: 15%;
+    height: 22px;
+    margin-right: 7px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 550;
+    color: #4c5258;
+}
+.edit_info_content > .phone_num{
+    width: 33.3333%;
+    text-align: center;
+    margin-left: 5px;
+    padding: 5px;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+    font-size: 14px;
+    font-weight: 550;
+    color: #2d3239;
+}
+
+/* 주소 입력 */
+.edit_info_content .address{
+   display: inline-block;
+   
+}
+.address input{
+    height: 25px;
+    margin-bottom: 10px;
+ }
+ .address input::placeholder{
+    color: #a29d9d;
+    font-weight: 550;
+    font-size: 13px;
+}
+.address #zipcode{
+    width: 48.5%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+} 
+ .address .address_btn{
+    width: 150px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: #a3c9c7;
+    color: aliceblue; font-weight: 550;
+}
+
+.address #address{
+    width: 100%;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+}
+
+/* 기본정보 아래 부분 */
+.edit_box2{
+   padding-top: 0;
+    padding-bottom: 40px;
+    
+}
+.edit_info_box2{
+    border-radius: 0 0 8px 8px;
+}
+
+/* 좋아하는 연예인 선택 */
+.fav_ent{
+    
+    text-align: center;
+    overflow: hidden;
+}
+.favorite{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+.favorite .entertainer{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 30%;
+    display: inline-block;
+}
+
+.favorite .entertainer span{
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+.favorite .entertainer img{
+    width: 190px;
+    height: 150px;
+    float: left;
+    border-radius: 10px;
+    /* 브라우저에서 대비를 최적화하여 이미지 랜더링을 하는데 흐린 문제를 해결 */
+    image-rendering: -webkit-optimize-contrast;
+    /* z축을 0으로 적용하여 깊이감을 없앤다.  */
+    transform: translateZ(0);
+    /* 뒷면을 hidden처리하여 입체감을 없앤다. */
+    backface-visibility: hidden;
+}
+
+
+/* 수정버튼, 취소버튼 */
+.edit_btn{
+    text-align: center;
+    overflow: hidden;
+    
+}
+.edit_btn button{
+    border: 0.1px solid #b8bbbb;
+    border-radius: 50px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 15%;
+    height: 38px;
+}
+.edit_btn .edit_cancel{
+    color: #424667;
+    margin-right: 5px;
+    background-color: white;
+}
+.edit_btn .edit_complete{
+    color: white;
+    margin-right: 5px;
+    border: none;
+    background-color: #343838;
+   
+}
+
+/* 상단, 하단으로 가는 버튼 */
+.arrow_btn{
+    scroll-behavior: smooth;
+    display: block;
+    text-align:center;
+    margin:auto;
+   
+    width: 350px;
+    height: 250px;
+}
+.arrow_btn a >img {
+    width: 35px;
+    height: 35px;
+}
+.arrow_btn .top_btn{
+    position:fixed;
+    bottom:100px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+.arrow_btn .bottom_btn{
+    position:fixed;
+    bottom:50px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    scroll-behavior: smooth;
+}
+
+/*============== footer부분 =============*/
+footer {
+    
+    padding: 20px;
+}
+
+footer h3 {
+    text-align: center;
+}

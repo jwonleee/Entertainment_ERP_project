@@ -4,8 +4,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.y4j.final_project.aws.service.AwsS3Service;
 import com.y4j.final_project.command.AwsS3;
-import com.y4j.final_project.service.AwsS3Service;
 
 import java.io.IOException;
 
@@ -28,6 +28,6 @@ public class AwsS3Controller {
     
     @RequestMapping("/show")
     public String imgSrc() {
-    	return awsS3Service.getThumbnailPath("NewJeans-test1.jpeg");
+    	return awsS3Service.getThumbnailPath("upload/fall.jpg");
     }
 }
