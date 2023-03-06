@@ -1,0 +1,39 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+/*=========== header부분 ==============*/
+header {
+   padding: 20px;
+    margin: 0 auto;
+}
+
+header > h3 {
+    color: #1F2124;
+    font-size: 60px;
+   
+}
+button{
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+/*============== footer부분 =============*/
+footer {
+    
+    padding: 20px;
+}
+
+footer h3 {
+    text-align: center;
+}

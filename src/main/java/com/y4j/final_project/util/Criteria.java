@@ -13,7 +13,7 @@ public class Criteria {
 	
 	private String searchName;  //상품 이름 검색
 	private String searchContent;  //상품 내용 검색
-	private String searchValue;  //상품 제외 요소 검색값
+	private String searchValue = "";  //상품 제외 요소 검색값
 	
 	public Criteria() {
 		this.pageNum = 1;

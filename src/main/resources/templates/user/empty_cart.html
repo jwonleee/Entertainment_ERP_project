@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/empty_cart.css">
+
+    <!-- 상단, 하단 버튼 jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+        $(function () {
+            $(".top_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+
+
+            $(".bottom_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: document.body.scrollHeight
+                }, 400);
+                return false;
+            });
+
+        });
+    </script>
+</head>
+
+<body>
+    <!-- 헤더 -->
+    <header style="font-size: 50px; font-weight: bold;">
+        Y4J 헤더
+    </header>
+
+    <div class="cart_section">
+        <div class="cart_box">
+            <!-- 장바구니 헤더 -->
+            <div class="cart_header">
+                <em>Cart</em>
+
+            </div>
+            <div class="cart_innerbox">
+
+                <!-- 장바구니 양식 제목 -->
+                <div class="cart_content_title">
+                    <div style="display: flex; justify-content: space-around;">
+                        <input type="checkbox" class="check_btn" style="margin-left: -5px;">
+                        <span class="title_code" style="margin-left: -55px;">상품번호</span>
+                        <span class="title_img" style="margin-left: -10px;">이미지</span>
+                        <span class="title_info" style="margin-left: 0px;">상품정보</span>
+                        <span class="title_quantity" style="margin-left: 80px;">수량</span>
+                        <span class="title_price">상품구매금액</span>
+                        <span class="title_fee">배송비</span>
+                        <span class="title_select" style="margin-left: -15px;">선택</span>
+                    </div>
+                </div>
+
+                <!-- 장바구니 내용 틀 -->
+                <div class="cart_content_box" style=" margin: 0 auto;">
+
+                    <div class="cart_content_innerbox "
+                        style=" display: flex; justify-content: space-around; height: inherit;">
+                        <h2 style="color: rgb(143, 140, 140);">앗! 장바구니가 비어 있습니다.</h2>
+
+                    </div>
+                </div>
+
+                <!-- 최종 상품 주문 -->
+                <div class="finally_order">
+                    <div class="order_btnbox">
+                        <a href="#">쇼핑 계속하기</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- 상단, 하단으로 가는 버튼 -->
+        <div class="arrow_btn">
+            <a href="#" class="top_btn">
+                <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
+            </a><br />
+            <a href="#" class="bottom_btn">
+                <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
+            </a>
+        </div>
+    </div>
+    </div>
+
+    <footer>
+        Footer 부분
+    </footer>
+</body>
+
+</html>

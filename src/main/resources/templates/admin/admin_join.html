@@ -5,13 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>admin_join</title>
 
     <link rel="stylesheet" href="/css/admin_join.css">
-
-    <!-- 생년월일 select 박스 -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
-    <script src="/js/user_join.js"></script>
 
     <!-- 카카오 우편번호 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -25,6 +21,30 @@
             }).open();
         }
     </script>
+
+    <!-- 상단, 하단 버튼 jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+        $(function () {
+            $(".top_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+
+
+            $(".bottom_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: document.body.scrollHeight
+                }, 400);
+                return false;
+            });
+
+        });
+    </script>
+
     <style>
         header {
             display: flex;
@@ -44,36 +64,37 @@
     </header>
 
     <form class="adminJoinForm" action="adminJoinForm" method="post">
-        <div class="join_section">
+        <div class="join_section_title" style="text-align: center;">
             <!-- 회원가입 제목 -->
-            <h3 class="join_section_title">Join</h3>
+            <em style="font-size: 50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Join</em></h3>
             <div class="join_box">
 
                 <div class="join_info_box">
 
-                    <!-- 회원정보 입력 항목 -->
-                    <!-- 사원코드 -->
-                    <div class="join_info_innerbox">
-                        <diV class="join_info left">
-                            <strong>사원코드 <img src="img/red_circle.png" alt="필수사항표시"></strong>
-                        </diV>
-                        <div class="join_info_content right">
-                            <input type="text" name="email" class="input email" minlength="4" maxlength="16"
-                                pattern="^([a-z0-9_]){4,16}$" placeholder="발급받은 코드를 인증해주세요" required>
-                        </div>
+                <!-- 회원정보 입력 항목 -->
+
+                <!-- 사원코드 -->
+                <div class="join_info_innerbox">
+                    <diV class="join_info left">
+                        <strong>사원코드 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                    </diV>
+                    <div class="join_info_content right">
+                        <input type="text" name="email" class="input email" minlength="4" maxlength="16"
+                            pattern="^([a-z0-9_]){4,16}$" placeholder="발급받은 코드를 인증해주세요" required>
                     </div>
+                </div>
 
                     <!-- 관리자 유형 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong class="left">관리자 유형<img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong class="left">관리자 유형<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right admin_type">
                             <span>판매 관리<input type="radio" name="adminType" value="sale" class="input adminType" required
-                                    checked></span>
+                                    style="margin-top: 10px;" checked></span>
                             <span>오디션 관리<input type="radio" name="adminType" value="audition" class="input adminType"
-                                    required></span>
-                            <span>매니저<input type="radio" name="adminType" value="manager" class="input adminType"
+                                    style="margin-top: 10px;" required></span>
+                            <span>매니저<input type="radio" name="adminType" value="manager" class="input adminType"  style="margin-top: 10px;"
                                     required></span>
                         </div>
                         <input type="hidden" name="admin_type" id="admin_type" value="" />
@@ -82,7 +103,7 @@
                     <!-- 이름 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong class="left">이름<img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong class="left">이름<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
                             <input type="text" name="admin_name" class="input" required>
@@ -95,8 +116,8 @@
                             <strong>성별 <img src="img/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right gender">
-                            여성 <input type="radio" name="adminGender" value="F" class="female adminGender" checked required>
-                            남성 <input type="radio" name="adminGender" value="M" class="male adminGender" required>
+                            <span>여성 <input type="radio" name="adminGender" value="F" class="female adminGender" style="margin-left: 8px;" checked required></span>
+                            <span>남성 <input type="radio" name="adminGender" value="M" class="male adminGender" style="margin-left: 8px;" required></span>
                         </div>
                         <input type="hidden" class="admin_gender" name="admin_gender" value="" />
                     </div>
@@ -104,7 +125,7 @@
                     <!-- 아이디 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>아이디 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>아이디 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
                             <input type="text" name="admin_id" class="input id" minlength="6" maxlength="16"
@@ -115,7 +136,7 @@
                     <!-- 비밀번호 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>비밀번호 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>비밀번호 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
                             <input type="password" name="admin_pw" class="input pw"
@@ -127,7 +148,7 @@
                     <!-- 비밀번호 확인 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>비밀번호 확인 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>비밀번호 확인 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
                             <input type="password" name="pw" class="input pw"
@@ -139,18 +160,17 @@
                     <!-- 이메일주소 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>이메일 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>이메일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요"
-                                required>
+                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" required>
                         </div>
                     </div>
 
                     <!-- 휴대전화 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>휴대전화 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>휴대전화 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
                             <select name="start_num" class="region_num left" required>
@@ -162,11 +182,11 @@
                                 <option value="019">019</option>
                             </select>
                             <span> - </span>
-                            <input type="text" name="mid_num" class="phone_num1"
+                            <input type="text" name="mid_num" class="phone_num phone_num1"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 maxlength="4" required>
                             <span> - </span>
-                            <input type="text" name="last_num" class="phone_num2"
+                            <input type="text" name="last_num" class="phone_num phone_num2"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 maxlength="4" required>
                             <input type="hidden" class="adminContact" name="admin_contact" value="" />
@@ -174,7 +194,20 @@
                     </div>
 
                     <!-- 주소 -->
-                    주소 : <input type="text" name="admin_address" />
+                    <div class="join_info_innerbox">
+                        <diV class="join_info left">
+                            <strong>주소 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                        </diV>
+                        <div class="join_info_content right address">
+                            <input type="text" name="zipcode" id="zipcode" size="7" placeholder="우편번호"
+                                style="border-bottom: 0.5px solid #dfdfdf;;" onclick="kakaopost()" readonly>
+                            <input type="button" value="우편번호찾기" id="zipcode" class="address_btn" onclick="kakaopost()"
+                                required><br />
+                            <input type="text" class="admin_addresses admin_address1" name="address" id="address" size="70"><br />
+                            <input type="text" class="admin_addresses admin_address2" name="address" id="address" size="70" placeholder=" 나머지주소">
+                        </div>
+                    </div>
+                    <input type="hidden" class="admin_address" name="admin_address" />
 
                     <!-- 담당 연예인 -->
                     <div class="join_info_innerbox">
@@ -182,8 +215,14 @@
                             <strong>담당 연예인 <span></span></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="text" name="ent_name" class="ent_name"
-                                placeholder="매니저인 경우 담당 연예인 작성 / 아닌 경우, '없음'으로 작성" required>
+                            <select class="ent_name" name="ent_name" aria-label=".form-select-sm example">
+                                <option selected>none</option>
+                                <option value="BLACKPINK">BLACKPINK</option>
+                                <option value="NewJeans">NewJeans</option>
+                                <option value="IVE">IVE</option>
+                                <option value="LEEDOHYUN">LEEDOHYUN</option>
+                                <option value="CHAESOOBIN">CHAESOOBIN</option>
+                            </select>
                         </div>
                     </div>
 
@@ -229,6 +268,13 @@
                         }
                         $(".adminType").change(getAdminType);
                         $(document).ready(getAdminType);
+
+                        // admin_address 값 추출
+                        function getAddress() {
+                            $(".admin_address").val($(".admin_address1").val() + " " + $(".admin_address2").val());
+                        }
+                        $(".admin_addresses").change(getAddress);
+                        $(document).ready(getAddress);
 
                     </script>
 

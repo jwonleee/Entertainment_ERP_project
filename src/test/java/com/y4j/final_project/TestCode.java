@@ -4,8 +4,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import com.y4j.final_project.admin.service.AdminMapper;
 import com.y4j.final_project.authority.service.AuthorityMapper;
+import com.y4j.final_project.aws.service.AwsS3Service;
 import com.y4j.final_project.command.AuthorityVO;
-import com.y4j.final_project.service.AwsS3Service;
 
 @SpringBootTest
 public class TestCode {

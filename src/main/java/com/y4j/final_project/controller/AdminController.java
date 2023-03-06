@@ -36,6 +36,12 @@ public class AdminController {
 		return "admin/admin_join";
 	}
 	
+	@GetMapping("/admin_join2")
+	public String admin_join2() {
+		
+		return "admin/admin_join2";
+	}
+	
 	@GetMapping("/admin_home")
 	public String admin_home() {
 		
@@ -47,7 +53,7 @@ public class AdminController {
 								RedirectAttributes ra) {
 		//관리자 회원가입
 		vo1.setAdmin_no(adminService.getAdminTotal(cri) + 1);
-		
+		System.out.println("AdminVO Total : " + vo1.getAdmin_no());
 		//권한 신청
 		AuthorityVO vo2 = AuthorityVO.builder()
 						  .authority_mng_no(authorityService.getAuthorityApplyTotal(cri) + 1)

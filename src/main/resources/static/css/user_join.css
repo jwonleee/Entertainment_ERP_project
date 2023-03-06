@@ -27,9 +27,9 @@ header > h3 {
     
 }
 .join_section .join_section_title{
-    padding: 30px;
     font-size: 40px;
     height: 80px;
+    line-height: 80px;
     color: #303541;
     text-align: center; 
 }
@@ -105,23 +105,18 @@ header > h3 {
     font-size: 14px;
     font-weight: 550;
 }
+/* 생년월일 */
+.join_info_content > .birth{
+    width: 25%;
+    text-align: center;
+    padding: 5.2px;
+    border: none;
+    border-bottom: 0.5px solid #dfdfdf;
+}
 .join_info_content > span{
     font-size: 14px;
     font-weight: 550;
     color: #2d3239;
-}
-
-/* 관리자 유형 */
-.admin_type{
-    border-bottom: 0.5px solid #dfdfdf;
-    padding-bottom: 22px;
-    overflow: hidden;
-    display: flex;
-    justify-content: space-around;
-}
-.admin_type > span{
-    float: left;
-    text-align: center;
 }
 /* 성별 */
 .gender{
@@ -162,23 +157,82 @@ header > h3 {
     color: #2d3239;
 }
 
-/* 담당연예인 */
-.ent_in_charge{
-    border-bottom: 0.5px solid #dfdfdf;
+/* 주소 입력 */
+.join_info_content .address{
+   display: inline-block;
+   
+}
+.address input{
+    height: 25px;
+    margin-bottom: 10px;
+ }
+ .address input::placeholder{
+    color: #a29d9d;
+    font-weight: 550;
+    font-size: 13px;
+}
+.address #zipcode{
+    width: 48.5%;
+    border: none;
+    text-align: center;
+    cursor: pointer;
+} 
+ .address .address_btn{
+    width: 150px;
+    height: 35px;
+    border-radius: 50px;
+    background-color: rgb(132, 151, 171);
+    color: aliceblue; font-weight: 550;
 }
 
-.join_info_content > .ent_name{
+.address #address{
     width: 100%;
     border: none;
     border-bottom: 0.5px solid #dfdfdf;
-    margin-bottom: 40px;
-    padding-bottom: 17px;
-    vertical-align: middle;
-    align-items: center;
-    color: #3e4043;
-    font-size: 14px;
-    font-weight: 550;
 }
+
+/* 기본정보 아래 부분 */
+.join_box2{
+    padding-top: 0;
+    padding-bottom: 40px;
+}
+
+/* 좋아하는 연예인 선택 */
+.fav_ent{
+    border-bottom: 1px solid #dfdfdf;
+    text-align: center;
+    overflow: hidden;
+}
+.favorite{
+    width: 100%;
+    float: left;
+    overflow: hidden;
+}
+.favorite .entertainer{
+    margin-bottom: 10px;
+    margin-left: 10px;
+    width: 30%;
+    display: inline-block;
+}
+
+.favorite .entertainer span{
+    font-size: 14px;
+    font-weight: 600;
+    
+}
+.favorite .entertainer img{
+    width: 190px;
+    height: 150px;
+    float: left;
+    border-radius: 10px;
+    /* 브라우저에서 대비를 최적화하여 이미지 랜더링을 하는데 흐린 문제를 해결 */
+    image-rendering: -webkit-optimize-contrast;
+    /* z축을 0으로 적용하여 깊이감을 없앤다.  */
+    transform: translateZ(0);
+    /* 뒷면을 hidden처리하여 입체감을 없앤다. */
+    backface-visibility: hidden;
+}
+
 
 
 /* 약관 동의 부분 */
@@ -237,7 +291,7 @@ header > h3 {
 .join_btn{
     text-align: center;
     overflow: hidden;
-    margin-top: 40px;
+    
 }
 .join_btn button{
     border: 0.1px solid #b8bbbb;
@@ -257,7 +311,8 @@ header > h3 {
     color: white;
     margin-right: 5px;
     border: none;
-    background-color: #124465;
+    background-color: #A593E0;
+   
 }
 
 /* 상단, 하단으로 가는 버튼 */
@@ -297,52 +352,6 @@ header > h3 {
     cursor: pointer;
     scroll-behavior: smooth;
 }
-
-/* 주소 입력 */
-.join_info_content .address{
-    display: inline-block;
-    
- }
- .address input{
-     height: 25px;
-     margin-bottom: 10px;
-  }
-  .address input::placeholder{
-     color: #a29d9d;
-     font-weight: 550;
-     font-size: 13px;
- }
- .address #zipcode{
-     width: 48.5%;
-     border: none;
-     text-align: center;
-     cursor: pointer;
- } 
-  .address .address_btn{
-     width: 150px;
-     height: 35px;
-     border-radius: 50px;
-     background-color: rgb(132, 151, 171);
-     color: aliceblue; font-weight: 550;
- }
- 
- .address #address{
-     width: 100%;
-     border: none;
-     border-bottom: 0.5px solid #dfdfdf;
- }
-
-/* 담당연예인 select box */
-.join_info_innerbox .join_info {
-    padding-top: 20px;
-}
-
-.join_info_innerbox .ent_name {
-    width: 100%;
-    padding: 8px 0 8px 0;
-    color: #474c54;
-}
-
 
 /*============== footer부분 =============*/
 footer {
