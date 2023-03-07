@@ -8,9 +8,9 @@
 			<form name="adminAuthSearchForm" action="admin_authority_list">
 				<div class="aal-top">
 					<div class="aal-top-left">
-						<span class="aal-top-lefts sideMenuTitle">메인 타이틀</span>
+						<span class="aal-top-lefts sideMenuTitle">Main Menu</span>
 						<span>></span>
-						<span class="aal-top-lefts sideMenuContent">서브 타이틀</span>
+						<span class="aal-top-lefts sideMenuContent">Sub Menu</span>
 					</div>
 					<div class="aal-top-right">
 						<input type="text" name="searchValue" placeholder="이름 검색" />
@@ -48,24 +48,26 @@
 					</table>
 
 					<!-- Modal -->
-					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-						aria-hidden="true">
-						<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-							<div class="modal-content">
-								<div class="modal-header">
-									<h1 class="modal-title fs-5" id="exampleModalLabel">관리자 세부 정보</h1>
-									<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
-								</div>
-								<div class="modal-body" style="width: 500px">
-			
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-primary">수정</button>
-									<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
+					<form action="adminAuthUpdateForm" id="updateForm" class="adminUpdateForm" method="post" >
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">관리자 세부 정보</h1>
+										<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body" style="width: 500px">
+				
+									</div>
+									<div class="modal-footer">
+										<button type="button" id="updateBtn" class="btn btn-primary">수정</button>
+										<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
+									</div>
 								</div>
 							</div>
 						</div>
-					</div>
+					</form>
 
 					<!-- pagination -->
 					<ul class="pagination" style="display: inline-flex">
@@ -111,123 +113,6 @@
 
 </th:block>
 
-<script th:inline="javascript">
-
-	function changeDateFormat(regdate) {
-		
-		function pad(number) {
-		if (number < 10) {
-	        return '0' + number;
-	      }
-	      return number;
-		}
-		
-		var date = new Date(regdate);
-		
-		return date.getFullYear() + "-" + (pad(date.getMonth() + 1) ) + "-" + pad( date.getDate() ) ;
-	}
-
-	$(".showModal").click(function (e) {
-
-		var admin_no = $(this).parent().prev().prev().prev().prev().html();
-
-		$.ajax({
-			url: "../getAdminInfo",
-			type: "post",
-			data: JSON.stringify({ admin_no: admin_no }),
-			contentType: "application/json",
-			success: function (vo) {
-				
-				var str = '';
-				
-				str += '<div class="modal-body-inner">';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">번호</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_no + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">이름</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_name + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<fieldset class="row mb-3">';
-				str += '<legend class="col-form-label col-sm-2 pt-0">유형</legend>';
-				str += '<div class="col-sm-10">';
-				str += '<div class="form-check">';
-				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios0" value="option0" disabled>';
-				str += '<label class="form-check-label" for="gridRadios0">';
-				str += '사이트 관리자';
-				str += '</label>';
-				str += '</div>';
-				str += '<div class="form-check">';
-				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios1" value="option1 "' + (vo.admin_type == "manager" ? "checked >" : ">");
-				str += '<label class="form-check-label" for="gridRadios1">';
-				str += '매니저';
-				str += '</label>';
-				str += '</div>';
-				str += '<div class="form-check">';
-				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios2" value="option2 "' + (vo.admin_type == "audition" ? "checked >" : ">");
-				str += '<label class="form-check-label" for="gridRadios2">';
-				str += '오디션 관리자';
-				str += '</label>';
-				str += '</div>';
-				str += '<div class="form-check">';
-				str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios3" value="option3 "' + (vo.admin_type == "sale" ? "checked >" : ">");
-				str += '<label class="form-check-label" for="gridRadios3">';
-				str += '상품 관리자';
-				str += '</label>';
-				str += '</div>';
-				str += '</div>';
-				str += '</fieldset>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">그룹</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputText3" value=' + (vo.ent_name == "none" ? "-" : vo.ent_name) + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">아이디</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_id + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">연락처</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputText3" value=' + vo.admin_contact + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">이메일</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputEmail3" value=' + vo.admin_email + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '<div class="row mb-3">';
-				str += '<label for="inputEmail3" class="col-sm-2 col-form-label">등록일</label>';
-				str += '<div class="col-sm-10">';
-				str += '<input type="text" class="form-control" id="inputEmail3" value=' + changeDateFormat(vo.admin_regdate) + '>';
-				str += '</div>';
-				str += '</div>';
-				str += '</div>';
-
-				$(".modal-body").append(str);
-			},
-			error: function (err) {
-				alert("관리자 정보 조회에 실패했습니다.");
-			}
-		});
-
-	});
-</script>
-<script>
-	//모달을 닫을 시, 모달 화면에 구성해줬던 이미지 정보를 삭제
-	$(".closeModal").click(function() {
-		$(".modal-body-inner").remove();
-	});
-</script>
+<script src="/js/admin_authority_list.js"></script>
 
 </html>

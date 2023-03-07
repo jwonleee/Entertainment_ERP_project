@@ -36,4 +36,9 @@ public class AdminServiceImpl implements AdminService {
 		return adminMapper.getAdminInfo(admin_no);
 	}
 	
+	//관리자 권한 수정 메서드
+	public int updateAdminAuthority(AdminVO vo) {
+		return adminMapper.updateAdminAuthority(vo);
+	}
+	
 }

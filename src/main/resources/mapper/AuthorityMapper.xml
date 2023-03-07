@@ -24,13 +24,33 @@
 	<!-- 관리자 권한 신청 목록 조회 메서드 -->
 	<select id="getAuthorityApplyList" resultType="AuthorityVO">
 		select * from authority_mng
+		<choose>
+			<when test="searchType == 'name'">where authority_mng_admin_name like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'originType'">where authority_mng_admin_original_type like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'applyType'">where authority_mng_admin_apply_type like concat('%', #{searchValue}, '%')</when>
+			<!-- <otherwise>where 1=1</otherwise> -->
+		</choose>
+		order by authority_mng_no desc limit #{pageStart}, #{amount}
 	</select>
 	
 	<!-- 관리자 권한 신청 총 데이터 수 반환 메서드 -->
 	<select id="getAuthorityApplyTotal" resultType="Integer">
   		select count(*) from authority_mng
+  		<choose>
+			<when test="searchType == 'name'">where authority_mng_admin_name like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'originType'">where authority_mng_admin_original_type like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'applyType'">where authority_mng_admin_apply_type like concat('%', #{searchValue}, '%')</when>
+			<!-- <otherwise>where 1=1</otherwise> -->
+		</choose>
   	</select>
   	
-  	<!-- 관리자 권한 신청 승인 및 변경 : update -->
+  	<!-- 관리자 권한 신청 승인 및 변경 -->
+  	<update id="updateAdminAuthority" parameterType="AuthorityVO">
+		update authority_mng
+		set authority_mng_admin_original_type = #{authority_mng_admin_original_type}, ent_name = #{ent_name}
+		where authority_mng_no = #{authority_mng_no};
+  	</update>
+  	
+  	
   	
  </mapper>

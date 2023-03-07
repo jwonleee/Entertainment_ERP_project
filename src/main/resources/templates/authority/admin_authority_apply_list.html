@@ -1,18 +1,107 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<th:block
-	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
 		<div class="fragment-inner">
 
-			<h2>admin_authority_apply_list</h2>
-			
-			
-			
+			<form name="applyAuthSearchForm" action="admin_authority_apply_list">
+				<div class="aal-top">
+					<div class="aal-top-left">
+						<span class="aal-top-lefts sideMenuTitle">Main Menu</span>
+						<span>></span>
+						<span class="aal-top-lefts sideMenuContent">Sub Menu</span>
+					</div>
+					<div class="aal-top-right">
+						<select name="searchType" class="searchType form-select form-select-sm" aria-label=".form-select-sm example">
+							<option value="name" th:selected="${pageVO.cri.searchType} == 'name'">이름</option>
+							<option value="originType" th:selected="${pageVO.cri.searchType} == 'originType'">기존 타입</option>
+							<option value="applyType" th:selected="${pageVO.cri.searchType} == 'applyType'">신청 타입</option>
+						</select>
+						<input type="text" name="searchValue" placeholder="검색" />
+						<button class="btn btn-outline-dark" type="submit">검색</button>
+					</div>
+				</div>
+				<input type="hidden" name="pageNum" value="1" />
+				<input type="hidden" name="amount" th:value="${pageVO.amount }" />
+			</form>
+
+			<div class="aal-content">
+				<div class="aal-table-outer">
+					<table class="table table-striped table-hover">
+						<thead class="table-dark">
+							<tr>
+								<th scope="col">연번</th>
+								<th scope="col">권한 신청 번호</th>
+								<th scope="col">관리자 번호</th>
+								<th scope="col">이름</th>
+								<th scope="col">기존 관리자 타입</th>
+								<th scope="col">신청 관리자 타입</th>
+								<th scope="col">신청 날짜</th>
+								<th scope="col">비고</th>
+							</tr>
+						</thead>
+						<tbody class="table-group-divider">
+							<tr th:each="vo, s : ${list}">
+								<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
+								<td>[[${vo.authority_mng_no}]]</td>
+								<td>[[${vo.authority_mng_admin_no}]]</td>
+								<td>[[${vo.authority_mng_admin_name}]]</td>
+								<td>[[${vo.authority_mng_admin_original_type}]]</td>
+								<td>[[${vo.authority_mng_admin_apply_type}]]</td>
+								<td>[[${ #temporals.format(vo.authority_mng_apply_date, 'yyyy-MM-dd') }]]</td>
+								<td>
+									<button type="button" class="btn btn-outline-primary">승인</button>
+									<button type="button" class="btn btn-outline-danger">반려</button>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+
+					<!-- pagination -->
+					<ul class="pagination" style="display: inline-flex">
+						<li class="page-link">
+							<a
+								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
+								<span aria-hidden="true">&laquo;</span>
+							</a>
+						</li>
+						<th:block th:if="${pageVO.prev}">
+							<li class="page-link">
+								<a
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&lsaquo;</span>
+								</a>
+							</li>
+						</th:block>
+						<th:block th:each="p, s : ${pageVO.pageList}">
+							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
+							</li>
+						</th:block>
+						<th:block th:if="${pageVO.next}">
+							<li class="page-link">
+								<a
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&rsaquo;</span>
+								</a>
+							</li>
+						</th:block>
+						<li class="page-link">
+							<a
+								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
+								<span aria-hidden="true">&raquo;</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+			</div>
 
 		</div>
 	</div>
 
 </th:block>
+
+<script src="/js/admin_authority_list.js"></script>
+
 </html>

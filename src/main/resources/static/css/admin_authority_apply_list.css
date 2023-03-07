@@ -1,4 +1,4 @@
-/* admin_authority_list CSS */
+/* admin_authority_apply_list CSS */
 
 /* breadcrumb & search bar */
 a {
@@ -33,9 +33,25 @@ a {
   margin-bottom: 5px;
 }
 
+.searchType {
+  display: inline-block;
+  width: 110px;
+}
+
+.aal-top-right .form-select {
+  border: 1px solid rgb(133, 133, 133);
+  height: 30px;
+  padding-top: 2px;
+  font-size: 16px;
+}
+.aal-top-right .searchValue {
+  border-radius: 5px;
+}
+
 .aal-top-right .btn {
   border: 1px solid rgb(133, 133, 133);
 }
+
 
 /* table */
 .aal-content {
@@ -63,8 +79,3 @@ a {
   background-color: rgb(235, 235, 235);
 }
 
-/* modal */
-.modalOpen {
-  height: 32px;
-  line-height: 16px;
-}

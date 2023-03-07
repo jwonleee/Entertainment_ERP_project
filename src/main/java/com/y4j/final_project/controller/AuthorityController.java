@@ -8,11 +8,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.AuthorityVO;
 import com.y4j.final_project.util.Criteria;
 import com.y4j.final_project.util.PageVO;
 
@@ -21,10 +24,10 @@ import com.y4j.final_project.util.PageVO;
 public class AuthorityController {
 	
 	@Autowired
-	private AuthorityService authorityService;
+	private AdminService adminService;
 	
 	@Autowired
-	private AdminService adminService;
+	private AuthorityService authorityService;
 	
 	
 	@GetMapping("/admin_authority_list")
@@ -42,7 +45,15 @@ public class AuthorityController {
 	}
 	
 	@GetMapping("/admin_authority_apply_list")
-	public String admin_authority_apply_list() {
+	public String admin_authority_apply_list(Model model,
+			HttpSession session, Criteria cri) {
+		
+		ArrayList<AuthorityVO> list = authorityService.getAuthorityApplyList(cri);
+		model.addAttribute("list", list);
+		
+		int total = authorityService.getAuthorityApplyTotal(cri);
+		PageVO pageVO = new PageVO(cri, total);
+		model.addAttribute("pageVO", pageVO);
 		
 		return "authority/admin_authority_apply_list";
 	}
@@ -53,6 +64,17 @@ public class AuthorityController {
 		return "authority/admin_authority_register";
 	}
 	
+	@PostMapping("/adminAuthUpdateForm")
+	public String updateAdminAuthority(@ModelAttribute("adminVO") AdminVO vo) {
+		
+		AdminVO vo2 = adminService.getAdminInfo(vo.getAdmin_no());
+		vo2.setAdmin_type(vo.getAdmin_type());
+		vo2.setEnt_name(vo.getEnt_name());
+		
+		adminService.updateAdminAuthority(vo2);
+		
+		return "redirect:/authority/admin_authority_list";
+	}
 	
 	
 }

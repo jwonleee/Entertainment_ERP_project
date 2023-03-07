@@ -20,6 +20,6 @@ public class AuthorityVO {
 	private String authority_mng_admin_original_type;  //default : none
 	private String authority_mng_admin_apply_type;
 	private String ent_name;
-	private LocalDateTime authority_mng_admin_apply_date;  //default: current_timestamp
+	private LocalDateTime authority_mng_apply_date;  //default: current_timestamp
 	private LocalDateTime authority_mng_authorize_date;  //default: current_timestamp
 }
