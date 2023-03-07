@@ -14,7 +14,6 @@
 .regist_wrap{
     justify-content: center;
     padding: 10px;
-    background-color: black;
 }
 
 .registForm_div{
@@ -32,7 +31,7 @@
 
 /* ********** table ********** */
 .regTable th{
-    background-color: #002d72;
+    background-color: black;
     border: 1px solid #777;
     border-top: none;
     border-left: none;
@@ -60,9 +59,41 @@ input:focus{
     line-height:30px;
 }
 
-.regTable td inpu:focus{
-    border: 3px solid black;
+.regTable td input:focus{
+    outline: none;
+    border: 2px solid aqua;
 }
+
+/* 상세조회 */
+.category_wrap{
+    border: 1px solid black;
+    background-color: white;
+}
+
+.category_content{
+    overflow:hidden;
+}
+.categoryListWrap{
+    float: left;
+}
+
+
+
+
+/* 상세조회버튼 */
+.btn_cont{
+    overflow:hidden;
+}
+.cont_right{
+    float: right;
+}
+.detail_btn{
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+}
+
+
 
 /* ***************buttons************ */
 .btn_area{
@@ -70,17 +101,17 @@ input:focus{
 }
 
 .btn_area input{
-    padding:20px;
-    border-radius: 20px;
+    padding:10px 25px;
+    border-radius: 15px;
+    border-color: gray;
     font-weight: bold;
     font-size: 15px;
     cursor: pointer;
 }
 
 .btn_area input:hover{
-    animation: fadeIn 1s ease-in-out;
-    background-color: aqua;
-    color: teal;
+    animation: fadeIn 0.5s ease-in-out;
+    border:1px solid gray;
 }
 
 @keyframes fadeIn{
@@ -89,7 +120,6 @@ input:focus{
     background-color:#dddcd4;
     }to{
         opacity: 1;
-        background-color: aqua;
-        color: teal;
+        border:1px solid gray;
     }
 }
