@@ -7,17 +7,44 @@
 
 	<insert id="regist" parameterType="ScheduleVO">
 		insert into SCHEDULE(schedule_start_time,
-							  schedule_end_time,
-							  schedule_type,
-							  schedule_ent_name,
-							  schedule_location,
-							  schedule_content)
+							 schedule_end_time,
+							 schedule_writer,
+							 schedule_type,
+							 schedule_ent_name,
+							 schedule_location,
+							 schedule_content)
     	values(#{schedule_start_time},
     		   #{schedule_end_time},
+    		   #{schedule_writer},
     		   #{schedule_type},
     		   #{schedule_ent_name},
     		   #{schedule_location},
     		   #{schedule_content})
 	</insert>
+	
+	<insert id="registMap">
+		
+		<selectKey keyProperty="schedule_no" order="BEFORE" resultType="int">
+			select LAST_INSERT_ID() as schedule_no
+		</selectKey>
+		
+		insert into ENTERTAINER_SCHEDULE (ent_name,
+										  schedule_no)
+		values(#{ent_name},
+			   #{schedule_no})
+	</insert>
+	
+	<select id="getEntType" resultType="EntertainerVO">
+		select DISTINCT(ent_group_name) from ENTERTAINER where ent_type = #{ent_type}
+	</select>
+	
+	<select id="getEntType2" resultType="EntertainerVO">
+		select ent_name from ENTERTAINER where ent_type = #{ent_type}
+	</select>
+
+	<select id="getList" resultType="ScheduleVO">
+		select * from SCHEDULE order by schedule_no desc;
+	</select>
+
 
 </mapper>

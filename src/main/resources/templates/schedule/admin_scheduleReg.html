@@ -3,8 +3,9 @@
 
 <!-- css -->
 <link rel="stylesheet" href="../css/admin_scheduleReg.css" type="text/css" />
+
 <!-- timepicker css -->
-<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+<!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" /> -->
 
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
@@ -21,20 +22,21 @@
 									<tr>
 										<th>일정 날짜</th>
 										<td class="schedule_calendar">
-											<input type="text" id="startDate" name="schedule_start_time" placeholder="시작날짜선택" style="width:100px"/>~
-											<input type="text" id="endDate" name="schedule_end_time" placeholder="종료날짜선택" style="width:100px" />
+											<input type='text' class='datetimepicker' name='schedule_start_time' id='date_timepicker_start' required placeholder='시작날짜' style='width:150px;'/><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/>~
+											<input type='text' class='datetimepicker' name='schedule_end_time' id='date_timepicker_end' required placeholder='종료날짜' style='width:150px; padding-left:10px;'/><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/>
 										</td>
 									</tr>
 									<tr>
 										<th>관리자 ID</th>
 										<td>
-											<input type="text" class="form-control" name="admin_id" style="width:150px" placeholder="필수로 작성-value required 넣기"/>
+											<input type="text" class="form-control" name="schedule_writer" style="width:150px" placeholder="필수로 작성-value required 넣기"/>
 										</td>
 									</tr>
 									<tr>
 										<th>타입</th>
 										<td>
-											<select class="form-control" name="schedule_type input-sm" style="width: 150px;">
+											<select class="form-control" id="schedule_type" name="schedule_type" style="width: 150px;">
+												<option value="">선택</option>
 												<option value="tv">TV</option>
 												<option value="magazine">Magazine</option>
 												<option value="radio">Radio</option>
@@ -54,29 +56,19 @@
 									<tr>
 										<th>아티스트 타입</th>
 										<td>
-											<label>
-												<input type="radio" name="artist_type" value="musician"
-													checked="checked" />
-												<span>Musician</span>
-												<input type="radio" name="artist_type" value="actor" />
-												<span>Actor</span>
-											</label>
+											<input type="radio" class="type_wrap" name="artist_type" value="musician"/>Musician
+											<input type="radio" class="type_wrap" name="artist_type" value="actor"/>Actor
 										</td>
 									</tr>
 									<tr>
-										<th>아티스트 이름</th>
-										<td>
-											<input type="text" name="ent_name" class="form-control" style="width:150px" value required />
-										</td>
-									</tr>
-									<tr>
-										<th>아티스트 그룹</th>
-										<td>
-											<select class="form-control input-sm" style="width: 150px;">
-												<option value="solo">Solo</option>
+										<th>아티스트</th>
+										<td classs="artistList_td">
+											<select class="form-control input-sm artistList_wrap" name="ent_name" style="width: 150px;">
+												<option value="">선택</option>
+												<!-- <option value="solo">Solo</option>
 												<option value="blackpink">Blackpink</option>
 												<option value="newjeans">Newjeans</option>
-												<option value="ive">Ive</option>
+												<option value="ive">Ive</option> -->
 											</select>
 										</td>
 									</tr>
@@ -99,7 +91,7 @@
 							</table>
 
 							<div class="btn_wrap">
-								<button type="submit" class="btn btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">등록</button>
+								<button type="submit" id="submit" class="btn btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">등록</button>
 								<button type="reset" class="btn btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">초기화</button>
 							</div>
 
@@ -115,72 +107,100 @@
 
 </html>
 
+<!-- msg -->
+<!-- <script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]'); /* '달러부분 '는 문자열로 받는게 문법적 오류 안생겨서 좋음*/
+	
+	if(msg != null) {
+		alert(msg);
+	}
+</script> -->
 
-<script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+<!-- datetimepicker -->
+<script>
+	$(function(){
+		$('#date_timepicker_start').datetimepicker({
+			format:'Y/m/d H:i',
+			onShow:function( ct ){
+			this.setOptions({
+				maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
+				minDate: 0
+				})
+			},
+			timepicker:true,
+			step: 30
+		});
+
+		$('#date_timepicker_end').datetimepicker({
+			format:'Y/m/d H:i',
+			onShow:function( ct ){
+				this.setOptions({
+					minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false
+				})
+			},
+			timepicker:true,
+			step: 30
+		});
+	});
+</script>
+
+<!-- 스케줄 types -->
+<script type="text/javascript">
+    $(document).ready(function() {
+
+		$('#schedule_type').change(function() {
+			var typeSelect = $(this).val()
+			console.log(typeSelect);
+		})
+    });
+</script>
+
 <script>
 
-	/////////////////////////////////////datepicker/////////////////////////////////
-	$(function () {
+	$(".type_wrap").click(function(e) {
+			
+		var ent_type=$('[name=artist_type]:checked').val();
+		
+		//musician
+		if(ent_type == 'musician') {
+			$.ajax({
+				url: '../getEntType',
+				type: 'post',
+				data: JSON.stringify({ent_type: ent_type}),
+				contentType: "application/json",
+				success: function(result) {
+					var str = "";
+					result.forEach(function(item, index) {
+						str += '<option value="' + item.ent_group_name + '" class="ent_name">' + item.ent_group_name +'</option>';
+					})
+					$(".artistList_wrap").html(str);
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			})
+		//actor	
+		} else {
+			$.ajax({
+				url: '../getEntType2',
+				type: 'post',
+				data: JSON.stringify({ent_type: ent_type}),
+				contentType: "application/json",
+				success: function(result) {
+					var str = "";
+					result.forEach(function(item, index) {
+						str += '<option value="' + item.ent_name + '" class="group_list">' + item.ent_name +'</option>';
+					})
+					$(".artistList_wrap").html(str);
+				},
+				error: function(err) {
+					console.log(err);
+				}
+			})
+		}
+		
+	})
 
-		//모든 datepicker에 대한 공통 옵션 설정
-		$.datepicker.setDefaults({
-			dateFormat: 'yy-mm-dd' //Input Display Format 변경
-			, showOtherMonths: true //빈 공간에 현재월의 앞뒤월의 날짜를 표시
-			, showMonthAfterYear: true //년도 먼저 나오고, 뒤에 월 표시
-			, changeYear: true //콤보박스에서 년 선택 가능
-			, changeMonth: true //콤보박스에서 월 선택 가능         
-			, yearSuffix: "년" //달력의 년도 부분 뒤에 붙는 텍스트
-			, monthNamesShort: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12']                  //달력의 월 부분 텍스트
-			, monthNames: ['1월', '2월', '3월', '4월', '5월', '6월', '7월', '8월', '9월', '10월', '11월', '12월'] //달력의 월 부분 Tooltip 텍스트
-			, dayNamesMin: ['일', '월', '화', '수', '목', '금', '토']                                       //달력의 요일 부분 텍스트
-			, dayNames: ['일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일']                 //달력의 요일 부분 Tooltip 텍스트
-			, showOn: 'button'
-			, buttonImage: '/schedule_img/calendar.png'
-			, buttonImageOnly: true
-			, showButtonPanel: true //하단 today, done  버튼기능 추가 표시 (기본은 false)
-			, closeText: 'Close'
-			, showAnim: "slideDown"
-			, minDate: "today" //최소 선택일자(-1D:하루전, -1M:한달전, -1Y:일년전)
-			, maxDate: "+3Y" //최대 선택일자(+1D:하루후, +1M:한달후, +1Y:일년후)
-
-		});
-
-		//input을 datepicker로 선언
-		$("#startDate").datepicker();
-		$("#endDate").datepicker();
-
-		//시작 날짜
-		$('#startDate').datepicker({
-			onClose: function (selectedDate) {
-				$("#startDate").datepicker("option", "minDate", selectedDate);
-				// 시작일(startDate) datepicker가 닫힐때
-				// 종료일(endDate)의 선택할수있는 최소 날짜(minDate)를 선택한 시작일로 지정
-			}
-
-		});
-		//시작날짜 초기값
-		$('#startDate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-
-		//마지막 날짜
-		$("#endDate").datepicker({
-			onClose: function (selectedDate) {
-				$("#endDate").datepicker("option", "maxDate", selectedDate);
-				// 종료일(endDate) datepicker가 닫힐때
-				// 시작일(endDate)의 선택할수있는 최대 날짜(maxDate)를 선택한 종료일로 지정 
-			}
-		});
-		//마지막 날짜
-		$('#endDate').datepicker('setDate', 'today'); //(-1D:하루전, -1M:한달전, -1Y:일년전), (+1D:하루후, -1M:한달후, -1Y:일년후)
-
-		//today 버튼
-		var old_goToToday = $.datepicker._gotoToday;
-		$.datepicker._gotoToday = function (id) {
-			old_goToToday.call(this, id);
-			this._selectDate(id);
-		};
-
-	}
-
-	);
-
+	
 </script>
