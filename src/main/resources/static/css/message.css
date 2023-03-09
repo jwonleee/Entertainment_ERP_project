@@ -42,3 +42,8 @@
 .accordion-button:not(.collapsed)::after {
   background-image: var(--bs-accordion-btn-icon);
 }
+
+.accordion .form-control:focus{
+  box-shadow: 0 0 0 0.25rem rgba(0, 0, 0, 0.5) !important;
+  border: 1px solid black;
+}

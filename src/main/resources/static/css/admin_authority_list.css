@@ -8,6 +8,8 @@ a {
 .aal-top {
   overflow: hidden;
   vertical-align: middle;
+  padding: 20px 20px 15px;
+  border: 1px solid #999;
 }
 
 .aal-top-left {
@@ -40,7 +42,9 @@ a {
 /* table */
 .aal-content {
   text-align: center;
-  margin-top: 10px;
+  padding: 20px 20px 15px;
+  border: 1px solid #999;
+  border-top: none;
 }
 
 .aal-content td {
@@ -48,18 +52,28 @@ a {
 }
 
 /* pagination */
-.page-link {
+.pagination-outer {
+  border: 1px solid #999;
+  padding-top: 15px;
+}
+
+.pagination > li > .page-link {
   color: black;
   box-sizing: border-box;
 }
 
-.page-link  span {
+.page-link > a > span {
+  color: black;
   box-sizing: border-box;
 }
 
-.page-link:hover {
+.pagination > li:hover {
   border: 2px solid #212529;
   color: black;
+  background-color: rgb(235, 235, 235);
+}
+
+.pagination > li > .page-link:hover {
   background-color: rgb(235, 235, 235);
 }
 

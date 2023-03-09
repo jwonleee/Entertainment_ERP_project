@@ -14,12 +14,13 @@ import lombok.NoArgsConstructor;
 public class MessageVO {
 
 	private int msg_no;  //default : auto increment
-	private String msg_writer_no;  //default : none
+	private int msg_writer_no;
 	private String msg_writer_id;
 	private String msg_writer_name;
-	private String msg_receiver_no;
+	private int msg_receiver_no;
 	private String msg_receiver_id;
 	private String msg_receiver_name;
+	private String msg_title;
 	private String msg_content;
 	private LocalDateTime msg_senddate;  //default : current_timestamp
 	

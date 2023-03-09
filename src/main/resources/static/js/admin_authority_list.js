@@ -71,7 +71,7 @@ $(".showModal").click(function (e) {
       str += '<input type="hidden" class="admin_type" name="admin_type" value="" />'
       str += '</fieldset>';
       str += '<div class="row mb-3">';
-      str += '<label for="inputEmail3" class="col-sm-2 col-form-label">그룹</label>';
+      str += '<label for="inputEmail3" class="col-sm-2 col-form-label">그룹/배우</label>';
       str += '<div class="col-sm-10">';
       str += '<input type="text" class="form-control" id="inputText3" name="ent_name" value=' + (vo.ent_name != "none" ? vo.ent_name : '') + '>';
       str += '</div>';

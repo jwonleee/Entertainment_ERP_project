@@ -29,7 +29,8 @@ a {
   overflow: hidden;
   width: 1080px;
   box-sizing: border-box;
-  padding: 10px 20px 0px;
+  padding-top: 10px;
+  padding-right: 10px;
 }
 
 .main-header .main-header-inner1 {
@@ -131,7 +132,6 @@ a {
 
 .header-bottom .search_bar {
   float: right;
-  margin-right: 16px;
   margin-top: 9px;
 }
 
@@ -259,7 +259,7 @@ a {
   position: static;
   bottom: 0px;
   width: 100%;
-  background-image: linear-gradient(to right, rgb(222, 222, 222), rgb(166, 166, 166) 50%, rgb(111, 111, 111));
+  background-color: rgb(119, 119, 119);
   z-index: 5;
   margin-top: 20px;
 }
@@ -275,6 +275,7 @@ footer {
 
 footer .footer-inner {
   overflow: hidden;
+  color: black;
 }
 
 footer .footer-inner .footer-left {
@@ -294,10 +295,6 @@ footer .footer-inner .footer-left > div {
 
 footer .footer-inner .footer-left2 {
   margin-top: 10px;
-}
-
-footer .footer-inner .footer-left2 > .footer-left2-div3 {
-  color: #777;
 }
 
 footer .footer-inner .footer-right {
@@ -334,7 +331,6 @@ aside .aside-wrap {
 aside .aside-wrap .sideMenuBar {
   font-size: 17px;
   padding-left: 32px;
-  z-index: 2;
 }
 
 aside .aside-wrap .sideMenuBarBtn {
@@ -356,6 +352,7 @@ aside .aside-wrap .sideMenuBar .mngBar > ul {
   height: 0;
   overflow: hidden;
   transition: height ease-out 0.5s 0s;
+  padding-left: 25px;
 }
 
 aside .aside-wrap .sideMenuBar .mngBar > ul > li > a {

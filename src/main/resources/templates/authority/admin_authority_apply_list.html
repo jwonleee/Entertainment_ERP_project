@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<link rel="stylesheet" href="/css/admin_authority_apply_list.css">
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
@@ -18,7 +19,7 @@
 							<option value="originType" th:selected="${pageVO.cri.searchType} == 'originType'">기존 타입</option>
 							<option value="applyType" th:selected="${pageVO.cri.searchType} == 'applyType'">신청 타입</option>
 						</select>
-						<input type="text" name="searchValue" placeholder="검색" />
+						<input type="text" name="searchValue" class="searchValue" placeholder="검색" />
 						<button class="btn btn-outline-dark" type="submit">검색</button>
 					</div>
 				</div>
@@ -50,7 +51,7 @@
 									<td>[[${vo.authority_mng_admin_no}]]</td>
 									<td>[[${vo.authority_mng_admin_name}]]</td>
 									<td>[[${vo.authority_mng_admin_original_type}]]</td>
-									<td>[[${vo.authority_mng_admin_apply_type}]]</td>
+									<td>[[${vo.authority_mng_admin_apply_type} + ${(vo.authority_mng_admin_apply_type == "manager") ? " - " + vo.ent_name : "" } ]]</td>
 									<td>[[${ #temporals.format(vo.authority_mng_apply_date, 'yyyy-MM-dd') }]]</td>
 									<td>[[${vo.authority_mng_authorize_date == null ? '-' : ( #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') == '1996-09-03' ? '반려' : #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') ) }]]</td>
 									<td>
@@ -66,41 +67,43 @@
 					</table>
 
 					<!-- pagination -->
-					<ul class="pagination" style="display: inline-flex">
-						<li class="page-link">
-							<a
-								th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<th:block th:if="${pageVO.prev}">
+					<div class="pagination-outer">
+						<ul class="pagination" style="display: inline-flex">
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
-									<span aria-hidden="true">&lsaquo;</span>
+									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-						</th:block>
-						<th:block th:each="p, s : ${pageVO.pageList}">
-							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
-									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
-							</li>
-						</th:block>
-						<th:block th:if="${pageVO.next}">
+							<th:block th:if="${pageVO.prev}">
+								<li class="page-link">
+									<a
+										th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
+										<span aria-hidden="true">&lsaquo;</span>
+									</a>
+								</li>
+							</th:block>
+							<th:block th:each="p, s : ${pageVO.pageList}">
+								<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
+										th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
+								</li>
+							</th:block>
+							<th:block th:if="${pageVO.next}">
+								<li class="page-link">
+									<a
+										th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
+										<span aria-hidden="true">&rsaquo;</span>
+									</a>
+								</li>
+							</th:block>
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
-									<span aria-hidden="true">&rsaquo;</span>
+									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li>
-						</th:block>
-						<li class="page-link">
-							<a
-								th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
+						</ul>
+					</div>
 				</div>
 			</div>
 
@@ -108,7 +111,12 @@
 	</div>
 
 </th:block>
-
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+	if(msg != null) {
+		alert(msg);
+	}
+	</script>
 <script src="/js/admin_authority_apply_list.js"></script>
 
 </html>

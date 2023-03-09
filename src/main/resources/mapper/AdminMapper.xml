@@ -43,6 +43,9 @@
 		select * from administrator where admin_no = #{admin_no}
 	</select>
 	
+	<select id="getAdminInfo2" resultType="AdminVO">
+		select * from administrator where admin_id = #{admin_id}
+	</select>
 	
 	<!-- 관리자 권한 리스트에서 모달을 통한 권한 변경 -->
   	<update id="updateAdminAuthority" parameterType="AdminVO">

@@ -1,13 +1,15 @@
 package com.y4j.final_project.controller;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
-import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.admin.service.AdminService;
+import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.MessageVO;
+import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 
 
@@ -16,6 +18,12 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	
 	@GetMapping("/")
@@ -56,9 +64,28 @@ public class HomeController {
 	@GetMapping("/message")
 	public String message() {
 		
-		
-		
 		return "message";
+	}
+	
+	@PostMapping("/sendMsgForm")
+	public String sendMsgForm(MessageVO vo) {
+		
+		AdminVO writerVO = adminService.getAdminInfo2(vo.getMsg_writer_id());
+		AdminVO receiverVO = adminService.getAdminInfo2(vo.getMsg_receiver_id());
+		MessageVO msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getAdmin_no())
+						  .msg_writer_id(writerVO.getAdmin_id())
+						  .msg_writer_name(writerVO.getAdmin_name())
+						  .msg_receiver_no(receiverVO.getAdmin_no())
+						  .msg_receiver_id(receiverVO.getAdmin_id())
+						  .msg_receiver_name(receiverVO.getAdmin_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+		
+		messageService.sendMsg(msgVO);
+		
+		return "redirect:/message";
 	}
 	
 	

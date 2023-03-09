@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<link rel="stylesheet" href="/css/admin_authority_list.css">
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
@@ -39,9 +40,9 @@
 								<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
 								<td>[[${vo.admin_no}]]</td>
 								<td>[[${vo.admin_name}]]</td>
-								<td>[[${vo.admin_type}]]</td>
+								<td>[[${vo.admin_type} + ${(vo.admin_type == "manager") ? " - " + vo.ent_name : "" } ]]</td>
 								<td>[[${ #temporals.format(vo.admin_regdate, 'yyyy-MM-dd') }]]</td>
-								<td><button type="button" class="btn btn-dark showModal" data-bs-toggle="modal"
+								<td><button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal"
 										data-bs-target="#exampleModal">세부 정보</button></td>
 							</tr>
 						</tbody>
@@ -57,7 +58,7 @@
 										<h1 class="modal-title fs-5" id="exampleModalLabel">관리자 세부 정보</h1>
 										<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
 									</div>
-									<div class="modal-body" style="width: 500px">
+									<div class="modal-body" style="width: 550px">
 				
 									</div>
 									<div class="modal-footer">
@@ -70,41 +71,43 @@
 					</form>
 
 					<!-- pagination -->
-					<ul class="pagination" style="display: inline-flex">
-						<li class="page-link">
-							<a
-								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
-								<span aria-hidden="true">&laquo;</span>
-							</a>
-						</li>
-						<th:block th:if="${pageVO.prev}">
+					<div class="pagination-outer">
+						<ul class="pagination" style="display: inline-flex">
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
-									<span aria-hidden="true">&lsaquo;</span>
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&laquo;</span>
 								</a>
 							</li>
-						</th:block>
-						<th:block th:each="p, s : ${pageVO.pageList}">
-							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
-							</li>
-						</th:block>
-						<th:block th:if="${pageVO.next}">
+							<th:block th:if="${pageVO.prev}">
+								<li class="page-link">
+									<a
+										th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
+										<span aria-hidden="true">&lsaquo;</span>
+									</a>
+								</li>
+							</th:block>
+							<th:block th:each="p, s : ${pageVO.pageList}">
+								<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
+										th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
+								</li>
+							</th:block>
+							<th:block th:if="${pageVO.next}">
+								<li class="page-link">
+									<a
+										th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
+										<span aria-hidden="true">&rsaquo;</span>
+									</a>
+								</li>
+							</th:block>
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
-									<span aria-hidden="true">&rsaquo;</span>
+									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
+									<span aria-hidden="true">&raquo;</span>
 								</a>
 							</li>
-						</th:block>
-						<li class="page-link">
-							<a
-								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
-								<span aria-hidden="true">&raquo;</span>
-							</a>
-						</li>
-					</ul>
+						</ul>
+					</div>
 				</div>
 			</div>
 
@@ -112,7 +115,13 @@
 	</div>
 
 </th:block>
-
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+	if(msg != null) {
+		alert(msg);
+	}
+	</script>
 <script src="/js/admin_authority_list.js"></script>
+
 
 </html>
