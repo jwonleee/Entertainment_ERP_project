@@ -1,17 +1,21 @@
-//날짜 형식 0000-00-00 으로 변경
-function changeDateFormat(regdate) {
+//권한 신청 승인 처리
+$(".approveBtn").click(function(e) {
 
-  function pad(number) {
-    if (number < 10) {
-      return '0' + number;
-    }
-    return number;
-  }
+  $("#authority_mng_no").val(e.target.parentElement.parentElement.children[1].innerHTML);
+  $("#authority_mng_admin_no").val(e.target.parentElement.parentElement.children[2].innerHTML);
+  $("#authority_mng_admin_apply_type").val(e.target.parentElement.parentElement.children[5].innerHTML);
 
-  var date = new Date(regdate);
+  $("#updateAuthForm").submit();
+});
 
-  return date.getFullYear() + "-" + (pad(date.getMonth() + 1)) + "-" + pad(date.getDate());
-}
+//권한 신청 반려 처리
+$(".rejectBtn").click(function(e) {
+
+  $("#authority_mng_no").val(e.target.parentElement.parentElement.children[1].innerHTML);
+  $("#authority_mng_admin_no").val(e.target.parentElement.parentElement.children[2].innerHTML);
+
+  $("#updateAuthForm").attr("action","/authority/rejectAuthForm").submit();
+});
 
 
 

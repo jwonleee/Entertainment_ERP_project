@@ -30,6 +30,7 @@ public class AuthorityController {
 	private AuthorityService authorityService;
 	
 	
+	//관리자 권한 조회
 	@GetMapping("/admin_authority_list")
 	public String admin_authority_list(Model model,
 			HttpSession session, Criteria cri) {
@@ -44,6 +45,7 @@ public class AuthorityController {
 		return "authority/admin_authority_list";
 	}
 	
+	//권한 신청 목록
 	@GetMapping("/admin_authority_apply_list")
 	public String admin_authority_apply_list(Model model,
 			HttpSession session, Criteria cri) {
@@ -58,23 +60,35 @@ public class AuthorityController {
 		return "authority/admin_authority_apply_list";
 	}
 	
-	@GetMapping("/admin_authority_register")
-	public String admin_authority_register() {
+	//권한 수동 등록
+//	@GetMapping("/admin_authority_register")
+//	public String admin_authority_register() {
+//		
+//		return "authority/admin_authority_register";
+//	}
+	
+	//권한 신청 승인 처리
+	@PostMapping("/approveAuthForm")
+	public String approveAuth(@ModelAttribute("AuthorityVO") AuthorityVO vo) {
 		
-		return "authority/admin_authority_register";
+		authorityService.approveAuth(vo);
+		adminService.approveAuth(vo);
+		
+		return "redirect:/authority/admin_authority_apply_list";
 	}
 	
-	@PostMapping("/adminAuthUpdateForm")
-	public String updateAdminAuthority(@ModelAttribute("adminVO") AdminVO vo) {
+	//권한 신청 반려 처리
+	@PostMapping("/rejectAuthForm")
+	public String rejectAuth(@ModelAttribute("AuthorityVO") AuthorityVO vo) {
 		
-		AdminVO vo2 = adminService.getAdminInfo(vo.getAdmin_no());
-		vo2.setAdmin_type(vo.getAdmin_type());
-		vo2.setEnt_name(vo.getEnt_name());
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(vo);
 		
-		adminService.updateAdminAuthority(vo2);
+		authorityService.rejectAuth(vo);
 		
-		return "redirect:/authority/admin_authority_list";
+		return "redirect:/authority/admin_authority_apply_list";
 	}
+	
 	
 	
 }

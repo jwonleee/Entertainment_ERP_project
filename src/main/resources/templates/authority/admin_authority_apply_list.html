@@ -38,23 +38,30 @@
 								<th scope="col">기존 관리자 타입</th>
 								<th scope="col">신청 관리자 타입</th>
 								<th scope="col">신청 날짜</th>
+								<th scope="col">승인 날짜</th>
 								<th scope="col">비고</th>
 							</tr>
 						</thead>
 						<tbody class="table-group-divider">
-							<tr th:each="vo, s : ${list}">
-								<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
-								<td>[[${vo.authority_mng_no}]]</td>
-								<td>[[${vo.authority_mng_admin_no}]]</td>
-								<td>[[${vo.authority_mng_admin_name}]]</td>
-								<td>[[${vo.authority_mng_admin_original_type}]]</td>
-								<td>[[${vo.authority_mng_admin_apply_type}]]</td>
-								<td>[[${ #temporals.format(vo.authority_mng_apply_date, 'yyyy-MM-dd') }]]</td>
-								<td>
-									<button type="button" class="btn btn-outline-primary">승인</button>
-									<button type="button" class="btn btn-outline-danger">반려</button>
-								</td>
-							</tr>
+							<form id="updateAuthForm" action="approveAuthForm" method="post">
+								<tr th:each="vo, s : ${list}">
+									<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
+									<td>[[${vo.authority_mng_no}]]</td>
+									<td>[[${vo.authority_mng_admin_no}]]</td>
+									<td>[[${vo.authority_mng_admin_name}]]</td>
+									<td>[[${vo.authority_mng_admin_original_type}]]</td>
+									<td>[[${vo.authority_mng_admin_apply_type}]]</td>
+									<td>[[${ #temporals.format(vo.authority_mng_apply_date, 'yyyy-MM-dd') }]]</td>
+									<td>[[${vo.authority_mng_authorize_date == null ? '-' : ( #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') == '1996-09-03' ? '반려' : #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') ) }]]</td>
+									<td>
+										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.authority_mng_authorize_date == null ? disabled : ''}" >승인</button>
+										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.authority_mng_authorize_date == null ? disabled : ''}" >반려</button>
+									</td>
+								</tr>
+								<input type="hidden" id="authority_mng_no" name="authority_mng_no" />
+								<input type="hidden" id="authority_mng_admin_no"   name="authority_mng_admin_no" />
+								<input type="hidden" id="authority_mng_admin_apply_type" name="authority_mng_admin_apply_type" />
+							</form>
 						</tbody>
 					</table>
 
@@ -62,34 +69,34 @@
 					<ul class="pagination" style="display: inline-flex">
 						<li class="page-link">
 							<a
-								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
+								th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=1, amount=${pageVO.amount} ) }">
 								<span aria-hidden="true">&laquo;</span>
 							</a>
 						</li>
 						<th:block th:if="${pageVO.prev}">
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
+									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.startPage-1}, amount=${pageVO.amount} ) }">
 									<span aria-hidden="true">&lsaquo;</span>
 								</a>
 							</li>
 						</th:block>
 						<th:block th:each="p, s : ${pageVO.pageList}">
 							<li class="p-li" th:class="${pageVO.pageNum == p ? 'on' : ''}"><a class="page-link"
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
+									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${p}, amount=${pageVO.amount} ) }">[[${p}]]</a>
 							</li>
 						</th:block>
 						<th:block th:if="${pageVO.next}">
 							<li class="page-link">
 								<a
-									th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
+									th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.endPage+1}, amount=${pageVO.amount} ) }">
 									<span aria-hidden="true">&rsaquo;</span>
 								</a>
 							</li>
 						</th:block>
 						<li class="page-link">
 							<a
-								th:href="@{admin_authority_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
+								th:href="@{admin_authority_apply_list(searchValue=${criteria.searchValue}, pageNum=${pageVO.realEnd}, amount=${pageVO.amount} ) }">
 								<span aria-hidden="true">&raquo;</span>
 							</a>
 						</li>
@@ -102,6 +109,6 @@
 
 </th:block>
 
-<script src="/js/admin_authority_list.js"></script>
+<script src="/js/admin_authority_apply_list.js"></script>
 
 </html>

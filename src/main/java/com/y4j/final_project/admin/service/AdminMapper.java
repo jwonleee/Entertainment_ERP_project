@@ -27,4 +27,7 @@ public interface AdminMapper {
 	//관리자 권한 수정 메서드
 	public int updateAdminAuthority(AdminVO vo);
 	
+	//권한 신청 목록 승인 처리 메서드
+	public int approveAuth(AuthorityVO vo);
+	
 }

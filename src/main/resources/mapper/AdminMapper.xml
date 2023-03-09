@@ -44,13 +44,23 @@
 	</select>
 	
 	
-	 <!-- 관리자 권한 리스트에서 모달을 통한 권한 변경 -->
+	<!-- 관리자 권한 리스트에서 모달을 통한 권한 변경 -->
   	<update id="updateAdminAuthority" parameterType="AdminVO">
 		update administrator
 		set admin_type = #{admin_type}, ent_name = #{ent_name}
-		where admin_no = #{admin_no};
+		where admin_no = #{admin_no}
   	</update>
-	
+  	
+  	<!-- 관리자 권한 신청 승인 및 변경 -->
+  	<update id="approveAuth" parameterType="AuthorityVO">
+  		<selectKey resultType="String" keyProperty="ent_name" order="BEFORE" >
+  			select ent_name as ent_name from authority_mng where authority_mng_no = #{authority_mng_no}
+  		</selectKey>
+		update administrator
+		set admin_type = #{authority_mng_admin_apply_type}, ent_name = #{ent_name}
+		where admin_no = #{authority_mng_admin_no}
+  	</update>
+  	
 	
 
 </mapper>

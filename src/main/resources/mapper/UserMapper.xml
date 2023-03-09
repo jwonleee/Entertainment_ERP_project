@@ -6,7 +6,7 @@
 <mapper namespace="com.y4j.final_project.user.service.UserMapper">
 
 	<select id="getUserList" resultType="com.y4j.final_project.command.UserVO">
-		select * from users
+		
 	</select>
 	
 	<insert id="registUser" parameterType="UserVO">

@@ -19,7 +19,10 @@ public interface AuthorityMapper {
 	//관리자 권한 신청 총 데이터 수 반환 메서드
 	public int getAuthorityApplyTotal(Criteria cri);
 	
-	//관리자 권한 수정 메서드
-	public int updateAdminAuthority(AuthorityVO vo);
+	//권한 신청 목록 승인 처리 메서드
+	public int approveAuth(AuthorityVO vo);
+	
+	//권한 신청 목록 반려 처리 메서드
+	public int rejectAuth(AuthorityVO vo);
 	
 }
