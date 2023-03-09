@@ -5,41 +5,47 @@
   
   <mapper namespace="com.y4j.final_project.service.orderservice.OrderMapper">
   
-  	<select id="getOrderTotal" resultType="int">
+  	<select id="getOrderTotal" resultType="Integer">
   		select count(*) as total from admin_order where admin_order_id=#{user_id}
 		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
-  			<![CDATA[and admin_order_album_no >=100]]>
+  			<![CDATA[and admin_order_album_no !=0]]>
   		</if>
   		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
-  			<![CDATA[and admin_order_prod_no >=9900]]>
+  			<![CDATA[and admin_order_prod_no !=0]]>
   		</if>
   		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
-  			<![CDATA[and admin_order_album_no >=1]]>
+  			<![CDATA[and admin_order_no >=1]]>
   		</if>
   	</select>
+  
   
   
   
   	<select id="getOrderList" resultType="Admin_orderVO">
   		SELECT * FROM admin_order where admin_order_id=#{user_id}
   		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
-  			<![CDATA[and admin_order_album_no >=100]]>
+  			<![CDATA[and admin_order_album_no!=0]]>
   		</if>
   		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
-  			<![CDATA[and admin_order_prod_no >=9900]]>
+  			<![CDATA[and admin_order_prod_no!=0]]>
   		</if>
   		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
-  			<![CDATA[and admin_order_album_no >=1]]>
+  			<![CDATA[and admin_order_no >=1]]>
   		</if>
   		 order by admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
   	</select>
+  	
+  	
+  	
+  	
+  	
   	
   	<insert id="testRegist" parameterType="Admin_orderVO">
   		insert into admin_order(admin_order_album_no,
   								admin_order_company,
   								admin_order_id,
   								admin_order_price,
-  								admin_order_prod_category,
+  								admin_order_category,
   								admin_order_prod_cnt,
   								admin_order_prod_no,
   								admin_order_sizetype)
@@ -47,7 +53,7 @@
   				#{admin_order_company},
   				#{admin_order_id},
   				#{admin_order_price},
-  				#{admin_order_prod_category},
+  				#{admin_order_category},
   				#{admin_order_prod_cnt},
   				#{admin_order_prod_no},
   				#{admin_order_sizetype})
@@ -56,6 +62,102 @@
   	<select id="getDetail" resultType="Admin_orderVO" parameterType="string">
   		select * from admin_order where admin_order_no=#{admin_order_no}
   	</select>
+  	
+  	<insert id="albumRegist" parameterType="AlbumVO">
+  		insert into album(album_artist
+  							,album_title
+  							,album_category
+  							,album_price
+  							,album_release_date
+  							,album_discount_rate
+  							,album_stock
+  							,album_version
+  							,album_img_path)
+  		values(#{album_artist}
+  				,#{album_title}
+  				,#{album_category}
+  				,#{album_price}
+  				,#{album_release_date}
+  				,#{album_discount_rate}
+  				,#{album_stock}
+  				,#{album_version}
+  				,#{album_img_path})
+  	</insert>
+  	
+  	<insert id="productRegist" parameterType="ProductVO">
+  		insert into product(prod_type
+  							,prod_name
+  							,prod_category
+  							,prod_sizetype
+  							,prod_artist
+  							,prod_price
+  							,prod_discount_rate
+  							,prod_stock
+  							,prod_img_path
+  							,prod_info_img_path
+  							,prod_regdate)
+  		values(#{prod_type}
+  				,#{prod_name}
+  				,#{prod_category}
+  				,#{prod_sizetype}
+  				,#{prod_artist}
+  				,#{prod_price}
+  				,#{prod_discount_rate}
+  				,#{prod_stock}
+  				,#{prod_img_path}
+  				,#{prod_info_img_path}
+  				,#{prod_regdate})
+  	</insert>
+  	
+	
+	<insert id="adminAlbumRegist" parameterType="Admin_orderVO">
+		<selectKey resultType="Integer" keyProperty="admin_order_album_no" order="BEFORE">
+			select max(album_no) as admin_order_album_no from album where album_category=#{admin_order_category}
+		</selectKey>
+  			insert into admin_order(admin_order_album_no
+  									,admin_order_id
+  									,admin_order_price
+  									,admin_order_category
+  									,admin_order_prod_cnt
+  									,admin_order_regdate
+  									,admin_order_sizetype
+  									,admin_order_company
+  									,admin_order_prod_name)
+  				values(#{admin_order_album_no}
+  						,#{admin_order_id}
+  						,#{admin_order_price}
+  						,#{admin_order_category}
+  						,#{admin_order_prod_cnt}
+  						,#{admin_order_regdate}
+  						,#{admin_order_sizetype}
+  						,#{admin_order_company}
+  						,#{admin_order_prod_name})
+  	</insert>
+  	
+  	<insert id="adminProductmRegist" parameterType="Admin_orderVO">
+  		<selectKey resultType="Integer" keyProperty="admin_order_prod_no" order="BEFORE">
+			select max(prod_no) as admin_order_prod_no from product where prod_category=#{admin_order_category}
+		</selectKey>
+		insert into admin_order(admin_order_prod_no
+  										,admin_order_id
+  										,admin_order_price
+  										,admin_order_category
+  										,admin_order_prod_cnt
+  										,admin_order_regdate
+  										,admin_order_sizetype
+  										,admin_order_company
+  										,admin_order_prod_name)
+  		values(#{admin_order_prod_no}
+  				,#{admin_order_id}
+  				,#{admin_order_price}
+  				,#{admin_order_category}
+  				,#{admin_order_prod_cnt}
+  				,#{admin_order_regdate}
+  				,#{admin_order_sizetype}
+  				,#{admin_order_company}
+  				,#{admin_order_prod_name})
+  	</insert>
+  	
   	
   	
   	<select id="getCategory" resultType="CategoryVO">
