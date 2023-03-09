@@ -19,7 +19,7 @@ public class Criteria {
 	
 	public Criteria() {
 		this.pageNum = 1;
-		this.amount = 10;
+		this.amount = 15;
 	}
 	
 	//페이지의 첫 번째 게시물 번호 계산

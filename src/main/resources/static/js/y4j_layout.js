@@ -152,9 +152,9 @@ $('aside .aside-wrap .sideMenuBarBtn').click(function(){
 });
 
 // 푸터 고정
-var fragment = document.querySelector(".fragment");
+var fragmentHeight = document.querySelector(".fragment").scrollHeight;
 function footerFixed() {
-  if(fragment.scrollHeight + 290 < window.innerHeight) {
+  if(fragmentHeight + 170 < window.innerHeight) {
     $(".footer-outer").css({position: "fixed", bottom: "0px"});
 
   } else {

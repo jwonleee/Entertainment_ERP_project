@@ -1,0 +1,44 @@
+/* 쪽지 페이지 */
+.msg-outer {
+  margin-bottom: 140px;
+}
+
+.msg-top {
+  border: 1px solid #999;
+  border-bottom: none;
+  padding: 20px 20px 15px 20px;
+  overflow: hidden;
+}
+
+.msg-list {
+  border: 1px solid #999;
+  padding: 15px 20px 20px 20px;
+}
+
+.msg-top .msg-top-left {
+  float: left;
+}
+
+.msg-top .msg-top-right {
+  float: right;
+}
+
+.msg-list .accordion {
+  --bs-accordion-btn-focus-border-color: black;
+  --bs-accordion-active-color: black;
+}
+
+.accordion-button:not(.collapsed) {
+  color: whitesmoke;
+  background-color: #333;
+  border-color: black;
+}
+
+.accordion-button:focus {
+  border: 3px solid black;
+  box-shadow: none !important;
+}
+
+.accordion-button:not(.collapsed)::after {
+  background-image: var(--bs-accordion-btn-icon);
+}

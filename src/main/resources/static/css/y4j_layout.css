@@ -29,7 +29,7 @@ a {
   overflow: hidden;
   width: 1080px;
   box-sizing: border-box;
-  padding: 10px 5px 5px;
+  padding: 10px 20px 0px;
 }
 
 .main-header .main-header-inner1 {
@@ -63,11 +63,14 @@ a {
   display: block;
   text-decoration: none;
   cursor: default;
+  width: 50px;
+  box-sizing: border-box;
+  padding-top: 20px;
 }
 
 .main-header .main-header-inner2 .header_middle_user img {
-  width: 45px;
-  height: 45px;
+  width: 35px;
+  height: 40px;
   margin: 10px 22px 0px;
   cursor: pointer;
 }
@@ -183,9 +186,8 @@ a {
 }
 
 .menu_bar > ul > li > .snb > .snbLi1 {
-  font-weight: 700;
   font-size: 16px;
-  margin-bottom: 5px;
+  margin-top: 10px;
   cursor: default;
 }
 
@@ -208,6 +210,7 @@ a {
 
 .menu_bar .snb li {
  position: relative;
+ height: 30px;
  top: 10px;
  left: -32px;
 }
@@ -315,7 +318,7 @@ aside {
   top: 106px;
   left: 0px;
   z-index: 1;
-  padding-top: 60px;
+  padding-top: 50px;
   display: inline-block;
 }
 

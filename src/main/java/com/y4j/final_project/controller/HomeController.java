@@ -36,25 +36,10 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/main")
-	public String main() {
-		
-		return "main";
-	}
-
 	@GetMapping("/popup")
 	public String popup() {
 		
 		return "y4j_popup";
-	}
-	
-	@GetMapping("/home")
-	public String home(Model model) {
-		
-		ArrayList<UserVO> list = userService.getUserList();
-		model.addAttribute("list", list);
-		
-		return "home";
 	}
 	
 	@GetMapping("/admin/hold")
@@ -66,5 +51,16 @@ public class HomeController {
 	public String testHome() {
 		return "testHome";
 	}
+	
+	
+	@GetMapping("/message")
+	public String message() {
+		
+		
+		
+		return "message";
+	}
+	
+	
 	
 }
