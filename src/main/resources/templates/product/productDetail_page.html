@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+
+<!-- 레이아웃 -->
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+	
+    <!-- 본문에 들어갈 내용 -->
+    <div class="fragment">
+    
+    	<!-- 상품 구매하기 및 장바구니 창 -->
+	    <div style="display: flex; flex-direction: row; justify-content: center; align-items: center;">
+	    
+	    	<!-- 상품 이미지 -->
+	    	<div style="margin:30px"><img style="width: 350px; height: 350px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg"/></div>
+	    	
+	    	<!-- 상품 박스(구매버튼 및 장바구니) -->
+	    	<div style="margin:50px">
+	    		<div>
+		    		<p>해당 아티스트</p>
+		    		<p>상품명</p>
+		    		<p>상품 가격</p>
+	    		</div>
+	    		
+	    		<div>
+		    		<p>할인율</p>
+	    		</div>
+	    		
+	    		<!-- 상품 선택 -->
+	    		<div style="display: flex; flex-direction: column;">
+	    			<div>
+		    			<span>상품명</span>
+	    			</div>
+	    			<div style="overflow: hidden">
+						<p style="float: left">주문 수량</p>
+		    			<p style="float: right">주문 가격</p>
+	    			</div>
+	    		</div>
+	    		
+	    		<div>
+	    			<p>TOTAL</p>
+	    			<p>총 가격</p>
+	    		</div>
+	    		
+	    		<button type="submit"> 바로 구매하기</button>
+	    		
+	    		<div>
+		    		<button type="submit">장바구니 담기</button>
+		    		<button type="submit">위시리스트 담기</button>
+	    		</div>
+	    	</div>
+	    </div>
+	    
+	    <!-- 상품 정보 및 배송 정보 및 환불 정보 등 -->
+	    <div>
+	    </div>
+
+
+    </div>
+
+
+
+</th:block>
+</html>
