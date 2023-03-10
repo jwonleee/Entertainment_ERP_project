@@ -85,7 +85,6 @@ public class OrderController {
 		if(!user_id.equals("orderadministrator")) {
 			return "redirect:/admin/hold";
 		}
-		
 		model.addAttribute("admin_id",user_id);
 		
 		

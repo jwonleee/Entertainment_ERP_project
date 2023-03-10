@@ -3,7 +3,7 @@ $("#redirectList").click(() => {
     if (confirm("변경사항이 저장되지 않습니다. 목록으로 돌아가시겠습니까?")) {
         location.href = "orderList";
     }
-})
+});
 
 
 var entertainer = ""; //카테고리에서 꺼낼 연예인
@@ -107,19 +107,6 @@ $(".detail_btn").click((e) => {
     var sizesml=['S','M',"L"];
     var sizephone=["iPhone 14 Pro Max","iPhone 14 Pro","iPhone 14 Plus","iPhone 14","iPhone 13","iPhone 13 mini","iPhone 12"];
 
-   
-
-    
-
-
-
-
-
-
-
-
-
-
     $("#adCategory").val(categorySelected);//admin용 카테고리 저장
     if (categorySelected == '' || categorySelected == 'A1' || categorySelected == 'A2' || categorySelected == 'A3' || categorySelected == 'A4' || categorySelected == 'B17' || categorySelected == 'B18' || categorySelected == 'B19') {
         alert('상세카테고리를 선택하세요');
@@ -134,7 +121,7 @@ $(".detail_btn").click((e) => {
             astr += `<td><input type="text" required="required" readonly name="album_category" value="` + categorySelected + `"/></td>`;
             astr += `</tr>`;
             astr += '<tr>';
-            astr += '<th>가수</th>';
+            astr += '<th>아티스트</th>';
             astr += '<td><input type="text" required="required" readonly name="album_artist" value="' + entertainer + '"/></td>';
             astr += '</tr>';
             astr += `<tr>`;
@@ -155,7 +142,7 @@ $(".detail_btn").click((e) => {
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>재고</th>`;
-            astr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="album_stock"/></td>`;
+            astr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="album_stock" min="100"/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>앨범버전</th>`;
@@ -224,7 +211,7 @@ $(".detail_btn").click((e) => {
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>재고</th>`;
-            pstr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="prod_stock"/></td>`;
+            pstr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="prod_stock" min="100"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>이미지경로</th>`;
@@ -287,17 +274,22 @@ $("#submitOrder").click((e) => {
 
     //유효성검사
     var categorySelected = $("input[name='admin_order_category']").val();  //카테고리 선택값
+    var datePattern=RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}');
     if ($("input[name='admin_order_regdate']").val() == '') {
         alert('발주일자를 입력하세요!');
         $("input[name='admin_order_regdate']").focus();
         return; //함수종료
-    } else if (categorySelected == '') {
+    }else if(!datePattern.test($("input[name='admin_order_regdate']").val())) {
+        alert('발주일자 양식을 확인하세요!');
+        $("input[name='admin_order_regdate']").focus();
+        return; //함수종료
+    }else if (categorySelected == '') {
         alert('카테고리를 선택하세요!');
         $(".categoryList").focus($(".categoryList").css("animation", "fadeIn 1s ease-in-out"));
         return; //함수종료
     } else if (categorySelected == 'A1' || categorySelected == 'A2' || categorySelected == 'A3' || categorySelected == 'A4' || categorySelected == 'B17' || categorySelected == 'B18' || categorySelected == 'B19') {
         alert('상세카테고리를 선택하세요!');
-        $(".categoryList").focus($(".categoryList").css("animation", "fadeIn 1s ease-in-out"));
+        $(".categoryList").focus($(".categoryList").css("animation","fadeIn 1s ease-in-out"));
         return; //함수종료
     } else if ($(".tbx").length == 0) {
         alert("상세발주조회를 선택하세요!");
@@ -317,7 +309,11 @@ $("#submitOrder").click((e) => {
                 alert("발매일을 입력하세요!");
                 $("input[name='album_release_date']").focus();
                 return; //함수종료
-            } else if ($("input[name='album_price']").val() == '') {
+            }else if(!datePattern.test($("input[name='album_release_date']").val())){
+				alert("발매일 양식을 확인하세요!");
+                $("input[name='album_release_date']").focus();
+                return; //함수종료
+			} else if ($("input[name='album_price']").val() == '') {
                 alert("가격을 입력하세요!");
                 $("input[name='album_price']").focus();
                 return; //함수종료
@@ -364,7 +360,11 @@ $("#submitOrder").click((e) => {
                 alert("등록일을 입력하세요!");
                 $("input[name='prod_regdate']").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_price']").val() == '') {
+            }else if(!datePattern.test($("input[name='prod_regdate']").val())){
+				alert("등록일 양식을 확인하세요!");
+                $("input[name='prod_regdate']").focus();
+                return; //함수종료
+			} else if ($("input[name='prod_price']").val() == '') {
                 alert("가격을 입력하세요!");
                 $("input[name='prod_price']").focus();
                 return; //함수종료

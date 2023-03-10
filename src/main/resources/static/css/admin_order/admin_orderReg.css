@@ -128,7 +128,7 @@ input:focus{
     padding: 0px;
 }
 
-.categoryListWrap .categoryList a{
+.catubegoryListWrap .categoryList a{
     overflow: hidden;
     white-space: nowrap;
     display: block;
@@ -139,8 +139,20 @@ input:focus{
     color: #000;
 }
 
+
+
+
+.forOn a{
+	color:black;
+	padding-left:5%;
+}
+
+.on{
+	background-color:black;
+}
+
 .categoryListWrap .categoryList .on a{
-    background: black;
+    background-color: black;
     color: #fff;
 }
 
@@ -183,9 +195,9 @@ input:focus{
 @keyframes fadeIn{
     from{
     opacity: 0.5;
-    background-color:#dddcd4;
+        background-color:#dddcd4;
     }to{
         opacity: 1;
-        border:1px solid gray;
+        /* border:1px solid gray; */
     }
 }
