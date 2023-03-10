@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+
+<!-- css -->
+<!-- 폰트 1 -->
+<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- 폰트 2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+<!-- 폰트 3 - 나눔고딕 --> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+<style>
+	html,
+	body {
+		position: relative;
+		height: 100%;
+	}
+
+	body {
+		margin: 0;
+		padding: 0;
+	}
+
+	swiper-container {
+		width: 100%;
+		height: 100%;
+	}
+
+	swiper-slide {
+		text-align: center;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	swiper-slide img {
+		display: block;
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+</style>
+
+<!-- 레이아웃 -->
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+
+	<!-- 본문에 들어갈 내용 -->
+	<div class="fragment">
+
+
+
+		<!-- 스와이퍼 -->
+
+		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
+		<swiper-container class="mySwiper" autoplay="true" autoplay-delay="4000" space-between="30" loop="true" speed="1600" style="margin-top: 50px;">
+			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/lisa_swiper.jpg" /></swiper-slide>
+			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_album_swiper.jpg" /></swiper-slide>
+		</swiper-container>
+
+
+		<div style="position: relative;" >
+
+			<!-- what's hot 뭐가 핫하뉘 -->
+				<div class="hotTitle" style="font-family: 'Noto Rashi Hebrew', serif; font-size: 70px; line-height: 100px; display: flex; flex-direction: column; font-style: italic;">
+					<span >WHAT'S</span>
+					<span>HOT</span>
+				</div>
+		
+
+		<!-- Slider main container -->
+		<div class="swiper" style="display: flex; justify-content: center; align-items: center;">
+			<!-- Additional required wrapper -->
+			<div style="height: 400px ;display: flex; justify-content: center; align-items: center;" class="swiper-wrapper">
+				<!-- Slides -->
+				<div class="swiper-slide" style=" font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;" >
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/lisa_clothing.jpg" alt="리사 의류"/>
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+						</div>
+					</div>
+					<div style=" width: 320px; display: flex; flex-direction: column; margin-top: 25px;">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">봄여름에도 리사처럼 힙하게</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">원하는 스타일대로 입으세요</span>
+					</div>
+				</div>
+				
+				<div class="swiper-slide" style="font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_voice.jpg" />
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in_pink.png" />
+						</div>
+					</div>
+					<div style="width: 320px; display: flex; flex-direction: column; margin-top: 25px; ">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">지금만 구매할 수 있는 한정판</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">지수의 목소리로 가득한 LP</span>
+					</div>
+				</div>
+				
+				
+				<div class="swiper-slide" style="font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_solo_album.jpeg" />
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+						</div>
+					</div>
+					<div style="width: 320px; display: flex; flex-direction: column; margin-top: 25px; ">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">지수의 첫 솔로 앨범</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">아름다운 모습들이 가득한 앨범</span>
+					</div>
+				</div>
+		
+				<div class="swiper-slide" style=" font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;" >
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/leedohyun_cloth_covernot.jpg" alt="리사 의류"/>
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+						</div>
+					</div>
+					<div style=" width: 320px; display: flex; flex-direction: column; margin-top: 25px;">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">봄여름에도 리사처럼 힙하게</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">원하는 스타일대로 입으세요</span>
+					</div>
+				</div>
+				
+				<div class="swiper-slide" style="font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/newjeans_cloth_blue.png" />
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in_pink.png" />
+						</div>
+					</div>
+					<div style="width: 320px; display: flex; flex-direction: column; margin-top: 25px; ">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">지금만 구매할 수 있는 한정판</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">지수의 목소리로 가득한 LP</span>
+					</div>
+				</div>
+				
+				
+				<div class="swiper-slide" style="font-family: 'Nanum Gothic', sans-serif; display: flex; flex-direction: column; justify-content: center; align-items: center; position: relative;">
+					<div style="position: relative;">
+						<div>
+							<img style="width: 320px; height: 300px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_album_lovedive.jpg" />
+						</div>
+						<div class="new_in">
+							<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+						</div>
+					</div>
+					<div style="width: 320px; display: flex; flex-direction: column; margin-top: 25px; ">
+						<span style="font-size: 19px; font-weight: 700; margin-left: 10px; margin-bottom: 10px;">지수의 첫 솔로 앨범</span>
+						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">아름다운 모습들이 가득한 앨범</span>
+					</div>
+				</div>
+			
+			
+			
+			</div>
+			
+			 <!-- If we need navigation buttons -->
+			  <div class="swiper-button-prev"></div>
+			  <div class="swiper-button-next"></div>
+		</div>
+
+		<!-- 모든 상품 나열 -->
+		<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 150px; margin-bottom:'50px'">
+			
+			<div style="display: flex; flex-direction: column;">
+				<span style="font-family: 'Noto Rashi Hebrew', serif; font-size: 30px; margin-bottom: 10px; font-weight: 900; font-style: italic;">ABOUT GOODS</span>
+				<span style="font-family: 'Nanum Gothic', sans-serif; font-size: 15px;">굿즈의 세계</span>
+			</div>
+
+			<div class="allProduct">
+				<div style="position: relative;">
+					<div>
+						<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg"/>
+					</div>
+				<!-- 	<div>
+						<div class="product_content">
+							<span>상품명</span>
+							<span>가격</span>
+						</div>
+					</div> -->
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth4.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album3.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth3.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth2.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth5.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth7.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth6.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album2.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_slogan.jpg"/>
+				</div>
+				<div>
+					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_album_2.jpeg"/>
+				</div>
+				
+			
+			</div>
+		</div>
+
+
+	</div>
+	</div>
+</th:block>
+<script>
+
+	const swiper = new Swiper('.swiper', {
+		
+		// Optional parameters
+		direction: 'horizontal',
+		loop: true,
+		 direction: 'horizontal',
+		  //한번에 보여지는 페이지 숫자
+		  slidesPerView: 3,
+		  //페이지와 페이지 사이의 간격
+		  spaceBetween: 30,
+		  //드레그 기능 true 사용가능 false 사용불가
+		  debugger: true,
+		  //마우스 휠기능 true 사용가능 false 사용불가
+		  mousewheel: true,
+		  //반복 기능 true 사용가능 false 사용불가
+		  loop: true,
+		  //선택된 슬라이드를 중심으로 true 사용가능 false 사용불가 djqt
+		  centeredSlides: true,
+	
+
+		// Navigation arrows
+		navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+
+
+	});
+
+</script>
+
+</html>

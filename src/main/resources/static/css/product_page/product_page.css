@@ -1,0 +1,121 @@
+* {margin: 0; padding: 0; list-style: none;}
+a {text-decoration: none;}
+img {max-width: 100%; height: auto;}
+
+/* #contents {
+    width: 1080px;
+    
+} */
+
+.hotTitle{
+    margin: 120px 0;
+}
+
+
+.hotTitle span{
+    padding: 0 50px;
+	position:relative;
+}
+
+.hotTitle span::after{
+    display: block;
+    content: '';
+    position: absolute;
+    top: 47%;
+    left: 0;
+    width: 100%;
+    border: 3px solid white;
+}
+
+.swiper-button-next {
+    background: url(/img/next_button4.png) no-repeat;
+    background-size: 50% auto;
+    background-position: center;
+  }
+  
+  .swiper-button-prev {
+    background: url(/img/prev_button.png) no-repeat;
+  }
+
+.swiper-button-next::after,
+.swiper-button-prev::after {
+  display: none;
+}
+
+
+
+ .new_in{
+  /* background-image: url(/img/new_in.png); */
+  position: absolute;
+  top: 290px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: left bottom !important;
+} 
+
+/* 상품 목록 css */
+.allProduct{
+  width: 1080px;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  margin-top: 30px;
+}
+
+.allProduct div{
+	flex-basis: 25%;
+}
+
+
+.allProduct div img{
+  margin-bottom: 25px;
+  transition: all 0.2s linear;
+}
+
+
+/* .allProduct div span{
+  opacity: 0;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 10;
+} */
+
+.allProduct div img:hover {
+  transform: scale(1.17); 
+}
+
+
+.allProduct div img:hover:after .product_content{
+  opacity:1;
+ 
+}
+
+.product_content{
+	width:100%;
+    height:100%;
+    position:absolute;
+    background-color:  rgba(0,0,0,0.2);
+    transition: all 0.4s ease-in-out;
+    opacity: 0;
+    top: 0;
+    left: 10;
+	
+
+}
+
+/* .product_content span{
+	font-family: 'Nanum Gothic', sans-serif;
+	text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate( -50%, -50% );
+    transition: all 0.2s linear;
+}
+ */
