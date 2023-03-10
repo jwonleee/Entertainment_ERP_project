@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/user_login.css">
+    <link rel="stylesheet" href="/css/user_login.css">
 
 </head>
 
@@ -42,13 +42,13 @@
                 <!-- 로그인 및 회원가입 버튼 -->
                 <div class="btn">
                     <form >
-                        <button type="submit" class="login_btn">로그인</button>
+                        <button type="submit" class="login_btn" onclick="location.href='user/user_login'">로그인</button>
                     </form>
-                    <form action="user_join.html">
-                        <button type="submit" class="join_btn">회원가입</button>
+                    <form >
+                        <button type="submit" class="join_btn" onclick="location.href='user/user_join'">회원가입</button>
                     </form>
                     <div class="manager_login">
-                        <a href="admin_login.html">관리자이신가요?</a>
+                        <a  href="admin/admin_join">관리자이신가요?</a>
                     </div>
                 </div>
 
