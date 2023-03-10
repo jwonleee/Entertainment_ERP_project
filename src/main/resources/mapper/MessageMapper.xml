@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.y4j.final_project.message.service.MessageMapper">
+
+	<insert id="sendMsg" parameterType="MessageVO">
+		insert into message(
+			msg_writer_no,
+			msg_writer_id,
+			msg_writer_name,
+			msg_receiver_no,
+			msg_receiver_id,
+			msg_receiver_name,
+			msg_title,
+			msg_content)
+		values(
+			#{msg_writer_no},
+			#{msg_writer_id},
+			#{msg_writer_name},
+			#{msg_receiver_no},
+			#{msg_receiver_id},
+			#{msg_receiver_name},
+			#{msg_title},
+			#{msg_content})
+	</insert>
+	
+	<!-- 수신 메시지 조회 -->
+	<select id="getReceivedMsg" resultType="MessageVO">
+		select * from message where msg_receiver_id = #{receiver}
+		order by msg_no desc
+	</select>
+	
+	<!-- 발신 메시지 조회 -->
+	<select id="getSentMsg" resultType="MessageVO">
+		select * from message where msg_writer_id = #{writer}
+		order by msg_no desc
+	</select>
+	
+
+</mapper>

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+
+	<div class="fragment">
+		<div class="fragment-inner">
+			<div class="msg-outer">
+
+				<div class="msg-top">
+					<div class="btn-group msg-top-left" role="group" aria-label="Basic radio toggle button group">
+						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+						<label class="btn received btn-outline-dark" for="btnradio1">받은 쪽지함</label>
+						<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
+						<label class="btn sent btn-outline-dark" for="btnradio2">보낸 쪽지함</label>
+					</div>
+					<div class="msg-send msg-top-right">
+						<button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">쪽지 작성하기</button>
+					</div>
+				</div>
+
+				<!-- 쪽지 작성 Modal -->
+				<form action="sendMsgForm" id="sendMsgForm" class="sendMsgForm" method="post" >
+					<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+						aria-hidden="true">
+						<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h1 class="modal-title fs-5" id="exampleModalLabel">Message</h1>
+									<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+								</div>
+								<div class="modal-body" style="width: 500px">
+
+									<div class="mb-3">
+										<label for="formGroupExampleInput11" class="form-label">수신자 ID</label>
+										<input type="text" name="msg_receiver_id" class="form-control" id="formGroupExampleInput11" placeholder="receiver ID">
+									</div>
+									<div class="mb-3">
+										<label for="formGroupExampleInput12" class="form-label">제목</label>
+										<input type="text" name="msg_title" class="form-control" id="formGroupExampleInput12" placeholder="Message Title">
+									</div>
+									<div class="mb-3">
+										<label for="exampleFormControlTextarea11" class="form-label">내용</label>
+										<textarea name="msg_content" class="form-control" id="exampleFormControlTextarea11" rows="8" placeholder="Message Content"></textarea>
+									</div>
+									
+									<input type="hidden" name="msg_writer_id" class="msg_writer_id" th:value="${user_id}" />
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" id="sendMsgBtn" class="btn btn-outline-dark">발송</button>
+									<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				
+				<div class="msg-list">
+					<div class="accordion">
+						받은 쪽지함 or 보낸 쪽지함 클릭
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+</th:block>
+<link rel="stylesheet" href="/css/message.css">
+<script src="/js/message.js"></script>
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+	if(msg != null) {
+		alert(msg);
+	}
+	</script>
+
+</html>

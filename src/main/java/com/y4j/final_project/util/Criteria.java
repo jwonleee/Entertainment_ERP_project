@@ -13,11 +13,13 @@ public class Criteria {
 	
 	private String searchName;  //상품 이름 검색
 	private String searchContent;  //상품 내용 검색
-	private String searchValue = "";  //상품 제외 요소 검색값
+	
+	private String searchType;  //검색 타입
+	private String searchValue = "";  //검색 값
 	
 	public Criteria() {
 		this.pageNum = 1;
-		this.amount = 10;
+		this.amount = 15;
 	}
 	
 	//페이지의 첫 번째 게시물 번호 계산

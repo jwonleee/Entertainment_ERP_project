@@ -1,13 +1,18 @@
 package com.y4j.final_project.controller;
 
-import java.util.ArrayList;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.admin.service.AdminService;
+import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.MessageVO;
+import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 
 
@@ -16,6 +21,12 @@ public class HomeController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdminService adminService;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	
 	@GetMapping("/")
@@ -36,25 +47,10 @@ public class HomeController {
 		return "index";
 	}
 
-	@GetMapping("/main")
-	public String main() {
-		
-		return "main";
-	}
-
 	@GetMapping("/popup")
 	public String popup() {
 		
 		return "y4j_popup";
-	}
-	
-	@GetMapping("/home")
-	public String home(Model model) {
-		
-		ArrayList<UserVO> list = userService.getUserList();
-		model.addAttribute("list", list);
-		
-		return "home";
 	}
 	
 	@GetMapping("/admin/hold")
@@ -66,5 +62,40 @@ public class HomeController {
 	public String testHome() {
 		return "testHome";
 	}
+	
+	
+	@GetMapping("/message")
+	public String message(HttpSession session, Model model) {
+		
+		session.setAttribute("user_id", "manager127");
+		model.addAttribute("user_id", session.getAttribute("user_id"));
+		
+		return "message";
+	}
+	
+	@PostMapping("/sendMsgForm")
+	public String sendMsgForm(MessageVO vo, RedirectAttributes ra) {
+		
+		AdminVO writerVO = adminService.getAdminInfo2(vo.getMsg_writer_id());
+		AdminVO receiverVO = adminService.getAdminInfo2(vo.getMsg_receiver_id());
+		MessageVO msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getAdmin_no())
+						  .msg_writer_id(writerVO.getAdmin_id())
+						  .msg_writer_name(writerVO.getAdmin_name())
+						  .msg_receiver_no(receiverVO.getAdmin_no())
+						  .msg_receiver_id(receiverVO.getAdmin_id())
+						  .msg_receiver_name(receiverVO.getAdmin_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+		
+		int result = messageService.sendMsg(msgVO);
+		String msg = (result == 1) ? "정상적으로 발송 처리되었습니다." : "쪽지 발송에 실패했습니다.";
+		ra.addFlashAttribute("msg", msg);
+		
+		return "redirect:/message";
+	}
+	
+	
 	
 }

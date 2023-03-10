@@ -1,4 +1,4 @@
-/* admin_authority_list CSS */
+/* admin_authority_apply_list CSS */
 
 /* breadcrumb & search bar */
 a {
@@ -22,22 +22,42 @@ a {
   float: right;
 }
 
-.aal-top-right > input {
+.aal-top-right .searchType {
+  border: 1px solid rgb(133, 133, 133);
+  width: 110px;
+  height: 30px;
+  padding-top: 2px;
+  font-size: 16px;
+  display: inline-block;
+}
+
+.aal-top-right .searchType:focus {
+  box-shadow: none !important;
+  border: 1px solid black;
+  box-sizing: border-box;
+}
+
+.aal-top-right .searchValue {
   height: 30px;
   line-height: 30px;
   padding-left: 10px;
   margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(133, 133, 133);;
+}
+
+.aal-top-right .searchValue:focus {
+  border: 2px solid black;
+  box-sizing: border-box;
 }
 
 .aal-top-right > button {
   height: 30px;
   line-height: 16px;
   margin-bottom: 5px;
-}
-
-.aal-top-right .btn {
   border: 1px solid rgb(133, 133, 133);
 }
+
 
 /* table */
 .aal-content {
@@ -77,8 +97,3 @@ a {
   background-color: rgb(235, 235, 235);
 }
 
-/* modal */
-.modalOpen {
-  height: 32px;
-  line-height: 16px;
-}

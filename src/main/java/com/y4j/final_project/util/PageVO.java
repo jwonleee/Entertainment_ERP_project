@@ -21,7 +21,7 @@ public class PageVO {
 	
 	private	Criteria cri;  //페이지 기준
 	
-	private int pageCount = 10;  //페이지당 출력할 페이지 수 
+	private int pageCount = 5;  //페이지당 출력할 페이지 수 
 	
 	//생성자 - pageVO가 만들어질 때, cri, total을 받는다.
 	public PageVO(Criteria cri, int total) {

@@ -30,4 +30,15 @@ public class AuthorityServiceImpl implements AuthorityService {
 	public int getAuthorityApplyTotal(Criteria cri) {
 		return authorityMapper.getAuthorityApplyTotal(cri);
 	}
+	
+	//관리자 권한 신청 승인 메서드
+	public int approveAuth(AuthorityVO vo) {
+		return authorityMapper.approveAuth(vo);
+	}
+	
+	//관리자 권한 신청 반려 메서드
+	public int rejectAuth(AuthorityVO vo) {
+		return authorityMapper.rejectAuth(vo);
+	}
+
 }

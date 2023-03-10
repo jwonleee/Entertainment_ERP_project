@@ -175,25 +175,54 @@ body {
   display: flex;
   justify-content: space-around;
   z-index: 2;
-  background-color: rgb(230, 230, 230);
-  padding: 0px 30px;
+  /* background-color: rgb(230, 230, 230); */
+  background-color: black;
+  color: whitesmoke;
+  padding-right: 30px;
+  text-align: center;
 }
 
 .snb {
   font-size: 14px;
   margin: 10px 0px 0 0;
   width: 500px;
-}
-
-.snbLi1 {
-  font-weight: 700;
-  font-size: 14px;
+  font-size: 20px;
+  vertical-align: middle;
+  margin-top: 10%;
 }
 
 .snb>ul>li {
   height: 30px;
   cursor: pointer;
+  margin-bottom: 16px;
 }
+
+.snb>ul>.snbLi1 {
+  font-weight: 900;
+  font-size: 24px;
+  margin-bottom: 24px;
+}
+
+.snb > ul > li > span {
+  display: inline-block;
+  width: 100%;
+  height: 4px;
+  border-top: 3px solid #777;
+}
+
+.snb2 {
+  margin-right: 25px;
+}
+
+.snb3 {
+  margin-left: 25px;
+  margin-right: 25px;
+}
+
+.snb4 {
+  margin-left: 20px;
+}
+
 
 /* sns-link */
 .y4j-sns-link {
