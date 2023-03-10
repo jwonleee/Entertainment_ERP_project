@@ -65,24 +65,42 @@ public class TestCode {
 	//		}
 	//	}
 
-	@Test
-	public void MessageTestData() {
-		for(int i=2; i<=15; i++) {
-			MessageVO msgVO = MessageVO.builder()
-					.msg_writer_no(6)
-					.msg_writer_id("Administrator")
-					.msg_writer_name("Administrator")
-					.msg_receiver_no(127)
-					.msg_receiver_id("manager127")
-					.msg_receiver_name("관리자127")
-					.msg_title("테스트 쪽지" + i + " 제목")
-					.msg_content("테스트 쪽지" + i + " 내용")
-					.build();
-			
-			messageMapper.sendMsg(msgVO);
-		}
-
-	}
-
+//	@Test
+//	public void MessageTestData1() {
+//		for(int i=1; i<=15; i++) {
+//			MessageVO msgVO = MessageVO.builder()
+//					.msg_writer_no(1)
+//					.msg_writer_id("abc123")
+//					.msg_writer_name("테스트ad1")
+//					.msg_receiver_no(127)
+//					.msg_receiver_id("manager127")
+//					.msg_receiver_name("관리자127")
+//					.msg_title("테스트 쪽지" + i + " 제목")
+//					.msg_content("테스트 쪽지" + i + " 내용")
+//					.build();
+//			
+//			messageMapper.sendMsg(msgVO);
+//		}
+//
+//	}
+//	
+//	@Test
+//	public void MessageTestData2() {
+//		for(int i=1; i<=15; i++) {
+//			MessageVO msgVO = MessageVO.builder()
+//					.msg_writer_no(127)
+//					.msg_writer_id("manager127")
+//					.msg_writer_name("관리자127")
+//					.msg_receiver_no(1)
+//					.msg_receiver_id("abc123")
+//					.msg_receiver_name("테스트ad1")
+//					.msg_title("테스트 쪽지" + (i + 15) + " 제목")
+//					.msg_content("테스트 쪽지" + (i + 15) + " 내용")
+//					.build();
+//			
+//			messageMapper.sendMsg(msgVO);
+//		}
+//		
+//	}
 
 }

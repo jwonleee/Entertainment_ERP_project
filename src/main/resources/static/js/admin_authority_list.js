@@ -134,26 +134,4 @@ $("#updateBtn").on("click", function () {
   $("#updateForm").submit();
 });
 
-//   //모달 창 내부 수정된 admin_type 값 추출
-//   var adminType = $(".adminType");
-//   for(let i=0; i<adminType.length; i++) {
-//     if(adminType[i].checked) $(".admin_type").val(adminType[i].value);
-//   }
 
-//   var formData = $("#updateForm").serialize();
-//   console.log(formData);
-
-//   $.ajax({
-//     type: "post",
-//     url: "/authority/adminAuthUpdateForm",
-//     data: formData,
-//     success: function (result) {
-//       $(".modal-body-inner").remove();
-//       alert(result);
-//     },
-//     error: function (request, status, error) {
-//       console.log("code:" + request.status + "\n" + "message:" + request.responseText + "\n" + "error:" + error);
-//     }
-//   });
-
-// });

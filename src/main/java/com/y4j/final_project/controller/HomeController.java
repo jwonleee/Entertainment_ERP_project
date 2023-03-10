@@ -1,10 +1,13 @@
 package com.y4j.final_project.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.command.AdminVO;
@@ -62,13 +65,16 @@ public class HomeController {
 	
 	
 	@GetMapping("/message")
-	public String message() {
+	public String message(HttpSession session, Model model) {
+		
+		session.setAttribute("user_id", "manager127");
+		model.addAttribute("user_id", session.getAttribute("user_id"));
 		
 		return "message";
 	}
 	
 	@PostMapping("/sendMsgForm")
-	public String sendMsgForm(MessageVO vo) {
+	public String sendMsgForm(MessageVO vo, RedirectAttributes ra) {
 		
 		AdminVO writerVO = adminService.getAdminInfo2(vo.getMsg_writer_id());
 		AdminVO receiverVO = adminService.getAdminInfo2(vo.getMsg_receiver_id());
@@ -83,7 +89,9 @@ public class HomeController {
 						  .msg_content(vo.getMsg_content())
 						  .build();
 		
-		messageService.sendMsg(msgVO);
+		int result = messageService.sendMsg(msgVO);
+		String msg = (result == 1) ? "정상적으로 발송 처리되었습니다." : "쪽지 발송에 실패했습니다.";
+		ra.addFlashAttribute("msg", msg);
 		
 		return "redirect:/message";
 	}

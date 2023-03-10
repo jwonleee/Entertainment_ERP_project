@@ -10,7 +10,6 @@
 					<div class="btn-group msg-top-left" role="group" aria-label="Basic radio toggle button group">
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
 						<label class="btn received btn-outline-dark" for="btnradio1">받은 쪽지함</label>
-					
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
 						<label class="btn sent btn-outline-dark" for="btnradio2">보낸 쪽지함</label>
 					</div>
@@ -44,7 +43,7 @@
 										<textarea name="msg_content" class="form-control" id="exampleFormControlTextarea11" rows="8" placeholder="Message Content"></textarea>
 									</div>
 									
-									<input type="hidden" name="msg_writer_id" value="Administrator" />
+									<input type="hidden" name="msg_writer_id" class="msg_writer_id" th:value="${user_id}" />
 
 								</div>
 								<div class="modal-footer">
@@ -69,5 +68,11 @@
 </th:block>
 <link rel="stylesheet" href="/css/message.css">
 <script src="/js/message.js"></script>
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+	if(msg != null) {
+		alert(msg);
+	}
+	</script>
 
 </html>
