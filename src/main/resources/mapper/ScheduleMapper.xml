@@ -43,7 +43,24 @@
 	</select>
 
 	<select id="getList" resultType="ScheduleVO">
-		select * from SCHEDULE order by schedule_no desc;
+		select s.schedule_no,
+			   s.schedule_start_time,
+			   s.schedule_end_time,
+			   s.schedule_writer,
+			   s.schedule_type,
+			   s.schedule_ent_name,
+			   s.schedule_location,
+			   es.ent_name
+		from `SCHEDULE` s
+		left join ENTERTAINER_SCHEDULE es
+			on es.schedule_no = s.schedule_no
+		left join ENTERTAINER e
+			on es.ent_name = e.ent_name
+		order by s.schedule_no desc;
+	</select>
+	
+	<select id="detail" resultType="ScheduleVO" parameterType="int">
+		select * from SCHEDULE where schedule_no = #{schedule_no};
 	</select>
 
 

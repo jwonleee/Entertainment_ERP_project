@@ -36,4 +36,7 @@ public class ScheduleVO {
 	private String schedule_location;
 	private String schedule_content;
 	
+	//아티스트 이름
+	private String ent_name;
+	
 }

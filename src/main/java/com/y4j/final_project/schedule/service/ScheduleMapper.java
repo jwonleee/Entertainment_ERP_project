@@ -23,6 +23,9 @@ public interface ScheduleMapper {
 	//일정 리스트
 	public ArrayList<ScheduleVO> getList();
 	
+	//일정 확인
+	public ScheduleVO detail(int schedule_no);
+	
 	//일정 수정
 	public int update();
 	

@@ -48,5 +48,11 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return scheduleMapper.getList();
 	}
 	
+	@Override
+	public ScheduleVO detail(int schedule_no) {
+		
+		return scheduleMapper.detail(schedule_no);
+	}
+	
 	
 }

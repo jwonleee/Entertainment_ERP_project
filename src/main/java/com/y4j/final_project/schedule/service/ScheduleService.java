@@ -19,4 +19,9 @@ public interface ScheduleService {
 
 	//일정리스트
 	public ArrayList<ScheduleVO> getList();
+	
+	//일정 확인
+	public ScheduleVO detail(int schedule_no);
+		
+		
 }

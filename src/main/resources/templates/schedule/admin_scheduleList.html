@@ -41,7 +41,7 @@
 						</div>
 					</div>
 
-
+					<!-- 캘린더 -->
 					<div class="calendar">
 						<div class="container">
 							<div class="my-calendar clearfix">
@@ -77,8 +77,6 @@
 							<!-- // .my-calendar -->
 						</div>
 					</div>
-
-
 				</div>
 
 			</div>
@@ -96,8 +94,6 @@
 			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a2.jpg" alt="채수빈" class="img-box"></swiper-slide>
 			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" alt="장기용" class="img-box"></swiper-slide>
 		</swiper-container>
-
-
 
 
 		<div class="table_wrap">
@@ -124,35 +120,35 @@
 													<div class="table-responsive table-scroll table_corner"
 														data-mdb-perfect-scrollbar="true" style="position: relative;">
 														<table class="table table-striped mb-0 ">
-															<thead style="background-color: #002d72; color: white;">
+															<thead style="background-color: #3f3f3f; color: white;">
 																<tr>
 																	<!-- <th scope="col">상태</th> -->
 																	<th scope="col">순서</th>
-																	<th scope="col">일정날짜</th>
+																	<th scope="col">날짜</th>
+																	<th scope="col">날짜</th>
 																	<th scope="col">타입</th>
 																	<th scope="col">장소</th>
-																	<th scope="col" style="width:300px;">제목</th>
-																	<th scope="col">아티스트 이름</th>
-																	<th scope="col">아티스트 그룹</th>
-																	<th scope="col">아티스트 타입</th>
-																	<th scope="col">관리자 ID</th>
+																	<th scope="col" style="width: 39px;">제목</th>
+																	<th scope="col">아티스트</th>
 																	<th scope="col">관리자 ID</th>
 																</tr>
 															</thead>
 															<tbody>
-																<!-- 반복문 돌리면서 화면에 뿌리기-->
+																<!-- 게시글 반복 -->
 																<tr th:each="vo, status : ${list}">
 																	<!-- <td>확인</td> -->
-																	<td>[[${status.count}]]</td>
-																	<td>-</td>
-																	<td>2022-03-03</td>
-																	<td>TV</td>
-																	<td>여의도 KBS</td>
-																	<td class="schedule_ent_name">뮤직뱅크 음악방송</td>
-																	<td>하니</td>
-																	<td>NewJeans</td>
-																	<td>Musician</td>
-																	<td>admin</td>
+																	<td>[[${vo.schedule_no}]]</td>
+																	<td>[[${vo.schedule_start_time}]]</td>
+																	<td>[[${vo.schedule_end_time}]]</td>
+																	<td>[[${vo.schedule_type}]]</td>
+																	<td style='max-width:105px; overflow:hidden; text-overflow:ellipsis;'>[[${vo.schedule_location}]]</td>
+																	<td class="schedule_ent_name">
+																		<a title="schedule_detail" th:href="@{ admin_scheduleDetail(schedule_no=${vo.schedule_no}) }">
+																			[[${vo.schedule_ent_name}]]
+																		</a>
+																	</td>
+																	<td>[[${vo.ent_name}]]</td>
+																	<td>[[${vo.schedule_writer}]]</td>
 																</tr>
 															</tbody>
 														</table>
@@ -176,14 +172,14 @@
 			<div class="pagination">
 				<ul class="pages">
 					<li><a href="#" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chevron-double-left size" viewBox="0 0 16 16">
+								fill="currentColor" class="bi bi-chevron-double-left pointer_location" viewBox="0 0 16 16">
 								<path fill-rule="evenodd"
 									d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 								<path fill-rule="evenodd"
 									d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 							</svg></a></li>
 					<li><a href="#" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chevron-compact-left size" viewBox="0 0 16 16">
+								fill="currentColor" class="bi bi-chevron-compact-left pointer_location" viewBox="0 0 16 16">
 								<path fill-rule="evenodd"
 									d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
 							</svg></a></li>
@@ -193,12 +189,12 @@
 					<li><a href="#" class="page_num">4</a></li>
 					<li><a href="#" class="page_num">5</a></li>
 					<li><a href="#" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chevron-compact-right size" viewBox="0 0 16 16">
+								fill="currentColor" class="bi bi-chevron-compact-right pointer_location" viewBox="0 0 16 16">
 								<path fill-rule="evenodd"
 									d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
 							</svg></a></li>
 					<li><a href="#" class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-								fill="currentColor" class="bi bi-chevron-double-right size" viewBox="0 0 16 16">
+								fill="currentColor" class="bi bi-chevron-double-right pointer_location" viewBox="0 0 16 16">
 								<path fill-rule="evenodd"
 									d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
 								<path fill-rule="evenodd"
@@ -210,141 +206,8 @@
 		
 			</form>
 		</div>
-</th:block>
 
-<script>
-			const init = {
-				monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-				dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-				today: new Date(),
-				monForChange: new Date().getMonth(),
-				activeDate: new Date(),
-				getFirstDay: (yy, mm) => new Date(yy, mm, 1),
-				getLastDay: (yy, mm) => new Date(yy, mm + 1, 0),
-				nextMonth: function () {
-					let d = new Date();
-					d.setDate(1);
-					d.setMonth(++this.monForChange);
-					this.activeDate = d;
-					return d;
-				},
-				prevMonth: function () {
-					let d = new Date();
-					d.setDate(1);
-					d.setMonth(--this.monForChange);
-					this.activeDate = d;
-					return d;
-				},
-				addZero: (num) => (num < 10) ? '0' + num : num,
-				activeDTag: null,
-				getIndex: function (node) {
-					let index = 0;
-					while (node = node.previousElementSibling) {
-						index++;
-					}
-					return index;
-				}
-			};
-
-			const $calBody = document.querySelector('.cal-body');
-			const $btnNext = document.querySelector('.btn-cal.next');
-			const $btnPrev = document.querySelector('.btn-cal.prev');
-
-			/**
-			 * @param {number} date
-			 * @param {number} dayIn
-			*/
-			function loadDate(date, dayIn) {
-				document.querySelector('.cal-date').textContent = date;
-				document.querySelector('.cal-day').textContent = init.dayList[dayIn];
-			}
-
-			/**
-			 * @param {date} fullDate
-			 */
-			function loadYYMM(fullDate) {
-				let yy = fullDate.getFullYear();
-				let mm = fullDate.getMonth();
-				let firstDay = init.getFirstDay(yy, mm);
-				let lastDay = init.getLastDay(yy, mm);
-				let markToday;  // for marking today date
-
-				if (mm === init.today.getMonth() && yy === init.today.getFullYear()) {
-					markToday = init.today.getDate();
-				}
-
-				document.querySelector('.cal-month').textContent = init.monList[mm];
-				document.querySelector('.cal-year').textContent = yy;
-
-				let trtd = '';
-				let startCount;
-				let countDay = 0;
-				for (let i = 0; i < 6; i++) {
-					trtd += '<tr>';
-					for (let j = 0; j < 7; j++) {
-						if (i === 0 && !startCount && j === firstDay.getDay()) {
-							startCount = 1;
-						}
-						if (!startCount) {
-							trtd += '<td>'
-						} else {
-							let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
-							trtd += '<td class="day';
-							trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
-							trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
-						}
-						trtd += (startCount) ? ++countDay : '';
-						if (countDay === lastDay.getDate()) {
-							startCount = 0;
-						}
-						trtd += '</td>';
-					}
-					trtd += '</tr>';
-				}
-				$calBody.innerHTML = trtd;
-			}
-
-			/**
-			 * @param {string} val
-			 */
-			function createNewList(val) {
-				let id = new Date().getTime() + '';
-				let yy = init.activeDate.getFullYear();
-				let mm = init.activeDate.getMonth() + 1;
-				let dd = init.activeDate.getDate();
-				const $target = $calBody.querySelector(`.day[data-date="${dd}"]`);
-
-				let date = yy + '.' + init.addZero(mm) + '.' + init.addZero(dd);
-
-				let eventData = {};
-				eventData['date'] = date;
-				eventData['memo'] = val;
-				eventData['complete'] = false;
-				eventData['id'] = id;
-				init.event.push(eventData);
-				$todoList.appendChild(createLi(id, val, date));
-			}
-
-			loadYYMM(init.today);
-			loadDate(init.today.getDate(), init.today.getDay());
-
-			$btnNext.addEventListener('click', () => loadYYMM(init.nextMonth()));
-			$btnPrev.addEventListener('click', () => loadYYMM(init.prevMonth()));
-
-			$calBody.addEventListener('click', (e) => {
-				if (e.target.classList.contains('day')) {
-					if (init.activeDTag) {
-						init.activeDTag.classList.remove('day-active');
-					}
-					let day = Number(e.target.textContent);
-					loadDate(day, e.target.cellIndex);
-					e.target.classList.add('day-active');
-					init.activeDTag = e.target;
-					init.activeDate.setDate(day);
-				}
-			});
-		</script>
-
-
+	</th:block>
+<script src="/js/admin_scheduleList.js"></script>
 
 </html>
