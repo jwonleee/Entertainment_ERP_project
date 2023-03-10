@@ -12,8 +12,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
+import com.y4j.final_project.command.ordercommand.AlbumVO;
+import com.y4j.final_project.command.ordercommand.ProductVO;
 import com.y4j.final_project.service.orderservice.OrderService;
 import com.y4j.final_project.util.Criteria;
 import com.y4j.final_project.util.PageVO;
@@ -43,6 +46,8 @@ public class OrderController {
 		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(user_id,cri);
 		model.addAttribute("orderList",orderList);
 		
+		
+		
 		//페이징 처리
 		int total=orderService.getOrderTotal(user_id, cri);
 		PageVO pageVO=new PageVO(cri,total);
@@ -71,7 +76,7 @@ public class OrderController {
 	
 	//////////////////////////////////
 	//초기발주
-	@GetMapping("orderReg")
+	@GetMapping("/orderReg")
 	public String orderReg(HttpSession session, Model model) {
 		//로그인 했다고 가정
 		session.setAttribute("user_id", "orderadministrator");
@@ -80,11 +85,39 @@ public class OrderController {
 		if(!user_id.equals("orderadministrator")) {
 			return "redirect:/admin/hold";
 		}
-		
 		model.addAttribute("admin_id",user_id);
 		
 		
 		return "order/orderReg";
+	}
+	
+	
+	@PostMapping("/registForm")
+	public String registForm(Admin_orderVO avo, AlbumVO alvo, ProductVO pvo, RedirectAttributes ra) {
+		//System.out.println(alvo.toString());
+		//System.out.println(pvo.toString());
+		//System.out.println(avo.toString());
+		
+		
+		int result=0;
+		String category=avo.getAdmin_order_category();
+		if(category.equals("A5")||category.equals("A9")||category.equals("A13")) {//앨범일 때
+			result+=orderService.albumRegist(alvo); //앨범에 저장
+			result+=orderService.adminAlbumRegist(avo); //관리자 order에 저장
+		}else{//상품일 때
+			result+=orderService.productRegist(pvo); //상품에 저장
+			result+=orderService.adminProductmRegist(avo); //관리자 상품에 저장
+		}
+		
+		if(result==2) {
+			String msg="성공적으로 등록되었습니다.";
+			ra.addFlashAttribute("msg",msg);
+			return "redirect:/order/orderList";
+		}else{
+			String msg="등록에 실패하였습니다.";
+			ra.addFlashAttribute("msg", msg);
+			return "redirect:/order/orderReg";
+		}
 	}
 	
 	

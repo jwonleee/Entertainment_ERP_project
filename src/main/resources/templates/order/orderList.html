@@ -33,8 +33,8 @@
 											<table class="table table-striped mb-0 orderTable">
 												<thead style="background-color: #002d72; color: white;">
 													<tr>
-														<th scope="col">상품번호</th>
 														<th scope="col">상품명</th>
+														<th scope="col">상품번호</th>
 														<th scope="col">카테고리</th>
 														<th scope="col">재고</th>
 														<th scope="col">사이즈/타입</th>
@@ -45,13 +45,13 @@
 												</thead>
 												<tbody>
 													<tr th:each="vo, status:${orderList}">
-														<td th:if="${status.index%2==0}">[[${vo.admin_order_album_no}]]</td>
-														<td th:if="${status.index%2!=0}">[[${vo.admin_order_prod_no}]]</td>
-														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: black">Join한 상품/앨범명</a></td>
-														<td>[[${vo.admin_order_prod_category}]]</td>
+														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: black">[[${vo.admin_order_prod_name}]]</a></td>
+														<td th:if="${vo.admin_order_album_no!=0}">[[${vo.admin_order_album_no}]]</td>
+														<td th:if="${vo.admin_order_prod_no!=0}">[[${vo.admin_order_prod_no}]]</td>
+														<td>[[${vo.admin_order_category}]]</td>
 														<td>[[${vo.admin_order_prod_cnt}]]</td>
 														<td>[[${vo.admin_order_sizetype}]]</td>
-														<td>[[${#dates.format(vo.admin_order_regdate,'yyyy-MM-dd')}]]</td>
+														<td>[[${vo.admin_order_regdate}]]</td>
 														<td>[[${vo.admin_order_price}]]</td>
 														<td>[[${vo.admin_order_company}]]</td>
 													</tr>
@@ -172,24 +172,17 @@
 		</section>
 		<!-- end 부트스트랩 -->
 
-
 	</div>
 </th:block>
-<script>
-	var arr = ['testno', 'testname', 'textcategory', 'testcnt', 'testsize', 'testdate', 'testprice', 'testcomapny'];
-	var tdarr = [];
-	for (let i = 1; i <= 7; i++) {
-		var arr2 = [];
-		arr2 = arr.map(item => item + i);
-		tdarr = [...tdarr, arr2];
-	}
-	tdarr = [arr, ...tdarr];
-	const tdmap = [];
-	for (let i = 0; i < tdarr.length; i++) {
-		tdmap[i] = [tdarr[i].map((item, index) => `<td key=${index} style="border:1px solid #777;"><a class="toDetail" href="/order/orderDetail" style="text-decoration:none; color:black">${item}</a></td>`)];
-	}
-	const trmap = tdmap.map((item, index) => `<tr key=${index} style="border: 1px solid #777">${item}</tr>`);
-
-	$("#tbody2").append(trmap);
+<!-- js -->
+<script src="/js/admin_order/admin_orderList.js"></script>
+<script th:inline="javascript">
+//알람창 띄우기
+$(document).ready(()=>{
+   var msg=JSON.parse('[[${msg}]]'); 
+   if(msg!=null){
+    alert(msg);
+   }
+});
 </script>
 </html>
