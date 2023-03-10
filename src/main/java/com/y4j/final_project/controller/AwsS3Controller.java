@@ -1,6 +1,8 @@
 package com.y4j.final_project.controller;
 
 import lombok.RequiredArgsConstructor;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -15,10 +17,11 @@ import java.io.IOException;
 public class AwsS3Controller {
 
     private final AwsS3Service awsS3Service;
-
+	
+	
     @PostMapping("/resource")
     public AwsS3 upload(@RequestPart("file") MultipartFile multipartFile) throws IOException {
-        return awsS3Service.upload(multipartFile,"upload");
+        return awsS3Service.upload(multipartFile, "upload");  //폴더명
     }
 
     @DeleteMapping("/resource")
