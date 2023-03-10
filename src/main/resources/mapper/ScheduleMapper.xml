@@ -7,17 +7,61 @@
 
 	<insert id="regist" parameterType="ScheduleVO">
 		insert into SCHEDULE(schedule_start_time,
-							  schedule_end_time,
-							  schedule_type,
-							  schedule_ent_name,
-							  schedule_location,
-							  schedule_content)
+							 schedule_end_time,
+							 schedule_writer,
+							 schedule_type,
+							 schedule_ent_name,
+							 schedule_location,
+							 schedule_content)
     	values(#{schedule_start_time},
     		   #{schedule_end_time},
+    		   #{schedule_writer},
     		   #{schedule_type},
     		   #{schedule_ent_name},
     		   #{schedule_location},
     		   #{schedule_content})
 	</insert>
+	
+	<insert id="registMap">
+		
+		<selectKey keyProperty="schedule_no" order="BEFORE" resultType="int">
+			select LAST_INSERT_ID() as schedule_no
+		</selectKey>
+		
+		insert into ENTERTAINER_SCHEDULE (ent_name,
+										  schedule_no)
+		values(#{ent_name},
+			   #{schedule_no})
+	</insert>
+	
+	<select id="getEntType" resultType="EntertainerVO">
+		select DISTINCT(ent_group_name) from ENTERTAINER where ent_type = #{ent_type}
+	</select>
+	
+	<select id="getEntType2" resultType="EntertainerVO">
+		select ent_name from ENTERTAINER where ent_type = #{ent_type}
+	</select>
+
+	<select id="getList" resultType="ScheduleVO">
+		select s.schedule_no,
+			   s.schedule_start_time,
+			   s.schedule_end_time,
+			   s.schedule_writer,
+			   s.schedule_type,
+			   s.schedule_ent_name,
+			   s.schedule_location,
+			   es.ent_name
+		from `SCHEDULE` s
+		left join ENTERTAINER_SCHEDULE es
+			on es.schedule_no = s.schedule_no
+		left join ENTERTAINER e
+			on es.ent_name = e.ent_name
+		order by s.schedule_no desc;
+	</select>
+	
+	<select id="detail" resultType="ScheduleVO" parameterType="int">
+		select * from SCHEDULE where schedule_no = #{schedule_no};
+	</select>
+
 
 </mapper>

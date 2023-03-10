@@ -7,7 +7,7 @@ img {max-width: 100%; height: auto;}
     overflow: hidden;
     width: 1080px;
     /* 여기 맞춰서 바꾸기 */
-    margin: 0 auto;
+    margin: -10px;
 }
 
 .search_wrap .search_left {
@@ -23,7 +23,7 @@ img {max-width: 100%; height: auto;}
     line-height: 200px;
     height: 200px;
     width: 340px;
-    /* background-color: #f3f3f3; */
+    padding-left: 15px;
     font-size: 50px;
 }
 .search_right .left_wrap {
@@ -251,6 +251,7 @@ swiper-container {
 
 .container_block {
     height: 140px;
+    margin-top: 47px;
 }
 
 .append-buttons {
@@ -272,6 +273,7 @@ swiper-container {
 
 
 /***********테이블***********/
+
 .intro {
   height: 100%;
 }
@@ -299,18 +301,22 @@ thead th {
   font-size: 1.25rem;
 }
 
+.table_corner table thead th {
+  text-align: center;
+  font-size: 16px;
+}
+
+.table_corner table tbody tr td {
+  padding: 10px 13px;
+}
+
 thead {
   top: 0;
   position: sticky;
 }
 
-
 .card2 {
     background-color: white;
-}
-
-.table tr th {
-    text-align: center;
 }
 
 .table td {
@@ -319,6 +325,9 @@ thead {
 
 .table .schedule_ent_name {
     text-align: left;
+    max-width:309px;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
 
 
@@ -354,11 +363,11 @@ thead {
 }
 
 .pages a:hover{
-    background-color: rgb(126, 126, 126);
+    background-color: #7e7e7e;
 }
 
-.size{
-    padding-top: 5px;
+.pointer_location {
+  vertical-align: -2px;
 }
 
 .page_num{

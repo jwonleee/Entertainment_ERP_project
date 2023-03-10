@@ -1,6 +1,8 @@
 package com.y4j.final_project.command;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,17 +27,16 @@ public class ScheduleVO {
 	 */
 
 	private int schedule_no;
+	
 	private String schedule_start_time;
 	private String schedule_end_time;
+	private String schedule_writer;
 	private String schedule_type;
 	private String schedule_ent_name;
-	
-	//아티스트 조인 결과?
-	private String ent_type;
-	private String ent_name;
-	private String ent_group_name;
-	
 	private String schedule_location;
 	private String schedule_content;
+	
+	//아티스트 이름
+	private String ent_name;
 	
 }

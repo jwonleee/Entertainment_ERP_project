@@ -4,7 +4,6 @@
 <!-- css -->
 <link rel="stylesheet" href="../css/admin_scheduleDetail.css" type="text/css" />
 
-
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	
 	<div class="fragment">
@@ -20,83 +19,50 @@
 									<tr>
 										<th>일정 날짜</th>
 										<td class="schedule_calendar">
-											<input type="text" id="startDate" name="schedule_start_time" placeholder="시작날짜선택" style="width:100px"/>~
-											<input type="text" id="endDate" name="schedule_end_time" placeholder="종료날짜선택" style="width:100px" />
+											2023/01/01 <sapn>11:00</sapn> ~ 2023/01/01 <sapn>13:00</sapn>
 										</td>
 									</tr>
 									<tr>
 										<th>관리자 ID</th>
 										<td>
-											<input type="text" class="form-control" name="admin_id" style="width:150px" value="매니저" readonly/>
+											admin
 										</td>
 									</tr>
 									<tr>
 										<th>타입</th>
 										<td>
-											<select class="form-control selectpicker sel" name="schedule_type" style="width: 150px;">
-												<option value="tv">TV</option>
-												<option value="magazine">Magazine</option>
-												<option value="radio">Radio</option>
-												<option value="concert">Concert</option>
-												<option value="movie">Movie</option>
-												<option value="etc">ETC</option>
-											</select>
+											Magazine
 										</td>
 									</tr>
 									<tr>
 										<th>제목</th>
 										<td>
-											<input type="text" class="input90 form-control" name="schedule_ent_name"
-												value="" required />
+											오늘의 일정은?
 										</td>
 									</tr>
 									<tr>
 										<th>아티스트 타입</th>
 										<td>
-											<label>
-												<input type="radio" name="artist_type" value="musician"
-													checked="checked" />
-												<span>
-													Musician
-												</span>
-												<input type="radio" name="artist_type" value="actor" />
-												<span>
-													Actor
-												</span>
-											</label>
-
+											musician
 										</td>
 									</tr>
 									<tr>
-										<th>아티스트 이름</th>
+										<th>아티스트</th>
 										<td>
-											<input type="text" name="ent_name" class="form-control" style="width:150px"
-												value="" required />
-										</td>
-									</tr>
-									<tr>
-										<th>아티스트 그룹</th>
-										<td>
-											<select class="form-control input-sm" style="width: 150px;">
-												<option value="solo">Solo</option>
-												<option value="blackpink">Blackpink</option>
-												<option value="newjeans">Newjeans</option>
-												<option value="ive">Ive</option>
-											</select>
+											아티스트 이름 쓰기
 										</td>
 									</tr>
 									<tr>
 										<th>장소</th>
 										<td>
-											<input type="text" name="schedule_location" value=""/>
+											mbc
 										</td>
 									</tr>
 									<tr>
 										<th>세부내용</th>
 										<td>
-											<div>
-												<textarea name="schedule_content"
-													class="content form-control" value=""></textarea>
+											<div class="content">
+												내용씅자ㅏ자~~
 											</div>
 										</td>
 									</tr>
@@ -104,10 +70,9 @@
 							</table>
 
 							<div class="btn_wrap">
-								<!-- <a href="#" class="save btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">저장</a> -->
-                                <a href="admin_scheduleList.html" class="revise btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">수정</a>
-                                <a href="#" class="delete btn-default custom_btn" style="background-color: #002d72; color: #ffffff;">삭제</a>
-
+                                <a href="#수정페이지로post방식" class="btn btn-default custom_btn">수정</a>
+                                <a href="#" class="btn btn-default custom_btn" onclick="">삭제</a>
+								<a href="admin_scheduleList" class="btn btn-default custom_btn">목록</a>
 							</div>
 
 						</li>
@@ -117,9 +82,11 @@
 			</form>
 		</div>
 		
-		
 	</div>
 
-
 </th:block>
+
+<!-- js -->
+<script src="/js/admin_scheduleDetail.js"></script>
+
 </html>

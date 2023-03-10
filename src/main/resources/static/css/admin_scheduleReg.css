@@ -2,6 +2,7 @@
 a {text-decoration: none;}
 img {max-width: 100%; height: auto;}
 
+
 .table_wrap {
     width: 1080px;
 }
@@ -10,7 +11,7 @@ img {max-width: 100%; height: auto;}
     height: 60px;
     line-height: 60px;
     font-size: 20px;
-    background-color: #002d72;
+    background-color: #3f3f3f;
     color: #ffffff;
     padding-left: 30px;
     margin-top: 30px;
@@ -30,7 +31,7 @@ img {max-width: 100%; height: auto;}
 
 .table_inner tr th{
     width: 140px;
-    background-color: #eaeef5;
+    background-color: #ebebeb;
     text-align: center;
     border-bottom: 1px solid #fff;
     border-right: 1px solid #ededed;
@@ -67,11 +68,14 @@ img {max-width: 100%; height: auto;}
 
 .btn_wrap {
     text-align: center;
+    padding-top: 30px;
 }  
 
 .custom_btn {
     width: 140px;
     margin: 15px;
+    background-color: #002d72 !important;
+    color: #ffffff !important;
   }
 
 .btn_wrap .custom_btn:hover {
