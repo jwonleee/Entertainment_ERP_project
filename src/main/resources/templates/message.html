@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<link rel="stylesheet" href="/css/message.css">
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
@@ -9,7 +10,11 @@
 				<div class="msg-top">
 					<div class="btn-group msg-top-left" role="group" aria-label="Basic radio toggle button group">
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-						<label class="btn received btn-outline-dark" for="btnradio1">받은 쪽지함</label>
+						<label class="btn received btn-outline-dark position-relative" for="btnradio1">
+							받은 쪽지함
+							<span class="badge text-bg-danger" style="font-size: 13px;">[[${uncheckedMsgNum}]]</span>
+							</span>
+						</label>
 						<input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
 						<label class="btn sent btn-outline-dark" for="btnradio2">보낸 쪽지함</label>
 					</div>
@@ -66,7 +71,6 @@
 	</div>
 
 </th:block>
-<link rel="stylesheet" href="/css/message.css">
 <script src="/js/message.js"></script>
 <script th:inline="javascript">
 	var msg = JSON.parse('[[${msg}]]');

@@ -48,16 +48,25 @@ public class AjaxController {
 //		return "성공적으로 권한이 수정되었습니다.";
 //	}
 	
+	//수신 메세지 목록 조회
 	@PostMapping("/getReceivedMsg")
 	public ArrayList<MessageVO> getReceivedMsg(@RequestBody MessageVO vo) {
 		
 		return messageService.getReceivedMsg(vo.getMsg_receiver_id());
 	}
 	
+	//발신 메세지 목록 조회	
 	@PostMapping("/getSentMsg")
 	public ArrayList<MessageVO> getSentMsg(@RequestBody MessageVO vo) {
 		
 		return messageService.getSentMsg(vo.getMsg_writer_id());
+	}
+	
+	//메세지 수신 날짜 업데이트
+	@PostMapping("/checkMsg")
+	public int checkMsg(@RequestBody MessageVO vo) {
+		
+		return messageService.checkMsg(vo.getMsg_no());
 	}
 	
 	

@@ -74,6 +74,9 @@ public class HomeController {
 		session.setAttribute("user_id", "manager127");
 		model.addAttribute("user_id", session.getAttribute("user_id"));
 		
+		int uncheckedMsgNum = messageService.getUncheckedMsg(session.getAttribute("user_id"));
+		model.addAttribute("uncheckedMsgNum", uncheckedMsgNum);
+		
 		return "message";
 	}
 	
