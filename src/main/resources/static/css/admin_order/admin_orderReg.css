@@ -1,203 +1,266 @@
-*{
-    margin:0;
-    padding: 0;
-    list-style: none;
+* {
+	margin: 0;
+	padding: 0;
+	list-style: none;
 }
 
-
-.regist_wrap{
-    padding: 10px;
+.formSection {
+	margin-bottom: 85px;
 }
 
-.registForm_div{
-    border: 1px solid black;
-    width: 1000px;
+.regist_wrap {
+	padding: 10px;
 }
 
-.list_sector{
-    background-color: #f5f7fa;
+.registForm_div {
+	border: 1px solid black;
+	background-color: #f5f7fa;
+	width: 1080px;
+}
+
+.list_sector {
+	background-color: #f5f7fa;
 }
 
 /* ********** table ********** */
-.regTable{
-    color:white;
-    width:100%;
+.regTable {
+	color: white;
+	width: 100%;
 }
 
-.regTable th{
-    background-color: black;
-    border: 1px solid #777;
-    border-top: none;
-    border-left: none;
-    text-align: center;
-    padding:10px 20px;
+.regTable th {
+	background-color: black;
+	border: 1px solid #777;
+	border-top: none;
+	border-left: none;
+	text-align: center;
+	padding: 10px 20px;
 }
 
-tr{
-    border-bottom: 1px solid #777;
+tr {
+	border-bottom: 1px solid #777;
 }
 
-.regTable td{
-    width: 85%;
-    margin-left: 10px;
-    padding-left:20px;
+.regTable td {
+	width: 85%;
+	margin-left: 10px;
+	padding-left: 20px;
 }
 
- .regTable td input{
-    width: 50%;
-    padding:5px;
-    height:100%;
+.regTable td input {
+	width: 50%;
+	padding: 5px;
+	height: 100%;
 }
 
-input:focus{
-    outline: none;
-    border:1px solid aqua;
+input:focus {
+	outline: none;
+	border: 1px solid aqua;
 }
 
-.regId{
-    width:150px;
-    height:30px;
-    line-height:30px;
+.regId {
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
 }
 
-.regTable td input:focus{
-    outline: none;
-    border: 2px solid aqua;
+.regTable td input:focus {
+	outline: none;
+	border: 2px solid aqua;
 }
 
 /* 상세조회 */
-.categoryTd{
-    overflow: hidden;
-}
-.category_wrap{
-    float: left;
-    width: 90%;
-    border: 1px solid black;
-    background-color: white;
+.categoryTd {
+	overflow: hidden;
 }
 
-.category_content{
-    overflow:hidden;
-    height: 120px;
-}
-.categoryListWrap{
-    float: left;
-    width: 100%;
-    height: 120px;
-    border-top: 1px solid #ccc;
+.category_wrap {
+	float: left;
+	width: 90%;
+	border: 1px solid black;
+	background-color: white;
 }
 
-.versionCheck{
-    display: inline-block;
-    width: 50%;
-    background-color: white;
-    border: 1px solid #777;
-    color: black;
-}
-.versionCheck .versionRadio{
-    display: inline-block;
-    width: 20px;
-    height: 100%;
-    padding: 5px; 
+.category_content {
+	overflow: hidden;
+	height: 120px;
 }
 
-#selectbox{
-    width: 20%;
+.categoryListWrap {
+	float: left;
+	width: 100%;
+	height: 120px;
+	border-top: 1px solid #ccc;
+}
+
+.versionCheck {
+	display: inline-block;
+	width: 50%;
+	background-color: white;
+	border: 1px solid #777;
+	color: black;
+}
+
+.versionCheck .versionRadio {
+	display: inline-block;
+	width: 20px;
+	height: 100%;
+	padding: 5px;
+}
+
+#selectAlbumBox {
+	width: 20%;
+}
+
+#selectbox {
+	width: 20%;
 }
 
 /*카테고리*/
-.categoryListWrap ul{
-    position:relative;
-    height: 244px;
-    margin: 10px 10px 10px 0;
+.categoryListWrap ul {
+	position: relative;
+	height: 244px;
+	margin: 10px 10px 10px 0;
 }
 
-.categoryListWrap .categoryList{
-    border-left: 1px solid #ccc;
-    box-sizing: border-box;
-    float: left;
-    overflow: auto;
-    overflow-x: none;
-    width: 25%;
-    height: 100%;
-    padding: 7px 0;
-    margin: 0;
+.categoryListWrap .categoryList {
+	border-left: 1px solid #ccc;
+	box-sizing: border-box;
+	float: left;
+	overflow: auto;
+	overflow-x: none;
+	width: 25%;
+	height: 100%;
+	padding: 7px 0;
+	margin: 0;
 }
 
-.categoryListWrap .categoryList > li{
-    padding: 0px;
+.categoryListWrap .categoryList>li {
+	padding: 0px;
 }
 
-.catubegoryListWrap .categoryList a{
-    overflow: hidden;
-    white-space: nowrap;
-    display: block;
-    height: 26px;
-    padding: 0 20px;
-    line-height: 26px;
-    font-size: 13px;
-    color: #000;
+.catubegoryListWrap .categoryList a {
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	height: 26px;
+	padding: 0 20px;
+	line-height: 26px;
+	font-size: 13px;
+	color: #000;
 }
 
-
-
-
-.forOn a{
-	color:black;
-	padding-left:5%;
+.forOn a {
+	color: black;
+	padding-left: 5%;
 }
 
-.on{
-	background-color:black;
+.on {
+	background-color: black;
 }
 
-.categoryListWrap .categoryList .on a{
-    background-color: black;
-    color: #fff;
+.categoryListWrap .categoryList .on a {
+	background-color: black;
+	color: #fff;
 }
-
 
 /* 상세조회버튼 */
-.btn_cont{
-    overflow:hidden;
+.btn_cont {
+	overflow: hidden;
 }
-.cont_right{
-    float: right;
+
+.cont_right {
+	float: right;
 }
-.detail_btn{
-    border: 1px solid black;
-    background-color: black;
-    color: white;
+
+.detail_btn {
+	border: 1px solid black;
+	background-color: black;
+	color: white;
+	padding: 10px;
+	margin: 10px;
+}
+
+/* 모달 */
+.btn-modal {
+	top: 50%;
+	left: 50%;
+	width: 120px;
+	height: 30px;
+	line-height: 15px;
+	cursor: pointer;
+}
+
+.modal {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	display: none;
 }
 
 
+.modal_content {
+	width: 400px;
+	height: 300px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-left: -200px;
+	margin-top: -150px;
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 20px;
+	line-height: 23px;
+}
+
+.modal_close{
+	position:absolute;
+	top:2px;
+	right:5px;		
+	text-decoration:none;
+	background-color:#fff;
+	font-weight:bold;
+	font-size: large;
+	padding: 10px 30px;
+	border: none;
+	cursor: pointer;
+	
+}
+
+.modal_title{
+	display:inline-block;
+	text-align:center;
+}
 
 /* ***************buttons************ */
-.btn_area{
-    padding:20px;
-    text-align: center;
+.btn_area {
+	margin-top: 10px;
+	padding: 20px;
+	text-align: center;
 }
 
-.btn_area input{
-    padding:10px 25px;
-    border-radius: 15px;
-    border-color: gray;
-    font-weight: bold;
-    font-size: 15px;
-    cursor: pointer;
+.btn_area input {
+	padding: 10px 25px;
+	border-radius: 15px;
+	border-color: gray;
+	font-weight: bold;
+	font-size: 15px;
+	cursor: pointer;
 }
 
-.btn_area input:hover{
-    animation: fadeIn 0.5s ease-in-out;
-    border:1px solid gray;
+.btn_area input:hover {
+	animation: fadeIn 0.5s ease-in-out;
+	border: 1px solid gray;
 }
 
-@keyframes fadeIn{
-    from{
-    opacity: 0.5;
-        background-color:#dddcd4;
-    }to{
-        opacity: 1;
-        /* border:1px solid gray; */
-    }
+@keyframes fadeIn {from { opacity:0.5;
+	background-color: #dddcd4;
+	}to {
+		opacity: 1;
+		/* border:1px solid gray; */
+	}
 }

@@ -106,7 +106,7 @@ $(".detail_btn").click((e) => {
     //사이즈넣기
     var sizesml=['S','M',"L"];
     var sizephone=["iPhone 14 Pro Max","iPhone 14 Pro","iPhone 14 Plus","iPhone 14","iPhone 13","iPhone 13 mini","iPhone 12"];
-
+	var version=["싱글","미니","정규"];
     $("#adCategory").val(categorySelected);//admin용 카테고리 저장
     if (categorySelected == '' || categorySelected == 'A1' || categorySelected == 'A2' || categorySelected == 'A3' || categorySelected == 'A4' || categorySelected == 'B17' || categorySelected == 'B18' || categorySelected == 'B19') {
         alert('상세카테고리를 선택하세요');
@@ -134,23 +134,22 @@ $(".detail_btn").click((e) => {
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>가격</th>`;
-            astr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" id="alb_price" required="required" name="album_price"/></td>`;
+            astr += `<td><input type="number" required="required" name="album_price" placeholder="숫자만 입력 가능합니다."/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>할인률</th>`;
-            astr += `<td><input type="number" min="0" max="99" required="required" name="album_discount_rate"/ oninput="handleInputLength(this, 2)"></td>`;
+            astr += `<td><input type="number" min="0" max="99" required="required" name="album_discount_rate" oninput="handleInputLength(this, 2)" placeholder="0~99 사이의 숫자만 입력 가능합니다."/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>재고</th>`;
-            astr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="album_stock" min="100"/></td>`;
+            astr += `<td><input type="number" required="required" name="album_stock" oninput="handleInputLength(this, 8)" placeholder="숫자만 입력 가능합니다."/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>앨범버전</th>`;
-            astr += `<td><div class="versionCheck" >`;
-            astr += `<input type="radio" class="versionRadio" checked name="album_version" value="싱글"/><span>싱글</span>`;
-            astr += `<input type="radio" class="versionRadio" name="album_version" value="미니"/><span>미니</span>`;
-            astr += `<input type="radio" class="versionRadio" name="album_version" value="정규"/><span>정규</span>`;
-            astr += `</div></td>`;
+            astr += `<td><input type="hidden" value="싱글" name="album_version"/>`;
+            astr += `<select id=selectAlbumBox class="versionAlbum">`;
+            	version.forEach((item)=>{astr += `<option th:value="${item}">${item}</option>`});
+            astr += `</select></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>이미지업데이트</th>`;
@@ -186,15 +185,17 @@ $(".detail_btn").click((e) => {
             pstr += `<tr>`;
             pstr += `<th>사이즈</th>`;
             if(categoryDetailName =="옷"){
-                pstr += `<td><select id="selectbox">`;
-                sizesml.forEach((item)=>{pstr+=`<option>${item}</option>`});
+				pstr += `<td>`;
+                pstr += `<select id="selectbox" name="prod_sizetype" class="selectVal">`;
+                sizesml.forEach((item)=>{pstr+=`<option th:value="${item}">${item}</option>`});
                 pstr+=`</select></td>`;
             }else if(categoryDetailName =="케이스"){
-                pstr += `<td><select id="selectbox">`;
-                sizephone.forEach((item)=>{pstr+=`<option>${item}</option>`});
+				pstr += `<td>`;
+                pstr += `<select id="selectbox" name="prod_sizetype" class="selectVal">`;
+                sizephone.forEach((item)=>{pstr+=`<option th:value="${item}">${item}</option>`});
                 pstr+=`</select></td>`;
             }else if(categoryDetailName =="포토카드"||categoryDetailName =="잡지"){
-                pstr += `<td><input type="text" readonly value="기본사이즈"/></td>`;
+                pstr += `<td><input type="text" readonly value="기본사이즈" class="selectVal" name="prod_sizetype"/></td>`;
             }
             pstr += `</tr>`;
             pstr += `<tr>`;
@@ -203,15 +204,15 @@ $(".detail_btn").click((e) => {
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>가격</th>`;
-            pstr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" id="pd_price" required="required" name="prod_price"/></td>`;
+            pstr += `<td><input type="number" id="pd_price" required="required" name="prod_price" placeholder="숫자만 입력 가능합니다."/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>할인률</th>`;
-            pstr += `<td><input type="number" min="0" max="99" required="required" name="prod_discount_rate" oninput="handleInputLength(this, 2)"/></td>`;
+            pstr += `<td><input type="number" min="0" max="99" placeholder="0~99 사이의 숫자만 입력 가능합니다." required="required" name="prod_discount_rate" oninput="handleInputLength(this, 2)"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>재고</th>`;
-            pstr += `<td><input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$10');" required="required" name="prod_stock" min="100"/></td>`;
+            pstr += `<td><input type="number" required="required" name="prod_stock" placeholder="숫자만 입력 가능합니다." oninput="handleInputLength(this, 8)"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>이미지경로</th>`;
@@ -248,23 +249,19 @@ function handleInputLength(el, max) {
 
 
 
-
 /*달력*/
 $(function () {
     $("#datepick1").datepicker({ minDate:0, dateFormat:"yy-mm-dd" });
 });
-
 $(".regTable").on("focus", "#datepick2",
     function () {
 		$("#datepick2").datepicker({ minDate:0, dateFormat:"yy-mm-dd" });
-    }
-);
-
+});
 $(".regTable").on("focus", "#datepick3",
     function () {
 		$("#datepick3").datepicker({ minDate:0, dateFormat:"yy-mm-dd" });
-    }
-);
+});
+
 
 
 /*발주버튼*/
@@ -274,7 +271,8 @@ $("#submitOrder").click((e) => {
 
     //유효성검사
     var categorySelected = $("input[name='admin_order_category']").val();  //카테고리 선택값
-    var datePattern=RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}');
+    var datePattern=RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}'); //날짜형식확인
+    var numPattern=/[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; //숫자형식확인
     if ($("input[name='admin_order_regdate']").val() == '') {
         alert('발주일자를 입력하세요!');
         $("input[name='admin_order_regdate']").focus();
@@ -313,20 +311,20 @@ $("#submitOrder").click((e) => {
 				alert("발매일 양식을 확인하세요!");
                 $("input[name='album_release_date']").focus();
                 return; //함수종료
-			} else if ($("input[name='album_price']").val() == '') {
-                alert("가격을 입력하세요!");
+			} else if ($("input[name='album_price']").val() == ''||numPattern.test($("input[name='album_price']").val())) {
+                alert("가격을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='album_price']").focus();
                 return; //함수종료
-            } else if ($("input[name='album_discount_rate']").val() == '') {
-                alert("할인률을 입력하세요!");
+            }  else if ($("input[name='album_discount_rate']").val() == ''||numPattern.test($("input[name='album_discount_rate']").val())) {
+                alert("할인률을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='album_discount_rate']").focus();
                 return; //함수종료
-            } else if ($("input[name='album_stock']").val() == '') {
-                alert("재고를 입력하세요!");
+            }  else if ($("input[name='album_stock']").val() == ''||numPattern.test($("input[name='album_stock']").val())) {
+                alert("재고를 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='album_stock']").focus();
                 return; //함수종료
-            } else if ($("input[name='album_version']").val() == '') {
-                alert("앨범버전을 입력하세요!");
+            }  else if ($("input[name='album_version']").val() == ''||$(".versionAlbum").val()=='') {
+                alert("앨범버전을 선택하세요!");
                 $("input[name='album_version']").focus();
                 return; //함수종료
             } else if ($("input[name='album_img_path']").val() == '') {
@@ -338,10 +336,11 @@ $("#submitOrder").click((e) => {
                 $("input[name='admin_order_company']").focus();
                 return; //함수종료
             } else {
-                $("#adCnt").val($("input[name='album_stock']").val()); // admin_order_prod_cnt 넣기
-                $("#adSizetype").val($("input[name='album_version']").val());//사이즈/타입넣기
-                $("#adPrice").val($("input[name='album_price']").val() * $("input[name='album_stock']").val()); //가격 넣기
-                $("#adName").val($("input[name='album_title']").val()); //admin_order_prod_name 넣기
+	            $("#adCnt").val($("input[name='album_stock']").val()); // admin_order_prod_cnt 넣기
+	            $("input[name='album_version']").val($(".versionAlbum").val());// 앨범버전 넣기
+   		        $("#adSizetype").val($("input[name='album_version']").val());//admin 앨범버전 넣기
+   		        $("#adPrice").val($("input[name='album_price']").val() * $("input[name='album_stock']").val()); //가격 넣기
+    	        $("#adName").val($("input[name='album_title']").val()); //admin_order_prod_name 넣기
             }
         } else {//상품일 때
             if ($("input[name='prod_type']").val() == '') {
@@ -352,7 +351,7 @@ $("#submitOrder").click((e) => {
                 alert("상품명을 입력하세요!");
                 $("input[name='prod_name']").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_sizetype']").val() == '') {
+            } else if ($("input[name='prod_sizetype']").val() == ''||$(".selectVal").val()=='') {
                 alert("사이즈타입을 입력하세요!");
                 $("input[name='prod_sizetype']").focus();
                 return; //함수종료
@@ -364,19 +363,19 @@ $("#submitOrder").click((e) => {
 				alert("등록일 양식을 확인하세요!");
                 $("input[name='prod_regdate']").focus();
                 return; //함수종료
-			} else if ($("input[name='prod_price']").val() == '') {
-                alert("가격을 입력하세요!");
+			} else if ($("input[name='prod_price']").val() == ''||numPattern.test($("input[name='prod_price']").val())) {
+                alert("가격을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='prod_price']").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_discount_rate']").val() == '') {
-                alert("할인률을 입력하세요!");
+            }  else if ($("input[name='prod_discount_rate']").val() == ''||numPattern.test($("input[name='prod_discount_rate']").val())) {
+                alert("할인률을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name=''prod_discount_rate]").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_stock']").val() == '') {
-                alert("재고를 입력하세요!");
+            }  else if ($("input[name='prod_stock']").val() == ''||numPattern.test($("input[name='prod_price']").val())) {
+                alert("재고를 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='prod_stock']").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_img_path']").val() == '') {
+            }  else if ($("input[name='prod_img_path']").val() == '') {
                 alert("이미지경로를 입력하세요!");
                 $("input[name='prod_img_path']").focus();
                 return; //함수종료
@@ -389,10 +388,10 @@ $("#submitOrder").click((e) => {
                 $("input[name='admin_order_company']").focus();
                 return; //함수종료
             } else {
-                $("#adCnt").val($("input[name='prod_stock']").val()); // admin_order_prod_cnt 넣기
-                $("#adSizetype").val($("input[name='prod_sizetype']").val());//사이즈/타입넣기
-                $("#adPrice").val($("input[name='prod_price']").val() * $("input[name='prod_stock']").val())//가격 넣기
-                $("#adName").val($("input[name='prod_name']").val()); //admin_order_prod_name 넣기
+	                $("#adCnt").val($("input[name='prod_stock']").val()); // admin_order_prod_cnt 넣기
+	   	            $("#adSizetype").val($(".selectVal").val());//사이즈/타입넣기
+	   	            $("#adPrice").val($("input[name='prod_price']").val() * $("input[name='prod_stock']").val())//가격 넣기
+	                $("#adName").val($("input[name='prod_name']").val()); //admin_order_prod_name 넣기
             }
         }
     }; //유효성검사 끝
@@ -401,3 +400,14 @@ $("#submitOrder").click((e) => {
     //document.registForm.submit();
     $("#registForm").attr("action", "/order/registForm").submit();
 });
+/******모달******/
+$(function(){
+	$(".btn-modal").click(()=>{$(".modal").fadeIn()});
+	$(".modal_close").click(()=>{$(".modal").fadeOut()});
+});
+
+
+/***이미지 업로드****/
+
+
+
