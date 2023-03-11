@@ -17,6 +17,8 @@ import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.AuthorityVO;
+import com.y4j.final_project.command.MessageVO;
+import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.util.Criteria;
 import com.y4j.final_project.util.PageVO;
 
@@ -29,6 +31,9 @@ public class AuthorityController {
 	
 	@Autowired
 	private AuthorityService authorityService;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	
 	//관리자 권한 조회
@@ -64,10 +69,26 @@ public class AuthorityController {
 	@PostMapping("/adminAuthUpdateForm")
 	public String adminAuthUpdateForm(AdminVO vo, RedirectAttributes ra) {
 		
-		int result = adminService.updateAdminAuthority(vo); 
+		AdminVO originalVO = adminService.getAdminInfo(vo.getAdmin_no());
+		
+		int result = adminService.updateAdminAuthority(vo);
 		
 		String msg = (result == 1) ? "정상적으로 권한이 수정되었습니다." : "권한 수정에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
+
+		//권한 수정 대상자에게 권한 변경 내역 쪽지 발송
+		MessageVO msgVO = MessageVO.builder()
+						  .msg_writer_no(6)
+						  .msg_writer_id("Administrator")
+						  .msg_writer_name("Administrator")
+						  .msg_receiver_no(originalVO.getAdmin_no())
+						  .msg_receiver_id(originalVO.getAdmin_id())
+						  .msg_receiver_name(originalVO.getAdmin_name())
+						  .msg_title("관리자에 의해 권한이 수정되었습니다.")
+						  .msg_content("권한 변경 내역 : " + (originalVO.getAdmin_type().equals("manager") ? originalVO.getAdmin_type() + " - " + originalVO.getEnt_name() : originalVO.getAdmin_type())
+								  + " → " + (vo.getAdmin_type().equals("manager") ? vo.getAdmin_type() + " - " + vo.getEnt_name() : vo.getAdmin_type()))
+						  .build();
+		messageService.sendMsg(msgVO);
 		
 		return "redirect:/authority/admin_authority_list";
 	}

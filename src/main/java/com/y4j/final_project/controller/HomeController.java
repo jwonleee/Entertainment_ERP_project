@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.admin.service.AdminService;
+import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.MessageVO;
 import com.y4j.final_project.message.service.MessageService;
@@ -24,6 +25,9 @@ public class HomeController {
 	
 	@Autowired
 	private AdminService adminService;
+	
+	@Autowired
+	private AuthorityService authorityService;
 	
 	@Autowired
 	private MessageService messageService;
