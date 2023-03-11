@@ -19,7 +19,7 @@
 							<option value="originType" th:selected="${pageVO.cri.searchType} == 'originType'">기존 타입</option>
 							<option value="applyType" th:selected="${pageVO.cri.searchType} == 'applyType'">신청 타입</option>
 						</select>
-						<input type="text" name="searchValue" class="searchValue" placeholder="검색" />
+						<input type="text" name="searchValue" class="searchValue" placeholder="검색 내용" th:value="${pageVO.cri.searchValue}" />
 						<button class="btn btn-outline-dark" type="submit">검색</button>
 					</div>
 				</div>
@@ -61,7 +61,9 @@
 								</tr>
 								<input type="hidden" id="authority_mng_no" name="authority_mng_no" />
 								<input type="hidden" id="authority_mng_admin_no"   name="authority_mng_admin_no" />
+								<input type="hidden" id="authority_mng_admin_original_type" name="authority_mng_admin_original_type" />
 								<input type="hidden" id="authority_mng_admin_apply_type" name="authority_mng_admin_apply_type" />
+								<input type="hidden" id="ent_name" name="ent_name" />
 							</form>
 						</tbody>
 					</table>

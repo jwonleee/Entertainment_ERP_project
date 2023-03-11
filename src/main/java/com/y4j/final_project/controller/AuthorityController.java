@@ -66,6 +66,7 @@ public class AuthorityController {
 		return "authority/admin_authority_apply_list";
 	}
 	
+	//권한 조회 페이지 모달 창 내 수정
 	@PostMapping("/adminAuthUpdateForm")
 	public String adminAuthUpdateForm(AdminVO vo, RedirectAttributes ra) {
 		
@@ -96,8 +97,10 @@ public class AuthorityController {
 	
 	//권한 신청 승인 처리
 	@PostMapping("/approveAuthForm")
-	public String approveAuth(@ModelAttribute("AuthorityVO") AuthorityVO vo,
+	public String approveAuth(AuthorityVO vo,
 							  RedirectAttributes ra) {
+
+		AdminVO originalVO = adminService.getAdminInfo(vo.getAuthority_mng_admin_no());
 		
 		int result1 = authorityService.approveAuth(vo);
 		int result2 = adminService.approveAuth(vo);
@@ -105,17 +108,50 @@ public class AuthorityController {
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 승인 처리되었습니다." : "승인 처리에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
 		
+		//권한 신청 승인 시, 권한 변경 내역 쪽지 발송
+		MessageVO msgVO = MessageVO.builder()
+						  .msg_writer_no(6)
+						  .msg_writer_id("Administrator")
+						  .msg_writer_name("Administrator")
+						  .msg_receiver_no(originalVO.getAdmin_no())
+						  .msg_receiver_id(originalVO.getAdmin_id())
+						  .msg_receiver_name(originalVO.getAdmin_name())
+						  .msg_title("권한 신청이 승인되었습니다.")
+						  .msg_content(originalVO.getAdmin_name() + "(" + originalVO.getAdmin_id()
+						  	+ ")님의 관리자 유형 : " + (vo.getAuthority_mng_admin_apply_type().equals("manager") ?
+						  	vo.getAuthority_mng_admin_apply_type() + " - " + vo.getEnt_name() : vo.getAuthority_mng_admin_apply_type())) 
+						  .build();
+		messageService.sendMsg(msgVO);
+
 		return "redirect:/authority/admin_authority_apply_list";
 	}
 	
 	//권한 신청 반려 처리
 	@PostMapping("/rejectAuthForm")
-	public String rejectAuth(@ModelAttribute("AuthorityVO") AuthorityVO vo,
+	public String rejectAuth(AuthorityVO vo,
 			  				 RedirectAttributes ra) {
+		
+		AdminVO originalVO = adminService.getAdminInfo(vo.getAuthority_mng_admin_no());
 		
 		int result = authorityService.rejectAuth(vo);
 		String msg = (result == 1) ? "정상적으로 반려 처리되었습니다." : "반려 처리에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
+		
+		//권한 신청 승인 시, 권한 변경 내역 쪽지 발송
+		MessageVO msgVO = MessageVO.builder()
+						  .msg_writer_no(6)
+						  .msg_writer_id("Administrator")
+						  .msg_writer_name("Administrator")
+						  .msg_receiver_no(originalVO.getAdmin_no())
+						  .msg_receiver_id(originalVO.getAdmin_id())
+						  .msg_receiver_name(originalVO.getAdmin_name())
+						  .msg_title("권한 신청이 반려되었습니다.")
+						  .msg_content(originalVO.getAdmin_name() + "(" + originalVO.getAdmin_id()
+						  	+ ")님의 관리자 유형 : " + (originalVO.getAdmin_type().equals("none") ? "없음" :
+							( originalVO.getAdmin_type().equals("manager") ?
+									originalVO.getAdmin_type() + " - " + originalVO.getEnt_name() : originalVO.getAdmin_type() ) ) ) 
+						  .build();
+		messageService.sendMsg(msgVO);
 		
 		return "redirect:/authority/admin_authority_apply_list";
 	}
