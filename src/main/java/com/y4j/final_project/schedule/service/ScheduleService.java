@@ -21,7 +21,8 @@ public interface ScheduleService {
 	public ArrayList<ScheduleVO> getList();
 	
 	//일정 확인
-	public ScheduleVO detail(int schedule_no);
+	public ScheduleVO getDetail(int schedule_no);
 		
-		
+	//일정 수정
+	public int modify();
 }

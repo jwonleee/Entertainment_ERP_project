@@ -10,59 +10,61 @@
 		
 		<div class="table_wrap">
 			<div class="title">일정 상세보기</div>
-			<form name="#" action="#" method="post" enctype="multipart/form-data">
-				<div>
+			<form name="scheduleForm" action="modifyForm" method="post" enctype="multipart/form-data">
+				<!-- pk -->
+				<input type="hidden" name="schedule_no" th:value="${vo.schedule_no}"/>
 					<ul>
 						<li>
-							<table class="table_inner">
+							<table class="table_inner" id="schedule_list">
 								<tbody>
 									<tr>
 										<th>일정 날짜</th>
 										<td class="schedule_calendar">
-											2023/01/01 <sapn>11:00</sapn> ~ 2023/01/01 <sapn>13:00</sapn>
+											[[${vo.schedule_start_time}]] ~ [[${vo.schedule_end_time}]]
 										</td>
 									</tr>
 									<tr>
 										<th>관리자 ID</th>
 										<td>
-											admin
+											[[${vo.schedule_writer}]]
 										</td>
 									</tr>
 									<tr>
 										<th>타입</th>
 										<td>
-											Magazine
+											[[${vo.schedule_type}]]
+										</td>
 										</td>
 									</tr>
 									<tr>
 										<th>제목</th>
 										<td>
-											오늘의 일정은?
+											[[${vo.schedule_ent_name}]]
 										</td>
 									</tr>
 									<tr>
 										<th>아티스트 타입</th>
 										<td>
-											musician
+											[[${vo.ent_type}]]
 										</td>
 									</tr>
 									<tr>
 										<th>아티스트</th>
 										<td>
-											아티스트 이름 쓰기
+											[[${vo.ent_name}]]
 										</td>
 									</tr>
 									<tr>
 										<th>장소</th>
 										<td>
-											mbc
+											[[${vo.schedule_location}]]
 										</td>
 									</tr>
 									<tr>
 										<th>세부내용</th>
 										<td>
 											<div class="content">
-												내용씅자ㅏ자~~
+												[[${vo.schedule_content}]]
 											</div>
 										</td>
 									</tr>
@@ -70,19 +72,59 @@
 							</table>
 
 							<div class="btn_wrap">
-                                <a href="#수정페이지로post방식" class="btn btn-default custom_btn">수정</a>
-                                <a href="#" class="btn btn-default custom_btn" onclick="">삭제</a>
-								<a href="admin_scheduleList" class="btn btn-default custom_btn">목록</a>
+                                <button type="button" id="Add_Modal" class="btn btn-default custom_btn" data-target="#ViewModal" data-toggle="modal">수정</button>
+								<button type="button" class="btn btn-default custom_btn">삭제</button>
+								<button type="button" class="btn btn-default custom_btn" onclick="location.href='/schedule/admin_scheduleList'">목록</button>
 							</div>
 
 						</li>
 					</ul>
 
-				</div>
+
 			</form>
 		</div>
 		
 	</div>
+	
+	<!-- 모달창 -->
+	<!-- <button id="Add_Modal" type="button"
+        data-remote="%= request.getContextPath() %>등록 모달 페이지 주소값"
+        class="btn mb-1 btn-outline-dark btn-action" data-target="#ViewModal" data-toggle="modal">
+        <i class="fa fa-plus"> 등록</i>
+	</button> -->
+
+        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="ViewModal"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">타이틀 등록</h5>
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                    ...모달 로딩 중....
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
+                        <button id="Tilte_Add_Button" type="button" class="btn btn-info" aria-invalid="true">등록</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<script>
+    $(document).ready(function () {
+        $('#ViewModal').on('shown.bs.modal', function (e) {
+            var button = $(e.relatedTarget);
+            var modal = $(this);
+            modal.find('.modal-body').load(button.data("remote"));
+        });
+    })
+</script>
+[출처] 부트스트랩 테이블을 이용한 Spring MVC 게시판 Modal 등록|작성자 유신혜
+
 
 </th:block>
 

@@ -301,6 +301,10 @@ thead th {
   font-size: 1.25rem;
 }
 
+.table_corner {
+  border-radius: 0px;
+}
+
 .table_corner table thead th {
   text-align: center;
   font-size: 16px;
@@ -325,9 +329,14 @@ thead {
 
 .table .schedule_ent_name {
     text-align: left;
-    max-width:309px;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    max-width: 298px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.table_line {
+    border: none !important;
+    border-width: none !important;
 }
 
 

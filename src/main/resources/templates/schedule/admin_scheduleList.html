@@ -12,7 +12,7 @@
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
-		<form name="" action="" method="get"> <!-- name, action 달아주기 -->
+		<form name="" action="" method="" enctype=""> <!-- name, action 달아주기 -->
 		
 		<!-- topside search menu -->
 		<div>
@@ -115,11 +115,11 @@
 								<div class="container">
 									<div class="row justify-content-center">
 										<div class="col-12 card2">
-											<div class="card">
+											<div class="card table_line">
 												<div class="card-body p-0">
 													<div class="table-responsive table-scroll table_corner"
 														data-mdb-perfect-scrollbar="true" style="position: relative;">
-														<table class="table table-striped mb-0 ">
+														<table class="table table-striped mb-0">
 															<thead style="background-color: #3f3f3f; color: white;">
 																<tr>
 																	<!-- <th scope="col">상태</th> -->
@@ -142,13 +142,11 @@
 																	<td>[[${vo.schedule_end_time}]]</td>
 																	<td>[[${vo.schedule_type}]]</td>
 																	<td style='max-width:105px; overflow:hidden; text-overflow:ellipsis;'>[[${vo.schedule_location}]]</td>
-																	<td class="schedule_ent_name">
-																		<a title="schedule_detail" th:href="@{ admin_scheduleDetail(schedule_no=${vo.schedule_no}) }">
-																			[[${vo.schedule_ent_name}]]
-																		</a>
+																	<td class="schedule_ent_name" style='cursor:pointer'>
+																		<a th:href="@{/schedule/admin_scheduleDetail(schedule_no=${vo.schedule_no})}">[[${vo.schedule_ent_name}]]</a>
 																	</td>
 																	<td>[[${vo.ent_name}]]</td>
-																	<td>[[${vo.schedule_writer}]]</td>
+																	<td style="max-width: 101px;">[[${vo.schedule_writer}]]</td>
 																</tr>
 															</tbody>
 														</table>

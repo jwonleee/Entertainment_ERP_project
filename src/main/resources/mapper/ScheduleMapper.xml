@@ -59,9 +59,28 @@
 		order by s.schedule_no desc;
 	</select>
 	
-	<select id="detail" resultType="ScheduleVO" parameterType="int">
-		select * from SCHEDULE where schedule_no = #{schedule_no};
+	<select id="getDetail" resultType="ScheduleVO">	
+		select s.schedule_no,
+			   s.schedule_start_time,
+			   s.schedule_end_time,
+			   s.schedule_writer,
+			   s.schedule_type,
+			   s.schedule_ent_name,
+			   s.schedule_location,
+			   s.schedule_content,
+	   		   es.ent_name,
+	   		   e.ent_type
+		from `schedule` s
+		left join entertainer_schedule es
+			on es.schedule_no = s.schedule_no
+		left join entertainer e
+			on es.ent_name = e.ent_name
+		where s.schedule_no = #{schedule_no}
+		order by s.schedule_no desc
 	</select>
 
+	<update id="modify" >
+		
+	</update>
 
 </mapper>

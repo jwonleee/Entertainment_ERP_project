@@ -48,10 +48,16 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return scheduleMapper.getList();
 	}
 	
+	//일정 확인
 	@Override
-	public ScheduleVO detail(int schedule_no) {
-		
-		return scheduleMapper.detail(schedule_no);
+	public ScheduleVO getDetail(int schedule_no) {
+		return scheduleMapper.getDetail(schedule_no);
+	}
+	
+	//일정 수정
+	@Override
+	public int modify() {
+		return scheduleMapper.modify();
 	}
 	
 	

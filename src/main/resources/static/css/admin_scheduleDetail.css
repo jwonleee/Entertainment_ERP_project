@@ -62,10 +62,9 @@ img {max-width: 100%; height: auto;}
 }
 
 .table_inner .content {
-    width: 99%;
-    height: 300px;
+    width: 100%;
+    min-height: 200px;
     resize: none;
-    padding: 7px 7px;
     margin: 10px 0 10px;
 }
 
