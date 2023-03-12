@@ -23,6 +23,12 @@ public class AuditionController {
 	AuditionService auditionService;
 	
 	
+	@GetMapping("/audition_notice")
+	public String audition_notice() {
+		
+		return "audition/audition_notice";
+	}
+	
 	@GetMapping("/admin_audition_list")
 	public String admin_audition_list(Model model,
 			HttpSession session, Criteria cri) {

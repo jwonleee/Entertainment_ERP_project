@@ -2,12 +2,13 @@ package com.y4j.final_project.controller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
@@ -64,9 +65,24 @@ public class AjaxController {
 	
 	//메세지 수신 날짜 업데이트
 	@PostMapping("/checkMsg")
-	public int checkMsg(@RequestBody MessageVO vo) {
+	public int checkMsg(@RequestBody MessageVO vo,
+			HttpSession session, Model model) {
 		
-		return messageService.checkMsg(vo.getMsg_no());
+		messageService.checkMsg(vo.getMsg_no());
+		
+		session.setAttribute("user_id", "manager127");
+		
+		return messageService.getUncheckedMsg(session.getAttribute("user_id"));
+	}
+	
+	//메세지 수신 날짜 업데이트
+	@PostMapping("/getMsgInfo")
+	public MessageVO getMsgInfo(@RequestBody MessageVO vo,
+			HttpSession session, Model model) {
+		
+//		session.setAttribute("user_id", "manager127");
+		
+		return messageService.getMsgInfo(vo.getMsg_no());
 	}
 	
 	

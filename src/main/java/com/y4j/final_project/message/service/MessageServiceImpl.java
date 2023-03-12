@@ -40,4 +40,9 @@ public class MessageServiceImpl implements MessageService {
 		return messageMapper.checkMsg(msg_no);
 	}
 	
+	//특정 쪽지 정보 반환 메서드
+	public MessageVO getMsgInfo(int msg_no) {
+		return messageMapper.getMsgInfo(msg_no);
+	}
+	
 }

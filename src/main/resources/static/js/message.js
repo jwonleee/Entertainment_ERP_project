@@ -3,21 +3,6 @@ $("#sendMsgBtn").on("click", function () {
   $("#sendMsgForm").submit();
 });
 
-//날짜 형식 0000-00-00 으로 변경
-function changeDateFormat(regdate) {
-
-  function pad(number) {
-    if (number < 10) {
-      return '0' + number;
-    }
-    return number;
-  }
-
-  var date = new Date(regdate);
-
-  return date.getFullYear() + "-" + (pad(date.getMonth() + 1)) + "-" + pad(date.getDate());
-}
-
 // 수신 메시지 조회
 function getReceivedMsgList() {
   $(".accordion").html("");
@@ -43,8 +28,8 @@ function getReceivedMsgList() {
             str += '</span>';
           }
           str += '<div class="accordion-header-right">';
-            str += '<span class="badge text-bg-light" style="font-size: 13px;">확인 일자  : ' + (arr[i].msg_checkdate == null ? "미확인" : arr[i].msg_checkdate.replace("T", " ")) + '</span>';
-            str += '<span class="badge text-bg-light" style="font-size: 13px;">수신 일자 : ' + arr[i].msg_senddate.replace("T", " ") + '</span>';
+            str += '<span class="badge text-bg-light msgDateData msgCheckDate" style="font-size: 13px;">확인 일자  : ' + (arr[i].msg_checkdate == null ? "미확인" : arr[i].msg_checkdate.replace("T", " ")) + '</span>';
+            str += '<span class="badge text-bg-light msgDateData msgSendDate" style="font-size: 13px;">수신 일자 : ' + arr[i].msg_senddate.replace("T", " ") + '</span>';
           str += '</div>';
         str += '</button>';
         str += '</h2>';
@@ -156,20 +141,66 @@ $("#sendMsgBtn").on("click", function () {
 //쪽지 확인 시, 수신일 업데이트
 $(document).on("click", ".receivedMsg .accordion-button", function(e) {
 
-  var checkedDate = e.target.parentElement.nextElementSibling.firstElementChild.children[2].children[1].value;
-  if(checkedDate != "미확인") return;
-  
-  var msgNo = e.target.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.value;
+  if(e.target.classList.contains("accordion-button")) {
+    var checkedDate = e.target.parentElement.nextElementSibling.firstElementChild.children[2].children[1];
+    if(checkedDate.value != "미확인") return;
 
+    var uncheckedAlertDot = e.target.firstElementChild;
+    if(uncheckedAlertDot.classList.contains("rounded-circle")) $(uncheckedAlertDot).remove();
+
+    var headerCheckDate = e.target.firstElementChild.firstElementChild;
+    var msgNo = e.target.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.value;
+
+  } else if(e.target.classList.contains("accordion-header-right")) {
+    var checkedDate = e.target.parentElement.parentElement.nextElementSibling.firstElementChild.children[2].children[1];
+    if(checkedDate.value != "미확인") return;
+
+    var uncheckedAlertDot = e.target.previousElementSibling;
+    if(uncheckedAlertDot.classList.contains("rounded-circle")) $(uncheckedAlertDot).remove();
+
+    var headerCheckDate = e.target.firstElementChild;
+    var msgNo = e.target.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.value;
+
+  } else if(e.target.classList.contains("msgDateData")) {
+    var checkedDate = e.target.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.children[2].children[1];
+    if(checkedDate.value != "미확인") return;    
+
+    var uncheckedAlertDot = e.target.parentElement.previousElementSibling;
+    if(uncheckedAlertDot.classList.contains("rounded-circle")) $(uncheckedAlertDot).remove();
+
+    var headerCheckDate = e.target.parentElement.firstElementChild;
+    var msgNo = e.target.parentElement.parentElement.parentElement.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.value;
+  }
+
+  // 쪽지 확인 시, 확인일자 업데이트 및 미확인 쪽지 수 변경값 실시간 반영
   $.ajax({
     url: "/checkMsg",
     type: "post",
     data: JSON.stringify({msg_no: msgNo}),
     contentType: "application/json",
-    success: function (arr) {
+    success: function (data) {
+      $(".uncheckedMsgNum").html(data);
+      getMsgInfo(msgNo, headerCheckDate, checkedDate);
     },
     error: function (err) {
+      console.log("확인 일자 업데이트 실패");
     }
   });
 });
 
+// 쪽지 확인 시, 업데이트 된 확인일자 불러와서 실시간 반영
+function getMsgInfo(msgNo, headerCheckDate, checkedDate) {
+  $.ajax({
+    url: "/getMsgInfo",
+    type: "post",
+    data: JSON.stringify({msg_no: msgNo}),
+    contentType: "application/json",
+    success: function (vo) {
+      headerCheckDate.innerHTML = "확인 일자 : " + vo.msg_checkdate.replace("T", " ");
+      checkedDate.value = vo.msg_checkdate.replace("T", " ");
+    },
+    error: function (err) {
+      console.log("확인 일자 불러오기 실패");
+    }
+  });
+}

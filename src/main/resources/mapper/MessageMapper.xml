@@ -49,5 +49,10 @@
 		update message set msg_checkdate = current_timestamp() where msg_no = #{msg_no}
 	</update>
 	
+	<!-- 특정 쪽지 정보 반환 메서드 -->
+	<select id="getMsgInfo" resultType="MessageVO">
+		select * from message where msg_no = #{msg_no}
+	</select>
+	
 
 </mapper>

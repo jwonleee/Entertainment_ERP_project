@@ -24,4 +24,7 @@ public interface MessageMapper {
 	//수신 메세지 수신일 업데이트 메서드
 	public int checkMsg(int msg_no);
 	
+	//특정 쪽지 정보 반환 메서드
+	public MessageVO getMsgInfo(int msg_no);
+	
 }

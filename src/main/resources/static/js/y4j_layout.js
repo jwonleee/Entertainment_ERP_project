@@ -173,3 +173,8 @@ function footerFixed() {
   }
 }
 window.addEventListener('resize', footerFixed);
+
+//화면 렌더링 완료 시, view size 측정 후 적용
+$(document).ready(resizeFragment());
+$(document).ready(footerFixed());
+

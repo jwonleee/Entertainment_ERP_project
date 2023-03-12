@@ -58,3 +58,7 @@
 .accordion-header-right > span {
   margin-left: 10px;
 }
+
+.accordion-item .rounded-circle {
+  z-index: 2;
+}

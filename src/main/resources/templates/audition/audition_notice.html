@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<link rel="stylesheet" href="/css/audition_notice.css">
+
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+
+	<div class="fragment">
+		<div class="fragment-inner">
+
+      <h2>audition_notice</h2>
+
+    </div>
+	</div>
+
+</th:block>
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+	if(msg != null) {
+		alert(msg);
+	}
+</script>
+<script src="/js/audition_notice.js"></script>
+
+</html>
