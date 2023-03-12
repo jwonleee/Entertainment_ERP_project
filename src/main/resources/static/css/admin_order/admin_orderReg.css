@@ -185,10 +185,19 @@ input:focus {
 .btn-modal {
 	top: 50%;
 	left: 50%;
-	width: 120px;
-	height: 30px;
-	line-height: 15px;
-	cursor: pointer;
+	margin-right:5px;
+	padding:5px;
+	background-color: rgb(7, 7, 7);
+	color: white;
+}
+
+.btn-modal2 {
+	top: 50%;
+	left: 50%;
+	margin-right:5px;
+	padding:5px;
+	background-color: rgb(7, 7, 7);
+	color: white;
 }
 
 .modal {
@@ -199,18 +208,41 @@ input:focus {
 	left: 0;
 	display: none;
 }
+.modal2 {
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	display: none;
+}
 
 
 .modal_content {
-	width: 400px;
-	height: 300px;
+	width: 600px;
+	height: 600px;
 	background: #fff;
 	border-radius: 10px;
 	position: relative;
 	top: 50%;
 	left: 50%;
-	margin-left: -200px;
-	margin-top: -150px;
+	margin-left: -300px;
+	margin-top: -300px;
+	text-align: center;
+	box-sizing: border-box;
+	padding-top: 20px;
+	line-height: 23px;
+}
+.modal_content2 {
+	width: 600px;
+	height: 600px;
+	background: #fff;
+	border-radius: 10px;
+	position: relative;
+	top: 50%;
+	left: 50%;
+	margin-left: -300px;
+	margin-top: -300px;
 	text-align: center;
 	box-sizing: border-box;
 	padding-top: 20px;
@@ -235,6 +267,48 @@ input:focus {
 	display:inline-block;
 	text-align:center;
 }
+
+/* 이미지 등록 */
+
+.imgReg_content{
+	padding-top: 50px;
+}
+
+#preview{
+	width: 300px;
+	height: 300px;
+
+}
+
+.img_btn_area{
+	padding-top:20px;
+	padding-left: 50px;
+}
+
+#imgReg{
+	display: block;
+}
+
+#imgUpload{
+	display: block;
+}
+
+
+/* 상세설명이미지 등록 */
+#previewPD{
+	width: 300px;
+	height: 350px;
+}
+
+
+#imgReg{
+	display: block;
+}
+
+#imgUpload{
+	display: block;
+}
+
 
 /* ***************buttons************ */
 .btn_area {
