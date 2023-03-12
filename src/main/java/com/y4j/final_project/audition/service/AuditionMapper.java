@@ -1,6 +1,7 @@
 package com.y4j.final_project.audition.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
@@ -23,5 +24,8 @@ public interface AuditionMapper {
 	
 	//전체 오디션 지원서 수 반환 메서드
 	public int getAudTotal(Criteria cri);
+	
+	//이미지 데이터 조회
+	public List<AuditionFileVO> getProductImg(AuditionVO vo);
 	
 }

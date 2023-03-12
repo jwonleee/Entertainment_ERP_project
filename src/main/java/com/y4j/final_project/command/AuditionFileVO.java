@@ -15,7 +15,9 @@ public class AuditionFileVO {
 
 	private int audition_cv_upload_no;
 	private int audition_cv_no;
+	private String audition_cv_file_extension;
 	private String audition_cv_file_path;
+	private String audition_cv_file_type;
 	private LocalDateTime audition_cv_file_regdate;
 	
 }

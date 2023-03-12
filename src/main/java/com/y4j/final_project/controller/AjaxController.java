@@ -14,6 +14,7 @@ import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.MessageVO;
+import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 
@@ -75,15 +76,22 @@ public class AjaxController {
 		return messageService.getUncheckedMsg(session.getAttribute("user_id"));
 	}
 	
-	//메세지 수신 날짜 업데이트
+	// 특정 메세지 수신 날짜 업데이트
 	@PostMapping("/getMsgInfo")
-	public MessageVO getMsgInfo(@RequestBody MessageVO vo,
-			HttpSession session, Model model) {
-		
-//		session.setAttribute("user_id", "manager127");
+	public MessageVO getMsgInfo(@RequestBody MessageVO vo) {
 		
 		return messageService.getMsgInfo(vo.getMsg_no());
 	}
+	
+//	//세션에 저장된 유저 아이디를 통해 정보 가져오기
+//	@PostMapping("/getUserInfo2")
+//	public UserVO getUserInfo2(@RequestBody UserVO vo,
+//			HttpSession session) {
+//		
+//		session.setAttribute("user_id", "ccc333");
+//		
+//		return userService.getUserInfo2(session.getAttribute("user_id"));
+//	}
 	
 	
 	

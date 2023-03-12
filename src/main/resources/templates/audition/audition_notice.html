@@ -7,8 +7,133 @@
 	<div class="fragment">
 		<div class="fragment-inner">
 
-      <h2>audition_notice</h2>
+			<div class="aud-wrap">
 
+      		<div class="audNotice-outer">
+      			<img id="audNotice" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_audition_notice.jpg" />
+      		</div>
+      		<div class="audApplyBtnDiv">
+						<p th:if="${userVO.user_id} == null">로그인 한 후에 오디션 접수가 가능합니다.</p>
+      			<button type="button" id="openAudApplyForm" class="btn btn-outline-dark btn-lg showModal" data-bs-toggle="modal" data-bs-target="#exampleModal" th:disabled= "${userVO.user_id == null ? 'disabled' : 'false'}" >지원서 접수</button>
+      		</div>
+
+					<!-- Modal -->
+					<form action="audApplyForm" id="audApply" class="audApplyForm was-validated" method="post" >
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+							aria-hidden="true">
+							<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h1 class="modal-title fs-5" id="exampleModalLabel">오디션 지원 양식</h1>
+										<button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+									</div>
+									<div class="modal-body" style="width: 550px">
+										
+										<fieldset class="row mb-3">
+											<legend class="col-form-label col-sm-2 pt-0">지원 분야</legend>
+											<div class="col-sm-10">
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios1" value="singer" checked>
+													<label class="form-check-label" for="gridRadios1">
+														가수
+													</label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios2" value="Actor">
+													<label class="form-check-label" for="gridRadios2">
+														배우
+													</label>
+												</div>
+											</div>
+										</fieldset>
+										<div class="mb-3">
+											<label for="audition_cv_name" class="form-label">이름</label>
+											<input type="text" name="audition_cv_name" class="form-control" id="audition_cv_name" th:value="${userVO.user_name}" required />
+											<div class="invalid-feedback">이름은 필수 항목입니다.</div>
+										</div>
+										<fieldset class="row mb-3">
+											<legend class="col-form-label col-sm-2 pt-0">성별</legend>
+											<div class="col-sm-10">
+												<div class="form-check">
+													<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios3" value="M" th:checked="${userVO.user_gender == 'M' ? 'true' : 'false'}" >
+													<label class="form-check-label" for="gridRadios3">
+														남
+													</label>
+												</div>
+												<div class="form-check">
+													<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios4" value="F" th:checked="${userVO.user_gender == 'F' ? 'true' : 'false'}">
+													<label class="form-check-label" for="gridRadios4">
+														여
+													</label>
+												</div>
+											</div>
+										</fieldset>
+										<div class="mb-3">
+											<label for="audition_cv_age" class="form-label">나이</label>
+											<input type="number" name="audition_cv_age" class="form-control" id="audition_cv_age" placeholder="만 나이 입력" required />
+											<div class="invalid-feedback">나이는 필수 항목입니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_height" class="form-label">신장</label>
+											<input type="number" name="audition_cv_height" class="form-control" id="audition_cv_height" placeholder="일의 자리까지만 입력" required />
+											<div class="invalid-feedback">신장은 필수 항목입니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_weight" class="form-label">체중</label>
+											<input type="number" name="audition_cv_weight" class="form-control" id="audition_cv_weight" placeholder="일의 자리까지만 입력" required />
+											<div class="invalid-feedback">체중은 필수 항목입니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_contact" class="form-label">연락처</label>
+											<input type="text" name="audition_cv_contact" class="form-control" id="audition_cv_contact" th:value="${userVO.user_contact}" required />
+											<div class="invalid-feedback">연락처는 필수 항목입니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_email" class="form-label">이메일</label>
+											<input type="email" name="audition_cv_email" class="form-control" id="audition_cv_email" th:value="${userVO.user_email}" required />
+											<div class="invalid-feedback">이메일은 필수 항목입니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_file1" class="form-label">정면 사진 (이미지 파일만 가능)</label>
+											<label class="upload-display" for="audition_cv_file1">
+												<span class="upload-thumb-wrap">
+														<img class="upload-thumb" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/plus_black.svg"/>
+												</span>
+											</label>
+											<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file1" aria-label="file example" required />
+											<div class="invalid-feedback">선택된 파일이 없습니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_file2" class="form-label">전신 사진 (이미지 파일만 가능)</label>
+											<label class="upload-display" for="audition_cv_file2">
+												<span class="upload-thumb-wrap">
+														<img class="upload-thumb" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/plus_black.svg"/>
+												</span>
+											</label>
+											<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file2" aria-label="file example" required />
+											<div class="invalid-feedback">선택된 파일이 없습니다.</div>
+										</div>
+										<div class="mb-3">
+											<label for="audition_cv_file3" class="form-label">영상 (mp4 확장자만 가능) (선택)</label>
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file3" aria-label="file example" />
+										</div>
+
+										<input type="hidden" name="audition_cv_user_id" class="form-control" id="audition_cv_user_id" th:value="${userVO.user_id}">
+
+									</div>
+									<div class="modal-footer">
+										<button type="button" id="audApplyBtn" class="btn btn-outline-dark">접수</button>
+										<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</form>
+
+				</div>
+      		
     </div>
 	</div>
 

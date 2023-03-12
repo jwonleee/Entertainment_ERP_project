@@ -55,8 +55,8 @@
 									<td>[[${ #temporals.format(vo.authority_mng_apply_date, 'yyyy-MM-dd') }]]</td>
 									<td>[[${vo.authority_mng_authorize_date == null ? '-' : ( #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') == '1996-09-03' ? '반려' : #temporals.format(vo.authority_mng_authorize_date, 'yyyy-MM-dd') ) }]]</td>
 									<td>
-										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.authority_mng_authorize_date == null ? disabled : ''}" >승인</button>
-										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.authority_mng_authorize_date == null ? disabled : ''}" >반려</button>
+										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.authority_mng_authorize_date == null ? 'false' : 'disabled'}" >승인</button>
+										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.authority_mng_authorize_date == null ? 'false' : 'disabled'}" >반려</button>
 									</td>
 								</tr>
 								<input type="hidden" id="authority_mng_no" name="authority_mng_no" />

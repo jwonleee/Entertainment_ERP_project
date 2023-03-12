@@ -53,6 +53,5 @@
 	<select id="getMsgInfo" resultType="MessageVO">
 		select * from message where msg_no = #{msg_no}
 	</select>
-	
 
 </mapper>

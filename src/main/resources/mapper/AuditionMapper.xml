@@ -36,9 +36,11 @@
   		</selectKey>
 		insert into audition_cv_file(
 			audition_cv_no,
-			audition_cv_file_path)
+			audition_cv_file_extension,
+			audition_cv_file_path),
 		values(
 			#{audition_cv_no},
+			#{audition_cv_file_extension},
 			#{audition_cv_file_path})
 	</insert>
 	
