@@ -11,10 +11,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.y4j.final_project.admin.service.AdminService;
+import com.y4j.final_project.audition.service.AuditionService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.AuditionVO;
 import com.y4j.final_project.command.MessageVO;
-import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 
@@ -32,6 +33,9 @@ public class AjaxController {
 	
 	@Autowired
 	MessageService messageService;
+	
+	@Autowired
+	AuditionService auditionService;
 	
 	
 	@PostMapping("/getAdminInfo")
@@ -92,6 +96,15 @@ public class AjaxController {
 //		
 //		return userService.getUserInfo2(session.getAttribute("user_id"));
 //	}
+	
+	
+	//특정 지원서 정보 반환
+	@PostMapping("/getAudCv")
+	public AuditionVO getAudCv(@RequestBody AuditionVO vo) {
+		
+		return auditionService.getAudCv(vo.getAudition_cv_no());
+	}
+	
 	
 	
 	

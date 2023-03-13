@@ -1,8 +1,5 @@
 // 지원서 접수 버튼 클릭
 $('#audApplyBtn').click(function() {
-
-  
-
   $("#audApply").submit();
 });
 

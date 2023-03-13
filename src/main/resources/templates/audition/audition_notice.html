@@ -18,7 +18,7 @@
       		</div>
 
 					<!-- Modal -->
-					<form action="audApplyForm" id="audApply" class="audApplyForm was-validated" method="post" >
+					<form action="audApplyForm" id="audApply" class="audApplyForm was-validated" method="post" enctype="multipart/form-data" >
 						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
 							aria-hidden="true">
 							<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
@@ -33,13 +33,13 @@
 											<legend class="col-form-label col-sm-2 pt-0">지원 분야</legend>
 											<div class="col-sm-10">
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios1" value="singer" checked>
+													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios1" value="Singer" checked readonly>
 													<label class="form-check-label" for="gridRadios1">
 														가수
 													</label>
 												</div>
 												<div class="form-check">
-													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios2" value="Actor">
+													<input class="form-check-input" type="radio" name="audition_cv_type" id="gridRadios2" value="Actor" readonly>
 													<label class="form-check-label" for="gridRadios2">
 														배우
 													</label>
@@ -94,7 +94,7 @@
 											<div class="invalid-feedback">이메일은 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
-											<label for="audition_cv_file1" class="form-label">정면 사진 (이미지 파일만 가능)</label>
+											<label for="audition_cv_file1" class="form-label">정면 사진 (jpg, jpeg 파일만 가능)</label>
 											<label class="upload-display" for="audition_cv_file1">
 												<span class="upload-thumb-wrap">
 														<img class="upload-thumb" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/plus_black.svg"/>
@@ -119,7 +119,6 @@
 											<label for="audition_cv_file3" class="form-label">영상 (mp4 확장자만 가능) (선택)</label>
 											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file3" aria-label="file example" />
 										</div>
-
 										<input type="hidden" name="audition_cv_user_id" class="form-control" id="audition_cv_user_id" th:value="${userVO.user_id}">
 
 									</div>

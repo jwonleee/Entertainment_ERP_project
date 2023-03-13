@@ -36,6 +36,7 @@
 							<tr>
 								<th scope="col">연번</th>
 								<th scope="col">지원 번호</th>
+								<th scope="col">지원 분야</th>
 								<th scope="col">이름</th>
 								<th scope="col">성별</th>
 								<th scope="col">나이</th>
@@ -50,6 +51,7 @@
 								<tr th:each="vo, s : ${list}">
 									<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
 									<td>[[${vo.audition_cv_no}]]</td>
+									<td>[[${vo.audition_cv_type}]]</td>
 									<td>[[${vo.audition_cv_name}]]</td>
 									<td>[[${vo.audition_cv_gender}]]</td>
 									<td>[[${vo.audition_cv_age}]]</td>
@@ -59,8 +61,8 @@
 										<button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">지원서 보기</button>
 									</td>
 									<td>
-										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >승인</button>
-										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >반려</button>
+										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >합격</button>
+										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >불합격</button>
 									</td>
 								</tr>
 								<input type="hidden" id="audition_cv_no" name="audition_cv_no" />
@@ -86,8 +88,7 @@
 				
 									</div>
 									<div class="modal-footer">
-										<button type="button" id="updateBtn" class="btn btn-outline-dark">수정</button>
-										<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
+										<button type="button" class="btn btn-outline-dark closeModal" data-bs-dismiss="modal">닫기</button>
 									</div>
 								</div>
 							</div>

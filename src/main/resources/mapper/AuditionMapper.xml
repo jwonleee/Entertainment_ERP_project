@@ -37,10 +37,12 @@
 		insert into audition_cv_file(
 			audition_cv_no,
 			audition_cv_file_extension,
-			audition_cv_file_path),
+			audition_cv_file_type,
+			audition_cv_file_path)
 		values(
 			#{audition_cv_no},
 			#{audition_cv_file_extension},
+			#{audition_cv_file_type},
 			#{audition_cv_file_path})
 	</insert>
 	
@@ -64,6 +66,11 @@
 			<when test="searchType == 'name'">where audition_cv_name like concat('%', #{searchValue}, '%')</when>
 			<when test="searchType == 'gender'">where audition_cv_gender like concat('%', #{searchValue}, '%')</when>
 		</choose>
+	</select>
+	
+	<!-- 오디션 지원서 특정 1개 데이터 반환 메서드 -->
+	<select id="getAudCv" resultType="AuditionVO">
+		select * from audition_cv where audition_cv_no = #{audition_cv_no}
 	</select>
 
 

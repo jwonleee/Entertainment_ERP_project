@@ -69,18 +69,16 @@ public class AuditionController {
 	public String audApplyForm(AuditionVO vo, RedirectAttributes ra,
 			@RequestParam("file") List<MultipartFile> list ) {
 		
-System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-System.out.println(vo);
-System.out.println(list);
-		
 		//선택되지 않은 파일 태그는 제거
 		list = list.stream()
 				   .filter((v) -> v.isEmpty() == false)
 				   .collect(Collectors.toList());
 				
-		for(MultipartFile file : list) {
-			if(file.getContentType().contains("image") == false && file.getContentType().contains("video")) {
-				ra.addFlashAttribute("msg", "이미지 파일만 등록 가능합니다.");
+		for(MultipartFile multipartFile : list) {
+			if(multipartFile.getContentType().contains("jpeg") == false
+				&& multipartFile.getContentType().contains("jpg") == false
+				&& multipartFile.getContentType().contains("mp4") == false) {
+				ra.addFlashAttribute("msg", "jpg, jpeg, mp4 파일만 등록 가능합니다.");
 				
 				return "redirect:/audition/audition_notice";
 			}

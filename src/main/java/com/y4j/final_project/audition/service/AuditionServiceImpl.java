@@ -1,5 +1,6 @@
 package com.y4j.final_project.audition.service;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.y4j.final_project.aws.service.AwsS3Service;
 import com.y4j.final_project.command.AuditionFileVO;
 import com.y4j.final_project.command.AuditionVO;
+import com.y4j.final_project.command.AwsS3;
 import com.y4j.final_project.util.Criteria;
 
 import lombok.RequiredArgsConstructor;
@@ -31,11 +33,21 @@ public class AuditionServiceImpl implements AuditionService{
 		
 		int result = auditionMapper.registAud(vo);
 		
-		for(MultipartFile file : list) {
+		for(MultipartFile multipartFile : list) {
+			
+			AwsS3 awsS3 = null;
+			try {
+				awsS3 = awsService.upload(multipartFile, "audition");
+				
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 			
 			AuditionFileVO afVO = AuditionFileVO.builder()
-					  .audition_cv_file_path(null)
-					  .audition_cv_file_extension(null)
+					  .audition_cv_file_path(awsS3.getPath())
+					  .audition_cv_file_extension(awsS3.getKey().split("\\.")[1])
+					  .audition_cv_file_type(awsS3.getKey().split("\\.")[1].equals("jpg")
+						|| awsS3.getKey().split("\\.")[1].equals("jpeg") ? "image" : "video")
 					  .build();
 			
 			auditionMapper.registAudFile(afVO);
@@ -52,6 +64,11 @@ public class AuditionServiceImpl implements AuditionService{
 	//전체 오디션 지원 수 반환 메서드
 	public int getAudTotal(Criteria cri) {
 		return auditionMapper.getAudTotal(cri);
+	}
+	
+	//오디션 지원서 특정 1개 데이터 반환 메서드
+	public AuditionVO getAudCv(int audition_cv_no) {
+		return auditionMapper.getAudCv(audition_cv_no);
 	}
 
 	//이미지 데이터 조회

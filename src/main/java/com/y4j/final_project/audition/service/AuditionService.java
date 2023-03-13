@@ -21,6 +21,9 @@ public interface AuditionService {
 	//전체 오디션 지원 수 반환 메서드
 	public int getAudTotal(Criteria cri);
 	
+	//오디션 지원서 특정 1개 데이터 반환 메서드
+	public AuditionVO getAudCv(int audition_cv_no);
+	
 	//이미지 데이터 조회
 	public List<AuditionFileVO> getProductImg(AuditionVO vo);
 	
