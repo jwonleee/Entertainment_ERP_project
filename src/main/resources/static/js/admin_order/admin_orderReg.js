@@ -19,7 +19,6 @@ $(document).ready(() => {
             str += '<ul class="categoryList" onclick="getAllCategory(event);">';
             result.forEach((item) => { str += '<li class="forOn"><a href="#" data-set=' + JSON.stringify(item) + '>' + item.category_detail_nm + '</a></li>'; });
             str += '</ul>';
-
             $(".categoryListWrap").append(str);
         },
         error: function (err) {
@@ -154,7 +153,7 @@ $(".detail_btn").click((e) => {
             astr += `<tr>`;
             astr += `<th>이미지업데이트</th>`;
             astr += `<td><button id="showModal" class="btn-modal">이미지 업로드</button>`
-            astr += `<input type="text" required="required" readonly name="album_img_path"/></td>`;
+            astr += `<input type="text" required="required" readonly name="albumImgPath"/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>회사</th>`;
@@ -218,12 +217,12 @@ $(".detail_btn").click((e) => {
             pstr += `<tr>`;
             pstr += `<th>이미지경로</th>`;
             pstr += `<td><button id="showModalP" class="btn-modal">이미지 업로드</button>`;
-            pstr += `<input type="text" required="required" readonly name="prod_img_path"/></td>`;
+            pstr += `<input type="text" required="required" readonly name="prodImgPath"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>상세설명이미지</th>`;
-            pstr += `<td><button id="showModalPD" class="btn-modal2">상세이미지 업로드</button>`;
-            pstr += `<input type="text" required="required" readonly name="prod_info_img_path"/></td>`;
+            pstr += `<td><button id="showModalPD" class="btn-modal">상세이미지 업로드</button>`;
+            pstr += `<input type="text" required="required" readonly name="prodInfoImgPath"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>회사</th>`;
@@ -264,8 +263,6 @@ $(".regTable").on("focus", "#datepick3",
     function () {
         $("#datepick3").datepicker({ minDate: 0, dateFormat: "yy-mm-dd" });
     });
-
-
 
 /*발주버튼*/
 $("#submitOrder").click((e) => {
@@ -331,9 +328,9 @@ $("#submitOrder").click((e) => {
                 alert("앨범버전을 선택하세요!");
                 $("input[name='album_version']").focus();
                 return; //함수종료
-            } else if ($("input[name='album_img_path']").val() == '') {
+            } else if ($("input[name='albumImgPath']").val() == '') {
                 alert("이미지를 업데이트하세요!");
-                $("input[name='album_img_path']").focus();
+                $("#showModal").focus($("#showModal").css("animation", "fadeIn 1s ease-in-out"));
                 return; //함수종료
             } else if ($("input[name='admin_order_company']").val() == '') {
                 alert("회사를 입력하세요!");
@@ -379,13 +376,13 @@ $("#submitOrder").click((e) => {
                 alert("재고를 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='prod_stock']").focus();
                 return; //함수종료
-            } else if ($("input[name='prod_img_path']").val() == '') {
+            } else if ($("input[name='prodImgPath']").val() == '') {
                 alert("이미지경로를 입력하세요!");
-                $("input[name='prod_img_path']").focus();
+                $("#showModalP").focus($("#showModalP").css("animation", "fadeIn 1s ease-in-out"));
                 return; //함수종료
-            } else if ($("input[name='prod_info_img_path']").val() == '') {
+            } else if ($("input[name='prodInfoImgPath']").val() == '') {
                 alert("상세설명이미지를 입력하세요!");
-                $("input[name='prod_info_img_path']").focus();
+                $("#showModalPD").focus($("#showModalPD").css("animation", "fadeIn 1s ease-in-out"));
                 return; //함수종료
             } else if ($("input[name='admin_order_company']").val() == '') {
                 alert("회사를 입력하세요!");
@@ -403,48 +400,51 @@ $("#submitOrder").click((e) => {
 
     //aws업데이트하기
     //앨범 또는 상품이미지 aws에 업로드
-    var file = $("#imgReg");
-    const formData = new FormData();
-    formData.append("file", file[0].files[0]);
     if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') { //앨범일 때 
+       	var formData = new FormData();
+        var file = $("#imgReg");
+        formData.append("file", file[0].files[0]);
         $.ajax({
             url: "/s3/resource",
             method: "post",
             data: formData,
             contentType: false, //보내는 데이터 타입 multipart/form-data로
             processData: false, //폼데이터가 name=값&형식으로 변경되는 것 막기
+            async:false,
             success: (result) => {
-                $("input[name='album_img_path']").val(result.path);
+                $('input[name="album_img_path"]').val(result.path);
             },
             error: (err) => {
-                alert('앨범이미지 업로드에 실패하였습니다.')
+                alert('이미지 업로드에 실패하였습니다.')
                 return;
             }
         });
-    } else {//상품일 때
-     //상품상세설명 이미지 등록
+    } else {//상품일 때	
+    	//상품이미지 등록
+        var formData = new FormData();
+        var file = $("#imgReg");
+        formData.append("file", file[0].files[0]);
+        //상품상세설명 이미지 등록
         var detailFile = $("#PDimgReg");
-        formData.append("file", detailFile[0].files[0]);
-
+        formData.append("PDfile", detailFile[0].files[0]);
         $.ajax({
-            url: "/s3/resource",
+            url: "/s3/resource2",
             method: "post",
             data: formData,
             contentType: false, //보내는 데이터 타입 multipart/form-data로
             processData: false, //폼데이터가 name=값&형식으로 변경되는 것 막기
+            async:false,
             success: (result) => {
-                console.log(result);
-                //$("input[name='prod_img_path']").val(result.path);
-               // $("input[name='prod_info_img_path']").val(result.path);
+                $("input[name='prod_img_path']").val(result.pimg.path);
+                $("input[name='prod_info_img_path']").val(result.pdimg.path);
             },
             error: (err) => {
-                alert('상품이미지 업로드에 실패하였습니다.')
+                alert('상세설명 이미지 업로드에 실패하였습니다.')
                 return;
             }
         });
-  
-    }
 
+    }
 
     //form보내기
     //document.registForm.submit();
@@ -453,18 +453,21 @@ $("#submitOrder").click((e) => {
 
 
 /******앨범, 상품 등록 모달******/
-$('.regTable').on("click", ".btn-modal", function (e) {
+$('.regTable').on("click", "#showModal", function (e) {
     e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
-
-    $(".btn-modal").click(() => { $(".modal").fadeIn() });
+    $("#showModal").click(() => { $(".modal").fadeIn() });
+    $(".modal_close").click(() => { $(".modal").fadeOut() });
+});
+$('.regTable').on("click", "#showModalP", function (e) {
+    e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
+    $("#showModalP").click(() => { $(".modal").fadeIn() });
     $(".modal_close").click(() => { $(".modal").fadeOut() });
 });
 
 /***상세설명이미지 모달**/
-$('.regTable').on("click", ".btn-modal2", function (e) {
+$('.regTable').on("click", "#showModalPD", function (e) {
     e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
-
-    $(".btn-modal2").click(() => { $(".modal2").fadeIn() });
+    $("#showModalPD").click(() => { $(".modal2").fadeIn() });
     $(".modal_close").click(() => { $(".modal2").fadeOut() });
 });
 
@@ -494,23 +497,46 @@ $("#PDimgReg").on('change', function (event) {
     $("#imgDivPD").css('display', 'block');
 });
 
-
 /***이미지 등록***/
 $("#imgUpload").click(function () {
+
     var categorySelected = $("input[name='admin_order_category']").val();
-    if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') {
-        /*앨범일 때*/
-        $("input[name='album_img_path']").val($("#imgReg").val());
-        $(".modal").fadeOut();
+    var obj = $("#imgReg");
+    var pathpoint = obj.val().lastIndexOf('.');
+    var filepoint = obj.val().substring(pathpoint + 1, obj.val().length);
+    var filetype = filepoint.toLowerCase();
+
+    var check_file_type = new Array();
+    check_file_type = ['jpg', 'gif', 'png', 'jpeg', 'bmp'];
+    if (check_file_type.indexOf(filetype) == -1) {//이미지파일인지 검사
+        alert('이미지 파일만 선택가능합니다.');
+        return;
     } else {
-        /*** 상품일 때***/
-        $("input[name='prod_img_path']").val($("#imgReg").val());
-        $(".modal").fadeOut();
+        if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') {
+            /*앨범일 때*/
+            $("input[name='albumImgPath']").val($("#imgReg").val().split('/').pop().split('\\').pop());//fakepath지우기
+            $(".modal").fadeOut();
+        } else {
+            /*** 상품일 때***/
+            $("input[name='prodImgPath']").val($("#imgReg").val().split('/').pop().split('\\').pop());//fakepath지우기
+            $(".modal").fadeOut();
+        }
     }
 });
 
 //상세설명이미지 등록
 $("#PDimgUpload").click(function () {
-    $("input[name='prod_info_img_path']").val($("#PDimgReg").val());
-    $(".modal2").fadeOut();
+    var obj = $("#PDimgReg");
+    var pathpoint = obj.val().lastIndexOf('.');
+    var filepoint = obj.val().substring(pathpoint + 1, obj.val().length);
+    var filetype = filepoint.toLowerCase();
+    var check_file_type = new Array();
+    check_file_type = ['jpg', 'gif', 'png', 'jpeg', 'bmp'];
+    if (check_file_type.indexOf(filetype) == -1) {//이미지파일인지 검사
+        alert('이미지 파일만 선택가능합니다.');
+        return;
+    } else {
+        $("input[name='prodInfoImgPath']").val($("#PDimgReg").val().split('/').pop().split('\\').pop());//fakepath지우기
+        $(".modal2").fadeOut();
+    }
 });

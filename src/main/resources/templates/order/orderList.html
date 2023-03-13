@@ -22,10 +22,11 @@
 										<form action="orderList" method="get" name="actionForm">
 											<input type="hidden" name="amount" th:value="${pageVO.amount}"/>
 											<div class="search_form">
-												<select id="handleType" name="searchContent">
+											<input type="text" id="handleSearchName" name="searchName" placeholder="상품명으로 검색 가능합니다." th:value="${pageVO.cri.searchName}"/>
+												<select id="handleType" name="searchContent" >
 													<option value="all" th:selected="${pageVO.cri.searchContent}=='all'">전체보기</option>
-													<option value="album" th:selected="${pageVO.cri.searchContent}=='album'">앨범</option>
-													<option value="product" th:selected="${pageVO.cri.searchContent}=='product'">상품</option>
+													<option value="album" th:selected="${pageVO.cri.searchContent}=='album'">앨범발주</option>
+													<option value="product" th:selected="${pageVO.cri.searchContent}=='product'">상품발주</option>
 												</select>
 												<input type="submit" value="검색" />
 											</div>
@@ -33,6 +34,7 @@
 											<table class="table table-striped mb-0 orderTable">
 												<thead style="background-color: #002d72; color: white;">
 													<tr>
+														<th scope="col">발주번호</th>
 														<th scope="col">상품명</th>
 														<th scope="col">상품번호</th>
 														<th scope="col">카테고리</th>
@@ -45,7 +47,8 @@
 												</thead>
 												<tbody>
 													<tr th:each="vo, status:${orderList}">
-														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: black">[[${vo.admin_order_prod_name}]]</a></td>
+														<td>[[${vo.admin_order_no}]]</td>
+														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: teal;">[[${vo.admin_order_prod_name}]]</a></td>
 														<td th:if="${vo.admin_order_album_no!=0}">[[${vo.admin_order_album_no}]]</td>
 														<td th:if="${vo.admin_order_prod_no!=0}">[[${vo.admin_order_prod_no}]]</td>
 														<td>[[${vo.admin_order_category}]]</td>
@@ -61,7 +64,7 @@
 												<div class="pagination">
 													<ul class="pages">
 														<li><a
-															th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+															th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
 															class="page_num"><svg
 																	xmlns="http://www.w3.org/2000/svg" width="16"
 																	height="16" fill="currentColor"
@@ -74,7 +77,7 @@
 														</svg></a></li>
 														<th:block th:if="${pageVO.prev}">
 															<li><a
-																th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
 																class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
@@ -86,13 +89,13 @@
 														</th:block>
 														<th:block th:each="pageNum:${pageVO.pageList}">
 															<li><a
-																th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
 																th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a>
 															</li>
 														</th:block>
 														<th:block th:if="${pageVO.next}">
 															<li><a
-																th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"
+																th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
 																class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
@@ -103,7 +106,7 @@
 															</svg></a></li>
 														</th:block>
 														<li><a
-															th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent})}"><svg
+															th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"><svg
 																	xmlns="http://www.w3.org/2000/svg" width="16"
 																	height="16" fill="currentColor"
 																	class="bi bi-chevron-double-right size"
@@ -129,7 +132,7 @@
 		<!-- end 부트스트랩 -->
 		<!-- 페이지네이션 -->
 
-		<!-- 부트스트랩 -->
+		<!-- 부트스트랩 상품 -->
 		<section class="intro listwrap">
 			<div class="bg-image h-100" style="background-color: #f5f7fa;">
 				<div class="mask d-flex align-items-center h-100">
@@ -149,18 +152,80 @@
 													<tr>
 														<th scope="col">상품번호</th>
 														<th scope="col">상품명</th>
+														<th scope="col">상품타입</th>
 														<th scope="col">카테고리</th>
-														<th scope="col">재고</th>
-														<th scope="col">사이즈/타입</th>
-														<th scope="col">발주일자</th>
-														<th scope="col">발주가격</th>
-														<th scope="col">회사</th>
+														<th scope="col">사이즈</th>
+														<th scope="col">엔터테이너</th>
+														<th scope="col">가격</th>
+														<th scope="col">할인률</th>
+														<th scope="col">등록일</th>
 													</tr>
 												</thead>
-												<tbody id="tbody2">
+												<tbody>
+													<tr th:each="pvo, status:${productList}">
+														<td>[[${pvo.prod_no}]]</td>
+														<td><a class="toDetail" th:href="@{productDetail(prod_no=${pvo.prod_no})}" style="text-decoration: none; color: teal">[[${pvo.prod_name}]]</a></td>
+														<td>[[${pvo.prod_type}]]</td>
+														<td>[[${pvo.prod_category}]]</td>
+														<td>[[${pvo.prod_sizetype}]]</td>
+														<td>[[${pvo.prod_artist}]]</td>
+														<td>[[${pvo.prod_price}]]</td>
+														<td>[[${pvo.prod_discount_rate}]]</td>
+														<td>[[${pvo.prod_regdate}]]</td>
+													</tr>
 												</tbody>
 											</table>
-
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<!-- end 부트스트랩 상품-->
+		<!-- 부트스트랩 앨범-->
+		<section class="intro listwrap">
+			<div class="bg-image h-100" style="background-color: #f5f7fa;">
+				<div class="mask d-flex align-items-center h-100">
+					<div class="container">
+						<div class="row justify-content-center">
+							<div class="col-12">
+								<div class="card">
+									<div class="card-body p-0">
+										<div>
+											<strong>앨범</strong>
+										</div>
+										<div class="table-responsive table-scroll"
+											data-mdb-perfect-scrollbar="true"
+											style="position: relative; height: 300px">
+											<table class="table table-striped mb-0 albumTable">
+												<thead style="background-color: #002d72; color: white;">
+													<tr>
+														<th scope="col">앨범번호</th>
+														<th scope="col">앨범타이틀</th>
+														<th scope="col">카테고리</th>
+														<th scope="col">버전</th>
+														<th scope="col">아티스트</th>
+														<th scope="col">가격</th>
+														<th scope="col">할인률</th>
+														<th scope="col">발매일</th>
+													</tr>
+												</thead>
+												<tbody>
+													<tr th:each="avo, status:${albumList}">
+														<td>[[${avo.album_no}]]</td>
+														<td><a class="toDetail" th:href="@{albumDetail(album_no=${avo.album_no})}" style="text-decoration: none; color: teal">[[${avo.album_title}]]</a></td>
+														<td>[[${avo.album_category}]]</td>
+														<td>[[${avo.album_version}]]</td>
+														<td>[[${avo.album_artist}]]</td>
+														<td>[[${avo.album_price}]]</td>
+														<td>[[${avo.album_discount_rate}]]</td>
+														<td>[[${avo.album_release_date}]]</td>
+													</tr>
+												</tbody>
+											</table>
 										</div>
 									</div>
 								</div>

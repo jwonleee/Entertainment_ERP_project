@@ -29,8 +29,7 @@ public class OrderController {
 	@Qualifier("orderService")
 	private OrderService orderService;
 
-	
-	
+
 	//목록화면
 	@GetMapping("/orderList")
 	public String orderList(HttpSession session, Model model, Criteria cri) {
@@ -46,7 +45,13 @@ public class OrderController {
 		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(user_id,cri);
 		model.addAttribute("orderList",orderList);
 		
+		//상품리스트 가져오기
+		ArrayList<ProductVO> productList=orderService.getProductList(cri);
+		model.addAttribute("productList",productList);
 		
+		//앨범리스트 가져오기
+		ArrayList<AlbumVO> albumList = orderService.getAlbumList(cri);
+		model.addAttribute("albumList",albumList);
 		
 		//페이징 처리
 		int total=orderService.getOrderTotal(user_id, cri);
@@ -61,9 +66,14 @@ public class OrderController {
 	@GetMapping("/orderDetail")
 	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
 		Admin_orderVO vo = orderService.getDetail(admin_order_no);
+		System.out.println(vo.toString());
 		model.addAttribute("vo",vo);
 		return "order/orderDetail";
 	}
+	
+	
+	
+	
 	
 	//추가발주
 	@PostMapping("/detailOrderReg")
@@ -91,13 +101,9 @@ public class OrderController {
 		return "order/orderReg";
 	}
 	
-	
+	//발주 form
 	@PostMapping("/registForm")
 	public String registForm(Admin_orderVO avo, AlbumVO alvo, ProductVO pvo, RedirectAttributes ra) {
-		//System.out.println(alvo.toString());
-		//System.out.println(pvo.toString());
-		//System.out.println(avo.toString());
-		
 		
 		int result=0;
 		String category=avo.getAdmin_order_category();
@@ -119,9 +125,5 @@ public class OrderController {
 			return "redirect:/order/orderReg";
 		}
 	}
-	
-	
-	
-	
 	
 }
