@@ -75,6 +75,14 @@
   		select * from admin_order where admin_order_no=#{admin_order_no}
   	</select>
   	
+  	<select id="getAlbum" resultType="AlbumVO">
+  		select * from album where album_no=#{admin_order_album_no}
+  	</select>
+  	
+  	<select id="getProduct" resultType="ProductVO">
+  		select * from product where prod_no=#{admin_order_album_no}
+  	</select>
+  	
   	<insert id="albumRegist" parameterType="AlbumVO">
   		insert into album(album_artist
   							,album_title

@@ -2,8 +2,7 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <!-- css -->
 <link rel="stylesheet" href="/css/admin_order/admin_orderList.css">
-<th:block
-	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	<div class="fragment">
 		<h3 style="text-align: center">여긴 상품 조회 페이지입니다.</h3>
 		<!-- 부트스트랩 -->
@@ -20,15 +19,19 @@
 											<strong>발주</strong>
 										</div>
 										<form action="orderList" method="get" name="actionForm">
-											<input type="hidden" name="amount" th:value="${pageVO.amount}"/>
+											<input type="hidden" name="amount" th:value="${pageVO.amount}" />
 											<div class="search_form">
-											<input type="text" id="handleSearchName" name="searchName" placeholder="상품명으로 검색 가능합니다." th:value="${pageVO.cri.searchName}"/>
-												<select id="handleType" name="searchContent" >
-													<option value="all" th:selected="${pageVO.cri.searchContent}=='all'">전체보기</option>
-													<option value="album" th:selected="${pageVO.cri.searchContent}=='album'">앨범발주</option>
-													<option value="product" th:selected="${pageVO.cri.searchContent}=='product'">상품발주</option>
-												</select>
-												<input type="submit" value="검색" />
+												<input type="text" id="handleSearchName" name="searchName"
+													placeholder="상품명으로 검색 가능합니다." th:value="${pageVO.cri.searchName}" />
+												<select id="handleType" name="searchContent">
+													<option value="all"
+														th:selected="${pageVO.cri.searchContent}=='all'">전체보기</option>
+													<option value="album"
+														th:selected="${pageVO.cri.searchContent}=='album'">앨범발주</option>
+													<option value="product"
+														th:selected="${pageVO.cri.searchContent}=='product'">상품발주
+													</option>
+												</select> <input type="submit" value="검색" />
 											</div>
 
 											<table class="table table-striped mb-0 orderTable">
@@ -48,9 +51,24 @@
 												<tbody>
 													<tr th:each="vo, status:${orderList}">
 														<td>[[${vo.admin_order_no}]]</td>
-														<td><a class="toDetail" th:href="@{orderDetail(admin_order_no=${vo.admin_order_no})}" style="text-decoration: none; color: teal;">[[${vo.admin_order_prod_name}]]</a></td>
-														<td th:if="${vo.admin_order_album_no!=0}">[[${vo.admin_order_album_no}]]</td>
-														<td th:if="${vo.admin_order_prod_no!=0}">[[${vo.admin_order_prod_no}]]</td>
+														<th:block th:if="${vo.admin_order_album_no!=0}">
+															<td>
+																<span class="toDetail"
+																	th:onclick="drawModal([[${vo.admin_order_album_no}]],[[${vo.admin_order_prod_no}]],[[${vo.admin_order_no}]])">[[${vo.admin_order_prod_name}]]</span>
+															</td>
+															<td>
+																[[${vo.admin_order_album_no}]]
+															</td>
+														</th:block>
+														<th:block th:if="${vo.admin_order_prod_no!=0}">
+															<td>
+																<span class="toDetail"
+																	th:onclick="drawModal([[${vo.admin_order_album_no}]],[[${vo.admin_order_prod_no}]],[[${vo.admin_order_no}]])">[[${vo.admin_order_prod_name}]]</span>
+															</td>
+															<td>
+																[[${vo.admin_order_prod_no}]]
+															</td>
+														</th:block>
 														<td>[[${vo.admin_order_category}]]</td>
 														<td>[[${vo.admin_order_prod_cnt}]]</td>
 														<td>[[${vo.admin_order_sizetype}]]</td>
@@ -63,59 +81,54 @@
 											<section class="pagination_section">
 												<div class="pagination">
 													<ul class="pages">
-														<li><a
-															th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
-															class="page_num"><svg
-																	xmlns="http://www.w3.org/2000/svg" width="16"
-																	height="16" fill="currentColor"
+														<li><a th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+																class="page_num"><svg xmlns="http://www.w3.org/2000/svg"
+																	width="16" height="16" fill="currentColor"
 																	class="bi bi-chevron-double-left size"
 																	viewBox="0 0 16 16">
-															<path fill-rule="evenodd"
+																	<path fill-rule="evenodd"
 																		d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-															<path fill-rule="evenodd"
+																	<path fill-rule="evenodd"
 																		d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-														</svg></a></li>
+																</svg></a></li>
 														<th:block th:if="${pageVO.prev}">
-															<li><a
-																th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
-																class="page_num"><svg
+															<li><a th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+																	class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
 																		class="bi bi-chevron-compact-left size"
 																		viewBox="0 0 16 16">
-																<path fill-rule="evenodd"
+																		<path fill-rule="evenodd"
 																			d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
-															</svg></a></li>
+																	</svg></a></li>
 														</th:block>
 														<th:block th:each="pageNum:${pageVO.pageList}">
-															<li><a
-																th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
-																th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a>
+															<li><a th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+																	th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a>
 															</li>
 														</th:block>
 														<th:block th:if="${pageVO.next}">
-															<li><a
-																th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
-																class="page_num"><svg
+															<li><a th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+																	class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
 																		class="bi bi-chevron-compact-right size"
 																		viewBox="0 0 16 16">
-																<path fill-rule="evenodd"
+																		<path fill-rule="evenodd"
 																			d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
-															</svg></a></li>
+																	</svg></a></li>
 														</th:block>
 														<li><a
-															th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"><svg
+																th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"><svg
 																	xmlns="http://www.w3.org/2000/svg" width="16"
 																	height="16" fill="currentColor"
 																	class="bi bi-chevron-double-right size"
 																	viewBox="0 0 16 16">
-															<path fill-rule="evenodd"
+																	<path fill-rule="evenodd"
 																		d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
-															<path fill-rule="evenodd"
+																	<path fill-rule="evenodd"
 																		d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
-														</svg></a></li>
+																</svg></a></li>
 													</ul>
 												</div>
 											</section>
@@ -130,124 +143,41 @@
 			</div>
 		</section>
 		<!-- end 부트스트랩 -->
-		<!-- 페이지네이션 -->
-
-		<!-- 부트스트랩 상품 -->
-		<section class="intro listwrap">
-			<div class="bg-image h-100" style="background-color: #f5f7fa;">
-				<div class="mask d-flex align-items-center h-100">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<div class="card">
-									<div class="card-body p-0">
-										<div>
-											<strong>상품</strong>
-										</div>
-										<div class="table-responsive table-scroll"
-											data-mdb-perfect-scrollbar="true"
-											style="position: relative; height: 300px">
-											<table class="table table-striped mb-0 productTable">
-												<thead style="background-color: #002d72; color: white;">
-													<tr>
-														<th scope="col">상품번호</th>
-														<th scope="col">상품명</th>
-														<th scope="col">상품타입</th>
-														<th scope="col">카테고리</th>
-														<th scope="col">사이즈</th>
-														<th scope="col">엔터테이너</th>
-														<th scope="col">가격</th>
-														<th scope="col">할인률</th>
-														<th scope="col">등록일</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="pvo, status:${productList}">
-														<td>[[${pvo.prod_no}]]</td>
-														<td><a class="toDetail" th:href="@{productDetail(prod_no=${pvo.prod_no})}" style="text-decoration: none; color: teal">[[${pvo.prod_name}]]</a></td>
-														<td>[[${pvo.prod_type}]]</td>
-														<td>[[${pvo.prod_category}]]</td>
-														<td>[[${pvo.prod_sizetype}]]</td>
-														<td>[[${pvo.prod_artist}]]</td>
-														<td>[[${pvo.prod_price}]]</td>
-														<td>[[${pvo.prod_discount_rate}]]</td>
-														<td>[[${pvo.prod_regdate}]]</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
+		<!-- modal -->
+		<section>
+			<div class="modal">
+				<div class="modal_content">
+					<div class="modal_wrap">
+						<h5>상세내용</h5>
+						<button class="modal_close">X</button>
+						<div class="modal_table">
+							<form>
+								<table class="detailTable">
+								</table>
+							</form>
+						</div>
+						<div class="btn_wrap"></div>
+						<div class="btn_area">
+							<input type="button" value="수정" id="modify_btn" class="btn" />
+							<input type="button" value="추가발주" id="additional_btn" class="btn" />
+							<input type="button" value="닫기" id="close_btn" class="btn" />
 						</div>
 					</div>
 				</div>
 			</div>
 		</section>
-		<!-- end 부트스트랩 상품-->
-		<!-- 부트스트랩 앨범-->
-		<section class="intro listwrap">
-			<div class="bg-image h-100" style="background-color: #f5f7fa;">
-				<div class="mask d-flex align-items-center h-100">
-					<div class="container">
-						<div class="row justify-content-center">
-							<div class="col-12">
-								<div class="card">
-									<div class="card-body p-0">
-										<div>
-											<strong>앨범</strong>
-										</div>
-										<div class="table-responsive table-scroll"
-											data-mdb-perfect-scrollbar="true"
-											style="position: relative; height: 300px">
-											<table class="table table-striped mb-0 albumTable">
-												<thead style="background-color: #002d72; color: white;">
-													<tr>
-														<th scope="col">앨범번호</th>
-														<th scope="col">앨범타이틀</th>
-														<th scope="col">카테고리</th>
-														<th scope="col">버전</th>
-														<th scope="col">아티스트</th>
-														<th scope="col">가격</th>
-														<th scope="col">할인률</th>
-														<th scope="col">발매일</th>
-													</tr>
-												</thead>
-												<tbody>
-													<tr th:each="avo, status:${albumList}">
-														<td>[[${avo.album_no}]]</td>
-														<td><a class="toDetail" th:href="@{albumDetail(album_no=${avo.album_no})}" style="text-decoration: none; color: teal">[[${avo.album_title}]]</a></td>
-														<td>[[${avo.album_category}]]</td>
-														<td>[[${avo.album_version}]]</td>
-														<td>[[${avo.album_artist}]]</td>
-														<td>[[${avo.album_price}]]</td>
-														<td>[[${avo.album_discount_rate}]]</td>
-														<td>[[${avo.album_release_date}]]</td>
-													</tr>
-												</tbody>
-											</table>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- end 부트스트랩 -->
-
 	</div>
 </th:block>
 <!-- js -->
 <script src="/js/admin_order/admin_orderList.js"></script>
 <script th:inline="javascript">
-//알람창 띄우기
-$(document).ready(()=>{
-   var msg=JSON.parse('[[${msg}]]'); 
-   if(msg!=null){
-    alert(msg);
-   }
-});
+	//알람창 띄우기
+	$(document).ready(() => {
+		var msg = JSON.parse('[[${msg}]]');
+		if (msg != null) {
+			alert(msg);
+		}
+	});
 </script>
+
 </html>

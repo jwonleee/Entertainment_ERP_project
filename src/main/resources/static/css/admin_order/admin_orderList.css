@@ -23,13 +23,14 @@
    margin: 50px 0; 
 }
 .toDetail{
-    color:black;
+    color:teal;
+    text-decoration: none;
 }
 
-
-/* ******* 주문 ******** */
-/* ******* 상품 ******** */
-
+.toDetail:hover{
+    color: red;
+    cursor: pointer;
+}
 
 /***********pagenation***********/
 .pagination_section{
@@ -66,9 +67,6 @@
     background-color: rgb(126, 126, 126);
 }
 
-/* .size{
-    padding-bottom: 5px;
-} */
 
 .page_num{
     height: 30px;
@@ -81,4 +79,116 @@
 .on{
     color:white;
 	background-color:#002d72;
+}
+
+/* 모달창 */
+ .modal{
+    width: 100%;
+	height: 100%;
+	background-color: rgba(0, 0, 0, 0.5);
+	top: 0;
+	left: 0;
+	display: none;
+} 
+
+.modal_content{
+    display: block;
+}
+
+.modal_wrap{ 
+    /*테스트용*/
+    border:1px solid #777;
+    width:50%;
+    height:100%;
+	background-color: white;
+    border-radius: 20px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    overflow-y:auto;
+} 
+
+.modal_wrap h5{
+    margin-top:20px;
+}
+
+.modal_wrap .modal_close{
+    position:absolute;
+	top:3px;
+	right:8px;		
+	text-decoration:none;
+	background-color:#fff;
+	font-weight:bold;
+	font-size: large;
+	padding: 10px 30px;
+	border: none;
+	cursor: pointer;
+}
+
+
+/* 테이블 */
+.modal_table{
+    /* border: 1px solid #777; */
+    padding: 20px;
+    text-align:center;
+}
+
+
+.modal_table .th{
+    padding: 25px;
+    border-right: 1px solid #777;
+    border-bottom: 1px solid #777;
+    box-shadow:0.5px 1px #777;
+}
+
+.modal_table th{
+    padding:30px 40px;
+    /* border-right: 1px solid #777; */
+    border-top: 1px solid #777;
+}
+
+.modal_table td{
+    padding: 25px;
+    border-top: 1px solid #777;
+}
+
+/* 이미지 */
+.modal_table img{
+    width:100px;
+    height: 100px;
+}
+
+/* 버튼 */
+.btn_wrap{
+    width: 60%;
+    border-top: 1px solid #777;
+}
+
+
+.btn_area{
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+#modify_btn{
+	border: 2px solid rgb(15, 119, 238);
+    color: rgb(15, 119, 238);
+}
+
+#additional_btn{
+    border: 2px solid green;
+    color: green;
+}
+
+#close_btn{
+    border: 2px solid red;
+    color: red;
+}
+
+.btn{
+    background-color: white;
+    border-radius: 20px;
+    padding: 2px;
+    margin: 5px;
 }

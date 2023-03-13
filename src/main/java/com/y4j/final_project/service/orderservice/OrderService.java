@@ -22,7 +22,11 @@ public interface OrderService {
 	public int adminProductmRegist(Admin_orderVO admvo); //상품일 때 관리자 판매 등록
 	
 	//상세조회,추가발주
-	public Admin_orderVO getDetail(String admin_order_no); //상세조회
+	public Admin_orderVO getDetail(String admin_order_no); //발주 상세조회
+	public AlbumVO getAlbum(String admin_order_album_no); //앨범 상세조회
+	public ProductVO getProduct(String admin_order_prod_no); //상품 상세조회
+	
+	
 	//public int updateOrder();//추가발주-업데이트
 	
 	
