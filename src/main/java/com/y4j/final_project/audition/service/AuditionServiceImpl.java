@@ -76,4 +76,14 @@ public class AuditionServiceImpl implements AuditionService{
 		return auditionMapper.getAudFile(vo);
 	}
 	
+	//오디션 1차 합격 처리
+	public int passFirstStage(int audition_cv_no) {
+		return auditionMapper.passFirstStage(audition_cv_no);
+	}
+
+	//오디션 1차 불합격 처리
+	public int failFirstStage(int audition_cv_no) {
+		return auditionMapper.failFirstStage(audition_cv_no);
+	}
+	
 }

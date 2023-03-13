@@ -27,4 +27,10 @@ public interface AuditionService {
 	//이미지 데이터 조회
 	public List<AuditionFileVO> getAudFile(AuditionVO vo);
 	
+	//오디션 1차 합격 처리
+	public int passFirstStage(int audition_cv_no);
+
+	//오디션 1차 불합격 처리
+	public int failFirstStage(int audition_cv_no);
+	
 }

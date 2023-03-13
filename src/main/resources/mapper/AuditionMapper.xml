@@ -77,6 +77,20 @@
 	<select id="getAudFile" resultType="AuditionFileVO">
 		select * from audition_cv_file where audition_cv_no = #{audition_cv_no}
 	</select>
+	
+	<!-- 오디션 1차 합격 처리 -->
+	<update id="passFirstStage">
+		update audition_cv
+		set audition_cv_progress = '2차'
+		where audition_cv_no = #{audition_cv_no}
+	</update>
+	
+	<!-- 오디션 1차 불합격 처리 -->
+	<update id="failFirstStage">
+		update audition_cv
+		set audition_cv_progress = '1차 불합격'
+		where audition_cv_no = #{audition_cv_no}
+	</update>
 
 
 </mapper>

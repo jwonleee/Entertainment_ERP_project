@@ -71,7 +71,8 @@ public class HomeController {
 	@GetMapping("/message")
 	public String message(HttpSession session, Model model) {
 		
-		session.setAttribute("user_id", "manager127");
+//		session.setAttribute("user_id", "manager127");
+		session.setAttribute("user_id", "abc123");
 		model.addAttribute("user_id", session.getAttribute("user_id"));
 		
 		int uncheckedMsgNum = messageService.getUncheckedMsg(session.getAttribute("user_id"));

@@ -61,8 +61,8 @@
 										<button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">지원서 보기</button>
 									</td>
 									<td>
-										<button type="button" class="approveBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >합격</button>
-										<button type="button" class="rejectBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >불합격</button>
+										<button type="button" class="passBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >합격</button>
+										<button type="button" class="failtBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >불합격</button>
 									</td>
 								</tr>
 								<input type="hidden" id="audition_cv_no" name="audition_cv_no" />
@@ -76,8 +76,7 @@
 					
 					<!-- Modal -->
 					<form action="audApplyForm" id="updateForm" class="audApplyForm" method="post" >
-						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-							aria-hidden="true">
+						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 								<div class="modal-content">
 									<div class="modal-header">

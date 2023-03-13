@@ -16,6 +16,8 @@ function changeDateFormat(regdate) {
 // 모달 내부 내용 생성 및 열기
 $(".showModal").click(function (e) {
 
+  $(".modal-body-inner").remove();
+
   var admin_no = $(this).parent().prev().prev().prev().prev().html();
 
   $.ajax({
@@ -107,7 +109,7 @@ $(".showModal").click(function (e) {
       str += '<input type="text" class="form-control" id="inputEmail2" value=' + changeDateFormat(vo.admin_regdate) + ' readonly>';
       str += '</div>';
       str += '</div>';
-      str += '</div>';
+      str += '<div class="modal-body-inner">';
 
       $(".modal-body").append(str);
     },
@@ -151,3 +153,6 @@ $("#updateBtn").on("click", function () {
 //   });
 // });
 
+$('#exampleModal').modal(
+  { keyboard: false }
+);
