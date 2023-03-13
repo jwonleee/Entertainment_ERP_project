@@ -100,3 +100,25 @@ a {
   height: 32px;
   line-height: 16px;
 }
+
+.modal {
+  text-align: left;
+}
+
+.upload-display {
+  display: block;
+  width: 360px;
+}
+
+.audImgFile1, .audImgFile2 {
+  display: inline-block;
+  width: 360px;
+  height: 450px;
+  margin-bottom: 10px;
+}
+
+.vid-outer {
+  width: 540px;
+  height: 350px;
+}
+

@@ -72,6 +72,11 @@
 	<select id="getAudCv" resultType="AuditionVO">
 		select * from audition_cv where audition_cv_no = #{audition_cv_no}
 	</select>
+	
+	<!-- 오디션 지원서 내 특정 지원자 사진 및 영상 가져오기 -->
+	<select id="getAudFile" resultType="AuditionFileVO">
+		select * from audition_cv_file where audition_cv_no = #{audition_cv_no}
+	</select>
 
 
 </mapper>

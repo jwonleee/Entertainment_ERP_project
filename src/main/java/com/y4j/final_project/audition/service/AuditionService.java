@@ -25,6 +25,6 @@ public interface AuditionService {
 	public AuditionVO getAudCv(int audition_cv_no);
 	
 	//이미지 데이터 조회
-	public List<AuditionFileVO> getProductImg(AuditionVO vo);
+	public List<AuditionFileVO> getAudFile(AuditionVO vo);
 	
 }

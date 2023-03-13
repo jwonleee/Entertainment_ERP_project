@@ -1,6 +1,7 @@
 package com.y4j.final_project.controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,6 +15,7 @@ import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.audition.service.AuditionService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.AuditionFileVO;
 import com.y4j.final_project.command.AuditionVO;
 import com.y4j.final_project.command.MessageVO;
 import com.y4j.final_project.message.service.MessageService;
@@ -105,6 +107,12 @@ public class AjaxController {
 		return auditionService.getAudCv(vo.getAudition_cv_no());
 	}
 	
+	//특정 지원서 파일 정보 반환
+	@PostMapping("/getAudFile")
+	public List<AuditionFileVO> getAudFile(@RequestBody AuditionVO vo) {
+		
+		return auditionService.getAudFile(vo);
+	}
 	
 	
 	

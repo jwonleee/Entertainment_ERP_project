@@ -44,7 +44,7 @@
 		select * from users where user_id = #{user_id}
 	</select>
 	
-	<!-- 관리자 권한 리스트에서 모달을 통한 권한 변경 -->
+	<!-- 일반 회원 정보 수정 -->
   	<update id="updateUserInfo" parameterType="UserVO">
 		update users
 		set user_contact = #{user_contact}, user_address = #{user_address}, user_email = #{user_email}

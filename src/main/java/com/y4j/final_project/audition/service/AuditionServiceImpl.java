@@ -72,8 +72,8 @@ public class AuditionServiceImpl implements AuditionService{
 	}
 
 	//이미지 데이터 조회
-	public List<AuditionFileVO> getProductImg(AuditionVO vo) {
-		return auditionMapper.getProductImg(vo);
+	public List<AuditionFileVO> getAudFile(AuditionVO vo) {
+		return auditionMapper.getAudFile(vo);
 	}
 	
 }
