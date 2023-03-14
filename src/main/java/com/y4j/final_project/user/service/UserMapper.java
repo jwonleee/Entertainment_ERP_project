@@ -22,16 +22,19 @@ public interface UserMapper {
 	//유저 정보 수정 메서드
 	public int updateUser(UserVO vo);
 	
-	//전체 데이터 수 반환 메서드
-	public int getUserTotal(Criteria cri);
-	
 	//아이디 중복 검사
 	public int idCheck(String user_id);
 	
 //	//유저 로그인
 //	public int getUserAccount(UserVO vo);
 
+	//전체 유저 수 반환 메서드
+	public int getUserTotal(Criteria cri);
 	
-
+	//유저 특정 1명 데이터 반환 메서드
+	public UserVO getUserInfo(int user_no);
+	
+	//유저 특정 1명 데이터 반환 메서드
+	public UserVO getUserInfo2(Object user_id);
 	
 }

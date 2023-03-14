@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
 
-<!-- css -->
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -14,6 +13,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+<!-- css -->
+ <link rel="stylesheet" href="/css/product_page/product_page.css">
 
 <style>
 	html,
@@ -54,11 +56,9 @@
 	<div class="fragment">
 
 
-
 		<!-- 스와이퍼 -->
-
 		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
-		<swiper-container class="mySwiper" autoplay="true" autoplay-delay="4000" space-between="30" loop="true" speed="1600" style="margin-top: 50px;">
+		<swiper-container class="mySwiper" autoplay="true" autoplay-delay="4000" space-between="30" loop="true" speed="1600" style="margin-top: 70px;">
 			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/lisa_swiper.jpg" /></swiper-slide>
 			<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_album_swiper.jpg" /></swiper-slide>
 		</swiper-container>
@@ -67,7 +67,7 @@
 		<div style="position: relative;" >
 
 			<!-- what's hot 뭐가 핫하뉘 -->
-				<div class="hotTitle" style="font-family: 'Noto Rashi Hebrew', serif; font-size: 70px; line-height: 100px; display: flex; flex-direction: column; font-style: italic;">
+				<div class="hotTitle" style="font-family: 'Noto Rashi Hebrew', serif; font-size: 70px; line-height:80px; display: flex; flex-direction: column; font-style: italic;">
 					<span >WHAT'S</span>
 					<span>HOT</span>
 				</div>
@@ -169,78 +169,120 @@
 						<span style="font-size: 15px; font-weight: 500; margin-left: 10px;">아름다운 모습들이 가득한 앨범</span>
 					</div>
 				</div>
-			
-			
-			
-			</div>
+		</div>
 			
 			 <!-- If we need navigation buttons -->
 			  <div class="swiper-button-prev"></div>
 			  <div class="swiper-button-next"></div>
 		</div>
-
-		<!-- 모든 상품 나열 -->
-		<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 150px; margin-bottom:'50px'">
-			
-			<div style="display: flex; flex-direction: column;">
-				<span style="font-family: 'Noto Rashi Hebrew', serif; font-size: 30px; margin-bottom: 10px; font-weight: 900; font-style: italic;">ABOUT GOODS</span>
-				<span style="font-family: 'Nanum Gothic', sans-serif; font-size: 15px;">굿즈의 세계</span>
-			</div>
-
-			<div class="allProduct">
-				<div style="position: relative;">
-					<div>
-						<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg"/>
-					</div>
-				<!-- 	<div>
-						<div class="product_content">
-							<span>상품명</span>
-							<span>가격</span>
-						</div>
-					</div> -->
-				</div>
+		
+		
+		<div  class="celebGoods_wrap"><!-- 여기도 데이터베이스로 끌고와야 함 -->
+			<div class="celebGoods_box1"><!-- 셀러브리티 굿즈 -->
 				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth4.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album3.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth3.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth2.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth5.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth7.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_cloth6.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album2.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_slogan.jpg"/>
-				</div>
-				<div>
-					<img  style="width: 200px; height: 200px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/jisoo_album_2.jpeg"/>
+					<span>Celebrity's Goods</span>
 				</div>
 				
+				<!-- 셀럽 굿즈 파트에서 반복될 부분 -->
+				<ul class="celebGoods_box2" >
+					<li style="margin-right: 10px" >
+						<a th:href="@{/product/BLACKPINK}" > <!-- 연예인 별 상품 페이지로 이동 -->
+							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_all.jpeg"/>
+						</a>	
+					</li>
+					<li style="margin-right: 10px">
+						<a th:href="@{/product/IVE}" > <!-- 연예인 별 상품 페이지로 이동 -->
+							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_all.jpeg"/>
+						</a>	
+					</li>
+					<li>
+						<a th:href="@{/product/NEWJEANS}" > <!-- 연예인 별 상품 페이지로 이동 -->
+							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/newjeans_main.jpg"/>
+						</a>	
+					</li>
+					<br/>
+					<ul style="display: flex; justify-content: center; margin-top: 30px;">
+						<li style=" margin-right: 10px">
+							<a th:href="@{/product/CHAESOOBIN}" > <!-- 연예인 별 상품 페이지로 이동 -->
+								<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/soobin_main.jpg"/>
+							</a>	
+						</li>
+						<li>
+							<a th:href="@{/product/LEEDOHYUN}" > <!-- 연예인 별 상품 페이지로 이동 -->
+								<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/dohyun_main.jpg"/>
+							</a>	
+						</li>
+					</ul>
+				</ul>
+			</div>
+		</div>
+		
+		
+		
+
+		<!-- 모든 상품 나열: 페이지네이션과 카테고리? -->
+		<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 150px; margin-bottom:'50px'">
 			
+			<div style="display: flex; flex-direction: column;" class="about_goods">
+				<span style="font-family: 'Noto Rashi Hebrew', serif; font-size: 30px; margin-bottom: 10px; font-weight: 900; font-style: italic;">About Goods</span>
+				<span style="font-family: 'Nanum Gothic', sans-serif; font-size: 15px;">굿즈의 세계</span>
+			</div>
+		</div>
+		<div class="product_classfication_box">
+			<div class="product_classfication">
+				<span style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+				<span>최신순</span>
 			</div>
 		</div>
 
-
-	</div>
+		<div class="allProduct">
+			<!-- 전체 상품 -->
+			<ul class="allProduct_list" th:each="vo: ${list}">
+				<li>
+					<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>		
+				</li>
+			</ul>
+			
+			<!-- 최신순 목록 -->
+			<ul class="allProduct_list1" th:each="vo1: ${list1}">
+				<li >
+					<img style="width: 230px; height: 230px;" th:src="@{${vo1.prod_img_path}}"/>
+				</li>					
+			</ul>
+			
+<!-- 
+			<div class="page">
+				<ul>
+					<li><a th:href="@{productList(page=1, amount=${pageVO.amount} )}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
+					
+					<th:block th:if="${pageVO.prev}">
+					<li style="margin-right:5px;">
+						<a th:href="@{productList(page=${pageVO.start - 1}, amount=${pageVO.amount} )}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
+					</th:block>
+					
+					<th:block th:each="page : ${pageVO.pageList}">
+					<li th:class="${page == pageVO.page ? 'on' : ''}">
+						<a th:href="@{productList(page=${page}, amount=${pageVO.amount} )}">[[${page}]]</a>
+					</li>
+					</th:block>
+					
+					<th:block th:if="${pageVO.next}">
+					<li style="margin-left:5px;">
+						<a th:href="@{productList(page=${pageVO.end + 1}, amount=${pageVO.amount} )}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+					</li>
+					</th:block>
+					
+					<li><a th:href="@{productList(page=${pageVO.realEnd}, amount=${pageVO.amount} )}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
+				</ul>
+			</div>
+										 -->
+			
+			</div>
+	
+		</div>
 	</div>
 </th:block>
+<script type="text/javascript" src="/js/product_detail/product_page.js"></script>
 <script>
 
 	const swiper = new Swiper('.swiper', {

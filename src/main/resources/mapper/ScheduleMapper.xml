@@ -4,7 +4,7 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
  <mapper namespace="com.y4j.final_project.schedule.service.ScheduleMapper">
-
+	
 	<insert id="regist" parameterType="ScheduleVO">
 		insert into SCHEDULE(schedule_start_time,
 							 schedule_end_time,
@@ -21,9 +21,8 @@
     		   #{schedule_location},
     		   #{schedule_content})
 	</insert>
-	
+	<!-- schedule_no 받아서 맵핑테이블 insert -->
 	<insert id="registMap">
-		
 		<selectKey keyProperty="schedule_no" order="BEFORE" resultType="int">
 			select LAST_INSERT_ID() as schedule_no
 		</selectKey>
@@ -34,14 +33,30 @@
 			   #{schedule_no})
 	</insert>
 	
+	<!-- 그룹, 이름  -->
 	<select id="getEntType" resultType="EntertainerVO">
 		select DISTINCT(ent_group_name) from ENTERTAINER where ent_type = #{ent_type}
 	</select>
-	
 	<select id="getEntType2" resultType="EntertainerVO">
 		select ent_name from ENTERTAINER where ent_type = #{ent_type}
 	</select>
-
+	
+	<!-- 권한 user 설정 & 검색 설정 안함 -->
+	<!-- 일정 전체 개수 -->
+	<select id="getScheduleTotal" resultType="int">
+		select count(*) as total from `schedule`
+	</select>
+	
+	<!-- 오늘 일정 개수 -->
+	<select id="getTodayScheduleCnt" resultType="int">
+		select count(*) as todayCnt
+		from schedule
+		where date(now())
+			between date(schedule_start_time)
+			and date(schedule_end_time)
+	</select>
+	
+	<!-- 일정 리스트 -->
 	<select id="getList" resultType="ScheduleVO">
 		select s.schedule_no,
 			   s.schedule_start_time,
@@ -56,12 +71,72 @@
 			on es.schedule_no = s.schedule_no
 		left join ENTERTAINER e
 			on es.ent_name = e.ent_name
-		order by s.schedule_no desc;
+		<where>
+			<if test="searchContent != null and searchContent != ''">
+			      and s.schedule_ent_name like concat('%', #{searchContent}, '%')
+			</if>
+		</where>
+		order by s.schedule_no desc
+		limit #{pageStart}, #{amount}	
 	</select>
 	
-	<select id="detail" resultType="ScheduleVO" parameterType="int">
-		select * from SCHEDULE where schedule_no = #{schedule_no};
+	<!-- 일정 상세 -->
+	<select id="getDetail" resultType="ScheduleVO">	
+		select s.schedule_no,
+			   s.schedule_start_time,
+			   s.schedule_end_time,
+			   s.schedule_writer,
+			   s.schedule_type,
+			   s.schedule_ent_name,
+			   s.schedule_location,
+			   s.schedule_content,
+	   		   es.ent_name,
+	   		   e.ent_type
+		from `schedule` s
+		left join entertainer_schedule es
+			on es.schedule_no = s.schedule_no
+		left join entertainer e
+			on es.ent_name = e.ent_name
+		where s.schedule_no = #{schedule_no}
+		order by s.schedule_no desc
 	</select>
 
+	<!-- 일정 수정 화면 -->	
+	<select id="getModifyForm" resultType="scheduleVO">
+		select s.schedule_no,
+			   s.schedule_start_time,
+			   s.schedule_end_time,
+			   s.schedule_writer,
+			   s.schedule_type,
+			   s.schedule_ent_name,
+			   s.schedule_location,
+			   s.schedule_content,
+	   		   es.ent_name
+		from `schedule` s
+		left join entertainer_schedule es
+			on es.schedule_no = s.schedule_no
+		where s.schedule_no = #{schedule_no}
+	</select>
 
+	<!-- 일정 수정 기능 -->
+	<update id="scheduleModify" parameterType="ScheduleVO">
+		update SCHEDULE
+		set schedule_start_time = #{schedule_start_time},
+			schedule_end_time = #{schedule_end_time},
+		    schedule_type = #{schedule_type},
+		    schedule_ent_name = #{schedule_ent_name},
+			schedule_location = #{schedule_location},
+			schedule_content = #{schedule_content}
+		where schedule_no = #{schedule_no}
+	</update>
+	
+	<!-- 일정 삭제 -->
+	<delete id="scheduleDelete">
+		delete s, es
+		from `SCHEDULE` as s
+		left join ENTERTAINER_SCHEDULE as es
+		on s.schedule_no = es.schedule_no
+		where s.schedule_no = #{schedule_no}
+	</delete>
+	
 </mapper>

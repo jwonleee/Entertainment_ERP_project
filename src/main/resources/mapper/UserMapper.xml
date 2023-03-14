@@ -15,8 +15,9 @@
 		select count(*) from users
 		where user_name like concat('%', #{searchValue}, '%')
 	</select>
+
 	
-	<insert id="registUser" parameterType="UserVO">
+	<insert id="registUser" parameterType="com.y4j.final_project.command.UserVO">
 		insert into users(
 			user_id,
 			user_pw,
@@ -28,7 +29,6 @@
 			user_address2,
 			user_email,
 			user_gender)
-			
 		values(
 			#{user_id},
 			#{user_pw},
@@ -42,7 +42,8 @@
 			#{user_gender})
 	</insert>
 	
-	<update id="updateUser"  parameterType="UserVO" >
+  
+	<update id="updateUser" parameterType="UserVO" >
 		update users set 
 			user_pw = #{user_pw},
 			user_pw2 = #{user_pw2},
@@ -52,9 +53,11 @@
 			user_address = #{user_address},
 			user_address2 #{user_address2},
 			user_email = #{user_email},
-			user_gender = #{user_gender})	
+			user_gender = #{user_gender}
+    where user_id = #{user_id}
 	</update>
 	
+  
 	<select id="idCheck" parameterType="String" resultType="int">
 		select count(user_id) from users WHERE user_id= #{user_id}
 	</select>
@@ -63,4 +66,25 @@
 		select user_id, user_pw from users where user_id = #{user_id};
 	</select>
 	
+	<select id="getUserList" resultType="UserVO">
+		select * from users
+		where user_name like concat('%', #{searchValue}, '%')
+  		order by user_no desc limit #{pageStart}, #{amount}
+	</select>
+	
+	<select id="getUserTotal" resultType="Integer">
+		select count(*) from users
+		where user_name like concat('%', #{searchValue}, '%')
+	</select>
+	
+	<!-- 유저 특정 1명 데이터 반환 메서드 -->
+	<select id="getUserInfo" resultType="UserVO">
+		select * from users where user_no = #{user_no}
+	</select>
+	
+	<select id="getUserInfo2" resultType="UserVO">
+		select * from users where user_id = #{user_id}
+	</select>
+	
+
 </mapper>

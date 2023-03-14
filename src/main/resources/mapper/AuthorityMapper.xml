@@ -58,6 +58,4 @@
 		where authority_mng_no = #{authority_mng_no}
   	</update>
   	
-  	
-  	
  </mapper>

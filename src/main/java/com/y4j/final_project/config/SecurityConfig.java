@@ -1,7 +1,7 @@
 package com.y4j.final_project.config;
 
-import javax.servlet.DispatcherType;
 
+import javax.servlet.DispatcherType;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.AbstractRequestMatcherRegistry;
@@ -17,7 +17,7 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	@Bean
 	public PasswordEncoder getPasswordEncoder() {
 		return new BCryptPasswordEncoder();
@@ -49,13 +49,7 @@ public class SecurityConfig {
 //				.antMatchers("/**", "/user/**").permitAll()    // 로그인, 회원가입, 메인 , 상품페이지, 연예인소개 페이지는 인증 x
 //				.anyRequest().authenticated(); // 그 외의 페이지는 인증 필요
 			
-
 			return http.build();
 	}
-	
-//	public void configure(WebSecurity web) throws Exception {
-//        web.ignoring().antMatchers("/static/js/**","/static/css/**", "/");
-//    }
-	
 	
 }

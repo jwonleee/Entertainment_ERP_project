@@ -2,11 +2,10 @@
 a {text-decoration: none;}
 img {max-width: 100%; height: auto;}
 
-
+/*********** 상위 검색 부분 ***********/
 .search_wrap {
     overflow: hidden;
     width: 1080px;
-    /* 여기 맞춰서 바꾸기 */
     margin: -10px;
 }
 
@@ -49,14 +48,21 @@ img {max-width: 100%; height: auto;}
 }
 
 .search_right .title_search .search_btn {
-    float: right;
-    width: 55px;
-    background-color: #fee192;
-    border: 1px solid #464646;
+  float: right;
+  width: 55px;
+  background-color: #fee192;
+  border: 1px solid #938767;
 }
 
-.search_right .title_search .search_btn:hover { background-color: #ffffff;
-    border: 1px solid #464646;}
+.search_right .title_search .search_btn:hover {
+  background-color: #fff;
+  border: 1px solid #707070;
+}
+
+.custom_btn {
+  padding: 6px 35px !important;
+  margin: 0px 5px;
+}
 
 .search_right .today_count {
     float: left;
@@ -75,7 +81,7 @@ img {max-width: 100%; height: auto;}
     float: left;
 }
 
-/* calendar */
+/*********** calendar 틀 ***********/
 html, body {
     box-sizing: border-box;
     padding: 0;
@@ -92,7 +98,7 @@ html, body {
     float: none;
   }
   
-  /* ======== Calendar ======== */
+/*********** mycalendar ***********/
   .my-calendar {
     width: 250px;
     text-align: center;
@@ -183,7 +189,7 @@ html, body {
     background: #FFC107;
   }
 
-/* 여기 아래는 했음 */
+/*********** table (수정) ***********/
 .table_wrap {
     overflow: hidden;
     text-align: center;
@@ -205,17 +211,16 @@ html, body {
 }
 
 .table_right .write_btn {
-    /* background-color: #fad390; */
     background-color: #fee192;
-    border: 1px solid #464646;
+    border: 1px solid #938767;
     margin-top: 15px;
 }
 
 .table_right .write_btn:hover {
-    border: 1px solid #464646;
+    border: 1px solid #707070;
 }
 
-/* 스와이퍼 */
+/*********** swiper ***********/
 .mySwiper {
     width: 100%;
 }
@@ -272,7 +277,7 @@ swiper-container {
 }
 
 
-/***********테이블***********/
+/*********** 테이블 ***********/
 
 .intro {
   height: 100%;
@@ -301,6 +306,10 @@ thead th {
   font-size: 1.25rem;
 }
 
+.table_corner {
+  border-radius: 0px;
+}
+
 .table_corner table thead th {
   text-align: center;
   font-size: 16px;
@@ -323,15 +332,37 @@ thead {
     text-align: center;
 }
 
+.table .schdule_location {
+  max-width:105px;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
 .table .schedule_ent_name {
     text-align: left;
-    max-width:309px;
-    overflow:hidden;
-    text-overflow:ellipsis;
+    min-width: 298px;
+    max-width: 298px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#title {
+  cursor:pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+#title:hover {
+  color: tomato;
+}
+
+.table_line {
+    border: none !important;
+    border-width: none !important;
 }
 
 
-/***********pagenation***********/
+/*********** pagenation ***********/
 .pagination_section{
     text-align: center;
 }

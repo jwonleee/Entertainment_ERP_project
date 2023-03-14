@@ -36,12 +36,6 @@ public class AdminController {
 		return "admin/admin_join";
 	}
 	
-	@GetMapping("/admin_join2")
-	public String admin_join2() {
-		
-		return "admin/admin_join2";
-	}
-	
 	@GetMapping("/admin_home")
 	public String admin_home() {
 		
