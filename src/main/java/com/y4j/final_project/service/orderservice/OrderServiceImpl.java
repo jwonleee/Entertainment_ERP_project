@@ -65,6 +65,26 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getCategoryChild(vo);
 	}
 
+	@Override
+	public ArrayList<ProductVO> getProductList(Criteria cri) {
+		return orderMapper.getProductList(cri);
+	}
+
+	@Override
+	public ArrayList<AlbumVO> getAlbumList(Criteria cri) {
+		return orderMapper.getAlbumList(cri);
+	}
+
+	@Override
+	public AlbumVO getAlbum(String admin_order_album_no) {
+		return orderMapper.getAlbum(admin_order_album_no);
+	}
+
+	@Override
+	public ProductVO getProduct(String admin_order_prod_no) {
+		return orderMapper.getProduct(admin_order_prod_no);
+	}
+
 
 
 
