@@ -23,7 +23,6 @@ public class WebConfig implements WebMvcConfigurer{
 		return new MenuHandler();
 	}
 	
-	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
 		/*
@@ -36,9 +35,41 @@ public class WebConfig implements WebMvcConfigurer{
 				.excludePathPatterns("/user/login", "/user/join");
 		*/
 		
+//		registry.addInterceptor(userAuthHandler())
+//		.addPathPatterns("/main")
+//		.excludePathPatterns("/product/*")
+//		.excludePathPatterns("/user/*")
+//		.excludePathPatterns("/user/login")
+//		.excludePathPatterns("/user/join");
+
+//		registry.addInterceptor(userAuthHandler())
+//		.addPathPatterns("/**")
+//		.excludePathPatterns("/user/login")
+//		.excludePathPatterns("/user/join")
+//		.excludePathPatterns("/js/*")
+//		.excludePathPatterns("/css/*")
+//		.excludePathPatterns("/img/*");
+		//REST API 패스에서 제외도 고려해야함
+		
+		
+//		registry.addInterceptor(userAuthHandler())
+//		.addPathPatterns("/**")
+//		.excludePathPatterns("/user/user_login")
+//		.excludePathPatterns("/user/user_join")
+//		.excludePathPatterns("/entertainment/ent_list")
+//		.excludePathPatterns("/product/product_list")
+//		.excludePathPatterns("/user/kakao")
+//		.excludePathPatterns("/js/*")
+//		.excludePathPatterns("/css/*");
+		
+		
 		registry.addInterceptor(menuHandler())
 				.addPathPatterns("/authority/*", "/audition/*");
 		
+		
+		
 	}
+	
+	
 	
 }

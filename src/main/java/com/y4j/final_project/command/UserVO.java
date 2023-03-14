@@ -44,14 +44,21 @@ public class UserVO {
 	private String user_name;
 	
 	@NotBlank (message = "휴대전화를 입력하세요")
-	/* @Pattern (regexp = "(?=.*[0-9]).{1,4}", message = "휴대번호를 정확히 입력하세요") */
+	@Pattern (regexp = "(?=.*[0-9]).{3,4}", message = "휴대번호를 정확히 입력하세요")
 	private String user_contact;
+	
+	@NotBlank (message = "휴대전화를 입력하세요")
+	@Pattern (regexp = "(?=.*[0-9]).{3,4}", message = "휴대번호를 정확히 입력하세요")
+	private String user_contact2;
 	
 	@NotBlank (message = "주소를 입력하세요")
 	private String user_address;
 	
+	private String user_address2;
+	
 	@NotBlank(message = "이메일을 입력하세요")
 	@Email(message = "이메일 형식으로 입력하세요")
+	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]{4,10}+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
 	private String user_email;
 	
 	@NotBlank (message = "성별을 선택하세요")
