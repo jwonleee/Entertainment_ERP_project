@@ -1,0 +1,359 @@
+*{font-family: 'Nanum Gothic', sans-serif; font-size: 13px;}
+
+.buyMain{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.buyTable{
+	width: 890px;
+	height:auto;	
+	border-left: 1px solid rgba(5, 3, 3, 0.248);
+	border-right: 1px solid rgba(5, 3, 3, 0.248);
+}
+
+/* 탑화면 */
+.logo{
+	height: 80px;
+	overflow: hidden;
+	position: relative;
+}
+
+
+.logo .next_icon {
+	margin-right: 30px;
+	float:left;
+	margin-left: 10px;
+}
+
+.logo .logo_img{
+	width: 80px;
+	height: 50px;
+	position: absolute;
+	top:10px;
+	left:410px;
+
+}
+
+/* 탑화면 아이콘 */
+
+.next_icon{
+	position: absolute;
+	top:20px;
+	left:0;
+}
+
+.next_icon img{
+	width:35px;
+	height:35px;
+
+}
+
+
+.logo_icon{
+	float:right;
+	display: flex;
+	flex-direction: row;
+	margin-right: 24px;
+	position: absolute;
+	top:25px;
+	right:0;
+
+}
+
+.logo_icon img{
+	width:25px;
+	height:25px;
+	margin-left: 16px;
+}
+
+/* 주문 결제 */
+.orderTop{
+	width: 890px;
+	height: 60px;
+	background-color:rgba(5, 3, 3, 0.748);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.orderTop span{
+	color: white;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 14px;
+	
+}
+
+
+/* 주문자 정보 css */
+.orderer_info_box{
+	padding:20px 20px;
+	line-height: 45px;
+	
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.orderer_info{
+	display: flex;
+	flex-direction: row;
+}
+
+.orderer_info_column {
+	font-weight: 600;
+}
+
+
+.orderer_realInfo{
+	display: flex;
+	flex-direction: column;
+	margin-left: 80px;
+}
+
+/* 배송지 정보 */
+
+.shipping_address_wrap {
+	padding:35px 40px;
+	line-height: 45px;
+	font-weight: 600;
+	border-top: 1px solid rgba(5, 3, 3, 0.248);
+	border-bottom: 1px solid rgba(5, 3, 3, 0.248);
+	
+}
+
+.shipping_address_box{
+	width: 100%;
+}
+
+
+.shipping_check span{
+	margin : 0 10px;
+	
+	
+}
+
+
+.shipping_address{
+	display: flex;
+	flex-direction:row;
+}
+
+.shipping_real_address{
+	margin-left: 60px;
+}
+
+.shipping_real_address #receiver{
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 670px;
+	height: 23px;
+	padding:5px;
+}
+
+.shipping_real_address #address{
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 670px;
+	height: 23px;
+	padding:5px;
+	font-size: 12px;
+}
+
+
+.shipping_address_content .address_btn1{
+	padding: 8px;
+	width: 80px;
+	height: 19px;
+	border: 1px solid rgba(5, 3, 3, 0.228);
+	font-size: 12px;
+}
+
+
+.shipping_address_content .address_btn2{
+	padding: 7px;
+	background-color: rgba(5, 3, 3, 0.128);
+	border: 1px solid gray;
+	border-radius: 0;
+	width: 70px;
+	height:37px;
+	font-size: 12px;
+}
+
+
+.phone_wrap{
+	display: flex;
+	flex-direction: row;
+	
+}
+
+.phone_option{
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 210px;
+	height: 33px;
+	padding:5px;
+	margin-right: 5px;
+}
+
+.phone_option option{
+	background-color: rgba(0, 0, 0, 0.721);
+	color:white;
+}
+
+
+.phone_input input{
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 210px;
+	height: 23px;
+	padding:5px;
+}
+
+.shipping_msg{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-top: 25px ;
+	padding-bottom:25px;
+	border-bottom: 1px solid  rgba(5, 3, 3, 0.228);
+}
+
+.shipping_msg select{
+	width: 860px;
+	height:38px;
+	padding:5px;
+	border: 1px solid  rgba(5, 3, 3, 0.328);
+}
+
+.shipping_msg select option{
+	background-color: rgba(0, 0, 0, 0.721);
+	color:white;
+	/* padding:3px;
+	border-bottom: 1px solid  white;
+	width: 400px; */
+}
+
+
+/* 주문 상품 정보  */
+.order_product_wrap{
+	display: flex;
+	flex-direction: column;
+	padding:35px 40px;
+	line-height:20px;
+	font-weight: 600;
+	
+}
+
+.order_product_box{
+	margin-top:30px;
+	display: flex;
+	flex-direction: row;
+}
+
+.order_product{
+	display: flex;
+	flex-direction: column;
+	margin-left: 30px;
+}
+
+.shipping_cost{
+	background-color: rgba(16, 5, 5, 0.039);
+	overflow: hidden;
+	height:45px;
+	line-height: 45px;
+}
+
+
+.shipping_cost #shipping_cost_name{
+	float:left;
+	margin-left: 20px;
+	font-weight: 600;
+}
+
+.shipping_cost #shipping_real_cost{
+	float:right;
+	margin-right: 20px;
+}
+
+
+/* 결제 정보 */
+.payment_info_wrap{
+	display: flex;
+	flex-direction: column;
+	padding:30px 35px;
+	line-height:30px;
+	font-weight: 600;
+}
+
+.payment_info_box{
+	overflow: hidden;
+	margin-left: 5px;
+}
+
+.payment_info_left{
+	float:left;
+}
+
+.payment_info_right{
+	float:right;
+}
+
+
+.payment_info_box1{
+	background-color: rgba(16, 5, 5, 0.039);
+	overflow: hidden;
+	height:45px;
+	line-height: 45px;
+	font-weight: 600;
+}
+
+.payment_info_box1 .payment_info_left{
+	margin-left: 20px;
+}
+
+.payment_info_box1 .payment_info_right{
+	margin-right: 20px;
+	font-size: 14px;
+}
+
+.payment_method_box{
+	display: flex;
+	flex-direction: column;
+	padding:30px 35px;
+	line-height:30px;
+	font-weight: 600;
+}
+
+
+.payment_method{
+	display: flex;
+	flex-direction: column;
+	line-height: 39px;
+	margin-bottom: 10px;
+}
+
+.payment_method_box ul {
+	width: 800px;
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	
+}
+
+
+.payment_method_box ul li{
+	border-bottom: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 760px;
+	height: 30px;
+	line-height: 30px;
+	padding: 10px 20px;
+	cursor: pointer;
+	
+}
+
+#buy_button{
+	width: 100%;
+	background-color: black;
+	color:white;
+	height:50px;
+	line-height: 50px;
+	
+	
+}

@@ -2,10 +2,7 @@
 a {text-decoration: none;}
 img {max-width: 100%; height: auto;}
 
-/* #contents {
-    width: 1080px;
-    
-} */
+
 
 .hotTitle{
     margin: 120px 0;
@@ -55,26 +52,174 @@ img {max-width: 100%; height: auto;}
   background-position: left bottom !important;
 } 
 
-/* 상품 목록 css */
-.allProduct{
-  width: 1080px;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
-  align-items: center;
-  align-content: center;
-  margin-top: 30px;
+
+/* 셀럽 별 상품 모음 */
+
+.celebGoods_wrap{
+	margin-top: 170px;
+
 }
 
-.allProduct div{
+.celebGoods_box1{
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+
+}
+
+.celebGoods_box1 div >span{
+	margin-bottom:40px;
+	font-family: 'Noto Rashi Hebrew', serif; 
+	font-size: 30px;
+	font-style: italic;
+	text-align: center;
+}
+
+
+.celebGoods_box2 {
+
+  	/* display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center; */
+    margin-top: 70px;
+    display: inline;
+}
+
+.celebGoods_box2 li{
+	display: inline-block;
+	margin:5px;
+	width: 260px; height: 200px;
+	margin:0
+}
+
+.celebGoods_box2 li img{
+	filter:grayscale(0.8);
+}
+
+.celebGoods_box2 li img:hover{
+	filter:grayscale(0);
+	transition: all 0.6s;
+}
+
+.celebGoods_box_list1{
+	margin: 10px 15px;
 	flex-basis: 25%;
+
 }
 
+.celebGoods_box_list2{
+	margin: 10px 15px;
+	flex-basis: 25%;
+	display: none;
+
+}
+
+.celebGoods_box_list3{
+	margin: 10px 15px;
+	flex-basis: 25%;
+	display: none;
+}
+
+.celebGoods_box_list4{
+	margin: 10px 15px;
+	flex-basis: 25%;
+	display: none;
+}
+
+.celebGoods_box_list5{
+	margin: 10px 15px;
+	flex-basis: 25%;
+	display: none;
+}
+
+
+.celebGoods_box2 > div{
+	margin-right: 30px;
+}
+
+.celebGoods_box2 .celeb_button{
+	border-radius: 50%;
+	width:170px;
+	height:170px;
+	border:0;
+	background-color: black;
+	color:white;
+	text-decoration: none;
+	display: flex;
+	flex-direction:column;
+	justify-content: center;
+	align-items: center;
+	line-height: 35px;
+	
+}
+
+.celeb_goods_img{
+	display: flex;
+	justify-content: center;
+}
+
+
+.celeb_goods_img ul li img{
+	width: 290px;
+	height: 260px;
+		
+}
+/* 상품 목록 css */
+
+.about_goods{
+	cursor: pointer;
+}
+
+.product_classfication{
+	
+	margin:30px 40px;
+	padding-right:10px;
+	overflow: hidden;
+	
+}
+
+.product_classfication span{
+	float: right;
+
+	padding: 0 20px;
+	cursor: pointer;
+	
+}
+
+.allProduct{
+ 
+  	margin-top: 50px;
+  	margin-bottom: 50px;
+  	display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+	
+}
+
+/* 
 
 .allProduct div img{
-  margin-bottom: 25px;
   transition: all 0.2s linear;
+} */
+
+.allProduct_list {
+	margin: 10px 15px;
+	flex-basis: 20%;
+
 }
+
+.allProduct_list1 {
+	margin: 10px 15px;
+	flex-basis: 20%;
+	display: none;
+
+}
+
 
 
 /* .allProduct div span{
@@ -86,11 +231,11 @@ img {max-width: 100%; height: auto;}
   left: 10;
 } */
 
-.allProduct div img:hover {
-  transform: scale(1.17); 
-}
+/* .allProduct div img:hover {
+  transform: scale(1.07); 
+} */
 
-
+/* 
 .allProduct div img:hover:after .product_content{
   opacity:1;
  
@@ -108,7 +253,7 @@ img {max-width: 100%; height: auto;}
 	
 
 }
-
+ */
 /* .product_content span{
 	font-family: 'Nanum Gothic', sans-serif;
 	text-align: center;
