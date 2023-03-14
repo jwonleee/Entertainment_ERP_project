@@ -35,13 +35,13 @@ public class productController {
 		//All about part
 		ArrayList<ProductVO> list = productService.productList(vo);
 		model.addAttribute("list", list);
-		System.out.println(list);
+	
 		
 		
 		//최신순 기준으로 상품 목록 출력 기능
 		ArrayList<ProductVO> list1 = productService.uptoDate(vo);
 		model.addAttribute("list1", list1);
-		System.out.println(list1);
+
 		
 		//페이지네이션 구현
 		int total = productService.pageTotal(cri);
@@ -81,17 +81,27 @@ public class productController {
 	}
 	
 	
-	//-------------------- 연예인 별 상품 페이지 - 가수 ---------------------
+	//-------------------- 연예인 별 상품 페이지 - 가수 ---------------------//
+	
+	//블랙핑크 페이지
+	@GetMapping("/BLACKPINK")
+	public String blackpink(ProductVO vo1, Model model ) {
+		
+		ArrayList<ProductVO>list2 = productService.blackpink_allList(vo1);
+		model.addAttribute("list2", list2);
+		
+		ArrayList<ProductVO>list3 = productService.blackpink_uptodateList(vo1);
+		model.addAttribute("list3", list3);
+		
+		
+		
+		return "product/productDetail_blackpink_page";
+	}
+	
 	//아이브 페이지
 	@GetMapping("/IVE")
 	public String ive() {
 		return "product/productDetail_ive_page";
-	}
-		
-	//블랙핑크 페이지
-	@GetMapping("/BLACKPINK")
-	public String blackpink() {
-		return "product/productDetail_blackpink_page";
 	}
 	
 	//뉴진스 페이지

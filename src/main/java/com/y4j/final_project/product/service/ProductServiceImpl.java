@@ -32,6 +32,31 @@ public class ProductServiceImpl implements ProductService {
 	
 		return 0;
 	}
+	
+	///////////////////////////////////////////////////////////////////
+	
+	//====================블랙핑크 페이지========================//
+	
+	//블랙핑크 전체상품 목록
+	@Override
+	public ArrayList<ProductVO> blackpink_allList(ProductVO vo1) {
+	
+		return productMapper.blackpink_allList(vo1);
+	}
+	
+	//블랙핑크 최신순 상품 목록
+	@Override
+	public ArrayList<ProductVO> blackpink_uptodateList(ProductVO vo1) {
+		// TODO Auto-generated method stub
+		return productMapper.blackpink_uptodateList(vo1);
+	}
+	
+	//블랙핑크 판매량순 상품 목록
+	@Override
+	public ArrayList<ProductVO> blackpink_popularList(ProductVO vo1) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }
 
