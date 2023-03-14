@@ -62,13 +62,6 @@ public class UserServiceImpl implements UserService {
 		return cnt;
 	}
 
-	//유저 로그인
-	//	@Override
-	//	public int getUserAccount(UserVO vo) {
-	//
-	//		return userMapper.getUserAccount(vo);
-	//	}
-
 	//유저 특정 1명 데이터 반환 메서드
 	public UserVO getUserInfo(int user_no) {
 		return userMapper.getUserInfo(user_no);

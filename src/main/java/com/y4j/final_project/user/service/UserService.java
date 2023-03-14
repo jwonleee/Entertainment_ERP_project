@@ -30,13 +30,6 @@ public interface UserService {
 	//아이디 중복 검사
 	public int idCheck(String user_id);
 
-	
-
-	 
-
-	
-
-	
 	//유저 특정 1명 데이터 반환 메서드
 	public UserVO getUserInfo(int user_no);
 	

@@ -1,8 +1,11 @@
 package com.y4j.final_project.controller;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCrypt;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
@@ -54,10 +57,35 @@ public class UserController {
 	}
 	
 	@PostMapping("/userLoginForm")
-	public String userLoginForm(UserVO vo, Model model) {
+	public String userLoginForm(UserVO vo, Model model, RedirectAttributes ra) {
 		
 		return "redirect:/";
 	}
+
+		
+		
+		
+		
+		//System.out.println(vo.getUser_id()); //내가 입력한 값
+		
+//		//db에 저장되어있는 회원
+//		UserVO result_id = userService.getUserInfo2(vo.getUser_id());
+//		UserVO result_pw = userService.getUserInfo2(vo.getUser_pw());
+//		
+//		if(result_id == null || vo.setUser_pw(  passwordEncoder.encode(vo.getUser_pw()) ) ) {
+//			System.out.println("아이디가 존재x");
+//			return "user/user_login";
+//		} else {
+//			System.out.println("존재햐");
+//			return "redirect:/";
+//		}
+		/*
+		 * if( vo.getUser_id() == null) { System.out.println("아이디가 존재하지 않습니다."); return
+		 * "user/user_login"; } else { System.out.println("아이디가 존재합니다."); return
+		 * "redirect:/"; }
+		 */
+		/* || vo.getUser_pw().matches(passwordEncoder.encode(result_pw)) */
+	
 	
 
 	//소셜 간편 로그인 - 카카오
