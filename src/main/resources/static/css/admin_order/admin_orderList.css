@@ -6,7 +6,7 @@
 /* ******** 검색********* */
 .search_wrap{
     overflow:hidden;
-    width:90%;
+    width:100%;
 }
 
 .search_form{
@@ -15,10 +15,22 @@
 
 .title_right{
     float:left;
+    margin-left:5px;
 }
 
 
 /****** 게시글 ********/
+.whole_content{
+    width: 100%;
+}
+
+.search_wrap{
+	margin-top:10px;
+	margin-bottom:10px;
+}
+
+
+
 .listwrap{
    margin: 50px 0; 
 }
@@ -34,6 +46,7 @@
 
 /***********pagenation***********/
 .pagination_section{
+	margin-top:20px;
     text-align: center;
 }
 
@@ -126,7 +139,11 @@
 }
 
 
-/* 테이블 */
+/* 모달 테이블 */
+.detailTable{
+    width:90%;
+}
+
 .modal_table{
     /* border: 1px solid #777; */
     padding: 20px;
@@ -135,7 +152,7 @@
 
 
 .modal_table .th{
-    padding: 25px;
+    padding: 20px 3px;
     border-right: 1px solid #777;
     border-bottom: 1px solid #777;
     box-shadow:0.5px 1px #777;
@@ -150,6 +167,7 @@
 .modal_table td{
     padding: 25px;
     border-top: 1px solid #777;
+    color:#002d72
 }
 
 /* 이미지 */
@@ -160,7 +178,7 @@
 
 /* 버튼 */
 .btn_wrap{
-    width: 60%;
+    width:90%;
     border-top: 1px solid #777;
 }
 

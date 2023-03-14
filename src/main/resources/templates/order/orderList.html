@@ -13,27 +13,36 @@
 						<div class="row justify-content-center">
 							<div class="col-12"></div>
 							<div class="card">
-								<div class="card-body p-0">
+								<div class="card-body p-0 whole_content">
 									<div class="search_wrap">
-										<div class="title_right">
-											<strong>발주</strong>
-										</div>
 										<form action="orderList" method="get" name="actionForm">
-											<input type="hidden" name="amount" th:value="${pageVO.amount}" />
-											<div class="search_form">
-												<input type="text" id="handleSearchName" name="searchName"
-													placeholder="상품명으로 검색 가능합니다." th:value="${pageVO.cri.searchName}" />
-												<select id="handleType" name="searchContent">
-													<option value="all"
-														th:selected="${pageVO.cri.searchContent}=='all'">전체보기</option>
-													<option value="album"
-														th:selected="${pageVO.cri.searchContent}=='album'">앨범발주</option>
-													<option value="product"
-														th:selected="${pageVO.cri.searchContent}=='product'">상품발주
-													</option>
-												</select> <input type="submit" value="검색" />
+											<div class="search_wrap">
+												<div class="title_right">
+													<strong>발주</strong>
+												</div>
+												<input type="hidden" name="amount" th:value="${pageVO.amount}" />
+												<div class="search_form">
+													<input type="text" id="handleSearchName" name="searchName"
+														placeholder="상품명으로 검색 가능합니다."
+														th:value="${pageVO.cri.searchName}" />
+													<select id="handleType" name="searchContent">
+														<option value="all"
+															th:selected="${pageVO.cri.searchContent}=='all'">전체보기
+														</option>
+														<option value="album"
+															th:selected="${pageVO.cri.searchContent}=='album'">앨범발주
+														</option>
+														<option value="product"
+															th:selected="${pageVO.cri.searchContent}=='product'">상품발주
+														</option>
+													</select>
+													<select id="handleStock">
+														<option value="asc">재고 높은순</option>
+														<option value="desc">재고 낮은순</option>
+													</select>
+													<input type="submit" value="검색" />
+												</div>
 											</div>
-
 											<table class="table table-striped mb-0 orderTable">
 												<thead style="background-color: #002d72; color: white;">
 													<tr>
