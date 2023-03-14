@@ -109,11 +109,11 @@ img {max-width: 100%; height: auto;}
     padding-left:10px;
 }
 
-#schedule_width70 {
+.schedule_width70 {
     min-width: 70%;
 }
 
-#schedule_type {
+.schedule_type {
     border: 1px solid #b1b1b1;
     width: 29%;
     height: 37px;

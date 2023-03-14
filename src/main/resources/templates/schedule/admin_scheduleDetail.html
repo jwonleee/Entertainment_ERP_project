@@ -45,12 +45,6 @@
 										</td>
 									</tr>
 									<tr>
-										<th>아티스트 타입</th>
-										<td>
-											[[${vo.ent_type}]]
-										</td>
-									</tr>
-									<tr>
 										<th>아티스트</th>
 										<td>
 											[[${vo.ent_name}]]
@@ -89,23 +83,23 @@
 			<div class="modal-dialog modal-xl">
 				<div class="modal-content">
 					
+					<form action="modifyForm" method="post">
+						<input type="hidden" name="schedule_no" id="schedule_no" th:value="${vo.schedule_no}" />
 					<div class="modal-header">
 						<h5 class="modal-title" id="ModalLabel">일정 수정</h5>
 					</div>
 					
-					<form id="scheduleForm" action="modifyForm" method="post" enctype="multipart/form-data">
-						<input type="hidden" name="schedule_no" id="schedule_no" th:value="${vo.schedule_no}" />
 						<div class="modal-body modal_wrap">
 							<table class="table_inner" id="schedule_detail">
 								
 							</table>
 						</div>
+						
+						<div class="modal-footer">
+							<button type="submit" id="save" class="btn btn-primary">저장</button>
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+						</div>
 					</form>
-					
-					<div class="modal-footer">
-						<button type="submit" id="save" class="btn btn-primary">저장</button>
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
-					</div>
 					
 				</div>
 			</div>
@@ -116,6 +110,14 @@
 	</div>
 
 </th:block>
+
+	<!-- msg -->
+	<script th:inline="javascript">
+		var msg = JSON.parse('[[${msg}]]');
+		if(msg != null) {
+			alert(msg);
+		}
+	</script>
 
 <!-- js -->
 <script src="/js/admin_scheduleDetail.js"></script>

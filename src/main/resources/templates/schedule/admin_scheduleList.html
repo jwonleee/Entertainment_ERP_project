@@ -32,14 +32,14 @@
 					<div class="search_right">
 
 						<div class="left_wrap">
+							<div class="today_count">
+								<span>오늘 일정 </span>
+								<span class="count">[[${todayCnt}]]건</span>
+							</div>
 							<div class="title_search">
 								<input type="text" name="searchContent" class="form-control" th:value="${pageVO.cri.searchContent}"
 									placeholder="일정 제목을 검색하세요" />
 								<input type="submit" class="btn btn-default search_btn" value="검색" />
-							</div>
-							<div class="today_count">
-								<span>오늘 일정 </span>
-								<span class="count">[[${todayCnt}]]건</span>
 							</div>
 						</div>
 
@@ -85,16 +85,12 @@
 			</div>
 
 			<!-- swiper -->
-			<swiper-container class="mySwiper container_block" slides-per-view="6" space-between="10" pagination="true"
-				pagination-type="none" navigation="true">
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m1.jpg" name="searchName" alt="블랙핑크" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m2.jpg" name="searchName" alt="뉴진스" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m4.jpg" name="searchName" alt="아이브" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" name="searchName" alt="장기용" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a2.jpg" name="searchName" alt="채수빈" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" name="searchName" alt="장기용" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a2.jpg" name="searchName" alt="채수빈" class="img-box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" name="searchName" alt="장기용" class="img-box"></swiper-slide>
+			<swiper-container class="mySwiper container_block" slides-per-view="4" space-between="120" pagination="true" pagination-type="none" navigation="true">
+				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m1.jpg" name="searchName" alt="블랙핑크" value="BlackPink" class="img_box"></swiper-slide>
+				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m2.jpg" name="searchName" alt="뉴진스" value="NewJeans" class="img_box"></swiper-slide>
+				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m4.jpg" name="searchName" alt="아이브" value="Ive" class="img_box"></swiper-slide>
+				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" name="searchName" alt="이도현" value="LeeDohyun" class="img_box"></swiper-slide>
+				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a2.jpg" name="searchName" alt="채수빈" value="ChaeSoobin" class="img_box"></swiper-slide>
 			</swiper-container>
 
 
@@ -232,15 +228,17 @@
 		</form>
 	</div>
 
+</th:block>
+
 	<!-- msg -->
-	<script>
-		var msg = '${msg}';
-		if(msg != '') {
+	<script th:inline="javascript">
+		var msg = JSON.parse('[[${msg}]]');
+		if(msg != null) {
 			alert(msg);
 		}
 	</script>
 
-</th:block>
+<!-- js -->	
 <script src="/js/admin_scheduleList.js"></script>
 
 </html>
