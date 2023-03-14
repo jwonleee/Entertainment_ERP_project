@@ -35,10 +35,6 @@
 		select count(user_id) from users WHERE user_id= #{user_id}
 	</select>
 	
-	<select id="getUserAccount" resultType="UserVO">
-		select user_id, user_pw from users where user_id = #{user_id}
-	</select>
-	
 	<select id="getUserList" resultType="UserVO">
 		select * from users
 		where user_name like concat('%', #{searchValue}, '%')
@@ -56,9 +52,8 @@
 	</select>
 	
 	<select id="getUserInfo2" resultType="UserVO">
-		select * from users where user_id = #{user_id}
+		select * from users where user_id = #{user_id} and user_pw = #{user_pw}
 	</select>
-	
 	
 	<update id="updateUser" parameterType="UserVO" >
 		update users set 

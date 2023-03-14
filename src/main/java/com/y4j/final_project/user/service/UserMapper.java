@@ -25,9 +25,6 @@ public interface UserMapper {
 	//아이디 중복 검사
 	public int idCheck(String user_id);
 	
-//	//유저 로그인
-//	public int getUserAccount(UserVO vo);
-
 	//전체 유저 수 반환 메서드
 	public int getUserTotal(Criteria cri);
 	
