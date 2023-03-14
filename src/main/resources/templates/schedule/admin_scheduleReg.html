@@ -22,8 +22,10 @@
 									<tr>
 										<th>일정 날짜</th>
 										<td class="schedule_calendar">
-											<input type='text' class='datetimepicker' name='schedule_start_time' id='date_timepicker_start' required placeholder='시작날짜' style='width:150px;'/><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/>~
-											<input type='text' class='datetimepicker' name='schedule_end_time' id='date_timepicker_end' required placeholder='종료날짜' style='width:150px; padding-left:10px;'/><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/>
+											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_start_time' id='date_timepicker_start' required placeholder='시작날짜'/>
+													<label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ 
+											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_end_time' id='date_timepicker_end' required placeholder='종료날짜'/>
+													<label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>
 										</td>
 									</tr>
 									<tr>
@@ -35,14 +37,14 @@
 									<tr>
 										<th>타입</th>
 										<td>
-											<select class="form-control" id="schedule_type" name="schedule_type" style="width: 150px;">
+											<select class="form-select" id="schedule_type" name="schedule_type" style="width: 154px;">
 												<option value="">선택</option>
-												<option value="tv">TV</option>
-												<option value="magazine">Magazine</option>
-												<option value="radio">Radio</option>
-												<option value="concert">Concert</option>
-												<option value="movie">Movie</option>
-												<option value="etc">ETC</option>
+												<option value="TV">TV</option>
+												<option value="Magazine">Magazine</option>
+												<option value="Radio">Radio</option>
+												<option value="Concert">Concert</option>
+												<option value="Movie">Movie</option>
+												<option value="ETC">ETC</option>
 											</select>
 										</td>
 									</tr>
@@ -56,14 +58,21 @@
 									<tr>
 										<th>아티스트 타입</th>
 										<td>
-											<input type="radio" class="type_wrap" name="artist_type" value="musician"/>Musician
-											<input type="radio" class="type_wrap" name="artist_type" value="actor"/>Actor
+											<label>
+												<input type="radio" class="type_wrap" name="artist_type" value="Musician" />
+												<span>Musician</span>
+											</label>
+											
+											<label>
+												<input type="radio" class="type_wrap" name="artist_type" value="Actor" />
+												<span>Actor</span>
+											</label>	
 										</td>
 									</tr>
 									<tr>
 										<th>아티스트</th>
-										<td classs="artistList_td">
-											<select class="form-control input-sm artistList_wrap" name="ent_name" style="width: 150px;">
+										<td class="artistList_td">
+											<select class="form-select input-sm artistList_wrap" name="ent_name" style="width: 150px;">
 												<option value="">선택</option>
 												<!-- <option value="solo">Solo</option>
 												<option value="blackpink">Blackpink</option>
@@ -90,29 +99,21 @@
 								</tbody>
 							</table>
 
-							<div class="btn_wrap">
-								<button type="submit" id="submit" class="btn btn-default custom_btn">등록</button>
-								<button type="reset" class="btn btn-default custom_btn">초기화</button>
-							</div>
-
 						</li>
 					</ul>
-
+					
+					<div class="btn_wrap">
+						<button type="submit" id="submit" class="btn btn-primary custom_btn">등록</button>
+						<button type="reset" class="btn btn-primary custom_btn">초기화</button>
+						<button type="button" class="btn btn-primary custom_btn" onclick="location.href='/schedule/admin_scheduleList'">목록</button>
+					</div>
+					
 				</div>
 			</form>
 		</div>
 	</div>
-	
+
 </th:block>
 	<script src="/js/admin_scheduleReg.js"></script>
 
 </html>
-
-<!-- msg -->
-<!-- <script th:inline="javascript">
-	var msg = JSON.parse('[[${msg}]]'); /* '달러부분 '는 문자열로 받는게 문법적 오류 안생겨서 좋음*/
-	
-	if(msg != null) {
-		alert(msg);
-	}
-</script> -->

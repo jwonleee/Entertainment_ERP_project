@@ -1,0 +1,168 @@
+//일정 삭제
+$('#delete_btn').click(function(e) {
+	e.preventDefault();
+
+	if(confirm("일정을 삭제하시겠습니까?")) {
+		document.actionForm.submit();
+	}
+})
+
+//Modal
+$('#modify_btn').click(function(e){
+    e.preventDefault();
+
+        var schedule_no = $('#schedule_no').val();
+		var str = '';
+
+        //수정 화면에 나타낼 데이터
+        $.ajax({
+			url: '../getModifyForm',
+            type: 'post',
+            data: JSON.stringify({schedule_no:schedule_no}),
+            contentType: "application/json",
+            success: function (vo) {
+				
+				str += '<tbody>';
+                str += '	<tr>';
+				str += '		<th>일정 날짜</th>';
+				str += '		<td class="schedule_calendar">';
+				str += '			<input type="text" class="datetimepicker form-control timepicker_block" value="' + vo.schedule_start_time + '" name="schedule_start_time" id="date_timepicker_start" required placeholder="시작날짜"/>';
+				str += '				   <label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ ';
+				str += '			<input type="text" class="datetimepicker form-control timepicker_block" value="' + vo.schedule_end_time + '" name="schedule_end_time" id="date_timepicker_end" required placeholder="종료날짜"/>';
+				str += '				   <label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>관리자 ID</th>';
+				str += '		<td>';
+				str += '			<input type="text" class="form-control" placeholder="' + vo.schedule_writer + '" readonly/>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>타입</th>';
+				str += '		<td>';
+				str += '			<select class="form-select" id="schedule_type" name="schedule_type">';
+				str += '				<option value="TV" '+ (vo.schedule_type == "TV" ? "selected" : "") + '>TV</option>';
+				str += '				<option value="Magazine" '+ (vo.schedule_type == "Magazine" ? "selected" : "") + '>Magazine</option>';
+				str += '				<option value="Radio"'+ (vo.schedule_type == "Radio" ? "selected" : "") + '>Radio</option>';
+				str += '				<option value="Concert"'+ (vo.schedule_type == "Concert" ? "selected" : "") + '>Concert</option>';
+				str += '				<option value="Movie"'+ (vo.schedule_type == "Movie" ? "selected" : "") + '>Movie</option>';
+				str += '				<option value="ETC"'+ (vo.schedule_type == "ETC" ? "selected" : "") + '>ETC</option>';
+				str += '			</select>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>제목</th>';
+				str += '		<td>';
+				str += '			<input type="text" id="schedule_width70" class="form-control" value=' + vo.schedule_ent_name + '>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>아티스트</th>';
+				str += '		<td>';
+				str += '			<input type="text" class="form-control" placeholder="' + vo.ent_name + '" readonly/>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>장소</th>';
+				str += '		<td>';
+				str += '			<input type="text" id="schedule_width70" class="form-control" value=' + vo.schedule_location + '>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>세부내용</th>';
+				str += '		<td>';
+				str += '			<textarea name="schedule_content" class="content form-control">' + vo.schedule_content + '</textarea>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '</tbody>';
+
+                $("#schedule_detail").html(str);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
+    
+    $('#ModifyModal').modal("show");
+});
+
+//수정 버튼 클릭시 일정 수정됨
+$(document).on("click", "#save", function() {
+
+	// var schedule_no = parseInt($('#schedule_no').val());
+	// console.log(schedule_no);
+
+	// var input = $("#schedule_detail > tbody > tr").children().children();
+	
+	// var schedule_start_time = input.eq(2).siblings().val().trim();
+	// var schedule_end_time = input.eq(2).val().trim();
+	// var schedule_type = input.eq(5).val().trim();
+	// var schedule_ent_name = input.eq(6).val().trim();
+	// var schedule_location = input.eq(8).val().trim();
+	// var schedule_content = input.eq(9).val().trim();
+	
+	// console.log(schedule_start_time);
+	// console.log(schedule_end_time);
+
+	// if(schedule_type === ''){
+	// 	alert('스케줄 타입을 입력해주세요.');
+	// 	return;
+	// }
+
+	// if(schedule_ent_name === ''){
+	// 	alert('스케줄을 입력해주세요.');
+	// 	return;
+	// }
+
+	// if(schedule_location === ''){
+	// 	alert('스케줄 장소를 입력해주세요.');
+	// 	return;
+	// }
+	
+	var form = $('#scheduleForm')[0];
+	var formData = new FormData(form);
+	console.log(form);
+
+	$.ajax({
+		url: '../modifyForm',
+        type: 'post',
+		enctype: false,
+        data: formData,
+        contentType: false,
+		processData: false,
+        success: function (result) {
+			console.log("success:" + result);
+			// let url = '/schedule/admin_scheduleDetail?schedule_no=' + schedule_no ;
+			// location.replace(url);
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	})
+})
+
+// datetimepicker
+$(document).on("click", ".schedule_calendar", function(){
+	$('#date_timepicker_start').datetimepicker({
+		format:'Y-m-d H:i',
+		onShow:function( ct ){
+		this.setOptions({
+			maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
+			minDate: 0
+			})
+		},
+		timepicker:true,
+		step: 30
+	});
+
+	$('#date_timepicker_end').datetimepicker({
+		format:'Y-m-d H:i',
+		onShow:function( ct ){
+			this.setOptions({
+				minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false,
+			})
+		},
+		timepicker:true,
+		step: 30
+	});
+}); 

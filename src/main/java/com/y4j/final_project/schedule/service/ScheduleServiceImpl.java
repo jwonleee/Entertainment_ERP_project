@@ -3,12 +3,14 @@ package com.y4j.final_project.schedule.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.y4j.final_project.command.EntertainerScheduleVO;
 import com.y4j.final_project.command.EntertainerVO;
 import com.y4j.final_project.command.ScheduleVO;
+import com.y4j.final_project.util.Criteria;
 
 @Service("scheduleService")
 public class ScheduleServiceImpl implements ScheduleService {
@@ -22,6 +24,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 		int result = scheduleMapper.regist(vo);
 		return result; //성공시 1, 실패시 0
 	}
+	
 	//schedule_no 가져옴
 	@Override
 	public int registMap(EntertainerScheduleVO vo2) {
@@ -42,17 +45,46 @@ public class ScheduleServiceImpl implements ScheduleService {
 		return list;
 	}
 	
-	//일정 리스트
+	//일정 목록
 	@Override
-	public ArrayList<ScheduleVO> getList() {
-		return scheduleMapper.getList();
+	public ArrayList<ScheduleVO> getList(Criteria cri) {
+		return scheduleMapper.getList(cri);
 	}
 	
+	//일정 전체 개수
 	@Override
-	public ScheduleVO detail(int schedule_no) {
-		
-		return scheduleMapper.detail(schedule_no);
+	public int getScheduleTotal(Criteria cri) {
+		return scheduleMapper.getScheduleTotal(cri);
 	}
 	
+	//오늘 일정 개수
+	@Override
+	public int getTodayScheduleCnt(LocalDate now) {
+		return scheduleMapper.getTodayScheduleCnt(now);
+	}
+	
+	//일정 상세
+	@Override
+	public ScheduleVO getDetail(int schedule_no) {
+		return scheduleMapper.getDetail(schedule_no);
+	}
+	
+	//일정 수정 화면(모달)
+	@Override
+	public ScheduleVO getModifyForm(ScheduleVO vo) {
+		return scheduleMapper.getModifyForm(vo);
+	}
+	
+	//일정 수정
+	@Override
+	public int scheduleModify(ScheduleVO vo) {
+		return scheduleMapper.scheduleModify(vo);
+	}
+	
+	//일정 삭제
+	@Override
+	public int scheduleDelete(int schedule_no) {
+		return scheduleMapper.scheduleDelete(schedule_no);
+	}
 	
 }

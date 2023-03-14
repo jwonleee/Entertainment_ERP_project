@@ -16,6 +16,8 @@ function changeDateFormat(regdate) {
 // 모달 내부 내용 생성 및 열기
 $(".showModal").click(function (e) {
 
+  $(".modal-body-inner").remove();
+
   var admin_no = $(this).parent().prev().prev().prev().prev().html();
 
   $.ajax({
@@ -73,7 +75,14 @@ $(".showModal").click(function (e) {
       str += '<div class="row mb-3">';
       str += '<label for="inputEmail3" class="col-sm-2 col-form-label">그룹/배우</label>';
       str += '<div class="col-sm-10">';
-      str += '<input type="text" class="form-control" id="inputText3" name="ent_name" value=' + (vo.ent_name != "none" ? vo.ent_name : '') + '>';
+        str += '<select class="form-select ent_name" aria-label="Default select example" name="ent_name">';
+          str += '<option></option>';
+          str += '<option value="BLACKPINK" ' + (vo.ent_name == "BLACKPINK" ? "selected" : "") + '>BLACKPINK</option>';
+          str += '<option value="NewJeans" ' + (vo.ent_name == "NewJeans" ? "selected" : "") + '>NewJeans</option>';
+          str += '<option value="IVE" ' + (vo.ent_name == "IVE" ? "selected" : "") + '>IVE</option>';
+          str += '<option value="이도현" ' + (vo.ent_name == "이도현" ? "selected" : "") + '>이도현</option>';
+          str += '<option value="채수빈" ' + (vo.ent_name == "채수빈" ? "selected" : "") + '>채수빈</option>';
+        str += '</select>';
       str += '</div>';
       str += '</div>';
       str += '<div class="row mb-3">';
@@ -100,7 +109,7 @@ $(".showModal").click(function (e) {
       str += '<input type="text" class="form-control" id="inputEmail2" value=' + changeDateFormat(vo.admin_regdate) + ' readonly>';
       str += '</div>';
       str += '</div>';
-      str += '</div>';
+      str += '<div class="modal-body-inner">';
 
       $(".modal-body").append(str);
     },
@@ -134,4 +143,17 @@ $("#updateBtn").on("click", function () {
   $("#updateForm").submit();
 });
 
+// //관리자 유형 선택 시, 그룹/배우 값 초기화
+// $(document).ready(function () {
+//   $("input[name='gridRadios']").change(function () {
+//     if ($("input[name='gridRadios']:checked").val() != 'manager') {
+//       console.log("비동기 방식으로 불러와서 안되는 듯?");
+//       $("select[name='ent_name']").val("");
+//     }
+//   });
+// });
+
+$('#exampleModal').modal(
+  { keyboard: false }
+);
 

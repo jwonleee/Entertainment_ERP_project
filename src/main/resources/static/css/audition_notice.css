@@ -1,0 +1,47 @@
+/* audition_notice */
+.aud-wrap {
+  margin-top: 12px;
+  margin-bottom: 50px;
+}
+
+.audNotice-outer {
+  /* padding: 20px 20px 15px; */
+  padding: 20px;
+  border: 1px solid #999;
+}
+
+.audApplyBtnDiv {
+  /* padding: 15px 20px 20px; */
+  padding: 15px;
+  border: 1px solid #999;
+  text-align: center;
+}
+
+.upload-display {
+  display: block;
+  width: 150px;
+}
+
+.upload-thumb-wrap {
+  display: inline-block;
+  width: 150px;
+  height: 180px;
+  line-height: 180px;
+  text-align: center;
+  border: 1px solid #999;
+  margin-bottom: 15px;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.upload-thumb {
+  width: 16px;
+  height: 16px;
+  box-sizing: border-box;
+}
+
+.upload-thumb.vid {
+  width: 180px;
+  height: 150px;
+  margin-bottom: 15px;
+}
