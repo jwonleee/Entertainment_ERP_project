@@ -1,0 +1,151 @@
+* {margin: 0 auto; list-style: none;}
+a {text-decoration: none;}
+img {max-width: 100%; height: auto;}
+
+
+.productTabWrap{
+	display: inline;
+}
+
+.productTabWrap ul li{
+	display: inline-block;
+	margin-right: 40px;
+	border-top: 1px solid gray;
+	padding-top: 5px;
+	cursor: pointer;
+	
+}
+
+.orderContent{
+	margin: 50px 0;
+	display: block;
+
+}
+
+.changeContent{
+	margin: 50px 0;
+	display: none;
+}
+
+
+
+/*================ 리뷰 게시판================ */
+
+.reviewContent_wrap{
+	margin: 50px 0;
+	display: none;
+
+}
+
+
+
+
+.reviewContent{
+	display: flex;
+	padding: 40px 0;
+	font-family: 'Nanum Gothic', sans-serif;
+	font-size: 13px;
+	border-bottom: 1px solid rgba(5, 3, 3, 0.148);
+	
+}
+
+.reveiwContent_left{
+	margin-left: 50px;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+
+.review_reg_button{
+	margin-top: 20px;
+	
+}
+
+.review_reg_button button{
+	width:150px;
+	height:40px;
+	border:0;
+	border-radius: 10px;
+	background-color: rgba(5, 3, 3, 0.148);
+	padding:5px;
+}
+
+
+.reviewContent_right{
+	display: flex;
+	flex-direction: row;
+	margin-left: 50px;
+	justify-content: center;
+	align-content: center;
+	
+}
+
+.reviewContent_right_content{
+	display: flex;
+	flex-direction: column;
+	margin-left: 20px;
+	line-height: 27px;
+	
+}
+
+
+.reviewContent_right_content1{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-content: center;
+	margin-left: 20px;
+	
+}
+
+.reviewContent_right_content1 span{
+	margin-top:2px;
+	margin-bottom: 20px;
+}
+
+
+/* select 박스 */
+.review_select{
+	border-bottom: 1px solid rgba(5, 3, 3, 0.148);
+	padding:10px;
+	
+}
+
+.review_select select{ 
+	height: 35px;
+	padding:5px;
+	border: 0;
+	
+}
+
+/* 리뷰 리스트 */
+
+.reviewList_wrap{
+	margin-top: 30px;
+}
+
+
+.reviewList_box{
+	margin: 0 30px;
+}
+
+.reviewList{
+	overflow: hidden;
+
+}
+
+.reviewList .reviewList_star{
+	float:left;
+}
+
+
+.reviewList span{
+	float:left;
+	margin-left: 15px;
+}
+
+.reviewList div{
+	float:right;
+}

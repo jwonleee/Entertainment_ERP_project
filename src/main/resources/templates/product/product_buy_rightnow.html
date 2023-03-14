@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<head>
+<!-- 제이쿼리 -->
+<script src="https://code.jquery.com/jquery-1.12.1.mim.js"></script>
+<!-- 폰트 1 -->
+<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- 폰트 2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+<!-- 폰트 3 - 나눔고딕 --> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+
+<!-- css 링크 -->
+ <link rel="stylesheet" href="/css/product_page/product_buy_rightnow.css">
+
+
+
+<!-- 카카오 우편번호 API -->
+<script
+	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+        function kakaopost() {
+            new daum.Postcode({
+                oncomplete: function (data) {
+                    document.querySelector("#zipcode").value = data.zonecode;
+                    document.querySelector("#address").value = data.address
+                }
+            }).open();
+        }
+    </script>
+
+</head>
+
+<body>
+
+
+	<div class="buyMain">
+		
+		<div class="buyTable">
+			<!-- 탑 로고 -->
+			<div class="logo">
+				<div  class="next_icon">
+					<a href="#"><img src="/img/prev_icon.png"/></a>
+					<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="이전 아이콘">이전 아이콘  제작자: Icon Mela - Flaticon</a> -->
+				</div>
+				
+				<div  class="logo_img">
+					<img  src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>	
+				</div>			
+				
+				<div class="logo_icon">
+					<a href="#"><img  src="/img/shopping_cart.png" /></a>
+<!-- 					<a href="https://www.flaticon.com/kr/free-icons/-" title="장바구니 추가 아이콘">장바구니 추가 아이콘  제작자: Corner Pixel - Flaticon</a> -->
+					
+					<a href="#"><img style="width:23px; height:23px;" src="/img/user.png"/></a>
+					<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="사람 아이콘">사람 아이콘  제작자: Muhammad Yafinuha - Flaticon</a> -->
+				</div>
+			
+			</div>	
+			<!-- 주문/ 결제 top -->
+			<div class="orderTop">
+				<span>주문 /  결제</span>
+			</div>
+			
+			<!-- 주문자 정보 -->
+			<div class="orderer_info_box" >
+				<div style="background-color: rgba(198, 197, 197, 0.221); width: 100%; height: auto; padding: 30px 35px">
+					<span style="font-weight: 600;">주문 정보</span>
+					<div class="orderer_info">
+						<div class="orderer_info_column">
+							<div>
+								<span>주문자</span><span style="color:blue; margin-left: 4px">*</span>
+							</div>
+							<div>
+								<span>이메일</span><span style="color:blue; margin-left: 4px">*</span>
+							</div>
+							<div>
+								<span>휴대전화</span><span style="color:blue; margin-left: 4px">*</span>
+							</div>
+							<div>
+								<span>주소</span><span style="color:blue; margin-left: 4px">*</span>
+							</div>
+						</div>
+						<div class="orderer_realInfo"> <!-- db에서 가져오기 -->
+							<span></span>
+							<span >유희정</span>
+							<span >gmlwjd852369@naver.com</span>
+							<span >010-4890-0923</span>
+							<span >경기도 수원시 어쩌구 저쩌구</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			<!-- 배송지 정보 -->
+			<div class="shipping_address_wrap">
+				<div class="shipping_address_box">
+					<span>배송지</span>
+					<div class="shipping_check">
+					<!-- radio박스 중복 방지 : name을 같은 값으로 -->
+						<input type="radio" name="shipping" value="same" checked required><span>주문 정보와 동일</span>
+						<input type="radio" name="shipping" value="new" required><span>새로운 배송지</span>
+					</div>
+					<div class="shipping_address">
+					
+						<div>
+							<div>
+								<span>받는 사람</span><span style="color:blue; margin-left: 4px">*</span>
+							</div>
+							<div class="join_info_innerbox">
+								<div class="join_info left">
+									<span>주소 </span><span style="color:blue; margin-left: 4px">*</span>
+								</div>
+							</div>
+							<div style="margin-top: 92px">
+								<span >휴대전화</span><span style="color:blue; margin-left: 4px">*</span>
+								
+							</div>
+						</div>
+						<div class="shipping_real_address">
+							<!-- 받는 사람 -->
+							<input type="text" id="receiver" size="20">
+							<!-- 주소 -->
+							<div class="shipping_address_content" >
+								<input type="text" name="zipcode" id="zipcode" size="7" class="address_btn1"
+									placeholder="우편번호" 
+									onclick="kakaopost()" readonly> 
+								<input type="button" value="주소검색" id="zipcode" class="address_btn2"
+									onclick="kakaopost()" required><br> 
+								<input type="text" name="user_address" id="address" size="70" placeholder=" 기본 주소" th:value="${vo != null? vo.user_address:''}"><br />
+								<input type="text" name="user_address" id="address" size="70"
+									placeholder=" 나머지 주소"  th:value="${vo != null? vo.user_address:''}"><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
+							</div>
+							<!-- 전화번호 -->
+							<div class="phone_wrap">
+								<div>
+									<select class="phone_option">
+										<option>010</option>
+										<option>011</option>
+										<option>016</option>
+										<option>017</option>
+										<option>018</option>
+										<option>019</option>
+									</select>
+								</div>
+								<div class="phone_input">
+									<span> -</span>
+									<input type="text" id="phone_front" size="8">
+									<span>-</span>
+									<input type="text" id="phone_back" size="8">
+								</div>
+							</div>
+						</div>
+					</div>
+					
+				</div>
+				<div>
+			</div>
+		</div> <!-- 배송지 정보 끝 -->
+		
+			<!-- 배송시 부탁 사항 -->
+			<div class="shipping_msg">
+				<select>
+					<option>-- 메세지 선택 (선택사항) --</option>
+					<option>배송 전에 미리 연락바랍니다.</option>
+					<option>부재 시 경비실에 맡겨주세요.</option>
+					<option>부재 시 문 앞에 놓아주세요.</option>
+					<option>빠른 배송 부탁드립니다.</option>
+					<option>택배함에 보관해 주세요.</option>
+				</select>
+			</div>
+				
+				
+				<!-- 주문 상품 정보-->
+				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)">
+					<div class="order_product_wrap">
+						<span>주문 상품</span>
+						<div class="order_product_box">
+							<div><!-- 상품 사진도 데베에서 가져와야 함 -->
+								<img style="width:100px; height: 90px; border:1px solid rgba(5, 3, 3, 0.328)" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg" />
+							</div>
+							<div class="order_product">
+								<span>상품명</span>
+								<span style="margin-top: 7px;">수량:   개</span>
+								<span style="margin-top: 23px;">(49000)총 가격 원</span>
+							</div>
+						</div>
+					</div>
+					<div class="shipping_cost">
+						<span id="shipping_cost_name">배송비</span>
+						<span id="shipping_real_cost">배송가격(가격에 따라 다름)</span>
+					</div>
+				</div><!-- 주문 상품 정보 끝 -->
+				
+				<!-- 결제 정보-->
+				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)">
+					<div class="payment_info_wrap">
+						<span style="margin-bottom: 10px" >결제 정보</span>
+						<div class="payment_info_box">
+							<span class="payment_info_left">주문 상품</span>
+							<span class="payment_info_right">20000(주문 상품 가격)원</span>
+							
+						</div>
+						<div class="payment_info_box">
+							<span class="payment_info_left">배송비</span>
+							<span class="payment_info_right">배송비(3000원 or 0원)원</span>
+						</div>
+						<div class="payment_info_box">
+							<span class="payment_info_left">할인</span>
+							<span class="payment_info_right">(할인 가격)원</span>
+						</div>
+					</div>
+				
+					<div class="payment_info_box1" >
+						<span class="payment_info_left">최종 결제 금액</span>
+						<span class="payment_info_right">50000(총 가격)원</span>
+					</div>
+				
+				
+				</div><!-- 결제 정보 끝 -->
+				
+				<!-- 결제 수단 -->
+				<div class="payment_method_box">
+					<div class="payment_method">
+						<span>결제 수단</span>
+						<span>결제 수단 선택</span>
+					</div>
+					<ul class="payment_real_method">
+						<li class="payment_real_method1 on">카드 결제</li>
+						<li class="payment_real_method2 ">카카오 페이</li>
+						<li class="payment_real_method3 " style="border:none">계좌이체</li>
+					</ul>
+				</div> <!-- 걀제수단 창 끝 -->
+				
+				<button id="buy_button" type="submit">결제하기</button>
+			</div>
+		
+		</div>
+		
+	<!-- js 링크 -->
+	<script  type="text/javascript" src="/js/product_detail/product_buy_rightnow.js"></script>
+</body>
+
+
+</html>
