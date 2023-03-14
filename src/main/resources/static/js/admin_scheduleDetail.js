@@ -1,96 +1,168 @@
-// //이미지 수정버튼을 클릭했을 때 modalOn();
-// $(".modalOn").click(function(e) { //jquery 사용
-//     e.preventDefault(); //a링크의 고유이벤트 중지
+//일정 삭제
+$('#delete_btn').click(function(e) {
+	e.preventDefault();
+
+	if(confirm("일정을 삭제하시겠습니까?")) {
+		document.actionForm.submit();
+	}
+})
+
+//Modal
+$('#modify_btn').click(function(e){
+    e.preventDefault();
+
+        var schedule_no = $('#schedule_no').val();
+		var str = '';
+
+        //수정 화면에 나타낼 데이터
+        $.ajax({
+			url: '../getModifyForm',
+            type: 'post',
+            data: JSON.stringify({schedule_no:schedule_no}),
+            contentType: "application/json",
+            success: function (vo) {
+				
+				str += '<tbody>';
+                str += '	<tr>';
+				str += '		<th>일정 날짜</th>';
+				str += '		<td class="schedule_calendar">';
+				str += '			<input type="text" class="datetimepicker form-control timepicker_block" value="' + vo.schedule_start_time + '" name="schedule_start_time" id="date_timepicker_start" required placeholder="시작날짜"/>';
+				str += '				   <label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ ';
+				str += '			<input type="text" class="datetimepicker form-control timepicker_block" value="' + vo.schedule_end_time + '" name="schedule_end_time" id="date_timepicker_end" required placeholder="종료날짜"/>';
+				str += '				   <label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>관리자 ID</th>';
+				str += '		<td>';
+				str += '			<input type="text" class="form-control" placeholder="' + vo.schedule_writer + '" readonly/>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>타입</th>';
+				str += '		<td>';
+				str += '			<select class="form-select" id="schedule_type" name="schedule_type">';
+				str += '				<option value="TV" '+ (vo.schedule_type == "TV" ? "selected" : "") + '>TV</option>';
+				str += '				<option value="Magazine" '+ (vo.schedule_type == "Magazine" ? "selected" : "") + '>Magazine</option>';
+				str += '				<option value="Radio"'+ (vo.schedule_type == "Radio" ? "selected" : "") + '>Radio</option>';
+				str += '				<option value="Concert"'+ (vo.schedule_type == "Concert" ? "selected" : "") + '>Concert</option>';
+				str += '				<option value="Movie"'+ (vo.schedule_type == "Movie" ? "selected" : "") + '>Movie</option>';
+				str += '				<option value="ETC"'+ (vo.schedule_type == "ETC" ? "selected" : "") + '>ETC</option>';
+				str += '			</select>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>제목</th>';
+				str += '		<td>';
+				str += '			<input type="text" id="schedule_width70" class="form-control" value=' + vo.schedule_ent_name + '>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>아티스트</th>';
+				str += '		<td>';
+				str += '			<input type="text" class="form-control" placeholder="' + vo.ent_name + '" readonly/>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>장소</th>';
+				str += '		<td>';
+				str += '			<input type="text" id="schedule_width70" class="form-control" value=' + vo.schedule_location + '>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '	<tr>';
+				str += '		<th>세부내용</th>';
+				str += '		<td>';
+				str += '			<textarea name="schedule_content" class="content form-control">' + vo.schedule_content + '</textarea>';
+				str += '		</td>';
+				str += '	</tr>';
+				str += '</tbody>';
+
+                $("#schedule_detail").html(str);
+            },
+            error: function (err) {
+                console.log(err);
+            }
+        });
     
-//     //ajax - 이미지데이터 조회 (prod_id 기준으로 조회)
-//     //1. 클릭한 대상의 prod_id값
-//     var prod_id = $(e.target).closest("td").next().html();
-//     //console.log(prod_id) 확인
-    
-//     //2. post방식으로 img데이터 조회
-//     $.ajax({
-//         url: "../getProductImg",
-//         type: "post",
-//         data: JSON.stringify({prod_id: prod_id}), //제이슨 데이터
-//         contentType: "application/json", //보내는 데이터에 대한 타입
-//         success: function(result){
-//             //console.log(result); //반환된 데이터
-            
-//             var str = "";
-//             var arr = ['a', 'b', 'c']; //배열 생성
-            
-//             for(var i = 0; i < result.length; i++) {
-//                 str += '<div class="left">';
-//                 str += '<span>추가이미지</span>';
-//                 str += '<label class="upload-display" for="' + arr[i] +'_file">';
-//                 str += '<span class="upload-thumb-wrap">';
-//                 str += '<img class="upload-thumb" src="' + '../display' + '/' + result[i].filepath + '/' + result[i].uuid + '/' + result[i].filename + '">'; /* 상대경로, 한단계 위로 올라가서 display... */
-//                 str += '</span>';
-//                 str += '</label>';
-//                 str += '<input class="upload-name" value="파일선택" disabled="disabled">';
-//                 str += '<input type="file" name="file" id="' + arr[i] + '_file" class="upload-hidden">';
-//                 str += '<input type="hidden" value="">';
-//                 str += '<input type="hidden" value="">';
-//                 str += '<button type="button" class="normal_btn" style="display: block;">삭제</button>';
-                
-//                 /* 다운로드 기능 추가 */
-//                 //1번 방법 - a 링크로 바꿔서 보내기
-//                 //str += '<a href="'+ '../download' + '/' + result[i].filepath + '/' + result[i].uuid + '/' + result[i].filename +'" class="normal_btn" style="display: block;">다운로드</a>';
-                
-//                 //2번 방법 - js로 onclick 사용
-//                 //str += '<button type="button" class="normal_btn" style="display: block;" onclick="location.href=`'+'../download/' + result[i].filepath + '/' + result[i].uuid + '/' + result[i].filename +'`">다운로드</button>';
-                
-//                 str += '<button type="button" class="normal_btn" style="display: block;">다운로드</button>';
-                
-//                 str += '</div>';
-//             }
-            
-//                $(".filebox").html(str);
-               
-//                $(".filebox").on("click", "button", function(e) {
-                  
-//                   var id = $(e.target).prev().prev().prev().prev().attr("id").replace('_file', '');
-                  
-//                   var index = arr.indexOf(id);
-                 
-//                   e.preventDefault(); //고유이벤트 중지
-//                   location.href="../download/" + result[index].filepath + "/" + result [index].uuid + "/" + result[index].filename;
-//                })
-            
-//         }, 
-//         error: function(err) {
-//             alert("이미지 조회에 실패했습니다.");
-//         }
-//     })
-    
-    
-// });
+    $('#ModifyModal').modal("show");
+});
 
+//수정 버튼 클릭시 일정 수정됨
+$(document).on("click", "#save", function() {
 
-// 리스트 상세보기
-// $(document).ready(function() {
+	// var schedule_no = parseInt($('#schedule_no').val());
+	// console.log(schedule_no);
 
-//     $('#schedule_list tr').on(function (e) {
+	// var input = $("#schedule_detail > tbody > tr").children().children();
+	
+	// var schedule_start_time = input.eq(2).siblings().val().trim();
+	// var schedule_end_time = input.eq(2).val().trim();
+	// var schedule_type = input.eq(5).val().trim();
+	// var schedule_ent_name = input.eq(6).val().trim();
+	// var schedule_location = input.eq(8).val().trim();
+	// var schedule_content = input.eq(9).val().trim();
+	
+	// console.log(schedule_start_time);
+	// console.log(schedule_end_time);
 
-//         var tr = $(this);
-//         var td = tr.children();
-//         var schedule_no = td.eq(0).text();
+	// if(schedule_type === ''){
+	// 	alert('스케줄 타입을 입력해주세요.');
+	// 	return;
+	// }
 
-//         console.log(schedule_no);
+	// if(schedule_ent_name === ''){
+	// 	alert('스케줄을 입력해주세요.');
+	// 	return;
+	// }
 
-//         $.ajax({
-//             url: '../getDetail',
-//             type: 'post',
-//             data: JSON.stringify({schedule_no:schedule_no}),
-//             contentType: "application/json",
-//             success: function (result) {
+	// if(schedule_location === ''){
+	// 	alert('스케줄 장소를 입력해주세요.');
+	// 	return;
+	// }
+	
+	var form = $('#scheduleForm')[0];
+	var formData = new FormData(form);
+	console.log(form);
 
-//                 console.log('success');
+	$.ajax({
+		url: '../modifyForm',
+        type: 'post',
+		enctype: false,
+        data: formData,
+        contentType: false,
+		processData: false,
+        success: function (result) {
+			console.log("success:" + result);
+			// let url = '/schedule/admin_scheduleDetail?schedule_no=' + schedule_no ;
+			// location.replace(url);
+		},
+		error: function(err) {
+			console.log(err);
+		}
+	})
+})
 
-//             },
-//             error: function (err) {
-//                 console.log(err);
-//             }
-//         });
-//     });
-// });
+// datetimepicker
+$(document).on("click", ".schedule_calendar", function(){
+	$('#date_timepicker_start').datetimepicker({
+		format:'Y-m-d H:i',
+		onShow:function( ct ){
+		this.setOptions({
+			maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
+			minDate: 0
+			})
+		},
+		timepicker:true,
+		step: 30
+	});
+
+	$('#date_timepicker_end').datetimepicker({
+		format:'Y-m-d H:i',
+		onShow:function( ct ){
+			this.setOptions({
+				minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false,
+			})
+		},
+		timepicker:true,
+		step: 30
+	});
+}); 

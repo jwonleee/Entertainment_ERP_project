@@ -2,10 +2,7 @@
 a {text-decoration: none;}
 img {max-width: 100%; height: auto;}
 
-* {margin: 0; padding: 0; list-style: none;}
-a {text-decoration: none;}
-img {max-width: 100%; height: auto;}
-
+  /*********** table ***********/
 .table_wrap {
     width: 1080px;
 }
@@ -50,19 +47,13 @@ img {max-width: 100%; height: auto;}
     text-align: left;
 }
 
-.table_inner input {
-    border: 1px solid #b1b1b1;
-    height: 25px;
-    padding-left: 7px;
-}
-
 .table_inner .input90 {
     width: 80%;
     resize: vertical;
 }
 
 .table_inner .content {
-    width: 100%;
+    width: 98%;
     min-height: 200px;
     resize: none;
     margin: 10px 0 10px;
@@ -70,26 +61,18 @@ img {max-width: 100%; height: auto;}
 
 .btn_wrap {
     text-align: center;
-    padding-top: 30px;
+    padding: 31px 0 1px;
 }  
 
 .custom_btn {
-    width: 140px;
-    margin: 15px;
-    background-color: #002d72 !important;
-    color: #ffffff !important;
-  }
-
-.btn_wrap .custom_btn:hover {
-    background-color: #fee192 !important;
-    color: #000 !important;
-    border: 1px solid #464646;
+    padding: 6px 35px !important;
+    margin: 0 5px;
 }
 
 .table_inner label {
     line-height: 2rem;
     padding: 0.2em 0.4em;
-  }
+}
   
 .table_inner label input[type="radio"] {
       vertical-align: middle;
@@ -103,3 +86,35 @@ img {max-width: 100%; height: auto;}
     min-height: 180px;
 }
   
+
+  /*********** Modal ***********/
+.modal_wrap {
+    width: 100%;
+}
+
+.table_inner input {
+    border: 1px solid #b1b1b1;
+    height: 30px;
+    width: 20%;
+}
+
+#date_timepicker_start {
+    min-width: 20%;
+    display: inline; 
+}
+
+#date_timepicker_end{
+    min-width: 20%;
+    display: inline;
+    padding-left:10px;
+}
+
+#schedule_width70 {
+    min-width: 70%;
+}
+
+#schedule_type {
+    border: 1px solid #b1b1b1;
+    width: 29%;
+    height: 37px;
+}

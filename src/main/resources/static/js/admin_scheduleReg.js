@@ -58,7 +58,9 @@
 				}
 			})
 		//actor	
-		} else if(ent_type == 'Actor'){
+		} 
+		
+		if(ent_type == 'Actor'){
 			$.ajax({
 				url: '../getEntType2',
 				type: 'post',
@@ -78,5 +80,4 @@
 		}
 		
 	})
-
 	

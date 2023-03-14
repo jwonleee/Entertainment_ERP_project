@@ -10,9 +10,11 @@
 		
 		<div class="table_wrap">
 			<div class="title">일정 상세보기</div>
-			<form name="scheduleForm" action="modifyForm" method="post" enctype="multipart/form-data">
-				<!-- pk -->
-				<input type="hidden" name="schedule_no" th:value="${vo.schedule_no}"/>
+
+			<form action="deleteForm" method="post" name="actionForm">
+				<!-- pk 가져옴 -->
+				<input type="hidden" name="schedule_no" id="schedule_no" th:value="${vo.schedule_no}"/>
+
 					<ul>
 						<li>
 							<table class="table_inner" id="schedule_list">
@@ -38,7 +40,7 @@
 									</tr>
 									<tr>
 										<th>제목</th>
-										<td>
+										<td id="title">
 											[[${vo.schedule_ent_name}]]
 										</td>
 									</tr>
@@ -72,59 +74,46 @@
 							</table>
 
 							<div class="btn_wrap">
-                                <button type="button" id="Add_Modal" class="btn btn-default custom_btn" data-target="#ViewModal" data-toggle="modal">수정</button>
-								<button type="button" class="btn btn-default custom_btn">삭제</button>
-								<button type="button" class="btn btn-default custom_btn" onclick="location.href='/schedule/admin_scheduleList'">목록</button>
+								<button type="button" id="modify_btn" class="btn btn-primary custom_btn">수정</button>
+								<button type="button" id="delete_btn" class="btn btn-primary custom_btn">삭제</button>
+								<button type="button" class="btn btn-primary custom_btn" onclick="location.href='/schedule/admin_scheduleList'">목록</button>
 							</div>
-
 						</li>
 					</ul>
 
-
-			</form>
+				</form>
+			</div>
+			
+			<!-- Modal 수정창 -->
+			<div class="modal fade" id="ModifyModal" tabindex="-1" aria-labelledby="ModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-xl">
+				<div class="modal-content">
+					
+					<div class="modal-header">
+						<h5 class="modal-title" id="ModalLabel">일정 수정</h5>
+					</div>
+					
+					<form id="scheduleForm" action="modifyForm" method="post" enctype="multipart/form-data">
+						<input type="hidden" name="schedule_no" id="schedule_no" th:value="${vo.schedule_no}" />
+						<div class="modal-body modal_wrap">
+							<table class="table_inner" id="schedule_detail">
+								
+							</table>
+						</div>
+					</form>
+					
+					<div class="modal-footer">
+						<button type="submit" id="save" class="btn btn-primary">저장</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+					</div>
+					
+				</div>
+			</div>
+			</div>
+			<!-- end Modal -->
 		</div>
-		
+
 	</div>
-	
-	<!-- 모달창 -->
-	<!-- <button id="Add_Modal" type="button"
-        data-remote="%= request.getContextPath() %>등록 모달 페이지 주소값"
-        class="btn mb-1 btn-outline-dark btn-action" data-target="#ViewModal" data-toggle="modal">
-        <i class="fa fa-plus"> 등록</i>
-	</button> -->
-
-        <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" id="ViewModal"
-             aria-hidden="true">
-            <div class="modal-dialog modal-lg modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title">타이틀 등록</h5>
-                        <button type="button" class="close" data-dismiss="modal">
-                            <span>&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                    ...모달 로딩 중....
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">취소</button>
-                        <button id="Tilte_Add_Button" type="button" class="btn btn-info" aria-invalid="true">등록</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-<script>
-    $(document).ready(function () {
-        $('#ViewModal').on('shown.bs.modal', function (e) {
-            var button = $(e.relatedTarget);
-            var modal = $(this);
-            modal.find('.modal-body').load(button.data("remote"));
-        });
-    })
-</script>
-[출처] 부트스트랩 테이블을 이용한 Spring MVC 게시판 Modal 등록|작성자 유신혜
-
 
 </th:block>
 
