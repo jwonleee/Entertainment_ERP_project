@@ -50,7 +50,7 @@ function getReceivedMsgList() {
         str += '</div>';
         str += '<div class="mb-3">';
         str += '<label for="exampleFormControlTextarea' + i + '" class="form-label">내용</label>';
-        str += '<textarea name="msg_content" class="form-control" id="exampleFormControlTextarea' + i + '" rows="3" readonly>' + arr[i].msg_content + '</textarea>';
+        str += '<textarea name="msg_content" class="form-control" id="exampleFormControlTextarea' + i + '" rows="4" readonly>' + arr[i].msg_content + '</textarea>';
         str += '</div>';
         str += '</div>';
         str += '</div>';

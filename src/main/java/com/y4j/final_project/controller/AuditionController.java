@@ -1,6 +1,7 @@
 package com.y4j.final_project.controller;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -116,9 +117,8 @@ public class AuditionController {
 		
 		String msg = (result == 1) ? "정상적으로 " + vo.getAudition_cv_name()
 			+ "님이 1차 합격 처리되었습니다.\n2차 오디션 정보가 쪽지로 발송되었습니다." : "합격 처리에 실패했습니다.";
+		
 		ra.addFlashAttribute("msg", msg);
-		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
-		System.out.println(msg);
 		
 		//권한 신청 승인 시, 권한 변경 내역 쪽지 발송
 		MessageVO msgVO = MessageVO.builder()

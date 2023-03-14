@@ -41,7 +41,7 @@ a {
   padding-left: 10px;
   margin-right: 5px;
   border-radius: 5px;
-  border: 1px solid rgb(133, 133, 133);;
+  border: 1px solid rgb(133, 133, 133);
 }
 
 .aal-top-right .searchValue:focus {
@@ -120,5 +120,25 @@ a {
 .vid-outer {
   width: 540px;
   height: 350px;
+}
+
+/* datepicker */
+.dateSearch {
+  margin-bottom: 10px;
+}
+
+.dateSearch > input {
+  width: 138px;
+  height: 30px;
+  line-height: 30px;
+  padding-left: 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(133, 133, 133);
+}
+
+.dateSearch > img {
+  width: 30px;
+  height: 30px;
 }
 

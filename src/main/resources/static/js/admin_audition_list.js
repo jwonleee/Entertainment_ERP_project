@@ -42,13 +42,13 @@ $(".showModal").click(function (e) {
           str += '<legend class="col-form-label col-sm-2 pt-0">성별</legend>';
           str += '<div class="col-sm-10">';
             str += '<div class="form-check">';
-              str += '<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios3" value="M" ' + (vo.audition_cv_gender == "M" ? "checked" : "") + ' disabled >';
+              str += '<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios3" value="남" ' + (vo.audition_cv_gender == "남" ? "checked" : "") + ' disabled >';
               str += '<label class="form-check-label" for="gridRadios3">';
                 str += '남';
               str += '</label>';
             str += '</div>';
             str += '<div class="form-check">';
-              str += '<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios4" value="F" ' + (vo.audition_cv_gender == "F" ? "checked" : "") + ' disabled >';
+              str += '<input class="form-check-input auditionGender" type="radio" name="audition_cv_gender" id="gridRadios4" value="여" ' + (vo.audition_cv_gender == "여" ? "checked" : "") + ' disabled >';
               str += '<label class="form-check-label" for="gridRadios4">';
                 str += '여';
               str += '</label>';
@@ -162,3 +162,20 @@ $(".failBtn").click(function(e) {
   $("#updateAudForm").attr("action", "/audition/failFirstStageForm").submit();
 });
 
+// datepicker
+$( function() {
+  $( "#datepicker_start" ).datepicker({
+    showOn: "button",
+    dateFormat: "yy-mm-dd",
+    buttonImage: "https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png",
+    buttonImageOnly: true,
+    buttonText: "Select date"
+  });
+  $( "#datepicker_end" ).datepicker({
+    showOn: "button",
+    dateFormat: "yy-mm-dd",
+    buttonImage: "https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png",
+    buttonImageOnly: true,
+    buttonText: "Select date"
+  });
+} );
