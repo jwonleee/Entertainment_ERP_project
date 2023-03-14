@@ -23,5 +23,6 @@ public class MessageVO {
 	private String msg_title;
 	private String msg_content;
 	private LocalDateTime msg_senddate;  //default : current_timestamp
+	private LocalDateTime msg_checkdate;
 	
 }

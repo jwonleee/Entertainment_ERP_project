@@ -30,4 +30,19 @@ public class MessageServiceImpl implements MessageService {
 		return messageMapper.getSentMsg(writer);
 	}
 	
+	//미확인 쪽지 개수 반환 메서드
+	public int getUncheckedMsg(Object receiver) {
+		return messageMapper.getUncheckedMsg(receiver);
+	}
+	
+	//수신 메세지 수신일 업데이트 메서드
+	public int checkMsg(int msg_no) {
+		return messageMapper.checkMsg(msg_no);
+	}
+	
+	//특정 쪽지 정보 반환 메서드
+	public MessageVO getMsgInfo(int msg_no) {
+		return messageMapper.getMsgInfo(msg_no);
+	}
+	
 }

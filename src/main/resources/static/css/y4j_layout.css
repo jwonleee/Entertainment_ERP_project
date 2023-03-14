@@ -71,7 +71,7 @@ a {
 
 .main-header .main-header-inner2 .header_middle_user img {
   width: 35px;
-  height: 40px;
+  height: 36px;
   margin: 10px 22px 0px;
   cursor: pointer;
 }
@@ -97,6 +97,7 @@ a {
   left: 0;
   width: 100vw;
   overflow: hidden;
+  z-index: 5;
 }
 
 .header-bottom .header-bottom-inner {
@@ -312,7 +313,7 @@ footer .footer-inner .footer-right span {
 /* aside */
 aside {
   position: absolute;
-  top: 106px;
+  top: 102px;
   left: 0px;
   z-index: 1;
   padding-top: 50px;
