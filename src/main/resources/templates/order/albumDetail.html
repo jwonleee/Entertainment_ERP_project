@@ -1,73 +1,80 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block
+	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	<div class="fragment">
-	<h3>앨범상세</h3>
-	<div>
-		<form method="post">
-		<table class="table table-sm">
-			<tbody>
-				<tr>
-					<th>
-						<div class="th">앨범번호</div>
-					</th>
-					<td>[[${vo.album_no}]]</td>
-				</tr>
-				<tr>
-					<th><div class="th">카테고리</div></th>
-					<td>[[${vo.album_category}]]</td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">타이틀</div>
-					</th>
-					<td>[[${vo.album_title}]]</td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">아티스트</div>
-					</th>
-					<td>[[${vo.album_artist}]]</td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">앨범이미지</div>
-					</th>
-					<td><img th:src="${vo.album_img_path}" /></td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">앨범버전</div>
-					</th>
-					<td>[[${vo.album_version}]]</td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">발매일</div>
-					</th>
-					<td>[[${vo.album_release_date}]]</td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">앨범가격 for update</div>
-					</th>
-					<td><input type="number" required="required" th:value="${vo.album_price}" name="album_price"/></td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">할인률 for update</div>
-					</th>
-					<td><input type="number" required="required" th:value="${vo.album_discount_rate}" name="album_discount_rate"/></td>
-				</tr>
-				<tr>
-					<th>
-						<div class="th">재고 for update</div>
-					</th>
-					<td>[[${vo.album_stock}]]</td>
-				</tr>
-			</tbody>
-		</table>
-		</form>
+		<h3>앨범상세</h3>
+		<div style="height:700px;">
+			<form method="post">
+				<table class="table table-sm">
+					<tbody>
+						<tr>
+							<th>
+								<div class="th">앨범번호</div>
+							</th>
+							<td>[[${vo.album_no}]]</td>
+						</tr>
+						<tr>
+							<th><div class="th">카테고리</div></th>
+							<td>[[${vo.album_category}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">타이틀</div>
+							</th>
+							<td>[[${vo.album_title}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">아티스트</div>
+							</th>
+							<td>[[${vo.album_artist}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">앨범이미지</div>
+							</th>
+							<td><img th:src="${vo.album_img_path}" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">앨범버전</div>
+							</th>
+							<td>[[${vo.album_version}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">발매일</div>
+							</th>
+							<td>[[${vo.album_release_date}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">앨범가격 for update</div>
+							</th>
+							<td><input type="number" required="required"
+								th:value="${vo.album_price}" name="album_price" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">할인률 for update</div>
+							</th>
+							<td><input type="number" required="required"
+								th:value="${vo.album_discount_rate}" name="album_discount_rate" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">재고 for update</div>
+							</th>
+							<td>[[${vo.album_stock}]]</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<input type="button" value="수정하기"> <input type="button"
+						value="목록">
+				</div>
+			</form>
 		</div>
 	</div>
 </th:block>

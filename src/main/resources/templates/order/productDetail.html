@@ -1,81 +1,96 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
-    <div class="fragment">
-        <h3>앨범상세</h3>
-        <div>
-            <table class="table table-sm">
-                <tbody>
-                    <tr>
-                        <th>
-                            <div class="th">상품번호</div>
-                        </th>
-                        <td>[[${vo.prod_no}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">상품명</div>
-                        </th>
-                        <td>[[${vo.prod_name}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">카테고리</div>
-                        </th>
-                        <td>[[${vo.prod_category}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">엔터테이너</div>
-                        </th>
-                        <td>[[${vo.prod_artist}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">상품이미지</div>
-                        </th>
-                        <td><img th:src="${vo.prod_img_path}" /></td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">상품타입</div>
-                        </th>
-                        <td>[[${vo.prod_type}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">상품사이즈</div>
-                        </th>
-                        <td>[[${vo.prod_sizetype}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">등록일</div>
-                        </th>
-                        <td>[[${vo.prod_regdate}]]</td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">상품가격 for update</div>
-                        </th>
-                        <td><input type="number" required="required" th:vlaue="${vo.prod_price}" name="prod_price"/></td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">할인률 for update</div>
-                        </th>
-                        <td><input type="number" required="required" th:vlaue="${vo.prod_discount_rate}" name="prod_discount_rate"/></td>
-                    </tr>
-                    <tr>
-                        <th>
-                            <div class="th">재고 for update</div>
-                        </th>
-                        <td>[[${vo.prod_stock}]]</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
+<th:block
+	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+	<div class="fragment">
+		<h3>상품상세</h3>
+		<div style="height:1000px;">
+			<form method="post">
+				<table class="table table-sm">
+					<tbody>
+						<tr>
+							<th>
+								<div class="th">상품번호</div>
+							</th>
+							<td>[[${vo.prod_no}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품명</div>
+							</th>
+							<td>[[${vo.prod_name}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">카테고리</div>
+							</th>
+							<td>[[${vo.prod_category}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">엔터테이너</div>
+							</th>
+							<td>[[${vo.prod_artist}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품이미지</div>
+							</th>
+							<td><img th:src="${vo.prod_img_path}" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품상세설명이미지</div>
+							</th>
+							<td><img th:src="${vo.prod_info_img_path}" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품타입</div>
+							</th>
+							<td>[[${vo.prod_type}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품사이즈</div>
+							</th>
+							<td>[[${vo.prod_sizetype}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">등록일</div>
+							</th>
+							<td>[[${vo.prod_regdate}]]</td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">상품가격 for update</div>
+							</th>
+							<td><input type="number" required="required"
+								th:vlaue="${vo.prod_price}" name="prod_price" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">할인률 for update</div>
+							</th>
+							<td><input type="number" required="required"
+								th:vlaue="${vo.prod_discount_rate}" name="prod_discount_rate" /></td>
+						</tr>
+						<tr>
+							<th>
+								<div class="th">재고 for update</div>
+							</th>
+							<td>[[${vo.prod_stock}]]</td>
+						</tr>
+					</tbody>
+				</table>
+				<div>
+					<input type="button" value="수정하기"> <input type="button"
+						value="목록">
+				</div>
+			</form>
+		</div>
+	</div>
 </th:block>
 
 </html>
