@@ -4,25 +4,67 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.y4j.final_project.user.service.UserMapper">
+
+	<select id="getUserList" resultType="com.y4j.final_project.command.UserVO">
+		select * from users
+  		where admin_name like concat('%', #{searchValue}, '%')
+  		order by user_no desc limit #{pageStart}, #{amount}
+	</select>
+	
+	<select id="getUserTotal" resultType="Integer">
+		select count(*) from users
+		where user_name like concat('%', #{searchValue}, '%')
+	</select>
+
 	
 	<insert id="registUser" parameterType="com.y4j.final_project.command.UserVO">
 		insert into users(
 			user_id,
-			user_pw
+			user_pw,
+			user_pw2,
 			user_name,
 			user_contact,
+			user_contact2,
 			user_address,
+			user_address2,
 			user_email,
 			user_gender)
 		values(
 			#{user_id},
 			#{user_pw},
+			#{user_pw2},
 			#{user_name},
 			#{user_contact},
+			#{user_contact2},
 			#{user_address},
+			#{user_address2},
 			#{user_email},
 			#{user_gender})
 	</insert>
+	
+  
+	<update id="updateUser" parameterType="UserVO" >
+		update users set 
+			user_pw = #{user_pw},
+			user_pw2 = #{user_pw2},
+			user_name = #{user_name},
+			user_contact = #{user_contact},
+			user_contact2 = #{user_contact2},
+			user_address = #{user_address},
+			user_address2 #{user_address2},
+			user_email = #{user_email},
+			user_gender = #{user_gender}
+    where user_id = #{user_id}
+	</update>
+	
+  
+	<select id="idCheck" parameterType="String" resultType="int">
+		select count(user_id) from users WHERE user_id= #{user_id}
+	</select>
+	
+	<select id="getUserAccount" resultType="UserVO">
+		select user_id, user_pw from users where user_id = #{user_id};
+	</select>
 	
 	<select id="getUserList" resultType="UserVO">
 		select * from users
@@ -43,14 +85,6 @@
 	<select id="getUserInfo2" resultType="UserVO">
 		select * from users where user_id = #{user_id}
 	</select>
-	
-	<!-- 일반 회원 정보 수정 -->
-  	<update id="updateUserInfo" parameterType="UserVO">
-		update users
-		set user_contact = #{user_contact}, user_address = #{user_address}, user_email = #{user_email}
-		where user_id = #{user_id}
-  	</update>
-	
 	
 
 </mapper>

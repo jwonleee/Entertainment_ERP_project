@@ -9,8 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.audition.service.AuditionService;
 import com.y4j.final_project.authority.service.AuthorityService;
@@ -23,26 +24,26 @@ import com.y4j.final_project.user.service.UserService;
 
 @RestController
 public class AjaxController {
-	
+
 	@Autowired
 	UserService userService;
 
 	@Autowired
 	AdminService adminService;
-	
+
 	@Autowired
 	AuthorityService authorityService;
-	
+
 	@Autowired
 	MessageService messageService;
-	
+
 	@Autowired
 	AuditionService auditionService;
 	
-	
+
 	@PostMapping("/getAdminInfo")
 	public AdminVO getAdminInfo(@RequestBody AdminVO vo) {
-		
+
 		return adminService.getAdminInfo(vo.getAdmin_no());
 	}
 	
@@ -59,16 +60,28 @@ public class AjaxController {
 	//수신 메세지 목록 조회
 	@PostMapping("/getReceivedMsg")
 	public ArrayList<MessageVO> getReceivedMsg(@RequestBody MessageVO vo) {
-		
+
 		return messageService.getReceivedMsg(vo.getMsg_receiver_id());
 	}
+
 	
 	//발신 메세지 목록 조회	
 	@PostMapping("/getSentMsg")
 	public ArrayList<MessageVO> getSentMsg(@RequestBody MessageVO vo) {
-		
+
 		return messageService.getSentMsg(vo.getMsg_writer_id());
 	}
+
+
+	//아이디 중복체크
+	@PostMapping("/idCheck")
+	@ResponseBody
+	public int idCheck(@RequestParam("user_id") String user_id) {
+
+		int cnt = userService.idCheck(user_id);
+		return cnt;
+	}
+
 	
 	//메세지 수신 날짜 업데이트
 	@PostMapping("/checkMsg")
@@ -113,7 +126,5 @@ public class AjaxController {
 		
 		return auditionService.getAudFile(vo);
 	}
-	
-	
 	
 }

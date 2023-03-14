@@ -6,6 +6,9 @@
 a {
     text-decoration: none;
 }
+button{
+	cursor:pointer;
+}
 
 /*=========== header부분 ==============*/
 header {

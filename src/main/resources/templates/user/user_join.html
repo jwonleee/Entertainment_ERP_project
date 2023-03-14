@@ -10,6 +10,8 @@
 
 <link rel="stylesheet" href="/css/user_join.css">
 
+<script src="/js/user_join.js"></script>
+
 <!-- 카카오 우편번호 API -->
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -119,9 +121,12 @@
 								alt="필수사항표시"></strong>
 						</div>
 						<div class="join_info_content right">
-							<input type="text" name="user_id" class="input id" minlength="4"
+							<input type="text" id="user_id" name="user_id" class="input id" onkeyup="checkId()"  minlength="4"
 								maxlength="16" pattern="^([a-z0-9_]){4,16}$"
-								placeholder="영문소문자/숫자, 4~16자"  th:value="${vo != null? vo.user_id : ''}"  required><span style="color:red; font-size:12px;">[[${valid_user_id}]]</span>
+								placeholder="영문소문자/숫자, 4~16자"  th:value="${vo != null? vo.user_id : ''}"  required>
+								<span class="id_ok" style="color:blue; display: none; font-size:12px;">사용 가능한 아이디입니다</span>
+								<span class="id_notok" style="color:red; display: none; font-size:12px;">이미 사용 중인 아이디입니다</span>
+								<br/><span style="color:red; font-size:12px;">[[${valid_user_id}]]</span>
 						</div>
 					</div>
 
@@ -151,8 +156,9 @@
 						<div class="join_info_content right">
 							<input type="password" id="pw2" class="input pw" name="user_pw2"
 								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
-								minlength="8" maxlength="16"  th:value="${vo != null? vo.user_pw:''}"   required>
-								<span class=" notsame hide" style="color:red; font-size:12px;" hidden>비밀번호가 일치하지 않습니다</span>
+								minlength="8" maxlength="16"  th:value="${vo != null? vo.user_pw2:''}"   required>
+								<span style="color: red; font-size:12px;">[[${valid_user_pw2}]]</span>
+								
 						</div>
 					</div>
 
@@ -183,13 +189,13 @@
 
 							<span> - </span> 
 							<input type="text" name="user_contact" class="phone_num"
-								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="1"
-								maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
-								 <span> - </span> 
-								<input type="text" name="user_contact" class="phone_num"
-								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="1"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="3"
 								maxlength="4" th:value="${vo != null? vo.user_contact:''}" required><span style="color:red; font-size:12px;">[[${valid_user_contact}]]</span>
-								<input type="hidden" class="adminContact" name="admin_contact" value="" />
+								 <span> - </span> 
+								<input type="text" name="user_contact2" class="phone_num"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4"
+								maxlength="4" th:value="${vo != null? vo.user_contact2:''}" required><span style="color:red; font-size:12px;">[[${valid_user_contact2}]]</span>
+								<!-- <input type="hidden" class="adminContact" name="admin_contact" value="" /> -->
 						</div>
 					</div>
 
@@ -204,12 +210,13 @@
 						<div class="join_info_content right address">
 							<input type="text" name="zipcode" id="zipcode" size="7"
 								placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;"
-								onclick="kakaopost()" readonly> <input type="button"
+								onclick="kakaopost()" required readonly> 
+								<input type="button"
 								value="우편번호찾기" id="zipcode" class="address_btn"
 								onclick="kakaopost()" required><br /> <input
 								type="text" name="user_address" id="address" size="70" th:value="${vo != null? vo.user_address:''}"><br />
-							<input type="text" name="user_address" id="address" size="70"
-								placeholder=" 나머지주소"  th:value="${vo != null? vo.user_address:''}"><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
+							<input type="text" name="user_address2" id="address" size="70"
+								placeholder=" 나머지주소"  th:value="${vo != null? vo.user_address2:''}"><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
 						</div>
 					</div>
 
@@ -229,35 +236,35 @@
 								<span>블랙핑크</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" checked>
+								<input type="radio" name="blackpink" class="entertainer" value="BLACKPINK" checked>
 							</div>
 
 							<div class="entertainer">
 								<span>뉴진스</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/newjeans.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" checked>
+								<input type="radio" name="blackpink" class="entertainer" value="NewJeans" >
 							</div>
 
 							<div class="entertainer">
 								<span>아이브</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" checked>
+								<input type="radio" name="blackpink" class="entertainer" value="IVE" >
 							</div>
 
 							<div class="entertainer">
-								<span>장기용</span><br />
+								<span>이도현</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/kiyong.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" checked>
+								<input type="radio" name="blackpink" class="entertainer" value="이도현" >
 							</div>
 
 							<div class="entertainer chae">
 								<span>채수빈</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/subin.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" checked>
+								<input type="radio" name="blackpink" class="entertainer" value="채수빈" >
 							</div>
 
 						</div>
@@ -271,7 +278,7 @@
 
 						<div class="join_contract_all">
 							<h3>모든 약관에 동의합니다</h3>
-							<input type="checkbox" id="check_all" class="check_all" name="check_all">
+							<input type="checkbox"  id="check_all"  class="check_all" name="check_all"  onclick="agreeContractAll()">
 						</div>
 						<!-- 이용 약관 동의 -->
 						<div class="join_contract_use contract_content">
@@ -1262,7 +1269,7 @@
 
 			<!-- 가입 버튼 및 취소 버튼 -->
 			<div class="join_btn">
-				<a href="#" class="join_cancel"><button class="join_cancel">취소</button></a>
+				<a href="#" class="join_cancel"><button onclick="location.href='user_login'" class="join_cancel">취소</button></a>
 				<a href="user_login"><button class="join_complete">가입</button></a>
 			</div>
 	
@@ -1284,38 +1291,28 @@
 	<footer id="footer">
 		<h3>Footer 입니다</h3>
 	</footer>
-
+	
+	
 </body>
 
-<!-- 약관 동의 전체 선택 -->
-<script>
-$(function(){
-	
-    $("#check_all").click(function(){
-        $(".contract_content input").prop('checked', this.checked);
-    });
-});
+<!-- /* 비밀번호 일치 확인 */ -->
+	<script>
 
-/* 전체 선택 후 선택된 체크박스 해제하면 전체 동의 체크박스가 해제됨 */
-function agreeContract(){
-  	$("#check_all").prop("checked", false);
-  }
-</script>
+	var pw = document.getElementById("pw")
+	var pw2 = document.getElementById("pw2");
 
-<!-- 비밀번호 일치 확인 -->
-<script>
-var pw = document.getElementById("pw")
-var pw2 = document.getElementById("pw2");
+	function validatePassword(){
+	if(pw.value != pw2.value) {
+	  pw2.setCustomValidity("비밀번호가 일치하지 않습니다");
+	} else {
+	  pw2.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
+	}
+	}
+	pw.onchange = validatePassword;
+	pw2.onkeyup = validatePassword;
+	</script>
 
-function validatePassword(){
-if(pw.value != pw2.value) {
-  pw2.setCustomValidity("비밀번호가 일치하지 않습니다");
-} else {
-  pw2.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
-}
-}
 
-pw.onchange = validatePassword;
-pw2.onkeyup = validatePassword;
-</script>
+
+
 </html>
