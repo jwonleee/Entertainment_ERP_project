@@ -47,7 +47,7 @@
 							</tr>
 						</thead>
 						<tbody class="table-group-divider">
-							<form id="approveAudForm" action="approveAudForm" method="post">
+							<form id="updateAudForm" action="passFirstStageForm" method="post">
 								<tr th:each="vo, s : ${list}">
 									<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - s.count + 1}]]</td>
 									<td>[[${vo.audition_cv_no}]]</td>
@@ -61,15 +61,11 @@
 										<button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">지원서 보기</button>
 									</td>
 									<td>
-										<button type="button" class="passBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >합격</button>
-										<button type="button" class="failtBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'disabled' : 'false'}" >불합격</button>
+										<button type="button" class="passBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'false' : 'false'}" >합격</button>
+										<button type="button" class="failtBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'false' : 'false'}" >불합격</button>
 									</td>
 								</tr>
 								<input type="hidden" id="audition_cv_no" name="audition_cv_no" />
-								<input type="hidden" id="audition_cv_type"   name="audition_cv_type" />
-								<input type="hidden" id="audition_cv_user_id" name="audition_cv_user_id" />
-								<input type="hidden" id="audition_cv_name" name="audition_cv_name" />
-								<input type="hidden" id="audition_cv_gender" name="audition_cv_gender" />
 							</form>
 						</tbody>
 					</table>
@@ -140,10 +136,12 @@
 </th:block>
 
 <script th:inline="javascript">
-	var msg = JSON.parse('[[${msg}]]');
-	if(msg != null) {
-		alert(msg);
-	}
+	$(document).ready(function() {
+		var msg = JSON.parse('[[${msg}]]');
+		if(msg != null) {
+			alert(msg);
+		}
+	});
 	</script>
 <script src="/js/admin_audition_list.js"></script>
 </html>

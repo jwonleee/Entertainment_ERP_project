@@ -18,7 +18,7 @@ $(".rejectBtn").click(function(e) {
   $("#authority_mng_no").val(e.target.parentElement.parentElement.children[1].innerHTML);
   $("#authority_mng_admin_no").val(e.target.parentElement.parentElement.children[2].innerHTML);
 
-  $("#updateAuthForm").attr("action","/authority/rejectAuthForm").submit();
+  $("#updateAuthForm").attr("action", "/authority/rejectAuthForm").submit();
 });
 
 

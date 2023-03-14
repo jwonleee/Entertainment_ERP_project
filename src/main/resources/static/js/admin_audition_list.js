@@ -3,6 +3,8 @@
 // 모달 내부 내용 생성 및 열기
 $(".showModal").click(function (e) {
 
+  $(".modal-body-inner").remove();
+
   var audition_cv_no = $(this).parent().parent().children(1).html();
 
   $.ajax({
@@ -142,5 +144,21 @@ $(".modal").click(function (e) {
   if (e.target.parentElement.classList.contains("audApplyForm")) {
     $(".modal-body-inner").remove();
   }
+});
+
+//오디션 1차 합격 처리
+$(".passBtn").click(function(e) {
+
+  $("#audition_cv_no").val(e.target.parentElement.parentElement.children[1].innerHTML);
+	
+  $("#updateAudForm").submit();
+});
+
+//오디션 1차 불합격 처리
+$(".failBtn").click(function(e) {
+
+  $("#audition_cv_no").val(e.target.parentElement.parentElement.children[1].innerHTML);
+
+  $("#updateAudForm").attr("action", "/audition/failFirstStageForm").submit();
 });
 

@@ -117,6 +117,8 @@ public class AuditionController {
 		String msg = (result == 1) ? "정상적으로 " + vo.getAudition_cv_name()
 			+ "님이 1차 합격 처리되었습니다.\n2차 오디션 정보가 쪽지로 발송되었습니다." : "합격 처리에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
+		System.out.println("ㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡㅡ");
+		System.out.println(msg);
 		
 		//권한 신청 승인 시, 권한 변경 내역 쪽지 발송
 		MessageVO msgVO = MessageVO.builder()
@@ -129,7 +131,7 @@ public class AuditionController {
 						  .msg_title("축하드립니다! 1차 오디션에 합격하셨습니다.")
 						  .msg_content(userVO.getUser_name() + "(" + userVO.getUser_id()
 						  	+ ")님은 2차 오디션 대상자 입니다.\n" +  "2차 오디션 일자 : 2023년 3월 31일\n"
-							+ "2차 오디션 장소 : 서울시 강남구 테헤란로 7길 7, 7\n"
+							+ "2차 오디션 장소 : 서울시 강남구 테헤란로 7길 7, 7층\n"
 						  	+ "2차 오디션 평가 사항 : 면접 및 자유 주제 연기 또는 춤, 노래") 
 						  .build();
 		messageService.sendMsg(msgVO);

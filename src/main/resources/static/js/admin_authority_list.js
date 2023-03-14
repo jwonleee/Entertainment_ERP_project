@@ -156,3 +156,4 @@ $("#updateBtn").on("click", function () {
 $('#exampleModal').modal(
   { keyboard: false }
 );
+
