@@ -6,10 +6,9 @@
   
    <mapper namespace="com.y4j.final_project.product.service.ProductMapper">
    
-   <!--  전체 상품 데이터 끌고와서 보여주기 -->
-
+  	 <!--  전체 상품 데이터 끌고와서 보여주기 -->
    	<select id="productList" resultType="ProductVO">
-   		select * from product 
+   		select * from product
    	</select>
    	
    	<!-- 상품 최신순 리스트 -->
@@ -17,8 +16,8 @@
    		select * from product order by prod_regdate desc
    	</select>
    	
-   
-   	<select id="pageTtotal" resultType="int">
+   <!-- 페이지네이션 -->
+  <!--  	<select id="pageTtotal" resultType="int">
    		select count(*) from product
    		where
    		<if test="cri.startDate != null and cri.startDate != '' ">
@@ -37,7 +36,16 @@
 		and prod_content like concat('%', #{cri.searchContent}, '%')
 		</if>
 	
-   	</select>
+   	</select> -->
    
+   <!-- 블랙핑크 전체상품 목록 -->
+   <select id="blackpink_allList" resultType="ProductVO">
+   		select * from product where prod_artist = 'BLACKPINK'
+   </select>
+   
+   <!-- 블랙핑크 최신순 상품 목록 -->
+    <select id="blackpink_uptodateList" resultType="ProductVO">
+   		select * from product where prod_artist = 'BLACKPINK' order by prod_regdate desc
+   </select>
    
    </mapper>

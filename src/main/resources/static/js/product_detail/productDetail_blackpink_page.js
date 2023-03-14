@@ -31,7 +31,21 @@ $('.aside_celeb_goods_box4 #up_img').click(function(){
 });
 
 
+/*전체 목록 나오게끔 버튼 기능*/
+$('#blackpinkButton').click(function(){
+	$('.blackpink_allproduct_box').css("display", "block");
+	$('.blackpink_updateProduct_box').css("display", "none");
+})
 
+
+/*판매량순, 최신순 기능*/
+$('.product_classfication_bp').on("click", "span", function(){
+
+	if(event.target.innerHTML == '최신순'){
+		$('.blackpink_allproduct_box').css("display", "none");
+		$('.blackpink_updateProduct_box').css("display", "block");
+	}
+});
 
 /*
 // 푸터 고정

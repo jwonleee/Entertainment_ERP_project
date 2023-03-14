@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
 <!-- 제이쿼리 -->
-<script src="https://code.jquery.com/jquery-1.12.1.mim.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -71,59 +71,86 @@
 	    				</div>
 	    			</div>
     		</div><!-- 헤더 상단 메뉴바 끝 -->
-    	</div>
-    	
-    
-      <!-- 본문 -->
-	<div class="celeb_main">
-    	
-    <!-- 사이드  -->
-    <aside style="position: relative;">
-    	<div class="aside_celeb_goods_wrap">
-    		<div class="aside_celeb_goods_box1">
-    			<div  class="aside_celeb_goods_box2">
-	    			<div  class="aside_celeb_goods_box3">
-	    				<p style="margin: 10px 5px;">
-				    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">BLACK PINK</span>
-	    				</p>
-	    				
-	    				<div class="aside_celeb_goods_box4">
-			    			
-			    			<span>PRODUCT</span>
-			    			<p id="down_img"><img src="/img/down.png"></p>
-			    			<p id="up_img"><img src="/img/up.png"></p>
-			  
-			    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
-			    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
-			    			
-	    				</div>
-	    				<div class="aside_celeb_sidebar">
-			    			<ul>
-			    				<li>ALBUM</li>
-			    				<li>PHOTO CARD</li>
-			    				<li>CLOTHING</li>
-			    				<li>CASE</li>
-			    				
-			    			</ul>
-	    				</div>
+		 </div>
+
+			
+	
+
+	    <!-- 사이드 바 -->
+	    <div style="position: relative;">
+	    	<div class="aside_celeb_goods_wrap">
+	    		<div class="aside_celeb_goods_box1">
+	    			<div  class="aside_celeb_goods_box2">
+		    			<div  class="aside_celeb_goods_box3">
+		    				<p style="margin: 10px 5px;">
+					    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">BLACK PINK</span>
+		    				</p>
+		    				<div class="aside_celeb_goods_box4">
+				    			
+				    			<span>PRODUCT</span>
+				    			<p id="down_img"><img src="/img/down.png"></p>
+				    			<p id="up_img"><img src="/img/up.png"></p>
+				  
+				    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
+				    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
+		    				</div>
+		    				<div class="aside_celeb_sidebar">
+				    			<ul>
+				    				<li>ALBUM</li>
+				    				<li>PHOTO CARD</li>
+				    				<li>CLOTHING</li>
+				    				<li>CASE</li>	
+				    			</ul>
+		    				</div>
+		    			</div>
 	    			</div>
-    			</div>
-    		</div>
-    	
-    	</div>
-    
-    
-    </aside>
-    	
-    	
-    	
-  
-
-		
+	    		</div>
+	    	</div>
+		 </div>
+		 
+	
+	<!-- blackpink's goods -->
+	<div style="display: flex; flex-direction:column; justify-content: center; align-items: center">
+		<span id="blackpinkButton" style="font-size: 32px; font-family: 'Noto Rashi Hebrew', serif; font-style:italic; padding-left: 60px ">BlackPink's Goods</span>
+		<span style="font-family: 'Nanum Gothic', sans-serif;  font-size: 17px; padding-left: 60px; margin-top: 25px; font-weight: 500">Welcome to BlackPink's world</span>
 	</div>
-
-
-
+		    				    				
+	
+      <!-- 본문 -->	
+     <div class="celeb_main">
+     	<!-- 최신순 / 판매량순 -->
+	   	<div class="product_classfication_bp_box">
+			<div class="product_classfication_bp">
+				<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+				<span >최신순</span>
+			</div>
+		</div>
+	
+		
+		<!-- 블랙핑크 전체 상품 -->
+		<div class="blackpink_allproduct_wrap">
+			<ul class="blackpink_allproduct_box" th:each="vo2:${list2}">
+				<li>
+					<img style="width: 240px; height: 240px;" th:src="@{${vo2.prod_img_path}}"/>		
+				</li>
+			</ul>
+		
+			<!-- 최신순 -->
+			<ul class="blackpink_updateProduct_box" th:each="vo3:${list3}">
+				<li>
+					<img style="width: 240px; height: 240px;" th:src="@{${vo3.prod_img_path}}"/>		
+				</li>
+			</ul>
+			
+			<!-- 판매량순 -->
+		<!-- <ul class="blackpink_updateProduct_box" th:each="vo2:${list2}">
+				<li class="blackpink_updateProduct">
+					<img style="width: 220px; height: 220px;" th:src="@{${vo2.prod_img_path}}"/>		
+				</li>
+			</ul> -->
+			
+		</div> 
+	</div><!-- 본문 내용 끝 -->
 
 	<!--footer  -->
 	<div class="footer-outer">
@@ -145,6 +172,6 @@
         </footer>
         </div>
         
-  <!-- js 링크 -->
+ <!-- js 링크 -->
  <script src="/js/product_detail/productDetail_blackpink_page.js"></script>
 </html>

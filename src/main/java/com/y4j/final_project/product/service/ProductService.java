@@ -22,4 +22,20 @@ public interface ProductService {
 	
 	//페이지네이션
 	public int pageTotal(Criteria cri);
+	
+	///////////////////////////////////////////////////////////////////
+	
+	//====================블랙핑크 페이지========================//
+	//블랙핑크 전체상품 목록
+	public ArrayList<ProductVO> blackpink_allList (ProductVO vo1);
+	
+	//블랙핑크 최신순 상품 목록
+	public ArrayList<ProductVO> blackpink_uptodateList (ProductVO vo1);
+	
+	
+	//블랙핑크 판매량순 상품 목록
+	public ArrayList<ProductVO> blackpink_popularList (ProductVO vo1);
+	
+	
+	
 }
