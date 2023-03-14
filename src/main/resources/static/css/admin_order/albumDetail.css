@@ -1,0 +1,17 @@
+#album_modify_btn{
+    border: 2px solid rgb(15, 119, 238);
+    color: rgb(15, 119, 238);
+}
+
+.btn_base{
+    background-color: white;
+    border-radius: 10px;
+    padding: 2px;
+    margin: 5px;
+}
+
+.toList_btn{
+    border: 2px solid red;
+    color: red;
+    padding:2px 8px;
+}

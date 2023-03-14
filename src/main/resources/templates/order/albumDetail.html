@@ -1,11 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<!-- css -->
+<link rel="stylesheet" href="/css/admin_order/albumDetail.css">
 <th:block
 	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	<div class="fragment">
 		<h3>앨범상세</h3>
 		<div style="height:700px;">
 			<form method="post">
+				<input type="hidden" th:value="${vo.album_no}" name="album_no"/>
 				<table class="table table-sm">
 					<tbody>
 						<tr>
@@ -53,14 +56,14 @@
 								<div class="th">앨범가격 for update</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.album_price}" name="album_price" /></td>
+								th:value="${vo.album_price}" name="album_price" oninput="handleInputLength(this, 8)" /></td>
 						</tr>
 						<tr>
 							<th>
 								<div class="th">할인률 for update</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.album_discount_rate}" name="album_discount_rate" /></td>
+								th:value="${vo.album_discount_rate}" name="album_discount_rate" oninput="handleInputLength(this, 2)"/></td>
 						</tr>
 						<tr>
 							<th>
@@ -71,11 +74,12 @@
 					</tbody>
 				</table>
 				<div>
-					<input type="button" value="수정하기"> <input type="button"
-						value="목록">
+					<input type="button" value="수정하기" id="album_modify_btn" class="btn_base"> <input type="button" value="목록" class="toList_btn btn_base">
 				</div>
 			</form>
 		</div>
 	</div>
 </th:block>
+<!-- js -->
+<script src="/js/admin_order/albumDetail.js"></script>
 </html>

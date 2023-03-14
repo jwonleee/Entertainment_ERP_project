@@ -45,6 +45,9 @@
   		<if test='cri.searchStock !=null and cri.searchStock eq "desc"'>
   			cast(admin_order_prod_cnt as decimal(10,0)) desc,
   		</if>
+  		<if test='cri.searchStock !=null and cri.searchStock eq "new"'>
+  			admin_order_regdate desc,
+  		</if>
   		 admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
   	</select>
   	
