@@ -1,9 +1,15 @@
 
+
+
 function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
     //모달창 켜졌을 때 외부 스크롤 막기
     $("body").css("overflowY", "hidden");
     //이전 내용 지우기
     $(".detailTable").html('');
+    //모달창 켜졌을 때 구별용 hidden input value값 지우기
+    $("#forCheckAlbum").val(0);
+    $("#forCheckProduct").val(0);
+
 
     var str = '';
     //admin관련 영역 뿌리기
@@ -40,9 +46,9 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</tbody>`;
         },
         error: (err) => {
-			 alert('발주정보 조회 실패!') 
-			 return false;
-			 }
+            alert('발주정보 조회 실패!')
+            return false;
+        }
     })
     if (admin_order_prod_no == 0) {//앨범이라면
         $.ajax({
@@ -50,6 +56,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             type: "get",
             async: false,
             success: (result) => {
+                $("#forCheckAlbum").val(result.album_no);
                 str += `<tbody id="album_tbx" class="tbx">`;
                 str += `<tr>`;
                 str += `<th>`;
@@ -108,16 +115,18 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
                 str += `</tbody>`;
             },
             error: (err) => {
-				 alert('앨범 조회 실패!');
-				  return false;}
+                alert('앨범 조회 실패!');
+                return false;
+            }
         })
         $(".detailTable").append(str);
     } else {//상품이라면
-     $.ajax({
+        $.ajax({
             url: "/getProduct/" + admin_order_prod_no,
             type: "get",
             async: false,
             success: (result) => {
+                $("#forCheckProduct").val(result.prod_no);
                 str += `<tbody id="prod_tbx" class="tbx">`;
                 str += `<tr>`;
                 str += `<th>`;
@@ -180,13 +189,13 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
                 str += `<td>${result.prod_stock}</td>`;
                 str += `</tr>`;
                 str += `</tbody>`;
-			},
-			error:(err)=>{
-				alert('상품 조회 실패!');
-				  return false;
-			}
-		});	
-        
+            },
+            error: (err) => {
+                alert('상품 조회 실패!');
+                return false;
+            }
+        });
+
         $(".detailTable").append(str);
     }
     $(".modal").fadeIn();
@@ -204,3 +213,12 @@ $(".modal_close").click(() => {
     $(".modal").fadeOut();
 });
 
+
+/***********수정버튼***********/
+$("#modify_btn").click(() => {
+    if ($("#forCheckAlbum").val() != 0) {//앨범이라면
+        $("#handleForm").attr("action", "/order/albumDetail").submit();
+    } else if ($("#forCheckProduct").val() != 0) {//상품이라면
+        $("#handleForm").attr("action", "/order/productDetail").submit();
+    }
+})

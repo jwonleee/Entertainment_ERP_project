@@ -36,9 +36,15 @@
 															th:selected="${pageVO.cri.searchContent}=='product'">상품발주
 														</option>
 													</select>
-													<select id="handleStock">
-														<option value="asc">재고 높은순</option>
-														<option value="desc">재고 낮은순</option>
+													<select id="handleStock" name="searchStock">
+														<option value="new"
+															th:selected="${pageVO.cri.searchStock}==new">최신순</option>
+														<option value="asc"
+															th:selected="${pageVO.cri.searchStock}=='asc'">재고 높은순
+														</option>
+														<option value="desc"
+															th:selected="${pageVO.cri.searchStock}=='desc'">재고 낮은순
+														</option>
 													</select>
 													<input type="submit" value="검색" />
 												</div>
@@ -90,7 +96,7 @@
 											<section class="pagination_section">
 												<div class="pagination">
 													<ul class="pages">
-														<li><a th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+														<li><a th:href="@{orderList(pageNum=1,amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName},searchStock=${pageVO.cri.searchStock})}"
 																class="page_num"><svg xmlns="http://www.w3.org/2000/svg"
 																	width="16" height="16" fill="currentColor"
 																	class="bi bi-chevron-double-left size"
@@ -101,7 +107,7 @@
 																		d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
 																</svg></a></li>
 														<th:block th:if="${pageVO.prev}">
-															<li><a th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+															<li><a th:href="@{orderList(pageNum=${pageVO.startPage-1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName},searchStock=${pageVO.cri.searchStock})}"
 																	class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
@@ -112,12 +118,12 @@
 																	</svg></a></li>
 														</th:block>
 														<th:block th:each="pageNum:${pageVO.pageList}">
-															<li><a th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
-																	th:class="${pageNum == pageVO.pageNum?'on':''}">[[${pageNum}]]</a>
+															<li><a th:href="@{orderList(pageNum=${pageNum},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName},searchStock=${pageVO.cri.searchStock})}"
+																	th:class="${pageNum == pageVO.pageNum?'pon':''}">[[${pageNum}]]</a>
 															</li>
 														</th:block>
 														<th:block th:if="${pageVO.next}">
-															<li><a th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"
+															<li><a th:href="@{orderList(pageNum=${pageVO.endPage+1},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName},searchStock=${pageVO.cri.searchStock})}"
 																	class="page_num"><svg
 																		xmlns="http://www.w3.org/2000/svg" width="16"
 																		height="16" fill="currentColor"
@@ -128,7 +134,7 @@
 																	</svg></a></li>
 														</th:block>
 														<li><a
-																th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName})}"><svg
+																th:href="@{orderList(pageNum=${pageVO.realEnd},amount=${pageVO.amount},searchContent=${pageVO.cri.searchContent},searchName=${pageVO.cri.searchName},searchStock=${pageVO.cri.searchStock})}"><svg
 																	xmlns="http://www.w3.org/2000/svg" width="16"
 																	height="16" fill="currentColor"
 																	class="bi bi-chevron-double-right size"
@@ -160,7 +166,9 @@
 						<h5>상세내용</h5>
 						<button class="modal_close">X</button>
 						<div class="modal_table">
-							<form>
+							<form id="handleForm" method="post">
+								<input type="hidden" id="forCheckAlbum" value="" name="album_no"/>
+								<input type="hidden" id="forCheckProduct" value="" name="prod_no"/>
 								<table class="detailTable">
 								</table>
 							</form>
@@ -187,6 +195,16 @@
 			alert(msg);
 		}
 	});
+
+	//검색결과 없을 때
+	$(document).ready(() => {
+		var total = JSON.parse('[[${pageVO.total}]]');
+		if (total == 0) {
+			var str = '<h3 style="text-align:center">검색된 결과가 없습니다.</h3>';
+			$(".orderTable").append(str);
+		}
+	});
+
 </script>
 
 </html>

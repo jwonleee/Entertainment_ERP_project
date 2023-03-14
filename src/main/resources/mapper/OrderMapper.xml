@@ -38,8 +38,20 @@
   		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
   			<![CDATA[and admin_order_no >=1]]>
   		</if>
-  		 order by admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
+  			order by 
+  		<if test='cri.searchStock !=null and cri.searchStock eq "asc"'>
+  			cast(admin_order_prod_cnt as decimal(10,0)) asc,
+  		</if>
+  		<if test='cri.searchStock !=null and cri.searchStock eq "desc"'>
+  			cast(admin_order_prod_cnt as decimal(10,0)) desc,
+  		</if>
+  		 admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
   	</select>
+  	
+  	
+  	
+  	
+  	
   	
   	<select id="getProductList" resultType="ProductVO">
   		select * from product order by prod_no desc
@@ -79,8 +91,16 @@
   		select * from album where album_no=#{admin_order_album_no}
   	</select>
   	
+  	<select id="getAlbumDetail" resultType="AlbumVO" parameterType="Integer">
+  		select * from album where album_no=#{album_no}
+  	</select>
+  	
   	<select id="getProduct" resultType="ProductVO">
-  		select * from product where prod_no=#{admin_order_album_no}
+  		select * from product where prod_no=#{admin_order_prod_no}
+  	</select>
+  	
+  	<select id="getProductDetail" resultType="ProductVO" parameterType="Integer">
+  		select * from product where prod_no=#{prod_no}
   	</select>
   	
   	<insert id="albumRegist" parameterType="AlbumVO">
