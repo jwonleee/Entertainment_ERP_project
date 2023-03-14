@@ -21,67 +21,67 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private UserMapper userMapper;
-	
+
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	//유저 등록 메서드
 
-		public int registUser(UserVO vo) {
-			return userMapper.registUser(vo);
-		}
-		
-		//유저 정보 조회 메서드
-		public ArrayList<UserVO> getUserList(Criteria cri) {
-			return userMapper.getUserList(cri);
-		}
-		
-		//유저 정보 수정 메서드
-		@Override
-		public int updateUser(UserVO vo) {
+	public int registUser(UserVO vo) {
+		return userMapper.registUser(vo);
+	}
 
-			return userMapper.updateUser(vo);
-		}
+	//유저 정보 조회 메서드
+	public ArrayList<UserVO> getUserList(Criteria cri) {
+		return userMapper.getUserList(cri);
+	}
 
-		//전체 데이터 수 반환 메서드
-		public int getUserTotal(Criteria cri) {
-			return userMapper.getUserTotal(cri);
-		}
+	//유저 정보 수정 메서드
+	@Override
+	public int updateUser(UserVO vo) {
 
-		//비밀번호 암호화
-	  @Override
-	     public PasswordEncoder passwordEncoder() {
-	          return this.passwordEncoder;
-	     }
+		return userMapper.updateUser(vo);
+	}
 
-	  //아이디 중복 검사
-    @Override
-    public int idCheck(String user_id) {
-      int cnt = userMapper.idCheck(user_id);
+	//전체 데이터 수 반환 메서드
+	public int getUserTotal(Criteria cri) {
+		return userMapper.getUserTotal(cri);
+	}
 
-      return cnt;
-    }
+	//비밀번호 암호화
+	@Override
+	public PasswordEncoder passwordEncoder() {
+		return this.passwordEncoder;
+	}
 
-	  //유저 로그인
-//	@Override
-//	public int getUserAccount(UserVO vo) {
-//
-//		return userMapper.getUserAccount(vo);
-//	}
-	
+	//아이디 중복 검사
+	@Override
+	public int idCheck(String user_id) {
+		int cnt = userMapper.idCheck(user_id);
+
+		return cnt;
+	}
+
+	//유저 로그인
+	//	@Override
+	//	public int getUserAccount(UserVO vo) {
+	//
+	//		return userMapper.getUserAccount(vo);
+	//	}
+
 	//유저 특정 1명 데이터 반환 메서드
 	public UserVO getUserInfo(int user_no) {
 		return userMapper.getUserInfo(user_no);
 	}
-	
+
 	//유저 특정 1명 데이터 반환 메서드
 	public UserVO getUserInfo2(Object user_id) {
 		return userMapper.getUserInfo2(user_id);
 	}
-	
+
 	//유저 정보 수정 메서드
 	public int updateUserInfo(UserVO vo) {
-		return userMapper.updateUserInfo(vo);
+		return userMapper.updateUser(vo);
 	}
-	
+
 }
