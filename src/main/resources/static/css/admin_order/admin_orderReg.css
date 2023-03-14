@@ -155,11 +155,11 @@ input:focus {
 	padding-left: 5%;
 }
 
-.on {
+.categoryOn {
 	background-color: black;
 }
 
-.categoryListWrap .categoryList .on a {
+.categoryListWrap .categoryList .categoryOn a {
 	background-color: black;
 	color: #fff;
 }

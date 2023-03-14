@@ -85,6 +85,16 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getProduct(admin_order_prod_no);
 	}
 
+	@Override
+	public AlbumVO getAlbumDetail(Integer album_no) {
+		return orderMapper.getAlbumDetail(album_no);
+	}
+
+	@Override
+	public ProductVO getProductDetail(Integer prod_no) {
+		return orderMapper.getProductDetail(prod_no);
+	}
+
 
 
 

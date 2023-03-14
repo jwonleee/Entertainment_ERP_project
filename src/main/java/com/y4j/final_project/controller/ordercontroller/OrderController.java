@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
@@ -71,8 +72,19 @@ public class OrderController {
 		return "order/orderDetail";
 	}
 	
+	@PostMapping("/albumDetail")
+	public String albumDetail(@RequestParam("album_no")Integer album_no, Model model) {
+		AlbumVO vo=orderService.getAlbumDetail(album_no);
+		model.addAttribute("vo",vo);
+		return "order/albumDetail";
+	}
 	
-	
+	@PostMapping("/productDetail")
+	public String productDetail(@RequestParam("prod_no")Integer prod_no, Model model) {
+		ProductVO vo=orderService.getProductDetail(prod_no);
+		model.addAttribute("vo",vo);
+		return "order/productDetail";
+	}
 	
 	
 	//추가발주

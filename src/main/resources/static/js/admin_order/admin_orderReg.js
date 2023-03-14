@@ -79,9 +79,9 @@ function category_create(result) {
 var detailCnt = 0;//카테고리 선택 확인용 변수
 
 //카테고리 클릭시 활성화
-$(".categoryListWrap").on("click", ".forOn", (e) => {
-    $(e.currentTarget).addClass("on");
-    $(e.currentTarget).siblings().removeClass("on");
+$(".categoryListWrap").on("click", ".forOn>a", (e) => {
+    $(e.currentTarget).closest('li').addClass("categoryOn");
+    $(e.currentTarget).closest('li').siblings().removeClass("categoryOn");
     detailCnt = 0;
 });
 

@@ -31,6 +31,10 @@ public interface OrderMapper {
 	public AlbumVO getAlbum(String admin_order_album_no); //앨범 상세조회
 	public ProductVO getProduct(String admin_order_prod_no); //상품 상세조회
 	
+	//상품수정, 앨범수정
+	public AlbumVO getAlbumDetail(Integer album_no); //앨범수정을 위한 상세조회
+	public ProductVO getProductDetail(Integer prod_no); //상품수정을 위한 상세조회
+	
 	//카테고리
 	public ArrayList<CategoryVO> getCategory(); //대분류 카테고리
 	public ArrayList<CategoryVO> getCategoryChild(CategoryVO vo); //중, 소분류 카테고리
