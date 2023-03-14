@@ -1,7 +1,7 @@
 // datetimepicker
 	$(function(){
 		$('#date_timepicker_start').datetimepicker({
-			format:'Y-m-d H:m',
+			format:'Y-m-d H:i',
 			onShow:function( ct ){
 			this.setOptions({
 				maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
@@ -13,7 +13,7 @@
 		});
 
 		$('#date_timepicker_end').datetimepicker({
-			format:'Y-m-d H:m',
+			format:'Y-m-d H:i',
 			onShow:function( ct ){
 				this.setOptions({
 					minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false,
@@ -40,7 +40,7 @@
 		var ent_type=$('[name=artist_type]:checked').val();
 		
 		//musician
-		if(ent_type == 'musician') {
+		if(ent_type == 'Musician') {
 			$.ajax({
 				url: '../getEntType',
 				type: 'post',
@@ -49,7 +49,7 @@
 				success: function(result) {
 					var str = "";
 					result.forEach(function(item, index) {
-						str += '<option value="' + item.ent_group_name + '" class="ent_name">' + item.ent_group_name +'</option>';
+						str += '<option value="' + item.ent_group_name + '" class="ent_group_name">' + item.ent_group_name +'</option>';
 					})
 					$(".artistList_wrap").html(str);
 				},
@@ -58,7 +58,9 @@
 				}
 			})
 		//actor	
-		} else {
+		} 
+		
+		if(ent_type == 'Actor'){
 			$.ajax({
 				url: '../getEntType2',
 				type: 'post',
@@ -67,7 +69,7 @@
 				success: function(result) {
 					var str = "";
 					result.forEach(function(item, index) {
-						str += '<option value="' + item.ent_name + '" class="group_list">' + item.ent_name +'</option>';
+						str += '<option value="' + item.ent_name + '" class="ent_name">' + item.ent_name +'</option>';
 					})
 					$(".artistList_wrap").html(str);
 				},
@@ -78,5 +80,4 @@
 		}
 		
 	})
-
 	
