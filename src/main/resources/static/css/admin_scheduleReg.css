@@ -2,7 +2,7 @@
 a {text-decoration: none;}
 img {max-width: 100%; height: auto;}
 
-
+/*********** table ***********/
 .table_wrap {
     width: 1080px;
 }
@@ -17,16 +17,28 @@ img {max-width: 100%; height: auto;}
     margin-top: 30px;
 }
 
-.table_wrap ul li {
-    overflow: auto;
-}
-
 .table_inner {
     width: 100%;
 }
 
+#date_timepicker_start {
+  width:154px;
+  display: inline; 
+}
+
+#date_timepicker_end{
+  width:154px;
+  display: inline;
+  padding-left:10px;
+}
+
 .table_inner .schedule_calendar img{
     width: 30px;
+    margin-left: 4px;
+}
+
+.schedule_calendar > label {
+  padding: 0px;
 }
 
 .table_inner tr th{
@@ -49,8 +61,6 @@ img {max-width: 100%; height: auto;}
 
 .table_inner input {
     border: 1px solid #b1b1b1;
-    height: 25px;
-    padding-left: 7px;
 }
 
 .table_inner .input90 {
@@ -66,34 +76,89 @@ img {max-width: 100%; height: auto;}
     margin: 10px 0 10px;
 }
 
-.btn_wrap {
-    text-align: center;
-    padding-top: 30px;
-}  
-
-.custom_btn {
-    width: 140px;
-    margin: 15px;
-    background-color: #002d72 !important;
-    color: #ffffff !important;
-  }
-
-.btn_wrap .custom_btn:hover {
-    background-color: #fee192 !important;
-    color: #000 !important;
-    border: 1px solid #464646;
+.timepicker_block {
+    display: inline !important;
 }
 
-.table_inner label {
+  
+/*********** radio ***********/
+  label {
+    font-size: 18px;
     line-height: 2rem;
     padding: 0.2em 0.4em;
   }
   
-.table_inner label input[type="radio"] {
-      vertical-align: middle;
+  span {
+    vertical-align: middle;
+  }
+  
+  [type="radio"] {
+    vertical-align: middle;
+    appearance: none;
+    border: max(2px, 0.1em) solid gray;
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    transition: border 0.3s ease-in-out;
+  }
+  
+  [type="radio"]:checked {
+    border: 0.27em solid tomato;
+  }
+  
+  [type="radio"]:focus-visible {
+    outline-offset: max(2px, 0.1em);
+    outline: max(2px, 0.1em) dotted tomato;
+  }
+  
+  [type="radio"]:hover {
+    box-shadow: 0 0 0 max(4px, 0.2em) lightgray;
+    cursor: pointer;
+  }
+  
+  [type="radio"]:disabled {
+    background-color: lightgray;
+    box-shadow: none;
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  [type="radio"]:disabled + span {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  /*********** Global CSS ***********/
+  fieldset {
+    display: flex;
+    justify-content: center;
+    border: none;
+    margin: 0;
+    padding: 40px 20px;
+  }
+  
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  /*********** button ***********/
+.btn_wrap {
+    text-align: center;
+    padding: 30px 0;
+}  
+
+.custom_btn {
+    padding: 6px 35px !important;
+    margin: 0px 5px;
+}
+
+.table_inner label {
+    line-height: 2rem;
+    /* padding: 0.2em 0.4em; */
   }
 
 .table_inner span {
     vertical-align: middle;
   }
-  

@@ -13,9 +13,15 @@ public class Criteria {
 	
 	private String searchName;  //상품 이름 검색
 	private String searchContent;  //상품 내용 검색
+	private String searchStock; //상품 재고 검색
 	
 	private String searchType;  //검색 타입
 	private String searchValue = "";  //검색 값
+	
+	private String searchPrice; //상품 가격 정렬
+
+	private String startDate; //시작일
+	private String endDate; //종료일
 	
 	public Criteria() {
 		this.pageNum = 1;

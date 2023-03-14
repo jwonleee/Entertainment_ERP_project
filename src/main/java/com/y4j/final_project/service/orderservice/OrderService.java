@@ -12,6 +12,8 @@ public interface OrderService {
 	//리스트
 	public int getOrderTotal(String user_id, Criteria cri); //전체게시글수 조회
 	public ArrayList<Admin_orderVO> getOrderList(String user_id, Criteria cri); //발주목록
+	public ArrayList<ProductVO> getProductList(Criteria cri); //상품목록
+	public ArrayList<AlbumVO> getAlbumList(Criteria cri); //앨범목록
 	
 	//신규등록
 	public int albumRegist(AlbumVO vo);	//앨범등록
@@ -20,7 +22,11 @@ public interface OrderService {
 	public int adminProductmRegist(Admin_orderVO admvo); //상품일 때 관리자 판매 등록
 	
 	//상세조회,추가발주
-	public Admin_orderVO getDetail(String admin_order_no); //상세조회
+	public Admin_orderVO getDetail(String admin_order_no); //발주 상세조회
+	public AlbumVO getAlbum(String admin_order_album_no); //앨범 상세조회
+	public ProductVO getProduct(String admin_order_prod_no); //상품 상세조회
+	
+	
 	//public int updateOrder();//추가발주-업데이트
 	
 	

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.y4j.final_project.audition.service.AuditionMapper">
+
+	<!-- 오디션 지원서 저장 -->
+	<insert id="registAud" parameterType="AuditionVO">
+		insert into audition_cv(
+			audition_cv_user_id,
+			audition_cv_type,
+			audition_cv_name,
+			audition_cv_gender,
+			audition_cv_age,
+			audition_cv_height,
+			audition_cv_weight,
+			audition_cv_contact,
+			audition_cv_email)
+		values(
+			#{audition_cv_user_id},
+			#{audition_cv_type},
+			#{audition_cv_name},
+			#{audition_cv_gender},
+			#{audition_cv_age},
+			#{audition_cv_height},
+			#{audition_cv_weight},
+			#{audition_cv_contact},
+			#{audition_cv_email})		
+	</insert>
+
+	<!-- 오디션 지원서 내 파일 정보 저장 -->
+	<insert id="registAudFile" parameterType="AuditionFileVO">
+		<selectKey resultType="int" keyProperty="audition_cv_no" order="BEFORE" >
+  			select max(audition_cv_no) as audition_cv_no from audition_cv
+  		</selectKey>
+		insert into audition_cv_file(
+			audition_cv_no,
+			audition_cv_file_extension,
+			audition_cv_file_type,
+			audition_cv_file_path)
+		values(
+			#{audition_cv_no},
+			#{audition_cv_file_extension},
+			#{audition_cv_file_type},
+			#{audition_cv_file_path})
+	</insert>
+	
+	<!-- 오디션 지원서 전체 조회 메서드 -->
+	<select id="getAudList" resultType="AuditionVO">
+		select * from audition_cv
+		<choose>
+			<when test="searchType == 'type'">where audition_cv_type like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'name'">where audition_cv_name like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'gender'">where audition_cv_gender like concat('%', #{searchValue}, '%')</when>
+			<!-- <otherwise>where 1=1</otherwise> -->
+		</choose>
+		order by audition_cv_no desc limit #{pageStart}, #{amount}
+	</select>
+
+	<!-- 전체 오디션 지원서 수 반환 메서드 -->
+	<select id="getAudTotal" resultType="Integer">
+		select count(*) from audition_cv
+		<choose>
+			<when test="searchType == 'type'">where audition_cv_type like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'name'">where audition_cv_name like concat('%', #{searchValue}, '%')</when>
+			<when test="searchType == 'gender'">where audition_cv_gender like concat('%', #{searchValue}, '%')</when>
+		</choose>
+	</select>
+	
+	<!-- 오디션 지원서 특정 1개 데이터 반환 메서드 -->
+	<select id="getAudCv" resultType="AuditionVO">
+		select * from audition_cv where audition_cv_no = #{audition_cv_no}
+	</select>
+	
+	<!-- 오디션 지원서 내 특정 지원자 사진 및 영상 가져오기 -->
+	<select id="getAudFile" resultType="AuditionFileVO">
+		select * from audition_cv_file where audition_cv_no = #{audition_cv_no}
+	</select>
+	
+	<!-- 오디션 1차 합격 처리 -->
+	<update id="passFirstStage">
+		update audition_cv
+		set audition_cv_progress = '2차'
+		where audition_cv_no = #{audition_cv_no}
+	</update>
+	
+	<!-- 오디션 1차 불합격 처리 -->
+	<update id="failFirstStage">
+		update audition_cv
+		set audition_cv_progress = '1차 불합격'
+		where audition_cv_no = #{audition_cv_no}
+	</update>
+
+
+</mapper>

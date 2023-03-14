@@ -38,5 +38,20 @@
 		order by msg_no desc
 	</select>
 	
+	<!-- 미확인 쪽지 개수 반환 -->
+	<select id="getUncheckedMsg" resultType="Integer">
+		select count(*) from message where msg_receiver_id = #{receiver}
+		and msg_checkdate is null
+	</select>
+	
+	<!-- 메세지 수신 날짜 업데이트 -->
+	<update id="checkMsg">
+		update message set msg_checkdate = current_timestamp() where msg_no = #{msg_no}
+	</update>
+	
+	<!-- 특정 쪽지 정보 반환 메서드 -->
+	<select id="getMsgInfo" resultType="MessageVO">
+		select * from message where msg_no = #{msg_no}
+	</select>
 
 </mapper>
