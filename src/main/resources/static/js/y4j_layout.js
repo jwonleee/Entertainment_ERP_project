@@ -1,6 +1,6 @@
 //메뉴바 드롭다운
 $('.menu_bar > ul > li > span').mouseenter(function(){
-  $('.header-bottom').css("height", "230px");
+  $('.header-bottom').css("height", "245px");
   $('.menu_bar > ul > li > .snb').css("height", "170px");
   $('.menu-outer .header-bottom').css("borderBottom", "1px solid #999");
 });
@@ -173,3 +173,8 @@ function footerFixed() {
   }
 }
 window.addEventListener('resize', footerFixed);
+
+//화면 렌더링 완료 시, view size 측정 후 적용
+$(document).ready(resizeFragment());
+$(document).ready(footerFixed());
+

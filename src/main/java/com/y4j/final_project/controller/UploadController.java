@@ -31,8 +31,8 @@ public class UploadController {
 		
 	}
 	@GetMapping("/upload_aws")
-	public void upload_aws() {
-		
+	public String upload_aws() {
+		return "upload/upload_aws";
 	}
 	
 	//현재 날짜로 폴더 생성 메서드
