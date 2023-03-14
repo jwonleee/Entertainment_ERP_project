@@ -16,6 +16,11 @@
 						<span class="aal-top-lefts sideMenuContent">Sub Menu</span>
 					</div>
 					<div class="aal-top-right">
+						<div class="dateSearch">
+							<input type="text" id="datepicker_start" name="startDate" th:value="${pageVO.cri.startDate}" readonly>
+							<span>~</span>
+							<input type="text" id="datepicker_end" name="endDate" th:value="${pageVO.cri.endDate}" readonly>
+						</div>
 						<select name="searchType" class="searchType form-select form-select-sm" aria-label=".form-select-sm example">
 							<option value="name" th:selected="${pageVO.cri.searchType} == 'name'">이름</option>
 							<option value="type" th:selected="${pageVO.cri.searchType} == 'type'">타입</option>
@@ -61,8 +66,8 @@
 										<button type="button" class="btn btn-outline-dark showModal" data-bs-toggle="modal" data-bs-target="#exampleModal">지원서 보기</button>
 									</td>
 									<td>
-										<button type="button" class="passBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'false' : 'false'}" >합격</button>
-										<button type="button" class="failtBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'false' : 'false'}" >불합격</button>
+										<button type="button" class="passBtn btn btn-outline-primary" th:disabled="${vo.audition_cv_progress != '1차' ? 'true' : 'false'}" >합격</button>
+										<button type="button" class="failBtn btn btn-outline-danger" th:disabled="${vo.audition_cv_progress != '1차' ? 'true' : 'false'}" >불합격</button>
 									</td>
 								</tr>
 								<input type="hidden" id="audition_cv_no" name="audition_cv_no" />
@@ -71,7 +76,7 @@
 					</table>
 					
 					<!-- Modal -->
-					<form action="audApplyForm" id="updateForm" class="audApplyForm" method="post" >
+					<form id="applicantResume" >
 						<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
 								<div class="modal-content">
@@ -137,8 +142,11 @@
 
 <script th:inline="javascript">
 	$(document).ready(function() {
-		var msg = JSON.parse('[[${msg}]]');
-		if(msg != null) {
+
+		var msg = '[[${msg}]]';
+		msg = msg.replace('"', '').replace('"', '');
+		
+		if(msg != null && msg != 'null') {
 			alert(msg);
 		}
 	});

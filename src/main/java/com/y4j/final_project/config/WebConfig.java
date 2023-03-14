@@ -64,7 +64,7 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		
 		registry.addInterceptor(menuHandler())
-				.addPathPatterns("/authority/*", "/audition/*");
+				.addPathPatterns("/authority/*", "/audition/*", "/schedule/*", "/order/*");
 		
 		
 		

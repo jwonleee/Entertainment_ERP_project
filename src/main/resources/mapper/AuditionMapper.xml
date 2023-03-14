@@ -55,6 +55,14 @@
 			<when test="searchType == 'gender'">where audition_cv_gender like concat('%', #{searchValue}, '%')</when>
 			<!-- <otherwise>where 1=1</otherwise> -->
 		</choose>
+		
+		<if test="startDate != null and startDate != '' ">
+			<![CDATA[ and audition_cv_regdate >= #{startDate} ]]>
+		</if>
+		<if test="endDate != null and endDate != '' ">
+      		<![CDATA[ and audition_cv_regdate <= #{endDate} ]]>
+		</if>
+		
 		order by audition_cv_no desc limit #{pageStart}, #{amount}
 	</select>
 
