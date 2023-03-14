@@ -36,21 +36,8 @@ public class ScheduleAjaxController {
 	
 	//일정 수정 화면(모달)
 	@PostMapping("/getModifyForm")
-	public ScheduleVO modifyForm(@RequestBody ScheduleVO vo) {
+	public ScheduleVO getModifyForm(@RequestBody ScheduleVO vo){
 		return scheduleService.getModifyForm(vo);
-	};
-	
-	//일정 수정
-	@PostMapping("/modifyForm")
-	public String modifyForm(@RequestBody ScheduleVO vo,
-							 RedirectAttributes ra) {
-		int result = scheduleService.scheduleModify(vo);
-		System.out.println(result);
-		/*
-		 * String msg = result==1 ? "일정이 수정되었습니다." : "일정 수정에 실패했습니다.";
-		 * ra.addFlashAttribute("msg",msg);
-		 */
-
-		return "redirect:/schedule/admin_scheduleDetail";
 	}
+	
 }
