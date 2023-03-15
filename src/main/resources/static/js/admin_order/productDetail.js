@@ -4,3 +4,16 @@ $(".toList_btn").click(()=>{
 });
 
 
+//자리수제한
+function handleInputLength(el, max) {
+    if (el.value.length > max) {
+        el.value = el.value.substr(0, max);
+    }
+};
+
+//submit
+$("#product_modify_btn").click(()=>{
+    if(confirm("수정하시겠습니까?")){
+        $("#modifyProductForm").attr("action", "/order/productModify").submit();
+    }
+})

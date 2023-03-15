@@ -163,7 +163,7 @@
 			<div class="modal">
 				<div class="modal_content">
 					<div class="modal_wrap">
-						<h5>상세내용</h5>
+						<h5 id="modalTitle">상세내용</h5>
 						<button class="modal_close">X</button>
 						<div class="modal_table">
 							<form id="handleForm" method="post">
@@ -174,10 +174,14 @@
 							</form>
 						</div>
 						<div class="btn_wrap"></div>
-						<div class="btn_area">
+						<div class="btn_area insertToggle td_show_none" id="three_btn">
 							<input type="button" value="수정" id="modify_btn" class="btn" />
 							<input type="button" value="추가발주" id="additional_btn" class="btn" />
 							<input type="button" value="닫기" id="close_btn" class="btn" />
+						</div>
+						<div class="btn_area insertToggle" id="two_btn">
+							<input type="button" value="추가발주넣기" id="additional_confirm_btn" class="btn" />
+							<input type="button" value="닫기" id="close_btn2" class="btn" />
 						</div>
 					</div>
 				</div>

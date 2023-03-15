@@ -7,7 +7,7 @@
 	<div class="fragment">
 		<h3>상품상세</h3>
 		<div style="height:2000px;">
-			<form method="post">
+			<form id="modifyProductForm" method="post">
 				<input type="hidden" th:value="${vo.prod_no}" name="prod_no"/>
 				<table class="table table-sm">
 					<tbody>
@@ -67,21 +67,21 @@
 						</tr>
 						<tr>
 							<th>
-								<div class="th">상품가격 for update</div>
+								<div class="th">상품가격</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.prod_price}" name="prod_price" /></td>
+								th:value="${vo.prod_price}" name="prod_price" oninput="handleInputLength(this, 8)" /></td>
 						</tr>
 						<tr>
 							<th>
-								<div class="th">할인률 for update</div>
+								<div class="th">할인율</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.prod_discount_rate}" name="prod_discount_rate" /></td>
+								th:value="${vo.prod_discount_rate}" name="prod_discount_rate" oninput="handleInputLength(this, 2)" /></td>
 						</tr>
 						<tr>
 							<th>
-								<div class="th">재고 for update</div>
+								<div class="th">재고</div>
 							</th>
 							<td>[[${vo.prod_stock}]]</td>
 						</tr>

@@ -1,3 +1,15 @@
+//오늘시간 yyyy-mm-dd로
+var date =new Date();
+var year = date.getFullYear();
+var month=date.getMonth()+1;
+var day=date.getDate();
+month=month>=10?month:'0'+month;
+day=day>=10?day:'0'+day;
+var today=year+"-"+month+"-"+day;
+
+$("#datepick1").val(today);
+
+
 /*취소버튼*/
 $("#redirectList").click(() => {
     if (confirm("변경사항이 저장되지 않습니다. 목록으로 돌아가시겠습니까?")) {
@@ -136,7 +148,7 @@ $(".detail_btn").click((e) => {
             astr += `<td><input type="number" required="required" name="album_price" placeholder="숫자만 입력 가능합니다."/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
-            astr += `<th>할인률</th>`;
+            astr += `<th>할인율</th>`;
             astr += `<td><input type="number" min="0" max="99" required="required" name="album_discount_rate" oninput="handleInputLength(this, 2)" placeholder="0~99 사이의 숫자만 입력 가능합니다."/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
@@ -207,7 +219,7 @@ $(".detail_btn").click((e) => {
             pstr += `<td><input type="number" id="pd_price" required="required" name="prod_price" placeholder="숫자만 입력 가능합니다."/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
-            pstr += `<th>할인률</th>`;
+            pstr += `<th>할인율</th>`;
             pstr += `<td><input type="number" min="0" max="99" placeholder="0~99 사이의 숫자만 입력 가능합니다." required="required" name="prod_discount_rate" oninput="handleInputLength(this, 2)"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
@@ -252,9 +264,6 @@ function handleInputLength(el, max) {
 
 
 /*달력*/
-$(function () {
-    $("#datepick1").datepicker({ minDate: 0, dateFormat: "yy-mm-dd" });
-});
 $(".regTable").on("focus", "#datepick2",
     function () {
         $("#datepick2").datepicker({ minDate: 0, dateFormat: "yy-mm-dd" });
@@ -276,10 +285,12 @@ $("#submitOrder").click((e) => {
     var numPattern = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; //숫자형식확인
     if ($("input[name='admin_order_regdate']").val() == '') {
         alert('발주일자를 입력하세요!');
+        $("html, body").animate({scrollTop:$("input[name='admin_order_regdate']").offset().top},400);
         $("input[name='admin_order_regdate']").focus();
         return; //함수종료
     } else if (!datePattern.test($("input[name='admin_order_regdate']").val())) {
         alert('발주일자 양식을 확인하세요!');
+        $("html, body").animate({scrollTop:$("input[name='admin_order_regdate']").offset().top},400);
         $("input[name='admin_order_regdate']").focus();
         return; //함수종료
     } else if (categorySelected == '') {
@@ -317,7 +328,7 @@ $("#submitOrder").click((e) => {
                 $("input[name='album_price']").focus();
                 return; //함수종료
             } else if ($("input[name='album_discount_rate']").val() == '' || numPattern.test($("input[name='album_discount_rate']").val())) {
-                alert("할인률을 확인하세요! 숫자만 입력 가능합니다.");
+                alert("할인율을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='album_discount_rate']").focus();
                 return; //함수종료
             } else if ($("input[name='album_stock']").val() == '' || numPattern.test($("input[name='album_stock']").val())) {
@@ -369,7 +380,7 @@ $("#submitOrder").click((e) => {
                 $("input[name='prod_price']").focus();
                 return; //함수종료
             } else if ($("input[name='prod_discount_rate']").val() == '' || numPattern.test($("input[name='prod_discount_rate']").val())) {
-                alert("할인률을 확인하세요! 숫자만 입력 가능합니다.");
+                alert("할인율을 확인하세요! 숫자만 입력 가능합니다.");
                 $("input[name='prod_discount_rate']").focus();
                 return; //함수종료
             } else if ($("input[name='prod_stock']").val() == '' || numPattern.test($("input[name='prod_price']").val())) {

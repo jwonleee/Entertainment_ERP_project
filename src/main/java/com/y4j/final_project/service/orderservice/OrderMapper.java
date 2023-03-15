@@ -34,6 +34,8 @@ public interface OrderMapper {
 	//상품수정, 앨범수정
 	public AlbumVO getAlbumDetail(Integer album_no); //앨범수정을 위한 상세조회
 	public ProductVO getProductDetail(Integer prod_no); //상품수정을 위한 상세조회
+	public int albumModify(AlbumVO vo); //앨범정보수정
+	public int productModify(ProductVO vo); //상품정보수정 
 	
 	//카테고리
 	public ArrayList<CategoryVO> getCategory(); //대분류 카테고리

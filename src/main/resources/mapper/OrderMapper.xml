@@ -60,11 +60,17 @@
   		select * from product order by prod_no desc
   	</select>
   	
+  	<update id="productModify" parameterType="ProductVO">
+  		update product set prod_price=#{prod_price}, prod_discount_rate=#{prod_discount_rate} where prod_no=#{prod_no}
+  	</update>
+  	
   	<select id="getAlbumList" resultType="AlbumVO">
   		select * from album order by album_no desc
   	</select>
   	
-  	
+  	<update id="albumModify" parameterType="AlbumVO">
+  		update album set album_price=#{album_price}, album_discount_rate=#{album_discount_rate} where album_no=#{album_no}
+  	</update>
   	
   	
   	<insert id="testRegist" parameterType="Admin_orderVO">

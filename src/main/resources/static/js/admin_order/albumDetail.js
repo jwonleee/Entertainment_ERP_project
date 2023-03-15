@@ -12,5 +12,7 @@ function handleInputLength(el, max) {
 
 //submit
 $("#album_modify_btn").click(()=>{
-
+    if(confirm("수정하시겠습니까?")){
+        $("#modifyAlbumForm").attr("action", "/order/albumModify").submit();
+    }
 })

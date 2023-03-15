@@ -95,6 +95,16 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getProductDetail(prod_no);
 	}
 
+	@Override
+	public int albumModify(AlbumVO vo) {
+		return orderMapper.albumModify(vo);
+	}
+
+	@Override
+	public int productModify(ProductVO vo) {
+		return orderMapper.productModify(vo);
+	}
+
 
 
 
