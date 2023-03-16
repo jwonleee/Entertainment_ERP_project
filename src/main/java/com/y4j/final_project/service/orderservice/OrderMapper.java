@@ -30,6 +30,9 @@ public interface OrderMapper {
 	public Admin_orderVO getDetail(String admin_order_no);//상세조회
 	public AlbumVO getAlbum(String admin_order_album_no); //앨범 상세조회
 	public ProductVO getProduct(String admin_order_prod_no); //상품 상세조회
+	public int additionalRegist(Admin_orderVO vo); //추가발주
+	public int updateAlbumStock(Admin_orderVO vo); //앨범재고수정
+	public int updateProdStock(Admin_orderVO vo); //상품재고수정
 	
 	//상품수정, 앨범수정
 	public AlbumVO getAlbumDetail(Integer album_no); //앨범수정을 위한 상세조회

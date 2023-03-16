@@ -105,6 +105,21 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.productModify(vo);
 	}
 
+	@Override
+	public int additionalRegist(Admin_orderVO vo) {
+		return orderMapper.additionalRegist(vo);
+	}
+
+	@Override
+	public int updateAlbumStock(Admin_orderVO vo) {
+		return orderMapper.updateAlbumStock(vo);
+	}
+
+	@Override
+	public int updateProdStock(Admin_orderVO vo) {
+		return orderMapper.updateProdStock(vo);
+	}
+
 
 
 

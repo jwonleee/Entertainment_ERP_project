@@ -9,7 +9,7 @@
 		<div style="height:700px;">
 			<form id="modifyAlbumForm" method="post">
 				<input type="hidden" th:value="${vo.album_no}" name="album_no"/>
-				<table class="table table-sm">
+				<table class="table table-sm regTable">
 					<tbody>
 						<tr>
 							<th>
@@ -37,7 +37,11 @@
 							<th>
 								<div class="th">앨범이미지</div>
 							</th>
-							<td><img th:src="${vo.album_img_path}" /></td>
+							<td><img th:src="${vo.album_img_path}" id="imgModify"/>
+								<input type="button" value="이미지 변경" id="fileBtn"/>
+								<input type="file" id="imgReg" onchange="readURL(this);" style="display:none;"/>
+								<input type="hidden" th:value="${vo.album_img_path}" name="album_img_path"/>
+							</td>
 						</tr>
 						<tr>
 							<th>
@@ -56,20 +60,20 @@
 								<div class="th">앨범가격</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.album_price}" name="album_price" oninput="handleInputLength(this, 8)" /></td>
+								th:value="${vo.album_price}" name="album_price" oninput="handleInputLength(this, 8)" min="0"/></td>
 						</tr>
 						<tr>
 							<th>
-								<div class="th">할인융</div>
+								<div class="th">할인율</div>
 							</th>
 							<td><input type="number" required="required"
-								th:value="${vo.album_discount_rate}" name="album_discount_rate" oninput="handleInputLength(this, 2)" min="0"/></td>
+								th:value="${vo.album_discount_rate}" name="album_discount_rate" oninput="handleInputLength(this, 2)" min="0" max="99"/></td>
 						</tr>
 						<tr>
 							<th>
 								<div class="th">재고</div>
 							</th>
-							<td>[[${vo.album_stock}]]</td>
+							<td><div><span>[[${vo.album_stock}]]개</span><span class="modify_notice_span">※해당 내용은 추가발주 시 수정됩니다.</span></div></td>
 						</tr>
 					</tbody>
 				</table>

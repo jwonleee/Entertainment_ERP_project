@@ -1,11 +1,11 @@
 //오늘시간 yyyy-mm-dd로
-var date =new Date();
+var date = new Date();
 var year = date.getFullYear();
-var month=date.getMonth()+1;
-var day=date.getDate();
-month=month>=10?month:'0'+month;
-day=day>=10?day:'0'+day;
-var today=year+"-"+month+"-"+day;
+var month = date.getMonth() + 1;
+var day = date.getDate();
+month = month >= 10 ? month : '0' + month;
+day = day >= 10 ? day : '0' + day;
+var today = year + "-" + month + "-" + day;
 
 $("#datepick1").val(today);
 
@@ -165,7 +165,7 @@ $(".detail_btn").click((e) => {
             astr += `<tr>`;
             astr += `<th>이미지업데이트</th>`;
             astr += `<td><button id="showModal" class="btn-modal">이미지 업로드</button>`
-            astr += `<input type="text" required="required" readonly name="albumImgPath"/></td>`;
+            astr += `<input type="text" required="required" readonly name="albumImgPath" style="width:77.6%"/></td>`;
             astr += `</tr>`;
             astr += `<tr>`;
             astr += `<th>회사</th>`;
@@ -229,12 +229,12 @@ $(".detail_btn").click((e) => {
             pstr += `<tr>`;
             pstr += `<th>이미지경로</th>`;
             pstr += `<td><button id="showModalP" class="btn-modal">이미지 업로드</button>`;
-            pstr += `<input type="text" required="required" readonly name="prodImgPath"/></td>`;
+            pstr += `<input type="text" required="required" readonly name="prodImgPath" style="width:77.6%"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>상세설명이미지</th>`;
             pstr += `<td><button id="showModalPD" class="btn-modal">상세이미지 업로드</button>`;
-            pstr += `<input type="text" required="required" readonly name="prodInfoImgPath"/></td>`;
+            pstr += `<input type="text" required="required" readonly name="prodInfoImgPath" style="width:74.3%"/></td>`;
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>회사</th>`;
@@ -285,12 +285,12 @@ $("#submitOrder").click((e) => {
     var numPattern = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; //숫자형식확인
     if ($("input[name='admin_order_regdate']").val() == '') {
         alert('발주일자를 입력하세요!');
-        $("html, body").animate({scrollTop:$("input[name='admin_order_regdate']").offset().top},400);
+        $("html, body").animate({ scrollTop: $("input[name='admin_order_regdate']").offset().top }, 400);
         $("input[name='admin_order_regdate']").focus();
         return; //함수종료
     } else if (!datePattern.test($("input[name='admin_order_regdate']").val())) {
         alert('발주일자 양식을 확인하세요!');
-        $("html, body").animate({scrollTop:$("input[name='admin_order_regdate']").offset().top},400);
+        $("html, body").animate({ scrollTop: $("input[name='admin_order_regdate']").offset().top }, 400);
         $("input[name='admin_order_regdate']").focus();
         return; //함수종료
     } else if (categorySelected == '') {
@@ -412,7 +412,7 @@ $("#submitOrder").click((e) => {
     //aws업데이트하기
     //앨범 또는 상품이미지 aws에 업로드
     if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') { //앨범일 때 
-       	var formData = new FormData();
+        var formData = new FormData();
         var file = $("#imgReg");
         formData.append("file", file[0].files[0]);
         $.ajax({
@@ -421,7 +421,7 @@ $("#submitOrder").click((e) => {
             data: formData,
             contentType: false, //보내는 데이터 타입 multipart/form-data로
             processData: false, //폼데이터가 name=값&형식으로 변경되는 것 막기
-            async:false,
+            async: false,
             success: (result) => {
                 $('input[name="album_img_path"]').val(result.path);
             },
@@ -431,7 +431,7 @@ $("#submitOrder").click((e) => {
             }
         });
     } else {//상품일 때	
-    	//상품이미지 등록
+        //상품이미지 등록
         var formData = new FormData();
         var file = $("#imgReg");
         formData.append("file", file[0].files[0]);
@@ -444,7 +444,7 @@ $("#submitOrder").click((e) => {
             data: formData,
             contentType: false, //보내는 데이터 타입 multipart/form-data로
             processData: false, //폼데이터가 name=값&형식으로 변경되는 것 막기
-            async:false,
+            async: false,
             success: (result) => {
                 $("input[name='prod_img_path']").val(result.pimg.path);
                 $("input[name='prod_info_img_path']").val(result.pdimg.path);
@@ -464,23 +464,21 @@ $("#submitOrder").click((e) => {
 
 
 /******앨범, 상품 등록 모달******/
-$('.regTable').on("click", "#showModal", function (e) {
+$('.regTable').on("click", function (e) {
+	
     e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
     $("#showModal").click(() => { $(".modal").fadeIn() });
     $(".modal_close").click(() => { $(".modal").fadeOut() });
-});
-$('.regTable').on("click", "#showModalP", function (e) {
-    e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
+    
     $("#showModalP").click(() => { $(".modal").fadeIn() });
     $(".modal_close").click(() => { $(".modal").fadeOut() });
-});
-
-/***상세설명이미지 모달**/
-$('.regTable').on("click", "#showModalPD", function (e) {
-    e.preventDefault();//form태그 안의 button이므로 고유이벤트 제거
+    
+    ///상세설명이미지 모달
     $("#showModalPD").click(() => { $(".modal2").fadeIn() });
     $(".modal_close").click(() => { $(".modal2").fadeOut() });
+    
 });
+
 
 
 
@@ -498,7 +496,7 @@ $("#imgReg").on('change', function (event) {
 
 /***상세설명 이미지 미리보기****/
 $("#PDimgReg").on('change', function (event) {
-    $("#preview").attr('src', '');
+    $("#previewPD").attr('src', '');
     var file = event.target.files[0];
     var reader = new FileReader();
     reader.onload = function (e) {
@@ -542,7 +540,7 @@ $("#PDimgUpload").click(function () {
     var filepoint = obj.val().substring(pathpoint + 1, obj.val().length);
     var filetype = filepoint.toLowerCase();
     var check_file_type = new Array();
-    check_file_type = ['jpg', 'gif', 'png', 'jpeg', 'bmp'];
+    check_file_type = ['jpg', 'gif', 'png', 'jpeg', 'bmp', 'webp'];
     if (check_file_type.indexOf(filetype) == -1) {//이미지파일인지 검사
         alert('이미지 파일만 선택가능합니다.');
         return;

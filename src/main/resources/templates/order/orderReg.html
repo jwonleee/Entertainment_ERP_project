@@ -2,8 +2,7 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <!-- css -->
 <link rel="stylesheet" href="/css/admin_order/admin_orderReg.css">
-<th:block
-	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
 		<h3 style="text-align: center; margin-bottom: 30px;">여기는 상품 등록
@@ -11,42 +10,38 @@
 		<section class="formSection">
 			<div class="regist_wrap"></div>
 			<div class="registForm_div">
-				<form action="registForm" id="registForm" name="registForm"
-					method="post">
-					<input type="hidden" id="adCnt" name="admin_order_prod_cnt"
-						value="" /> <input type="hidden" id="adSizetype"
-						name="admin_order_sizetype" value="" /> <input type="hidden"
-						id="adPrice" name="admin_order_price" value="" /> <input
-						type="hidden" id="adName" name="admin_order_prod_name" value="" />
-						<!-- aws db에 저장하기 위한 hidden -->
-						<input type="hidden" name="album_img_path" value=""/>
-						<input type="hidden" name="prod_img_path" value=""/>
-						<input type="hidden" name="prod_info_img_path" value=""/>
+				<form action="registForm" id="registForm" name="registForm" method="post">
+					<input type="hidden" id="adCnt" name="admin_order_prod_cnt" value="" /> <input type="hidden"
+						id="adSizetype" name="admin_order_sizetype" value="" /> <input type="hidden" id="adPrice"
+						name="admin_order_price" value="" /> <input type="hidden" id="adName"
+						name="admin_order_prod_name" value="" />
+					<!-- aws db에 저장하기 위한 hidden -->
+					<input type="hidden" name="album_img_path" value="" />
+					<input type="hidden" name="prod_img_path" value="" />
+					<input type="hidden" name="prod_info_img_path" value="" />
 					<div class="list_sector">
 						<ul>
 							<li>
 								<ul>
 									<li>
-										<div
-											style="text-align: center; background-color: black; color: white;">
+										<div style="text-align: center; background-color: black; color: white;">
 											<caption>발주</caption>
 										</div>
 										<table class="regTable">
 											<tr>
 												<th>발주자ID</th>
-												<td><input type="text" class="regId" readonly
-													th:value="${admin_id}" name="admin_order_id" /></td>
+												<td><input type="text" class="regId" readonly th:value="${admin_id}"
+														name="admin_order_id" /></td>
 											</tr>
 											<tr>
 												<th>발주일자</th>
-												<td><input type="text" id="datepick1"
-													readonly required="required"
-													name="admin_order_regdate" /></td>
+												<td><input type="text" id="datepick1" readonly required="required"
+														name="admin_order_regdate" /></td>
 											</tr>
 											<tr>
 												<th>카테고리</th>
 												<td class="categoryTd"><input type="hidden"
-													name="admin_order_category" />
+														name="admin_order_category" />
 													<div class="category_wrap">
 														<div style="font-style: italic; color: red;">※카테고리
 															선택은 필수입니다.</div>
@@ -59,12 +54,13 @@
 																	class="detail_btn">상세발주조회</buttton>
 															</div>
 														</div>
-													</div></td>
+													</div>
+												</td>
 											</tr>
 										</table>
 										<div class="btn_area">
-											<input type="submit" value="발주" id="submitOrder" /> <input
-												type="button" value="취소" id="redirectList" />
+											<input type="submit" value="발주" id="submitOrder" /> <input type="button"
+												value="취소" id="redirectList" />
 										</div>
 									</li>
 								</ul>
@@ -86,14 +82,15 @@
 								<img id="preview" alt="이미지를 등록하세요" />
 							</div>
 							<div class="img_btn_area">
-								<input type="file" name="file" value="이미지 업로드" id="imgReg" class="imgReg_btn" accept="image/jpeg,image/gif,image/png"/> <input
-									type="button" value="이미지 등록" id="imgUpload" class="imgRegUpload_btn"/>
+								<input type="file" name="file" value="이미지 업로드" id="imgReg" class="imgReg_btn"
+									accept="image/jpeg,image/gif,image/png" /> <input type="button" value="이미지 등록"
+									id="imgUpload" class="imgRegUpload_btn" />
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div class="modal2">
+			<div class="modal2" style="position: fixed; z-index:1055;">
 				<div class="modal_content2">
 					<div class="modal_title">
 						<h3>상세이미지 업로드</h3>
@@ -105,8 +102,9 @@
 								<img id="previewPD" alt="이미지를 등록하세요" />
 							</div>
 							<div class="img_btn_area">
-								<input type="file" name="PDfile" value="이미지 업로드" id="PDimgReg" class="imgReg_btn" accept="image/jpeg,image/gif,image/png"/> <input
-									type="button" value="이미지 등록" id="PDimgUpload" class="imgRegUpload_btn"/>
+								<input type="file" name="PDfile" value="이미지 업로드" id="PDimgReg" class="imgReg_btn"
+									accept="image/jpeg,image/gif,image/png" /> <input type="button" value="이미지 등록"
+									id="PDimgUpload" class="imgRegUpload_btn" />
 							</div>
 						</div>
 					</div>

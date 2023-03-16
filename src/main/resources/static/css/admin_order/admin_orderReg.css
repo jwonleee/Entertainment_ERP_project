@@ -48,7 +48,7 @@ tr {
 }
 
 .regTable td input {
-	width: 50%;
+	width: 90%;
 	padding: 5px;
 	height: 100%;
 }
@@ -200,6 +200,7 @@ input:focus {
 	left: 0;
 	display: none;
 }
+
 .modal2 {
 	width: 100%;
 	height: 100%;

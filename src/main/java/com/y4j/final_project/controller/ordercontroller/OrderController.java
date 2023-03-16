@@ -62,7 +62,7 @@ public class OrderController {
 		return "order/orderList";
 	}
 
-	/////////////////////////////////
+	/////////////////////////////////[
 	//상세화면
 	@GetMapping("/orderDetail")
 	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
@@ -88,9 +88,26 @@ public class OrderController {
 
 
 	//추가발주
-	@PostMapping("/detailOrderReg")
-	public String detailOrderReg() {
-
+	@PostMapping("/additionalRegist")
+	public String additionalRegist(Admin_orderVO vo, RedirectAttributes ra) {
+		int result=0;
+		result+=orderService.additionalRegist(vo);
+		if(vo.getAdmin_order_album_no()==0) {//상품재고업데이트
+			result+=orderService.updateProdStock(vo);
+		}else if(vo.getAdmin_order_prod_no()==0) {//앨범재고업데이트
+			result+=orderService.updateAlbumStock(vo);
+		}
+		
+		
+		if(result==2) {
+			String msg="성공적으로 등록되었습니다.";
+			ra.addFlashAttribute("msg",msg);
+		}else{
+			String msg="등록에 실패하였습니다.";
+			ra.addFlashAttribute("msg", msg);
+		}
+		
+		
 		return "redirect:/order/orderList";
 	}
 
@@ -108,8 +125,6 @@ public class OrderController {
 			return "redirect:/admin/hold";
 		}
 		model.addAttribute("admin_id",user_id);
-
-
 		return "order/orderReg";
 	}
 
@@ -127,15 +142,9 @@ public class OrderController {
 			result+=orderService.adminProductmRegist(avo); //관리자 상품에 저장
 		}
 
-		if(result==2) {
-			String msg="성공적으로 등록되었습니다.";
-			ra.addFlashAttribute("msg",msg);
-			return "redirect:/order/orderList";
-		}else{
-			String msg="등록에 실패하였습니다.";
-			ra.addFlashAttribute("msg", msg);
-			return "redirect:/order/orderReg";
-		}
+		String msg=result==2?"성공적으로 등록되었습니다.":"등록에 실패하였습니다.";
+		ra.addFlashAttribute("msg",msg);
+		return "redirect:/order/orderList";
 	}
 
 	//앨범정보수정

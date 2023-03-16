@@ -142,9 +142,7 @@
     width:90%;
 }
 
-.detailTable input{
-    border: none;
-}
+
 
 .modal_table{
     /* border: 1px solid #777; */
@@ -174,9 +172,14 @@
 
 .modal_table td input{
     padding: 25px;
-    border-bottom: 3px solid red;
+    border: none;
     text-align:center;
-    color:#002d72
+    color:#002d72;
+
+}
+
+.modal_table td .change_input{
+    border-bottom: 3px solid red;
 }
 
 /* 이미지 */
@@ -234,4 +237,12 @@
 
 .td_show_none{
     display:none;
+}
+
+
+@keyframes fadeIn {from { opacity:0.5;
+	background-color: #dddcd4;
+	}to {
+		opacity: 1;
+	}
 }

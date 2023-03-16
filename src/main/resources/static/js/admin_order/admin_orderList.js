@@ -8,12 +8,12 @@ day = day >= 10 ? day : '0' + day;
 var today = year + "-" + month + "-" + day;
 
 //재고 변화시 화면에 가격 출력
-$('input[name="admin_order_prod_cnt"]').on("propertychange change paste input",function(){
+$(".modal").on("change",'input[name="admin_order_prod_cnt"]',function(){
 	var albumPrice = $("#albumPrice").val();
     var prodPrice = $("#prodPrice").val();
-     if ($("#albumPrice").val() == undefined) {//상품이면
+     if ($("#albumPrice").val() === undefined) {//상품이면
     	 $('input[name="admin_order_price"]').val(prodPrice*$('input[name="admin_order_prod_cnt"]').val());
-     } else if ($("#prodPrice").val() == undefined) {//앨범이면
+     } else if ($("#prodPrice").val() === undefined) {//앨범이면
     	 $('input[name="admin_order_price"]').val(albumPrice*$('input[name="admin_order_prod_cnt"]').val());
      }
 });
@@ -62,7 +62,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminDate_td">`;
             str += `<div id="adminDate_div" class="insertToggle">${result.admin_order_regdate}</div>`;
-            str += `<input type="text" readonly required="required" value="${today}" name="admin_order_regdate" class="insertToggle td_show_none"/>`;
+            str += `<input type="text" id="adminDateInput" readonly required="required" value="${today}" name="admin_order_regdate" class="insertToggle td_show_none"/>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -78,7 +78,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminPrice_td">`;
             str += `<div id="adminPrice_div" class="insertToggle">${result.admin_order_price}원</div>`;
-            str += `<input type="text" value="" name="admin_order_price" placeholder="상품가격 * 재고" readonly required="required" class="insertToggle td_show_none"/>`;
+            str += `<div class="insertToggle td_show_none"><input type="text" value="${result.admin_order_price}" name="admin_order_price" placeholder="상품가격 * 재고" readonly required="required" class="insertToggle td_show_none"/>원</div>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -87,7 +87,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminProdCnt_td">`;
             str += `<div class="insertToggle">${result.admin_order_prod_cnt}개</div>`;
-            str += `<input type="number" value="${result.admin_order_prod_cnt}" name="admin_order_prod_cnt" oninput="handleInputLength(this, 8)" required="required" class="insertToggle td_show_none"/>`;
+            str += `<div class="insertToggle td_show_none"><input type="number" value="${result.admin_order_prod_cnt}" name="admin_order_prod_cnt" oninput="handleInputLength(this, 8)" required="required" class="insertToggle td_show_none change_input"/>개</div>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -96,7 +96,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminCompany_td">`;
             str += `<div id="adminCompany_div" class="insertToggle">(주)${result.admin_order_company}</div>`;
-            str += `<input type="text" value="${result.admin_order_company}" name="admin_order_company" required="required" class="insertToggle td_show_none"/>`;
+            str += `<input type="text" value="${result.admin_order_company}" name="admin_order_company" required="required" class="insertToggle td_show_none change_input"/>`;
             str == `</div></td>`;
             str += `</tr>`;
             str += `</tbody>`;
@@ -316,21 +316,31 @@ $("#additional_btn").click(() => {
 //추가발주넣기
 $("#additional_confirm_btn").click(()=>{
 	//유효성검사
-	//해당부분으로 이동
-    //$(".modal").animate({scrollTop:$("#adminCategory_td").offset().top},500);
+	var datePattern = RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}'); //날짜형식확인
+    var numPattern = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; //숫자형식확인. 특수문자 입력 방지
+	    if($("#adminDateInput").val()==''||!datePattern.test($("#adminDateInput").val())){
+			alert("날짜를 확인하세요.");
+			$(".modal").animate({scrollTop:$("#adminDateInput").offset().top},400);//해당부분으로 이동
+			$("#adminDateInput").focus($("#adminDateInput").css("animation", "fadeIn 1s ease-in-out"));
+			return;
+		}else if($('input[name="admin_order_price"]').val()==''||$('input[name="admin_order_price"]').val()==0 || numPattern.test($('input[name="admin_order_price"]').val())){
+			alert("가격이 정상적으로 등록되지 않았습니다.");
+			$(".modal").animate({scrollTop:$('input[name="admin_order_price"]').offset().top},400);
+			$('input[name="admin_order_price"]').focus($('input[name="admin_order_price"]').css("animation", "fadeIn 1s ease-in-out"));
+			return;
+		}else if($('input[name="admin_order_prod_cnt"]').val()==''||$('input[name="admin_order_prod_cnt"]').val()==0|| numPattern.test($('input[name="admin_order_price"]').val())){
+			alert("발주량이 정상적으로 등록되지 않았습니다.");
+			$(".modal").animate({scrollTop:$('input[name="admin_order_prod_cnt"]').offset().top},400);
+			$('input[name="admin_order_prod_cnt"]').focus($('input[name="admin_order_prod_cnt"]').css("animation", "fadeIn 1s ease-in-out"));
+			return;
+		}else if($('input[name="admin_order_company"]').val()==''){
+			alert("회사를 입력하세요.");
+			$(".modal").animate({scrollTop:$('input[name="admin_order_company"]').offset().top},400);
+			$('input[name="admin_order_company"]').focus($('input[name="admin_order_company"]').css("animation", "fadeIn 1s ease-in-out"));
+			return;
+		}
     
-    
-    var albumPrice = $("#albumPrice").val();
-    var prodPrice = $("#prodPrice").val();
-    
-     
-     
-     if ($("#albumPrice").val() == undefined) {//상품이면
-         $('input[name="admin_order_price"]').val(prodPrice*$('input[name="admin_order_prod_cnt"]').val());
-     } else if ($("#prodPrice").val() == undefined) {//앨범이면
-         $('input[name="admin_order_price"]').val(albumPrice*$('input[name="admin_order_prod_cnt"]').val());
-     }
-	
+    $("#handleForm").attr("action","/order/additionalRegist").submit();
 });
 
 
