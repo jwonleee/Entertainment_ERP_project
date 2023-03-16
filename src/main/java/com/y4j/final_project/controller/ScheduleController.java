@@ -1,7 +1,8 @@
 package com.y4j.final_project.controller;
 
 import java.util.ArrayList;
-import java.util.List;
+
+import javax.validation.Valid;
 
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,15 +10,13 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
+
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.EntertainerScheduleVO;
-import com.y4j.final_project.command.EntertainerVO;
 import com.y4j.final_project.command.ScheduleVO;
 import com.y4j.final_project.schedule.service.ScheduleService;
 import com.y4j.final_project.util.Criteria;
@@ -41,6 +40,7 @@ public class ScheduleController {
 	@GetMapping("/admin_scheduleList")
 	public String list(Model model,
 					   Criteria cri) {
+		System.out.println(cri.getSearchName());
 		System.out.println(cri.toString());
 		ArrayList<ScheduleVO> list = scheduleService.getList(cri);
 		model.addAttribute("list",list);
@@ -72,7 +72,7 @@ public class ScheduleController {
 	
 	//등록 요청
 	@PostMapping("/registForm")
-	public String registForm(ScheduleVO vo,
+	public String registForm(@Valid ScheduleVO vo,
 							 EntertainerScheduleVO vo2,
 							 RedirectAttributes ra) {
 		
