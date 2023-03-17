@@ -45,15 +45,7 @@ public class OrderController {
 		//발주리스트 가져오기
 		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(user_id,cri);
 		model.addAttribute("orderList",orderList);
-
-		//상품리스트 가져오기
-		ArrayList<ProductVO> productList=orderService.getProductList(cri);
-		model.addAttribute("productList",productList);
-
-		//앨범리스트 가져오기
-		ArrayList<AlbumVO> albumList = orderService.getAlbumList(cri);
-		model.addAttribute("albumList",albumList);
-
+	
 		//페이징 처리
 		int total=orderService.getOrderTotal(user_id, cri);
 		PageVO pageVO=new PageVO(cri,total);
@@ -163,6 +155,12 @@ public class OrderController {
 		String msg=result==1?"성공적으로 수정되었습니다.":"업데이트에 실패했습니다.";
 		ra.addFlashAttribute("msg",msg);
 		return "redirect:/order/orderList";
+	}
+	
+	//카테고리 등록화면 띄우기
+	@GetMapping("/categoryReg")
+	public String categoryReg() {
+		return "order/categoryReg";
 	}
 
 }

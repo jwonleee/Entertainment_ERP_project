@@ -24,7 +24,7 @@ var entertainer = ""; //카테고리에서 꺼낼 연예인
 // 화면 로딩시 대분류 카테고리 생성
 $(document).ready(() => {
     $.ajax({
-        url: "../getCategory",
+        url: "../get_category",
         type: "get",
         success: function (result) {
             var str = '';
@@ -50,7 +50,7 @@ function getAllCategory(e) {
     if (dcate.category_lv == 1 || dcate.category_lv == 2) { //대분류, 중분류일때만
         $(e.currentTarget).category_remove(); //이전 카테고리 삭제
         $.ajax({
-            url: "../getCategoryChild/" + dcate.category_group_id + "/" + dcate.category_lv + "/" + dcate.category_detail_lv,
+            url: "../get_category_child/" + dcate.category_group_id + "/" + dcate.category_lv + "/" + dcate.category_detail_lv,
             type: "get",
             success: function (result) { category_create(result) },
             error: function (err) { alert("카테고리 조회 실패! 담당자에게 문의하세요.") }

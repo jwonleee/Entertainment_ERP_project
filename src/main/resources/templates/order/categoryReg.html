@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<!-- css -->
+<link rel="stylesheet" href="/css/admin_order/category_reg.css">
+<th:block
+	th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+	<div class="fragment">
+		<section class="category_reg_section">
+			<h3>신규 카테고리 등록</h3>
+			<input type="hidden" id="category_count" value="0" />
+			<div>
+				<div class="existing_category">
+					<h5>기존 카테고리</h5>
+					<i>상세내용을 보시려면 카테고리를 클릭하세요</i>
+					<div class="category_wrap">
+						<div class="category_content">
+							<div class="categoryListWrap"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="category_explain_wrap">
+				<div id="categoryLV1" class="category_explain border_right">대분류</div>
+				<div id="categoryLV2" class="category_explain border_right">중분류</div>
+				<div id="categoryLV3" class="category_explain">소분류</div>
+			</div>
+			<div class="new_category_reg">
+				<h5>신규 카테고리 추가</h5>
+				<div>
+					<select id="category_reg_selector">
+						<option value="none">등록할 카테고리 선택</option>
+						<option value="big">대분류 카테고리 추가</option>
+						<option value="middle">중분류 카테고리 추가</option>
+						<option value="small">소분류 카테고리 추가</option>
+					</select>
+				</div>
+				<form>
+					<div class="reg_table">
+						<!-- 
+						<table class="table table-sm">
+							<tbody id="big">
+								<tr>
+									<th>대분류</th>
+									<td><input type="text" />
+									<td>
+								</tr>
+							</tbody>
+							<tbody id="middle">
+								<tr>
+									<th>대분류</th>
+									<td id="select">
+										<input type="radio" name="radio_big"/>
+										<input type="radio" name="radio_big"/>
+									<td>
+								</tr>
+								<tr>
+									<th>중분류</th>
+									<td><input type="text"/>
+									<td>
+								</tr>
+							</tbody>
+							<tbody id="small">
+								<tr>
+									<th>중분류</th>
+									<td>
+										<input type="checkbox" name="check_small" value="중분류"/>
+										<input type="checkbox" name="check_small" value="중분류"/>
+										<input type="checkbox" name="check_small" value="중분류"/>
+									<td>
+								</tr>
+								<tr>
+									<th>소분류</th>
+									<td><input type="text" />
+									<td>
+								</tr>
+							</tbody>
+							-->
+						</table>
+						<div class="btn_area">
+							<input type="button" value="추가"/>
+						</div>
+					</div>
+				</form>
+			</div>
+		</section>
+	</div>
+</th:block>
+<!-- js -->
+<script src="/js/admin_order/category_reg.js"></script>
+</html>

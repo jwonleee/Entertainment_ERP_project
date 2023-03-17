@@ -48,7 +48,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
 
     //admin관련 영역 뿌리기
     $.ajax({
-        url: "/getAdmin/" + admin_order_no,
+        url: "/get_admin/" + admin_order_no,
         type: "get",
         async: false,
         success: (result) => {
@@ -102,7 +102,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</tbody>`;
             if (admin_order_prod_no == 0) {//앨범이라면
                 $.ajax({
-                    url: "/getAlbum/" + admin_order_album_no,
+                    url: "/get_album/" + admin_order_album_no,
                     type: "get",
                     async: false,
                     success: (result) => {
@@ -177,7 +177,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
                 })
             } else {//상품이라면
                 $.ajax({
-                    url: "/getProduct/" + admin_order_prod_no,
+                    url: "/get_product/" + admin_order_prod_no,
                     type: "get",
                     async: false,
                     success: (result) => {
