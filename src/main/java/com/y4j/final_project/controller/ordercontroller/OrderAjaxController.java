@@ -33,6 +33,8 @@ public class OrderAjaxController {
 		return orderService.getCategoryChild(vo);
 	}
 	
+	//모든 중분류 카테고리 요청
+	
 	//상세조회
 	@GetMapping("/get_admin/{admin_order_no}")
 	public Admin_orderVO getAdmin(@PathVariable("admin_order_no")String admin_order_no) {

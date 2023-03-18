@@ -17,6 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
+import com.y4j.final_project.command.ordercommand.CategoryVO;
 import com.y4j.final_project.command.ordercommand.ProductVO;
 import com.y4j.final_project.service.orderservice.OrderService;
 import com.y4j.final_project.util.Criteria;
@@ -161,6 +162,24 @@ public class OrderController {
 	@GetMapping("/categoryReg")
 	public String categoryReg() {
 		return "order/categoryReg";
+	}
+	
+	//대분류 카테고리 등록
+	@PostMapping("/bigRegForm")
+	public String bigRegForm(CategoryVO vo, RedirectAttributes ra) {
+		int result=orderService.bigCategoryReg(vo);
+		String msg=result==1?"성공적으로 등록되었습니다.":"등록에 실패했습니다.";
+		ra.addFlashAttribute("msg",msg);
+		return "redirect:/order/categoryReg";
+	}
+	
+	//중분류 카테고리 등록
+	@PostMapping("/midRegForm")
+	public String midRegForm(CategoryVO vo, RedirectAttributes ra) {
+		int result=orderService.midCategoryReg(vo);
+		String msg=result==1?"성공적으로 등록되었습니다.":"등록에 실패했습니다.";
+		ra.addFlashAttribute("msg",msg);
+		return "redirect:/order/categoryReg";
 	}
 
 }

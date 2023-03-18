@@ -120,6 +120,16 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.updateProdStock(vo);
 	}
 
+	@Override
+	public int bigCategoryReg(CategoryVO vo) {
+		return orderMapper.bigCategoryReg(vo);
+	}
+
+	@Override
+	public int midCategoryReg(CategoryVO vo) {
+		return orderMapper.midCategoryReg(vo);
+	}
+
 
 
 
