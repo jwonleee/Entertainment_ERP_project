@@ -52,7 +52,8 @@
 	</select>
 	
 	<select id="getUserInfo2" resultType="UserVO">
-		select * from users where user_id = #{user_id} and user_pw = #{user_pw}
+		select * from users where user_id = #{user_id}
+		<!--  and user_pw = #{user_pw} -->
 	</select>
 	
 	<update id="updateUser" parameterType="UserVO" >

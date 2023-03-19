@@ -165,8 +165,9 @@ $('aside .aside-wrap .sideMenuBarBtn').click(function(){
 // 푸터 고정
 var fragmentHeight = document.querySelector(".fragment").scrollHeight;
 function footerFixed() {
-  if(fragmentHeight + 170 < window.innerHeight) {
+  if(fragmentHeight + 272 < window.innerHeight) {
     $(".footer-outer").css({position: "fixed", bottom: "0px"});
+    $("body").css("overflow", "hidden");
 
   } else {
     $(".footer-outer").css({position: "static", })
