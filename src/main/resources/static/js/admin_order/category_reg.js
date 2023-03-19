@@ -89,6 +89,8 @@ $("#category_reg_selector").change(() => {
     var str = '';//테이블용
     CateGroupId = [];//배열 초기화
     $(".exp_h5").remove();//설명창 지우기
+    
+    if ($("#category_reg_selector").val() == 'big'||$("#category_reg_selector").val() == 'middle'){//대분류만 필요할 경우.
     $.ajax({
         url: "../get_category",
         type: "get",
@@ -140,7 +142,7 @@ $("#category_reg_selector").change(() => {
             alert("카테고리 조회 실패! 담당자에게 문의하세요.")
         }
     })//end first ajax
-    if ($("#category_reg_selector").val() == 'small') {//소분류 카테고리 선택시
+   }else if($("#category_reg_selector").val() == 'small') {//소분류 카테고리 선택시
         str += `<tbody id="small" class="tbx">`;
         str += `<input type="hidden" name="category_lv" value="3"/>`;
         str += `<input type="hidden" name="category_nm" value="소분류"/>`;
@@ -161,11 +163,6 @@ $("#category_reg_selector").change(() => {
         str += `<h5 class="exp_h5">등록할 카테고리를 선택하세요</h5>`;
         $("#reg_table_sector").html(str);//내용그리기
     }
-
-
-
-
-
 });
 
 
