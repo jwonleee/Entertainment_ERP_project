@@ -3,6 +3,13 @@
     margin: 0;
     list-style: none;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+ }
+
 /* ******** 검색********* */
 .search_wrap{
     overflow:hidden;
@@ -109,8 +116,6 @@
 }
 
 .modal_wrap{ 
-    /*테스트용*/
-    border:1px solid #777;
     width:50%;
     height:100%;
 	background-color: white;
@@ -144,6 +149,8 @@
     width:90%;
 }
 
+
+
 .modal_table{
     /* border: 1px solid #777; */
     padding: 20px;
@@ -168,6 +175,18 @@
     padding: 25px;
     border-top: 1px solid #777;
     color:#002d72
+}
+
+.modal_table td input{
+    padding: 25px;
+    border: none;
+    text-align:center;
+    color:#002d72;
+
+}
+
+.modal_table td .change_input{
+    border-bottom: 3px solid red;
 }
 
 /* 이미지 */
@@ -199,7 +218,17 @@
     color: green;
 }
 
+#additional_confirm_btn{
+	border: 2px solid yellowgreen;
+    color: yellowgreen;
+}
+
 #close_btn{
+    border: 2px solid red;
+    color: red;
+}
+
+#close_btn2{
     border: 2px solid red;
     color: red;
 }
@@ -209,4 +238,18 @@
     border-radius: 20px;
     padding: 2px;
     margin: 5px;
+}
+
+/* toggle용 */
+
+.td_show_none{
+    display:none;
+}
+
+
+@keyframes fadeIn {from { opacity:0.5;
+	background-color: #dddcd4;
+	}to {
+		opacity: 1;
+	}
 }

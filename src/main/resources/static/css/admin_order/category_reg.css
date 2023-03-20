@@ -1,0 +1,92 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/*카테고리*/
+.category_reg_section{
+	height:700px;
+}
+.category_wrap{
+	height: 110px;
+}
+.categoryListWrap ul {
+	/* position: relative; */
+	height: 244px;
+	margin: 10px 10px 10px 0;
+}
+
+.categoryListWrap .categoryList {
+	border-left: 1px solid #ccc;
+	box-sizing: border-box;
+	float: left;
+	overflow: auto;
+	overflow-x: none;
+	width: 24.85%;
+	height: 100%;
+	padding: 7px 0;
+	margin: 0;
+}
+
+.categoryListWrap .categoryList>li {
+	padding: 0px;
+}
+
+.catubegoryListWrap .categoryList a {
+	overflow: hidden;
+	white-space: nowrap;
+	display: block;
+	height: 26px;
+	padding: 0 20px;
+	line-height: 26px;
+	font-size: 13px;
+	color: #000;
+}
+
+.forOn a {
+	color: black;
+	padding-left: 5%;
+}
+
+.categoryOn {
+	background-color: black;
+	color:white;
+}
+
+.categoryListWrap .categoryList .categoryOn a {
+	background-color: black;
+	color: #fff;
+}
+
+/*카테고리설명*/
+.category_explain_wrap{
+	border:1px solid black;
+	margin:0;	
+	width:75%; 
+}
+
+.category_explain{
+	box-sizing: border-box;
+	display:inline-block;
+	text-align:center;
+	width:33%;
+}
+
+.border_right{
+	border-right:1px solid black;
+}
+
+.category_explain_on{
+	color:red;
+}
+/* 카테고리 등록칸 */
+.new_category_reg{
+	margin-top:50px;
+}
+
+/* 등록 */
+.reg_table{
+	float:left;
+	width:75%;
+}

@@ -45,6 +45,9 @@
   		<if test='cri.searchStock !=null and cri.searchStock eq "desc"'>
   			cast(admin_order_prod_cnt as decimal(10,0)) desc,
   		</if>
+  		<if test='cri.searchStock !=null and cri.searchStock eq "new"'>
+  			admin_order_regdate desc,
+  		</if>
   		 admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
   	</select>
   	
@@ -57,31 +60,52 @@
   		select * from product order by prod_no desc
   	</select>
   	
+  	<update id="productModify" parameterType="ProductVO">
+  		update product set prod_price=#{prod_price}, prod_discount_rate=#{prod_discount_rate},prod_img_path=#{prod_img_path}, prod_info_img_path=#{prod_info_img_path} where prod_no=#{prod_no}
+  	</update>
+  	
   	<select id="getAlbumList" resultType="AlbumVO">
   		select * from album order by album_no desc
   	</select>
   	
+  	<update id="albumModify" parameterType="AlbumVO">
+  		update album set album_price=#{album_price}, album_discount_rate=#{album_discount_rate}, album_img_path=#{album_img_path} where album_no=#{album_no}
+  	</update>
   	
   	
-  	
-  	<insert id="testRegist" parameterType="Admin_orderVO">
-  		insert into admin_order(admin_order_album_no,
-  								admin_order_company,
-  								admin_order_id,
-  								admin_order_price,
+  	<insert id="additionalRegist" parameterType="Admin_orderVO">
+  		insert into admin_order(admin_order_id,
   								admin_order_category,
-  								admin_order_prod_cnt,
   								admin_order_prod_no,
-  								admin_order_sizetype)
-  		values(#{admin_order_album_no},
-  				#{admin_order_company},
-  				#{admin_order_id},
-  				#{admin_order_price},
+  								admin_order_album_no,
+  								admin_order_prod_cnt,
+  								admin_order_sizetype,
+  								admin_order_regdate,
+  								admin_order_price,
+  								admin_order_company,
+  								admin_order_prod_name)
+  		values(#{admin_order_id},
   				#{admin_order_category},
-  				#{admin_order_prod_cnt},
   				#{admin_order_prod_no},
-  				#{admin_order_sizetype})
+  				#{admin_order_album_no},
+  				#{admin_order_prod_cnt},
+  				#{admin_order_sizetype},
+  				#{admin_order_regdate},
+  				#{admin_order_price},
+  				#{admin_order_company},
+  				#{admin_order_prod_name})
   	</insert>
+  	
+  	<update id="updateAlbumStock" parameterType="Admin_orderVO">
+  		update album set album_stock=album_stock+#{admin_order_prod_cnt} where album_no=#{admin_order_album_no}
+  	</update>
+  	
+  	<update id="updateProdStock" parameterType="Admin_orderVO">
+  		update product set prod_stock=prod_stock+#{admin_order_prod_cnt} where prod_no=#{admin_order_prod_no}
+  	</update>
+  	
+  	
+  	
   	
   	<select id="getDetail" resultType="Admin_orderVO" parameterType="string">
   		select * from admin_order where admin_order_no=#{admin_order_no}
@@ -204,12 +228,58 @@
   		select * from category where category_lv=1
   	</select>
   	
+  	<select id="getMidCategory" resultType="CategoryVO">
+  		select * from category where category_lv=2 order by category_group_id
+  	</select>
+  	
   	<select id="getCategoryChild" resultType="CategoryVO">
   		select * from category 
   		where category_group_id=#{category_group_id}
   		and category_parent_lv=#{category_lv}
   		and category_detail_parent_lv=#{category_detail_lv}
   	</select>
+  	
+  	<insert id="bigCategoryReg" parameterType="CategoryVO">
+  		insert into category(category_group_id
+  							,category_lv
+  							,category_nm
+  							,category_detail_lv
+  							,category_detail_nm
+  							,category_parent_lv
+  							,category_detail_parent_lv)
+  		values(#{category_group_id}
+  				,#{category_lv}
+  				,#{category_nm}
+  				,#{category_detail_lv}
+  				,#{category_detail_nm}
+  				,#{category_parent_lv}
+  				,#{category_detail_parent_lv})
+  	</insert>
+  	
+  	<insert id="midSmallCategoryReg" parameterType="CategoryVO">
+  		<selectKey resultType="Integer" keyProperty="category_detail_lv" order="BEFORE">
+  			select IFNULL(max(category_detail_lv),0)+1
+  			from category where category_group_id=#{category_group_id} and category_lv=#{category_lv}
+  		</selectKey>
+  		
+  		insert into category(category_group_id
+  							,category_lv
+  							,category_nm
+  							,category_detail_lv
+  							,category_detail_nm
+  							,category_parent_lv
+  							,category_detail_parent_lv)
+  		values(#{category_group_id}
+  				,#{category_lv}
+  				,#{category_nm}
+  				,#{category_detail_lv}
+  				,#{category_detail_nm}
+  				,#{category_parent_lv}
+  				,#{category_detail_parent_lv})
+  	</insert>
+  	
+  	
+  	
   	
   </mapper>
   
