@@ -12,10 +12,11 @@
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
-		<form name="actionForm" action="admin_scheduleList" method="get"> <!-- name, action 달아주기 -->
+		<form id="searchForm" action="admin_scheduleList" method="get"> <!-- name, action 달아주기 -->
 
 			<input type="hidden" name="page" th:value="1" />
 			<input type="hidden" name="amount" th:value="${pageVO.amount}" />
+			<input type="hidden" name="startDate" id="clickDate" value=""/>
 
 			<!-- topside search menu -->
 			<div>
@@ -43,7 +44,7 @@
 							</div>
 						</div>
 
-						<!-- 캘린더 -->
+						<!-- my-calendar 시작 -->
 						<div class="calendar">
 							<div class="container">
 								<div class="my-calendar clearfix">
@@ -72,11 +73,13 @@
 													<th>S</th>
 												</tr>
 											</thead>
-											<tbody class="cal-body"></tbody>
+											<tbody class="cal-body">
+											
+											</tbody>
 										</table>
 									</div>
 								</div>
-								<!-- // .my-calendar -->
+								<!-- my-calendar 끝 -->
 							</div>
 						</div>
 					</div>
@@ -86,11 +89,52 @@
 
 			<!-- swiper -->
 			<swiper-container class="mySwiper container_block" slides-per-view="4" space-between="120" pagination="true" pagination-type="none" navigation="true">
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m1.jpg" name="searchName" alt="블랙핑크" value="BlackPink" class="img_box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m2.jpg" name="searchName" alt="뉴진스" value="NewJeans" class="img_box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/m4.jpg" name="searchName" alt="아이브" value="Ive" class="img_box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a1.jpg" name="searchName" alt="이도현" value="LeeDohyun" class="img_box"></swiper-slide>
-				<swiper-slide><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/a2.jpg" name="searchName" alt="채수빈" value="ChaeSoobin" class="img_box"></swiper-slide>
+				<input type="hidden" name="searchName" id="clickImg" value=""/>
+				<swiper-slide>
+					<div class="content">
+						<div class="content-overlay"></div>
+						<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/schedule_bp.jpg" alt="블랙핑크" value="Blackpink" class="content-image">
+						<div class="content-details">
+							<h5>블랙핑크</h5>
+						</div>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="content">
+						<div class="content-overlay"></div>
+						<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/schedule_nj.jpg" alt="뉴진스" value="NewJeans" class="content-image">
+						<div class="content-details">
+							<h5>뉴진스</h5>
+						</div>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="content">
+						<div class="content-overlay"></div>
+						<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/schedule_ive.jpg" alt="아이브" value="Ive" class="content-image">
+						<div class="content-details">
+							<h5>아이브</h5>
+						</div>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="content act">
+						<div class="content-overlay"></div>
+						<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/schedule_actor2.png" alt="이도현" value="이도현" class="content-image">
+						<div class="content-details">
+							<h5>이도현</h5>
+						</div>
+					</div>
+				</swiper-slide>
+				<swiper-slide>
+					<div class="content act">
+						<div class="content-overlay"></div>
+						<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/schedule_actor.png" alt="채수빈" value="채수빈" class="content-image">
+						<div class="content-details">
+							<h5>채수빈</h5>
+						</div>
+					</div>
+				</swiper-slide>
 			</swiper-container>
 
 
@@ -122,21 +166,21 @@
 																<thead style="background-color: #3f3f3f; color: white;">
 																	<tr>
 																		<!-- <th scope="col">상태</th> -->
-																		<th scope="col">순서</th>
-																		<th scope="col">시작 날짜</th>
-																		<th scope="col">종료 날짜</th>
-																		<th scope="col">타입</th>
-																		<th scope="col">장소</th>
-																		<th scope="col">제목</th>
-																		<th scope="col">아티스트</th>
-																		<th scope="col">관리자 ID</th>
+																		<th scope="col" style="width: 45px;">순서</th>
+																		<th scope="col" style="width: 153px;">시작 날짜</th>
+																		<th scope="col" style="width: 153px;">종료 날짜</th>
+																		<th scope="col" style="width: 96px;">타입</th>
+																		<th scope="col" style="width: 105px;">장소</th>
+																		<th scope="col" style="width: 298px;">제목</th>
+																		<th scope="col" style="width: 75px;">아티스트</th>
+																		<th scope="col" style="width: 101px;">관리자 ID</th>
 																	</tr>
 																</thead>
 																<tbody>
 																	<!-- 게시글 반복 -->
 																	<tr th:each="vo, status : ${list}">
 																		<!-- <td>확인</td> -->
-																		<td>[[${vo.schedule_no}]]</td>
+																		<td>[[${pageVO.total - (pageVO.pageNum - 1) * pageVO.amount - status.count + 1}]]</td>
 																		<td>[[${vo.schedule_start_time}]]</td>
 																		<td>[[${vo.schedule_end_time}]]</td>
 																		<td>[[${vo.schedule_type}]]</td>
@@ -145,10 +189,16 @@
 																			<a th:href="@{/schedule/admin_scheduleDetail(schedule_no=${vo.schedule_no})}" id="title">[[${vo.schedule_ent_name}]]</a>
 																		</td>
 																		<td>[[${vo.ent_name}]]</td>
-																		<td style="max-width: 101px;">[[${vo.schedule_writer}]]</td>
+																		<td class="schedule_writer">[[${vo.schedule_writer}]]</td>
 																	</tr>
 																</tbody>
 															</table>
+															
+															<!-- 검색 결과가 없는 경우 -->
+															<th:block th:if="${noSearch} == '검색된 일정이 없습니다.'">
+																<h3 id="noSearch">[[${noSearch}]]</h3>
+															</th:block>
+															
 														</div>
 													</div>
 												</div>

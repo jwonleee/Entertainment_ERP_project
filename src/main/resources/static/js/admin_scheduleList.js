@@ -1,15 +1,18 @@
-//
+// image search
+$('.content').on("click", function(e) {
+    e.preventDefault(); //고유 이벤트 중지
+  
+    $('.title_search').children('input').attr('value', ''); //searchContent value값 공백 처리
+    $('#clickDate').attr('value', ''); //startDate 공백 처리
+
+    var ent_name = $(this).children('.content-image').attr('value'); //클릭한 이미지 value 값
+    $('#clickImg').val(ent_name);
+    
+    $('#searchForm').submit();
+});
 
 
-
-
-
-
-
-
-
-
-// calendar
+// my-calendar - date search
 const init = {
     monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
     dayList: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -85,7 +88,7 @@ function loadYYMM(fullDate) {
             if (!startCount) {
                 trtd += '<td>'
             } else {
-                let fullDate = yy + '.' + init.addZero(mm + 1) + '.' + init.addZero(countDay + 1);
+                let fullDate = yy + '-' + init.addZero(mm + 1) + '-' + init.addZero(countDay + 1);
                 trtd += '<td class="day';
                 trtd += (markToday && markToday === countDay + 1) ? ' today" ' : '"';
                 trtd += ` data-date="${countDay + 1}" data-fdate="${fullDate}">`;
@@ -137,6 +140,19 @@ $calBody.addEventListener('click', (e) => {
         loadDate(day, e.target.cellIndex);
         e.target.classList.add('day-active');
         init.activeDTag = e.target;
+
+        //날짜 클릭시 tr태그
+        init.activeDTag;
         init.activeDate.setDate(day);
+        
+        var activeDate = $('.day-active').attr('data-fdate');
+        // console.log(activeDate);
+
+        $('#clickDate').val(activeDate);
+
+        $('.title_search').children('input').attr('value', ''); //searchContent 공백 처리
+        $('#clickImg').attr('value',''); //searchName 공백 처리
+
+        $('#searchForm').submit(); 
     }
 });

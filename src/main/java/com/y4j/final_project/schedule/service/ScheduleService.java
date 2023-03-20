@@ -15,6 +15,7 @@ public interface ScheduleService {
 	//일정 등록
 	public int regist(ScheduleVO vo);
 	public int registMap(EntertainerScheduleVO vo2); //스케줄-엔터테이너 맵핑
+	public ArrayList<ScheduleVO> getSchedule(String artistSelect); //아티스트-스케줄 유무 확인
 	
 	//그룹 리스트
 	public List<EntertainerVO> getEntType(EntertainerVO vo); //가수 그룹
