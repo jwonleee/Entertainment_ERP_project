@@ -16,14 +16,16 @@ CREATE TABLE `admin_order` (
   `admin_order_category` VARCHAR(45) NOT NULL,
   `admin_order_prod_cnt` VARCHAR(45) NOT NULL,
   `admin_order_sizetype` VARCHAR(45) NOT NULL,
-  `admin_order_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `admin_order_regdate` VARCHAR(45) NULL,
   `admin_order_price` VARCHAR(45) NOT NULL,
   `admin_order_company` VARCHAR(100) NOT NULL,
+  `admin_order_prod_name` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`admin_order_no`));
 
 
 CREATE TABLE `audition_cv` (
   `audition_cv_no` INT NOT NULL AUTO_INCREMENT,
+  `audition_cv_type` VARCHAR(45) NOT NULL,
   `audition_cv_user_id` VARCHAR(45) NOT NULL,
   `audition_cv_name` VARCHAR(45) NOT NULL,
   `audition_cv_gender` VARCHAR(45) NOT NULL,
@@ -32,17 +34,19 @@ CREATE TABLE `audition_cv` (
   `audition_cv_weight` VARCHAR(45) NOT NULL,
   `audition_cv_contact` VARCHAR(45) NOT NULL,
   `audition_cv_email` VARCHAR(45) NOT NULL,
-  `audition_cv_applydate` TIMESTAMP NULL DEFAULT current_timestamp,
-  `audition_cv_progress` VARCHAR(45) NULL,
+  `audition_cv_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `audition_cv_progress` VARCHAR(45) NULL DEFAULT "1차",
   PRIMARY KEY (`audition_cv_no`));
 
 
-
-CREATE TABLE `audition_cv_upload` (
-  `audition_cv_upload_no` INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE `audition_cv_file` (
+  `audition_cv_file_no` INT NOT NULL AUTO_INCREMENT,
   `audition_cv_no` INT NOT NULL,
-  `audition_cv_file_path` VARCHAR(100) NULL,
-  PRIMARY KEY (`audition_cv_upload_no`));
+  `audition_cv_file_extension` VARCHAR(45) NULL,
+  `audition_cv_file_type` VARCHAR(45) NULL,
+  `audition_cv_file_path` VARCHAR(200) NOT NULL,
+  `audition_cv_file_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  PRIMARY KEY (`audition_cv_file_no`));
 
 
 CREATE TABLE `authority_mng` (
@@ -53,8 +57,8 @@ CREATE TABLE `authority_mng` (
   `authority_mng_admin_original_type` VARCHAR(45) NOT NULL default 'none',
   `authority_mng_admin_apply_type` VARCHAR(45) NOT NULL,
   `ent_name` VARCHAR(45) NULL DEFAULT 'none',
-  `authority_mng_apply_date` TIMESTAMP NOT NULL DEFAULT current_timestamp,
-  `authority_mng_authorize_date` TIMESTAMP NULL,
+  `authority_mng_apply_date` TIMESTAMP NULL DEFAULT current_timestamp,
+  `authority_mng_authorize_date` TIMESTAMP NULL DEFAULT current_timestamp,
   PRIMARY KEY (`authority_mng_no`));
    
 
@@ -79,12 +83,15 @@ CREATE TABLE `product_type` (
 CREATE TABLE `users` (
   `user_no` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(45) NOT NULL,
-  `user_pw` VARCHAR(45) NOT NULL,
+  `user_pw` VARCHAR(100) NOT NULL,
+  `user_pw2` VARCHAR(100) NOT NULL,
   `user_name` VARCHAR(45) NOT NULL,
+  `user_birth` VARCHAR(45) NOT NULL,
   `user_contact` VARCHAR(45) NOT NULL,
   `user_address` VARCHAR(200) NOT NULL,
   `user_email` VARCHAR(45) NOT NULL,
   `user_gender` VARCHAR(1) NOT NULL,
+  `user_fav_ent` VARCHAR(45) NOT NULL,
   `user_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
   PRIMARY KEY (`user_no`),
   UNIQUE INDEX `user_id_UNIQUE` (`user_id` ASC) VISIBLE);
@@ -93,10 +100,10 @@ CREATE TABLE `users` (
 CREATE TABLE `order_history` (
   `order_no` INT NOT NULL AUTO_INCREMENT,
   `user_id` VARCHAR(45) NOT NULL,
-  `prod_no` INT NOT NULL,
-  `order_date` TIMESTAMP NULL DEFAULT current_timestamp,
+  `order_prod_no` INT NOT NULL,
+  `order_date` VARCHAR(45) NULL,
   `order_cnt` INT NOT NULL DEFAULT 1,
-  `order_price` VARCHAR(45) NOT NULL,
+  `order_total_price` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`order_no`));
 
 
@@ -112,16 +119,29 @@ CREATE TABLE `product` (
   `prod_stock` INT NULL DEFAULT 0,
   `prod_img_path` VARCHAR(100) NULL,
   `prod_info_img_path` VARCHAR(100) NULL,
-  `prod_regdate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `prod_regdate` VARCHAR(45) NULL,
+  `prod_hit` INT DEFAULT 0,
+  `prod_sales_volume` INT DEFAULT 0,
   PRIMARY KEY (`prod_no`));
 
 
 CREATE TABLE `cart` (
   `cart_no` INT NOT NULL AUTO_INCREMENT,
   `cart_prod_no` INT NOT NULL,
+  `cart_prod_img_path` VARCHAR(100) NULL,
+  `cart_prod_artist` VARCHAR(45) NOT NULL,
   `cart_prod_name` VARCHAR(45) NOT NULL,
   `cart_prod_cnt` VARCHAR(45) NOT NULL,
+  `cart_prod_discount_rate` INT NULL DEFAULT 0,	
   `cart_prod_price` VARCHAR(45) NOT NULL,
+  `user_id` VARCHAR(45) NOT NULL,
+  `cart_album_no` INT NOT NULL,
+  `cart_album_img_path` VARCHAR(100) NULL,
+  `cart_album_artist` VARCHAR(45) NOT NULL,
+  `cart_album_title` VARCHAR(45) NOT NULL,
+  `cart_album_cnt` VARCHAR(45) NOT NULL,
+  `cart_album_discount_rate` INT NULL DEFAULT 0,
+  `cart_album_price` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cart_no`));
 
 
@@ -131,9 +151,13 @@ CREATE TABLE `album` (
   `album_title` VARCHAR(100) NOT NULL,
   `album_category` VARCHAR(100) NOT NULL,
   `album_price` VARCHAR(45) NOT NULL,
-  `album_release_date` TIMESTAMP NOT NULL,
+  `album_release_date` VARCHAR(45) NOT NULL,
   `album_discount_rate` INT NULL DEFAULT 0,
+  `album_stock` INT NOT NULL,
+  `album_version` VARCHAR(45) NOT NULL,
   `album_img_path` VARCHAR(100) NULL,
+  `album_hit` INT DEFAULT 0,
+  `album_sales_volume` INT DEFAULT 0,
   PRIMARY KEY (`album_no`));
 
 
@@ -153,10 +177,10 @@ CREATE TABLE `group` (
 CREATE TABLE `entertainer` (
   `ent_no` INT NOT NULL AUTO_INCREMENT,
   `ent_name` VARCHAR(45) NULL,
-  `ent_birth` TIMESTAMP NOT NULL,
-  `ent_debut_date` TIMESTAMP NOT NULL,
-  `ent_contract_startdate` TIMESTAMP NOT NULL,
-  `ent_contract_enddate` TIMESTAMP NOT NULL,
+  `ent_birth` VARCHAR(45) NOT NULL,
+  `ent_debut_date` VARCHAR(45) NOT NULL,
+  `ent_contract_startdate` VARCHAR(45) NOT NULL,
+  `ent_contract_enddate` VARCHAR(45) NOT NULL,
   `ent_contract_cnt` VARCHAR(45) NOT NULL,
   `ent_gender` VARCHAR(45) NOT NULL,
   `ent_type` VARCHAR(45) NOT NULL,
@@ -168,12 +192,13 @@ CREATE TABLE `entertainer` (
 
 CREATE TABLE `schedule` (
   `schedule_no` INT NOT NULL AUTO_INCREMENT,
-  `schedule_start_time` TIMESTAMP NOT NULL,
-  `schedule_end_time` TIMESTAMP NULL,
-  `schedule_ent_name` VARCHAR(45) NOT NULL,
+  `schedule_start_time` VARCHAR(45) NOT NULL,
+  `schedule_end_time` VARCHAR(45) NULL,
+  `schedule_writer` VARCHAR(45) NOT NULL,
   `schedule_type` VARCHAR(45) NOT NULL,
+  `schedule_ent_name` VARCHAR(45) NOT NULL,
+  `schedule_location` VARCHAR(100) NOT NULL,
   `schedule_content` VARCHAR(100) NOT NULL,
-  `schedule_location` VARCHAR(200) NOT NULL,
   PRIMARY KEY (`schedule_no`));
 
 
@@ -181,7 +206,7 @@ CREATE TABLE `activity` (
   `activity_no` INT NOT NULL AUTO_INCREMENT,
   `ent_name` VARCHAR(45) NOT NULL,
   `activity_title` VARCHAR(100) NOT NULL,
-  `activity_date` TIMESTAMP NOT NULL,
+  `activity_date` VARCHAR(45) NOT NULL,
   `activity_type` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`activity_no`));
 
@@ -203,8 +228,25 @@ CREATE TABLE `administrator` (
 
 
 CREATE TABLE `entertainer_schedule` (
-  `no` INT NOT NULL AUTO_INCREMENT,
+  `entertainer_schedule_no` INT NOT NULL AUTO_INCREMENT,
   `ent_name` VARCHAR(45) NOT NULL,
   `schedule_no` INT NOT NULL,
   PRIMARY KEY (`no`));
+
+
+CREATE TABLE `message` (
+  `msg_no` INT NOT NULL AUTO_INCREMENT,
+  `msg_writer_no` INT NOT NULL,
+  `msg_writer_id` VARCHAR(45) NOT NULL,
+  `msg_writer_name` VARCHAR(45) NOT NULL,
+  `msg_receiver_no` INT NOT NULL,
+  `msg_receiver_id` VARCHAR(45) NOT NULL,
+  `msg_receiver_name` VARCHAR(45) NOT NULL,
+  `msg_title` VARCHAR(200) NOT NULL,
+  `msg_content` VARCHAR(500) NOT NULL,
+  `msg_senddate` TIMESTAMP NULL DEFAULT current_timestamp,
+  `msg_checkdate` TIMESTAMP NULL,
+  PRIMARY KEY (`msg_no`));
+
+
 
