@@ -33,14 +33,19 @@
 	<!-- 폰트 -->
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link
-		href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap"
-		rel="stylesheet">
-	<style>
-	body, html {
-		font-family: 'Noto Sans KR', sans-serif;
-	}
-	</style>
+  <!-- 폰트 1 -->
+  <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+  <!-- 폰트 2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+  <!-- 폰트 3 - 나눔고딕 --> 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500&display=swap">
 	<!-- 개별 css -->
 	<link rel="stylesheet" href="/css/y4j_layout.css">
   </head>
@@ -141,6 +146,76 @@
       </div>
 
       <aside>
+        <div class="aside_wrap">
+          <div class="aside_wrap_box">
+            <!-- 여기 메인으로 가는 경로 다시 지정해야 함 -->
+            <span style="color:rgba(251, 245, 245, 0.862);">"관리자 닉네임"님</span>
+          </div>
+            <div class="aside_menu_bar aside_menu_bar_1">
+              <ul class="slide">
+                <li style="margin-left: 36px; margin-right: 10px;"><img style="width: 23px; height: 23px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/dashboardTab.png" /></li>
+                <li style="margin-left: 23px; padding-bottom: 4px"><a href="#"><div>대시보드</div></a></li>
+              </ul>
+            </div>
+            <div class="aside_menu_bar">
+              <ul class="slide">
+                <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 27px; height: 27px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/authorityTab.png"/></li>
+                <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">권한 관리</span></li>
+                <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 0" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
+                <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 2px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
+              </ul>
+              <ul class="aside_menu_bar_list">
+                <li ><a href="/authority/admin_authority_list">권한 조회 및 수정</a></li>
+                <li><a href="/authority/admin_authority_apply_list">권한 신청 목록</a></li>
+              </ul> 
+            </div>
+            <div class="aside_menu_bar ">
+              <ul class="slide mngBar3">
+                <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 27px; height: 27px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/productTab.png"/></li>
+                <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">상품 관리</span></li>
+                <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 0" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
+                <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 2px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
+              </ul>
+              
+              <ul class="aside_menu_bar_list_prod">
+                <li><a href="/order/orderReg">상품 조회 및 수정</a></li>
+                <li><a href="/order/orderList">상품 신청 목록</a></li>
+                <li><a href="/order/categoryReg">카테고리 등록</a></li>
+              </ul>
+            </div>
+            
+            <div class="aside_menu_bar ">
+              <ul class="slide">
+                <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 27px; height: 27px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/scheduleTab.png"/></li>
+                <!-- <a href="https://www.flaticon.com/kr/free-icons/" title="달력 아이콘">달력 아이콘  제작자: Freepik - Flaticon</a> -->
+                <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">일정 관리</span></li>
+                <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 0" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
+                <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 2px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
+              </ul>
+              <ul class="aside_menu_bar_list">
+                <li><a href="/schedule/admin_scheduleReg">일정 등록</a></li>
+                <li><a href="/schedule/admin_scheduleList">일정 목록</a></li>
+              </ul>
+            </div>
+            
+            <div class="aside_menu_bar ">
+              <ul class="slide">
+                <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 28px; height: 28px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/auditionTab.png"/></li>
+                <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="소프트웨어 어플리케이션 아이콘">소프트웨어 어플리케이션 아이콘  제작자: NajmunNahar - Flaticon</a> -->
+                <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">오디션 관리</span></li>
+                <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 7px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
+                <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 9px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
+              </ul>
+              <ul class="aside_menu_bar_list">
+                <li><a href="/audition/admin_audition_list">오디션 신청 목록</a></li>
+                <li><a href="/audition/admin_audition_register">오디션 결과 등록</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </aside>
+
+      <!-- <aside>
         <div class="aside-wrap">
           <div class="aside-left">
             <img class="sideMenuBarBtn active" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_menu.svg" />
@@ -179,7 +254,7 @@
             </div>
           </div>
         </div>
-      </aside>
+      </aside> -->
 
       <div class="section-outer1">
         <div class="section-outer2">
@@ -212,23 +287,27 @@
     <script src="/js/y4j_layout.js"></script>
     <script th:inline="javascript">
       var menu = JSON.parse('[[${uri}]]');
+
       //a태그
       $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
-      //.sub_menu
+      //.sub_menu -> li
       $('a[href*=' + '[[${uri}]]' + ']').parent().addClass("on");
-      //.smt
-      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().addClass("on");
+      //.smt -> ul(.slide)
+      $('a[href*=' + '[[${uri}]]' + ']').parent().parent().addClass("on");
 
-      if ($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().hasClass("mngBar3")) {
-        $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "90px");
+      if($('a[href*=' + '[[${uri}]]' + ']').parent().parent().hasClass("mngBar3")) {
+
       } else {
-        $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "65px");
+
       }
 
-      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("border", "6px solid black");
-      $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().css("border-bottom", "none");
+      // if ($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().hasClass("mngBar3")) {
+      //   $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "90px");
+      // } else {
+      //   $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "65px");
+      // }
 
-      $('.sideMenuTitle').html($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().html());
+      $('.sideMenuTitle').html($('a[href*=' + '[[${uri}]]' + ']').parent().parent().parent().children(0).find("span").html());
       $('.sideMenuContent').html($('a[href*=' + '[[${uri}]]' + ']').html());
     </script>
     <script>
