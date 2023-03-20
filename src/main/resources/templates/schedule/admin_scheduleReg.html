@@ -20,39 +20,10 @@
 							<table class="table_inner">
 								<tbody>
 									<tr>
-										<th>일정 날짜</th>
-										<td class="schedule_calendar">
-											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_start_time' id='date_timepicker_start' placeholder='시작날짜'/>
-													<label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ 
-											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_end_time' id='date_timepicker_end' placeholder='종료날짜'/>
-													<label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>
-										</td>
-									</tr>
-									<tr>
 										<th>관리자 ID</th>
 										<td>
-											<input type="text" class="form-control" name="schedule_writer" style="width:150px" placeholder="필수로 작성-value required 넣기"/>
-										</td>
-									</tr>
-									<tr>
-										<th>타입</th>
-										<td>
-											<select class="form-select" id="schedule_type" name="schedule_type" style="width: 154px;">
-												<option value="">선택</option>
-												<option value="TV">TV</option>
-												<option value="Magazine">Magazine</option>
-												<option value="Radio">Radio</option>
-												<option value="Concert">Concert</option>
-												<option value="Movie">Movie</option>
-												<option value="ETC">ETC</option>
-											</select>
-										</td>
-									</tr>
-									<tr>
-										<th>제목</th>
-										<td>
-											<input type="text" class="input90 form-control" name="schedule_ent_name"
-												value />
+											<!-- <input id="pickup-date" name="pickup-date" placeholder="Start date and time" readonly="readonly" type="text"/> -->
+											<input type="text" class="form-control" name="schedule_writer" style="width:154px" value="manager" placeholder="manager" readonly/>
 										</td>
 									</tr>
 									<tr>
@@ -74,17 +45,48 @@
 										<td class="artistList_td">
 											<select class="form-select input-sm artistList_wrap" name="ent_name" style="width: 150px;">
 												<option value="">선택</option>
-												<!-- <option value="solo">Solo</option>
-												<option value="blackpink">Blackpink</option>
+												<!-- <option value="blackpink">Blackpink</option>
 												<option value="newjeans">Newjeans</option>
 												<option value="ive">Ive</option> -->
 											</select>
 										</td>
 									</tr>
 									<tr>
+										<th>일정 날짜</th>
+										<td class="schedule_calendar">
+											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_start_time' id='date_timepicker_start' readonly required placeholder='시작날짜'/>
+													<label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ 
+											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_end_time' id='date_timepicker_end' readonly required placeholder='종료날짜'/>
+													<label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>
+										</td>
+									</tr>
+									<tr>
+										<th>타입</th>
+										<td>
+											<select class="form-select" id="schedule_type" name="schedule_type" style="width: 154px;">
+												<option value="">선택</option>
+												<option th:value="TV != null? TV : ''">TV</option>
+												<option th:value="Magazine != null? Magazine : ''">Magazine</option>
+												<option th:value="Radio != null? Radio : ''">Radio</option>
+												<option th:value="Concert != null? Concert : ''">Concert</option>
+												<option th:value="Movie != null? Movie : ''">Movie</option>
+												<option th:value="ETC != null? ETC : ''">ETC</option>
+											</select>
+											<span>[[${valid_schedule_type}]]</span>
+										</td>
+									</tr>
+									<tr>
+										<th>제목</th>
+										<td>
+											<input type="text" class="input90 form-control" name="schedule_ent_name" th:value="${vo != null ? vo.schedule_ent_name : ''}" />
+											<span>[[${valid_schedule_ent_name}]]</span>
+										</td>
+									</tr>
+									<tr>
 										<th>장소</th>
 										<td>
-											<input type="text" name="schedule_location" class="input90 form-control"/>
+											<input type="text" name="schedule_location" class="input90 form-control" th:value="${vo != null ? vo.schedule_location : ''}"/>
+											<span>[[${valid_schedule_location}]]</span>
 										</td>
 									</tr>
 									<tr>

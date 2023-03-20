@@ -193,6 +193,12 @@
 																	</tr>
 																</tbody>
 															</table>
+															
+															<!-- 검색 결과가 없는 경우 -->
+															<th:block th:if="${noSearch} == '검색된 일정이 없습니다.'">
+																<h3 id="noSearch">[[${noSearch}]]</h3>
+															</th:block>
+															
 														</div>
 													</div>
 												</div>

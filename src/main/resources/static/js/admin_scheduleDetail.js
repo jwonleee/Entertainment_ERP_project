@@ -35,7 +35,7 @@ $('#modify_btn').click(function(e){
 				str += '	<tr>';
 				str += '		<th>관리자 ID</th>';
 				str += '		<td>';
-				str += '			<input type="text" name="schedule_writer" class="form-control" placeholder="' + vo.schedule_writer + '" readonly/>';
+				str += '			<input type="text" name="schedule_writer" class="form-control" value="' + vo.schedule_writer + '" readonly/>';
 				str += '		</td>';
 				str += '	</tr>';
 				str += '	<tr>';
@@ -110,4 +110,4 @@ $(document).on("click", ".schedule_calendar", function(){
 		timepicker:true,
 		step: 30
 	});
-}); 
+});

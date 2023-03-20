@@ -41,7 +41,15 @@
 		select ent_name from ENTERTAINER where ent_type = #{ent_type}
 	</select>
 	
-	<!-- 권한 user 설정 & 검색 설정 안함 -->
+	<!-- 아티스트-스케줄 유무 -->
+	<select id="getSchedule" resultType="ScheduleVO">
+		select s.schedule_start_time, s.schedule_end_time, es.ent_name from `schedule` s 
+		left join entertainer_schedule es
+			on s.schedule_no = es.schedule_no
+		where ent_name = #{artistSelect}
+	</select>
+	
+	<!-- 권한 user 설정 안함 -->
 	<!-- 일정 전체 개수 -->
 	<select id="getScheduleTotal" resultType="int">
 		select count(*) as total from `schedule` s left join ENTERTAINER_SCHEDULE es on es.schedule_no = s.schedule_no
@@ -86,20 +94,27 @@
 			<!-- 제목 검색 -->
 			<if test="searchContent != null and searchContent != ''">
 			    and s.schedule_ent_name like concat('%', #{searchContent}, '%')
-			    
 			</if>
 			<!-- 이미지 검색 -->
 			<if test="searchName != null and searchName != ''">
 				and es.ent_name = #{searchName}
-				
 			</if>
 			<!-- 날짜 검색 -->
 			<if test="startDate != null and startDate != ''">
 				and date(#{startDate}) between date(schedule_start_time) and date(schedule_end_time)
-				
 			</if>
 		</where>
-		order by s.schedule_no desc <!--평소에는 글 사용한 순서대로 검색했을때는 날짜 순서대로 못하나?-->
+		order by
+		<if test="searchContent != null and searchContent != ''">
+			s.schedule_start_time desc,
+		</if>
+		<if test="searchName != null and searchName != ''">
+			s.schedule_start_time desc,
+		</if>
+		<if test="startDate != null and startDate != ''">
+			s.schedule_start_time desc,
+		</if>		
+		s.schedule_no desc <!--평소에는 글 사용한 순서대로 검색했을때는 날짜 순서대로 못하나?-->
 		limit #{pageStart}, #{amount}	
 	</select>
 	

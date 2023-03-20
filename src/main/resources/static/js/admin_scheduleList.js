@@ -12,7 +12,6 @@ $('.content').on("click", function(e) {
 });
 
 
-
 // my-calendar - date search
 const init = {
     monList: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
@@ -147,7 +146,7 @@ $calBody.addEventListener('click', (e) => {
         init.activeDate.setDate(day);
         
         var activeDate = $('.day-active').attr('data-fdate');
-        console.log(activeDate);
+        // console.log(activeDate);
 
         $('#clickDate').val(activeDate);
 

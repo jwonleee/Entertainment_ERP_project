@@ -31,11 +31,11 @@ public class ScheduleVO {
 
 	private int schedule_no;
 	
-	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
+//	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
 	@NotBlank(message = "날짜는 공백일 수 없습니다")
 	private String schedule_start_time;
 	
-	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
+//	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
 	@NotBlank(message = "날짜는 공백일 수 없습니다")
 	private String schedule_end_time;
 	
