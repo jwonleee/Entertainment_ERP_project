@@ -163,17 +163,15 @@ $("#category_reg_selector").change(() => {
                 str += `<td>`;
                	var setArr=[];
                 result.forEach((item) => {
-                    str += `<input type="checkbox" class="${item.category_group_id}"value="${item.category_detail_nm}" name="check_mid" data-set=${JSON.stringify(item)}>${item.category_detail_nm}`;
+                    str += `<input type="checkbox" class="${item.category_group_id}" value="${item.category_detail_nm}" name="check_mid" data-set=${JSON.stringify(item)}>${item.category_detail_nm}`;
                     setArr.push(item.category_group_id);
                 })
                 str += `<br/>`;
-                str += `<input type="checkbox" id="check_all"/>모두선택`;
-				                
+                str += `<input type="checkbox" id="check_all" class="partial_select"/>모두선택`;
                	setArr = [...new Set(setArr)]; //배열중복제거
-	            detailNameArr.forEach((item,index)=>{console.log(item[setArr[index]])});
-	            detailNameArr=detailNameArr.forEach((item,index)=>{console.log(item[setArr[index]])});
-               	
-               	
+		            detailNameArr.forEach((item,index)=>{
+						str +=`<input type="checkbox" class="partial_select" name="bigCateCheck" id="${setArr[index]}" value="${setArr[index]}"/>${item[setArr[index]]}`;
+					});
                 str += `</td>`;
                 str += `<tr>`;
                 str += `<tr>`;
@@ -198,10 +196,22 @@ $("#category_reg_selector").change(() => {
 $("#reg_table_sector").on("click",'#check_all',()=>{
      var checked = $('#check_all').is(':checked');
      if(checked){
-        $("input[name='check_mid']").prop("checked", true);
+        $("input[name='check_mid']").prop("checked", true);//전체 소분류 체크박스
+        $("input[name='bigCateCheck']").prop("checked", true);//대분류 체크박스
      } else{
         $("input[name='check_mid']").prop("checked",false);
+        $("input[name='bigCateCheck']").prop("checked", false);
      }
+});
+
+//대분류별 체크박스
+$("#reg_table_sector").on("click","input[name='bigCateCheck']",(e)=>{
+	var checked=$(e.currentTarget).is(":checked")
+	if(checked){
+		$(`.${e.currentTarget.defaultValue}`).prop("checked",true);
+	}else{
+		$(`.${e.currentTarget.defaultValue}`).prop("checked",false);
+	}
 });
 
 
