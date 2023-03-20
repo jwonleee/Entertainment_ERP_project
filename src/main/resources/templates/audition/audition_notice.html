@@ -14,7 +14,7 @@
       		</div>
       		<div class="audApplyBtnDiv">
 						<p th:if="${userVO} == null">로그인 한 후에 오디션 접수가 가능합니다.</p>
-      			<button type="button" id="openAudApplyForm" class="btn btn-outline-dark btn-lg showModal" data-bs-toggle="modal" data-bs-target="#exampleModal" th:disabled= "${userVO == null ? 'disabled' : 'false'}" >지원서 접수</button>
+      			<button type="button" id="openAudApplyForm" class="btn btn-outline-dark btn-lg showModal" data-bs-toggle="modal" data-bs-target="#exampleModal" th:disabled="${userVO == null ? 'disabled' : 'false'}" >지원서 접수</button>
       		</div>
 
 					<!-- Modal -->

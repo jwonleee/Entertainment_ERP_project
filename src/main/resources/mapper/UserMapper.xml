@@ -126,11 +126,11 @@
 	left outer join product p
 	on c.cart_prod_no = p.prod_no
 	where c.user_id = #{user_id};
+
 	</select>
 	
 	<delete id="deleteCart" parameterType="CartVO">
 		delete from cart where cart_no = #{cart_no} and user_id = #{user_id}
 	</delete>
-
 
 </mapper>

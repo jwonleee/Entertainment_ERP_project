@@ -193,7 +193,7 @@ html, body {
 .table_wrap {
     overflow: hidden;
     text-align: center;
-    margin: 0 15px;
+    margin: 0 13px;
 }
 
 .table_title {
@@ -218,6 +218,14 @@ html, body {
 
 .table_right .write_btn:hover {
     border: 1px solid #707070;
+}
+
+#noSearch {
+	text-align: center;
+    padding: 50px;
+    font-size: 22px;
+    border: 1px solid #ecedee;
+    color: #9ba4ad;
 }
 
 /*********** swiper ***********/
@@ -257,7 +265,7 @@ swiper-container {
 .container_block {
     height: 170px;
     margin-top: 35px;
-    width: 98%;
+    width: 97.2%;
 }
 
 .append-buttons {
@@ -277,8 +285,71 @@ swiper-container {
   font-size: 13px;
 }
 
-/*********** 테이블 ***********/
 
+/*********** swiper:hover ***********/
+.content {
+  position: relative;
+  max-width: 400px;
+  margin: auto;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.content .content-overlay {
+  background: rgba(0,0,0,0.7);
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  opacity: 0;
+  -webkit-transition: all 0.4s ease-in-out 0s;
+  -moz-transition: all 0.4s ease-in-out 0s;
+  transition: all 0.4s ease-in-out 0s;
+}
+
+.content:hover .content-overlay{
+  opacity: 1;
+}
+
+.content-details {
+  position: absolute;
+  text-align: center;
+  padding-left: 1em;
+  padding-right: 1em;
+  width: 100%;
+  top: 50%;
+  left: 50%;
+  opacity: 0;
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  -webkit-transition: all 0.3s ease-in-out 0s;
+  -moz-transition: all 0.3s ease-in-out 0s;
+  transition: all 0.3s ease-in-out 0s;
+}
+
+.content:hover .content-details{
+  top: 50%;
+  left: 50%;
+  opacity: 1;
+}
+
+.content-details h5{
+  color: #fff;
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  margin-bottom: 0.5em;
+  text-transform: uppercase;
+}
+
+.act h5 {
+  margin-bottom: 2.5em;
+}
+
+/*********** table ***********/
 .intro {
   height: 100%;
 }
@@ -333,6 +404,7 @@ thead {
 }
 
 .table .schdule_location {
+  width: 105px;
   max-width:105px;
   overflow:hidden;
   text-overflow:ellipsis;
@@ -340,10 +412,15 @@ thead {
 
 .table .schedule_ent_name {
     text-align: left;
-    min-width: 298px;
+    width: 298px;
     max-width: 298px;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+
+.table .schedule_writer {
+  width: 101px;
+  max-width: 101px;
 }
 
 #title {

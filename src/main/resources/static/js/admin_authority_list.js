@@ -143,17 +143,14 @@ $("#updateBtn").on("click", function () {
   $("#updateForm").submit();
 });
 
-// //관리자 유형 선택 시, 그룹/배우 값 초기화
-// $(document).ready(function () {
-//   $("input[name='gridRadios']").change(function () {
-//     if ($("input[name='gridRadios']:checked").val() != 'manager') {
-//       console.log("비동기 방식으로 불러와서 안되는 듯?");
-//       $("select[name='ent_name']").val("");
-//     }
-//   });
-// });
-
-$('#exampleModal').modal(
-  { keyboard: false }
-);
+//관리자 유형 선택 시, 그룹/배우 값 초기화
+$(document).on("change", "input[name='gridRadios']", function(e) {
+  $.ajax({
+    url: "../noDataReturn",
+    type: "post",
+    success: function(data) {
+      $("select[name='ent_name']").val("");
+    }
+  });
+});
 

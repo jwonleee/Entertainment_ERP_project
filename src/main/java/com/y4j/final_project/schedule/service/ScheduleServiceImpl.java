@@ -21,6 +21,7 @@ public class ScheduleServiceImpl implements ScheduleService {
 	//일정등록
 	@Override
 	public int regist(ScheduleVO vo) {
+		System.out.println(2);
 		int result = scheduleMapper.regist(vo);
 		return result; //성공시 1, 실패시 0
 	}
@@ -43,6 +44,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	public List<EntertainerVO> getEntType2(EntertainerVO vo) {
 		List<EntertainerVO> list = scheduleMapper.getEntType2(vo); 
 		return list;
+	}
+	
+	//아티스트-스케줄 유무 확인
+	@Override
+	public ArrayList<ScheduleVO> getSchedule(String artistSelect) {
+		return scheduleMapper.getSchedule(artistSelect);
 	}
 	
 	//일정 목록

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+
 import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.audition.service.AuditionService;
 import com.y4j.final_project.authority.service.AuthorityService;
@@ -114,6 +115,13 @@ public class AjaxController {
 	public List<AuditionFileVO> getAudFile(@RequestBody AuditionVO vo) {
 		
 		return auditionService.getAudFile(vo);
+	}
+	
+	//noDataReturn
+	@PostMapping("/noDataReturn")
+	public String noDataReturn() {
+		
+		return "success";
 	}
 	
 }

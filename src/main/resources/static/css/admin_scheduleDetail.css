@@ -95,16 +95,14 @@ img {max-width: 100%; height: auto;}
 .table_inner input {
     border: 1px solid #b1b1b1;
     height: 30px;
-    width: 20%;
+    width: 27.5%;
 }
 
 #date_timepicker_start {
-    min-width: 20%;
     display: inline; 
 }
 
 #date_timepicker_end{
-    min-width: 20%;
     display: inline;
     padding-left:10px;
 }
@@ -114,7 +112,7 @@ img {max-width: 100%; height: auto;}
 }
 
 .schedule_type {
-    border: 1px solid #b1b1b1;
-    width: 29%;
+    border: 1px solid #b1b1b1 !important;
+    width: 27.5% !important;
     height: 37px;
 }

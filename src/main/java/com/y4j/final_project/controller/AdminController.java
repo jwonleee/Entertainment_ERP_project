@@ -1,5 +1,7 @@
 package com.y4j.final_project.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,7 +27,11 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin_login")
-	public String admin_login() {
+	public String admin_login(HttpSession session, AdminVO adminVO) {
+
+		//정상적으로 로그인이 됐을 경우, 세션 생성
+		session.setAttribute("adminId", adminVO.getAdmin_id());
+		session.setAttribute("adminType", adminVO.getAdmin_type());
 		
 		return "admin/admin_login";
 	}

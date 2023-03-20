@@ -35,13 +35,13 @@ $('#modify_btn').click(function(e){
 				str += '	<tr>';
 				str += '		<th>관리자 ID</th>';
 				str += '		<td>';
-				str += '			<input type="text" name="schedule_writer" class="form-control" placeholder="' + vo.schedule_writer + '" readonly/>';
+				str += '			<input type="text" name="schedule_writer" class="form-control" value="' + vo.schedule_writer + '" readonly/>';
 				str += '		</td>';
 				str += '	</tr>';
 				str += '	<tr>';
 				str += '		<th>타입</th>';
 				str += '		<td>';
-				str += '			<select class="form-select" name="schedule_type" class="schedule_type">';
+				str += '			<select class="form-select schedule_type" name="schedule_type">';
 				str += '				<option value="TV" '+ (vo.schedule_type == "TV" ? "selected" : "") + '>TV</option>';
 				str += '				<option value="Magazine" '+ (vo.schedule_type == "Magazine" ? "selected" : "") + '>Magazine</option>';
 				str += '				<option value="Radio"'+ (vo.schedule_type == "Radio" ? "selected" : "") + '>Radio</option>';
@@ -76,7 +76,7 @@ $('#modify_btn').click(function(e){
 				str += '	</tr>';
 				str += '</tbody>';
 
-                $("#schedule_detail").html(str);
+                $("#schedule_detail").html(str); //지워지고 다시 그려짐
             },
             error: function (err) {
                 console.log(err);
@@ -110,4 +110,4 @@ $(document).on("click", ".schedule_calendar", function(){
 		timepicker:true,
 		step: 30
 	});
-}); 
+});
