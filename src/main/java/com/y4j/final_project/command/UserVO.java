@@ -43,26 +43,27 @@ public class UserVO {
 	@Pattern (regexp = "(?=.*[a-zA-Z가-힣]).{1,16}", message = "이름은 숫자를 입력할 수 없습니다")
 	private String user_name;
 	
-	@NotBlank (message = "휴대전화를 입력하세요")
-	@Pattern (regexp = "(?=.*[0-9]).{3,4}", message = "휴대번호를 정확히 입력하세요")
-	private String user_contact;
+	@NotBlank (message = "생년월일을 입력하세요")
+	@Pattern (regexp = "(?=.*[0-9]).{1,2}", message = "생년월일을 정확히 입력하세요")
+	private String user_birth;
 	
 	@NotBlank (message = "휴대전화를 입력하세요")
-	@Pattern (regexp = "(?=.*[0-9]).{3,4}", message = "휴대번호를 정확히 입력하세요")
-	private String user_contact2;
+//	@Pattern (regexp = "(?=.*[0-9])", message = "휴대번호를 정확히 입력하세요")
+	private String user_contact;
 	
 	@NotBlank (message = "주소를 입력하세요")
 	private String user_address;
 	
-	private String user_address2;
-	
 	@NotBlank(message = "이메일을 입력하세요")
 	@Email(message = "이메일 형식으로 입력하세요")
-	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]{4,10}+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
+	@Pattern(regexp = "^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+.[A-Za-z]{2,6}$", message = "이메일 형식에 맞지 않습니다.")
 	private String user_email;
 	
 	@NotBlank (message = "성별을 선택하세요")
 	private String user_gender;
+	
+	@NotBlank (message = "좋아하는 연예인을 선택하세요")
+	private String user_fav_ent;
 	
 	private LocalDateTime user_regdate;
 

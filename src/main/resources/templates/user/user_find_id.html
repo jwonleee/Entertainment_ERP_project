@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/user_find_id.css">
+</head>
+<body>
+    
+
+    <div class="find_id_section">
+    <form action="userFindIdForm"  class="userFindIdForm" method="post">
+        <div class="find_id_box">
+            <div class="find_id_innerbox">
+                <!-- 아이디 찾기, 비밀번호 찾기 버튼 -->
+                <div class="find_account">
+                    <div class="find_user_id left">
+                        <a href="#">아이디 찾기</a>    
+                    </div>
+                    <div class="find_user_pw left">
+                        <a href="user_find_pw">비밀번호 찾기</a>    
+                    </div>
+                </div>
+
+                <!-- 이름, 이메일 입력 부분 -->
+                <div class="find_id_content">
+                    <div class="find_id_outercontent" style="margin-bottom: 15px;">
+                        <div class="find_id_innercontent">
+                            <div>
+                                <div class="content_detail left">
+                                    <span>이름</span>
+                                </div>
+                                <div class="content_input right">
+                                    <input type="text"  class="right" name="user_name" required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="find_id_outercontent" style="margin-bottom: 15px;">
+                        <div class="find_id_innercontent">
+                            <div class="content_detail left">
+                                <span>이메일</span>
+                            </div>
+                            <div class="content_input right">
+                                <input type="email" class="right" name="user_email" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 확인 버튼 -->
+                <div class="find_id_btn">
+                    <button type="submit" >확인</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</body>
+
+
+</html>

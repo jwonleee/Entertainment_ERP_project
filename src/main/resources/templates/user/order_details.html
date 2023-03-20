@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/order_details.css">
+
+    <!-- 상단, 하단 버튼 jQuery -->
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+
+    <script>
+        $(function () {
+            $(".top_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+
+            $(".bottom_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: document.body.scrollHeight
+                }, 400);
+                return false;
+            });
+        });
+    </script>
+</head>
+
+<body>
+    <header>
+        <h3>Y4J</h3>
+    </header>
+
+    <div class="order_detail_section">
+        <div class="order_detail_box">
+            <!-- 주문 상세 내역 헤더 -->
+            <div class="order_detail_header">
+                <h3><em>Order Details</em></h3>
+            </div>
+
+            <!-- 주문 상세 내역 내용 부분 -->
+            <div class="order_detail_innerbox">
+                <div class="order_detail_content">
+                    <!-- 주문 정보 -->
+                    <div class="order_info">
+                        <div class="order_info_item">
+                            <h4>주문 정보</h4>
+                        </div>
+
+                        <div class="order_info_content">
+                            <div class="order_info_detail">
+                                <div class="order_info_title">
+                                    <span>주문번호</span>
+                                </div>
+                                <div class="order_info">
+                                    <p>19930925</p>
+                                </div>
+                            </div>
+
+                            <div class="order_info_detail">
+                                <div class="order_info_title">
+                                    <span>주문일자</span>
+                                </div>
+                                <div class="order_info">
+                                    <p>20130302</p>
+                                </div>
+                            </div>
+
+                            <div class="order_info_detail">
+                                <div class="order_info_title">
+                                    <span>주문자</span>
+                                </div>
+                                <div class="order_info">
+                                    <p>도은영</p>
+                                </div>
+                            </div>
+
+                            <div class="order_info_detail">
+                                <div class="order_info_title">
+                                    <span>주문처리상태</span>
+                                </div>
+                                <div class="order_info">
+                                    <p>배송완료</p>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- 상단, 하단으로 가는 버튼 -->
+    <div class="arrow_btn">
+        <a href="#" class="top_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
+        </a><br />
+        <a href="#" class="bottom_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
+        </a>
+    </div>
+
+    <footer>
+        <h3>footer입니다</h3>
+    </footer>
+</body>
+
+</html>

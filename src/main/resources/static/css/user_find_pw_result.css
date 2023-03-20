@@ -1,0 +1,92 @@
+*{margin: 0; padding: 0;}
+a{text-decoration: none; cursor: pointer;}
+.left{float: left;}
+.right{float: right; }
+.find_pw_box{
+    margin: 100px auto 0;
+    width: 30%;
+    border: 1px solid #25232333;
+    border-radius: 8px;
+}
+.find_pw_innerbox{
+   margin: 0 auto; 
+   padding: 30px;
+}
+
+/* 아이디 찾기, 비밀번호 찾기 버튼 */
+.find_account{
+    margin-bottom: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.find_user_pw{
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+   
+}
+.find_user_pw > a {
+    color: rgb(42, 42, 53);
+    font-size: 20px;
+    font-weight: 600;
+}
+.find_user_pw {
+    width: 100%;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3333;
+}
+.find_user_pw > a{
+    color: #6b6a6a;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 이름, 이메일 입력 부분 */
+.find_pw_content input:focus {outline: none;}
+
+.find_pw_innercontent{
+    overflow: hidden;
+}
+.content_detail {
+    width: 25%;
+    vertical-align: middle;
+    padding: 8px 0;
+   
+}
+.content_detail span{
+    font-size: 14px;
+    font-weight: 600;
+}
+.content_input{
+    width: 75%;
+}
+.content_input input{
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border: none;
+    
+}
+
+/* 확인 버튼 */
+
+.find_pw_btn{
+    width: 100%;
+    margin: 50px 0;
+    text-align: center;
+}
+.find_pw_btn a{
+    color: whitesmoke;
+    padding: 10px 180px;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #04022a;
+    border-radius: 10px;
+}
+
+
+
+
+
+

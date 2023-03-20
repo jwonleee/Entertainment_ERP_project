@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.util.Criteria;
 
@@ -36,13 +37,6 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserList(cri);
 	}
 
-	//유저 정보 수정 메서드
-	@Override
-	public int updateUser(UserVO vo) {
-
-		return userMapper.updateUser(vo);
-	}
-
 	//전체 데이터 수 반환 메서드
 	public int getUserTotal(Criteria cri) {
 		return userMapper.getUserTotal(cri);
@@ -54,12 +48,29 @@ public class UserServiceImpl implements UserService {
 		return this.passwordEncoder;
 	}
 
-	//아이디 중복 검사
+	//아이디 중복 검사 및 로그인 시 아이디 있는지 검사
 	@Override
 	public int idCheck(String user_id) {
 		int cnt = userMapper.idCheck(user_id);
 
 		return cnt;
+	}
+
+	//유저 로그인
+	@Override
+	public String login(String user_id) {
+		return userMapper.login(user_id);
+	}
+
+	//유저 아이디 찾기 
+	@Override
+	public UserVO getUserId(UserVO vo) {
+		return userMapper.getUserId(vo);
+	}
+
+	//유저 정보 수정 메서드
+	public int updateUserInfo(UserVO vo) {
+		return userMapper.updateUserInfo(vo);
 	}
 
 	//유저 특정 1명 데이터 반환 메서드
@@ -72,9 +83,20 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo2(user_id);
 	}
 
-	//유저 정보 수정 메서드
-	public int updateUserInfo(UserVO vo) {
-		return userMapper.updateUser(vo);
+	//유저의 장바구니 리스트 조회
+	@Override
+	public ArrayList<CartVO> getCartList(String user_id) {
+		return userMapper.getCartList(user_id);
 	}
+
+	// 장바구니 선택 상품 삭제
+	@Override
+	public void deleteCart(CartVO cvo) {
+		userMapper.deleteCart(cvo);
+	}
+
+
+
+
 
 }
