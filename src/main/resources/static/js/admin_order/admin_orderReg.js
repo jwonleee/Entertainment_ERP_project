@@ -65,6 +65,8 @@ $.fn.category_set = function () {
     var category_id = this.data("set").category_id;
     var category_group_id = this.data("set").category_group_id;
     $("input[name='admin_order_category']").val(category_group_id + category_id);
+    $("input[name='admin_order_category']").data('dnm',this.data("set").category_detail_nm);
+    $("input[name='admin_order_category']").data('clv',this.data("set").category_lv);
 
     if (this.data("set").category_lv == 2) {
         entertainer = this.data("set").category_detail_nm;
@@ -103,28 +105,23 @@ $(".detail_btn").click((e) => {
     var categorySelected = $("input[name='admin_order_category']").val();
 
     //상품타입넣기
-    var categoryDetailName = '';
-    if (categorySelected == "B20" || categorySelected == "B24") {
-        categoryDetailName = "잡지";
-    } else if (categorySelected == "A6" || categorySelected == "A10" || categorySelected == "A14" || categorySelected == "B21" || categorySelected == "B25") {
-        categoryDetailName = "케이스";
-    } else if (categorySelected == "A7" || categorySelected == "A11" || categorySelected == "A15" || categorySelected == "B22" || categorySelected == "B26") {
-        categoryDetailName = "옷";
-    } else if (categorySelected == "A8" || categorySelected == "A12" || categorySelected == "A16" || categorySelected == "B23" || categorySelected == "B27") {
-        categoryDetailName = "포토카드";
-    }
+    var categoryDetailName = ''; //상세이름. 앨범,케이스 등등
+    categoryDetailName=$("input[name='admin_order_category']").data("dnm");
+    var categoryLevel=''; //대중소 레벨. 1,2,3
+    categoryLevel=$("input[name='admin_order_category']").data("clv");
 
     //사이즈넣기
     var sizesml = ['S', 'M', "L"];
     var sizephone = ["iPhone 14 Pro Max", "iPhone 14 Pro", "iPhone 14 Plus", "iPhone 14", "iPhone 13", "iPhone 13 mini", "iPhone 12"];
     var version = ["싱글", "미니", "정규"];
     $("#adCategory").val(categorySelected);//admin용 카테고리 저장
-    if (categorySelected == '' || categorySelected == 'A1' || categorySelected == 'A2' || categorySelected == 'A3' || categorySelected == 'A4' || categorySelected == 'B17' || categorySelected == 'B18' || categorySelected == 'B19') {
+    if (categoryLevel != '3') {
         alert('상세카테고리를 선택하세요');
+        $(e.currentTarget).detail_remove();
     } else {
         $(e.currentTarget).detail_remove();
         detailCnt += 1;
-        if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') { //앨범일 때
+        if (categoryDetailName=='앨범') { //앨범일 때
             var astr = '';
             astr += '<tbody class="tbx">';
             astr += `<tr>`;
@@ -206,9 +203,9 @@ $(".detail_btn").click((e) => {
                 pstr += `<select id="selectbox" name="prod_sizetype" class="selectVal">`;
                 sizephone.forEach((item) => { pstr += `<option th:value="${item}">${item}</option>` });
                 pstr += `</select></td>`;
-            } else if (categoryDetailName == "포토카드" || categoryDetailName == "잡지") {
+            }else{
                 pstr += `<td><input type="text" readonly value="기본사이즈" class="selectVal" name="prod_sizetype"/></td>`;
-            }
+			}
             pstr += `</tr>`;
             pstr += `<tr>`;
             pstr += `<th>등록일</th>`;
@@ -281,6 +278,10 @@ $("#submitOrder").click((e) => {
 
     //유효성검사
     var categorySelected = $("input[name='admin_order_category']").val();  //카테고리 선택값
+    var categoryDetailName = ''; //상세이름. 앨범,케이스 등등
+    categoryDetailName=$("input[name='admin_order_category']").data("dnm");
+    var categoryLevel=''; //대중소 레벨. 1,2,3
+    categoryLevel=$("input[name='admin_order_category']").data("clv");
     var datePattern = RegExp('[0-9]{4}-[0-9]{2}-[0-9]{2}'); //날짜형식확인
     var numPattern = /[ \{\}\[\]\/?.,;:|\)*~`!^\-_+┼<>@\#$%&\'\"\\\(\=]/gi; //숫자형식확인
     if ($("input[name='admin_order_regdate']").val() == '') {
@@ -297,7 +298,7 @@ $("#submitOrder").click((e) => {
         alert('카테고리를 선택하세요!');
         $(".categoryList").focus($(".categoryList").css("animation", "fadeIn 1s ease-in-out"));
         return; //함수종료
-    } else if (categorySelected == 'A1' || categorySelected == 'A2' || categorySelected == 'A3' || categorySelected == 'A4' || categorySelected == 'B17' || categorySelected == 'B18' || categorySelected == 'B19') {
+    } else if (categoryLevel!='3') {
         alert('상세카테고리를 선택하세요!');
         $(".categoryList").focus($(".categoryList").css("animation", "fadeIn 1s ease-in-out"));
         return; //함수종료
@@ -310,7 +311,7 @@ $("#submitOrder").click((e) => {
         $(".categoryList").focus($(".categoryList").css("animation", "fadeIn 1s ease-in-out"));
         return; //함수종료
     } else {
-        if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') { //앨범일 때
+        if (categoryDetailName=='앨범') { //앨범일 때
             if ($("input[name='album_title']").val() == '') {
                 alert("앨범명을 입력하세요!");
                 $("input[name='album_title']").focus();
@@ -411,7 +412,7 @@ $("#submitOrder").click((e) => {
 
     //aws업데이트하기
     //앨범 또는 상품이미지 aws에 업로드
-    if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') { //앨범일 때 
+    if (categoryDetailName=='앨범') { //앨범일 때 
         var formData = new FormData();
         var file = $("#imgReg");
         formData.append("file", file[0].files[0]);
@@ -508,6 +509,9 @@ $("#PDimgReg").on('change', function (event) {
 
 /***이미지 등록***/
 $("#imgUpload").click(function () {
+	
+	var categoryDetailName = ''; //상세이름. 앨범,케이스 등등
+    categoryDetailName=$("input[name='admin_order_category']").data("dnm");
 
     var categorySelected = $("input[name='admin_order_category']").val();
     var obj = $("#imgReg");
@@ -521,7 +525,7 @@ $("#imgUpload").click(function () {
         alert('이미지 파일만 선택가능합니다.');
         return;
     } else {
-        if (categorySelected == 'A5' || categorySelected == 'A9' || categorySelected == 'A13') {
+        if (categoryDetailName=='앨범') {
             /*앨범일 때*/
             $("input[name='albumImgPath']").val($("#imgReg").val().split('/').pop().split('\\').pop());//fakepath지우기
             $(".modal").fadeOut();

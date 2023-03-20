@@ -1,6 +1,8 @@
 package com.y4j.final_project.controller.ordercontroller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -57,14 +59,6 @@ public class OrderController {
 
 	/////////////////////////////////[
 	//상세화면
-	@GetMapping("/orderDetail")
-	public String orderDetail(@ModelAttribute("admin_order_no")String admin_order_no, Model model) {
-		Admin_orderVO vo = orderService.getDetail(admin_order_no);
-		System.out.println(vo.toString());
-		model.addAttribute("vo",vo);
-		return "order/orderDetail";
-	}
-
 	@PostMapping("/albumDetail")
 	public String albumDetail(@RequestParam("album_no")Integer album_no, Model model) {
 		AlbumVO vo=orderService.getAlbumDetail(album_no);
@@ -176,10 +170,11 @@ public class OrderController {
 	//중분류 카테고리 등록
 	@PostMapping("/midRegForm")
 	public String midRegForm(CategoryVO vo, RedirectAttributes ra) {
-		int result=orderService.midCategoryReg(vo);
+		int result=orderService.midSmallCategoryReg(vo);
 		String msg=result==1?"성공적으로 등록되었습니다.":"등록에 실패했습니다.";
 		ra.addFlashAttribute("msg",msg);
 		return "redirect:/order/categoryReg";
 	}
-
+	
+	
 }

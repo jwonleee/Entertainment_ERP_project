@@ -43,9 +43,13 @@ public interface OrderMapper {
 	//카테고리
 	public ArrayList<CategoryVO> getCategory(); //대분류 카테고리
 	public ArrayList<CategoryVO> getCategoryChild(CategoryVO vo); //중, 소분류 카테고리
+	public ArrayList<CategoryVO> getMidCategory(); //모든 중분류 카테고리
 	
 	//카테고리 추가
 	public int bigCategoryReg(CategoryVO vo); //대분류 카테고리 추가
-	public int midCategoryReg(CategoryVO vo); //중분류 카테고리 추가
+	public int midSmallCategoryReg(CategoryVO vo); //중, 소분류 카테고리 추가
+	
+	
+	
 	
 }

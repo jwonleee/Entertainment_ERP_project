@@ -3,6 +3,13 @@
     margin: 0;
     list-style: none;
 }
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+ }
+
 /* ******** 검색********* */
 .search_wrap{
     overflow:hidden;

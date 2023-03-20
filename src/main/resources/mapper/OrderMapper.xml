@@ -228,6 +228,10 @@
   		select * from category where category_lv=1
   	</select>
   	
+  	<select id="getMidCategory" resultType="CategoryVO">
+  		select * from category where category_lv=2 order by category_group_id
+  	</select>
+  	
   	<select id="getCategoryChild" resultType="CategoryVO">
   		select * from category 
   		where category_group_id=#{category_group_id}
@@ -252,7 +256,7 @@
   				,#{category_detail_parent_lv})
   	</insert>
   	
-  	<insert id="midCategoryReg" parameterType="CategoryVO">
+  	<insert id="midSmallCategoryReg" parameterType="CategoryVO">
   		<selectKey resultType="Integer" keyProperty="category_detail_lv" order="BEFORE">
   			select IFNULL(max(category_detail_lv),0)+1
   			from category where category_group_id=#{category_group_id} and category_lv=#{category_lv}
