@@ -1,0 +1,90 @@
+*{margin: 0; padding: 0;}
+a{text-decoration: none; cursor: pointer;}
+.left{float: left;}
+.right{float: right; }
+.find_id_box{
+    margin: 100px auto 0;
+    width: 30%;
+    border: 1px solid #25232333;
+    border-radius: 8px;
+}
+.find_id_innerbox{
+   margin: 0 auto; 
+   padding: 30px;
+}
+
+/* 아이디 찾기, 비밀번호 찾기 버튼 */
+.find_account{
+    margin-bottom: 30px;
+    text-align: center;
+    overflow: hidden;
+}
+.find_user_id{
+    width: 50%;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid rgb(42, 42, 53);
+}
+.find_user_id > a {
+    color: rgb(42, 42, 53);
+    font-size: 20px;
+    font-weight: 600;
+}
+.find_user_pw {
+    width: 50%;
+    text-align: center;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #3333;
+}
+.find_user_pw > a{
+    color: #6b6a6a;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+/* 이름, 이메일 입력 부분 */
+.find_id_content input:focus {outline: none;}
+
+.find_id_innercontent{
+    overflow: hidden;
+}
+.content_detail {
+    width: 25%;
+    vertical-align: middle;
+    padding: 8px 0;
+}
+.content_detail span{
+    font-size: 14px;
+    font-weight: 600;
+}
+.content_input{
+    width: 75%;
+}
+.content_input input{
+    width: 100%;
+    padding: 8px 0;
+    font-size: 16px;
+    border: none;
+    border-bottom: 2px solid #d5d3d3;
+}
+
+/* 확인 버튼 */
+.find_id_btn{
+    width: 100%;
+    margin-top: 50px;
+    text-align: center;
+}
+.find_id_btn a{
+    padding: 10px 184px;
+    color: whitesmoke;
+    font-size: 15px;
+    font-weight: 600;
+    background-color: #04022a;
+    border-radius: 10px;
+
+}
+
+
+
+
+

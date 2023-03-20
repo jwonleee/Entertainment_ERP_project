@@ -131,10 +131,5 @@ public class ScheduleController {
 		
 	return "redirect:/schedule/admin_scheduleList";	
 	}
-	
-	
-	
-
-	
 
 }

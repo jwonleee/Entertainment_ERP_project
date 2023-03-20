@@ -1,5 +1,6 @@
 package com.y4j.final_project.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.MessageVO;
+import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 
@@ -104,6 +106,7 @@ public class HomeController {
 		return "redirect:/message";
 	}
 	
+
 	
 	
 }

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/user_find_id_result.css">
+
+</head>
+<body>
+    <div class="find_id_section">
+        <div class="find_id_box">
+            <div class="find_id_innerbox">
+                <!-- 아이디 찾기, 비밀번호 찾기 버튼 -->
+                <div class="find_account">
+                    <div class="find_user_id left">
+                        <h3>아이디 찾기가 완료되었습니다</h3>
+                    </div>
+                   
+                </div>
+
+                <!-- 이름, 이메일 입력 부분 -->
+                <div class="find_id_content" style="margin-bottom: 40px;">
+                    <div class="find_id_outercontent" style="margin-bottom: 15px;">
+                        <div class="find_id_innercontent">
+                            <div>
+                                <div class="content_detail left">
+                                    <span>이름</span>
+                                </div>
+                                <div class="content_input right">
+                                    <input type="text"  class="right" name="user_name"  th:value="${vo.user_name}"  readonly required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+
+                    <div class="find_id_outercontent" style="margin-bottom: 15px;">
+                        <div class="find_id_innercontent">
+                            <div class="content_detail left">
+                                <span>아이디</span>
+                            </div>
+                            <div class="content_input right">
+                                <input type="text"  class="right"  name="user_id"  th:value="${vo.user_id}" readonly required>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 확인 버튼 -->
+                <div class="find_id_btn">
+                    <div class=" left">
+                        <a href="user_login" style="color: whitesmoke; background-color: #171449; width: 110.28px;">로그인</a>
+                    </div>
+                    <div class=" left">
+                        <a  href="user_find_pw" style="color: whitesmoke; background-color: #171449; ">비밀번호 찾기</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</body>
+</html>

@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.y4j.final_project.command.ordercommand.ProductVO;
 import com.y4j.final_project.product.service.ProductService;
 import com.y4j.final_project.util.Criteria;
-import com.y4j.final_project.util.PageVO;
+//import com.y4j.final_project.util.PageVO;
 
 
 
@@ -46,8 +46,8 @@ public class productController {
 		//페이지네이션 구현
 		int total = productService.pageTotal(cri);
 		//pageVO 생성 
-		PageVO pageVO = new PageVO(cri, total);
-		model.addAttribute("pageVO", pageVO);
+		//PageVO pageVO = new PageVO(cri, total);
+		//model.addAttribute("pageVO", pageVO);
 		
 		return "product/product_page";
 		

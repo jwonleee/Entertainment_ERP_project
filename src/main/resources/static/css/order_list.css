@@ -1,0 +1,189 @@
+* {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+a {text-decoration: none;}
+button{
+    cursor: pointer;
+}
+
+/*=========== header부분 ==============*/
+header {
+   padding: 20px;
+    margin: 0 auto;
+}
+header > h3 {
+    color: #1F2124;
+    font-size: 60px;
+}
+
+/*=========== 조회 기간 설정 부분 ==========*/
+.order_list_innerbox{
+    width: 65%;
+    padding: 30px 40px; 
+    margin: 0 auto; 
+}
+.period_Setting_box{
+    border: 1px solid #d7b3b3;
+}
+.date_picker{
+    padding: 30px 40px;
+    border: 1px solid #dfdfdf; 
+    
+}
+.date_picker > h4{
+    padding: 7px 0;
+    font-size: 16px;
+    color: #464545;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+/* 기간별 버튼 */
+
+.choose_period > button{
+    width: 75px;
+    margin: 7px 0 10px;
+    padding: 3px;
+    border-radius: 7px;
+    border: 0.5px solid #9c9c9c;
+    background-color: white;
+    color: #383838;
+    font-weight: bold;
+    font-size: 13.5px;
+}
+.choose_period > button:hover{
+    color: whitesmoke;
+    border: none;
+    transition: ease-in-out 0.2s;
+    background-color: #3a3a3a;
+
+}
+
+/* date-picker */
+.calendar_open {
+    padding-bottom: 40px;
+    border-bottom: 0.5px solid #dfdfdf;
+}
+.calendar_open input:focus {outline: none;}
+
+.calendar_open .check_btn{
+    height: 30px;
+    width: 70px;
+    margin-left: 5px;
+    background-color: #5a6379;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 15px;
+    font-weight: 600;
+    vertical-align: middle;
+    cursor: pointer;
+    
+}
+
+/* 조회 부가 설명 */
+.setting_info{
+    padding-top: 30px;
+    
+}
+.setting_info > div p{
+    font-size: 12px;
+    color: #f09696;
+    font-weight: 600;
+}
+
+/*============= 주문내역 부분 =============*/
+.past_order_list{
+    margin-top: 40px;
+}
+.past_order_list input:focus {outline: none;}
+.past_order_inner .past_order_title{
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 1px solid #b8b6b6;
+}
+.past1-order_title span{
+    width: 90px;
+}
+
+.order_list_content{
+    line-height: 50px;
+    padding: 15px 0;
+    display: flex;
+    justify-content: space-around;
+    border-bottom: 0.5px solid #dfdfdf;
+}
+.order_list_content div{
+    height: 50px;
+    padding: 10px;
+}
+.order_list_content input{
+    width: 90px;
+    text-align: center;
+    font-size: 15px;
+    vertical-align: middle;
+    border: none;
+}
+
+/* 페이지네이션 부트스트랩 */
+.paging{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+.paging li{
+    
+    align-items: center;
+    padding: 8px 25px;
+}
+.page-link{
+    color: rgb(43, 53, 71);
+    font-size: 17px;
+    font-weight: 600;
+}
+
+
+/* 상단, 하단으로 가는 버튼 */
+.arrow_btn{
+    scroll-behavior: smooth;
+    display: block;
+    text-align:center;
+    margin:auto;
+   
+    width: 350px;
+    height: 250px;
+}
+.arrow_btn a >img {
+    width: 35px;
+    height: 35px;
+}
+.arrow_btn .top_btn{
+    position:fixed;
+    bottom:100px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+.arrow_btn .bottom_btn{
+    position:fixed;
+    bottom:50px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    scroll-behavior: smooth;
+}
+
+/*============== footer부분 =============*/
+footer {padding: 20px;}
+
+footer h3 {text-align: center;}

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th=“http://www.thymeleaf.org”>
+<html xmlns:th="http://www.thymeleaf.org">
 <html lang="en">
 
 <head>
@@ -92,9 +92,9 @@
 						</div>
 						<div class="join_info_content right">
 							
-							<input type="text" maxlength="4" class="birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required><span>년</span> 
-							<input type="text" maxlength="2"class="birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"required><span>월</span>
-							<input type="text" maxlength="2"class="birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" required><span>일</span>
+							<input type="text" maxlength="4" class="birth" name="user_birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  th:value="${vo != null? vo.user_birth:''}" required><span>년</span> 
+							<input type="text" maxlength="2"class="birth"  name="user_birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" th:value="${vo != null? vo.user_birth:''}" required><span>월</span>
+							<input type="text" maxlength="2"class="birth" name="user_birth" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" th:value="${vo != null? vo.user_birth:''}" required><span>일</span>
 
 						</div>
 					</div>
@@ -123,7 +123,7 @@
 						<div class="join_info_content right">
 							<input type="text" id="user_id" name="user_id" class="input id" onkeyup="checkId()"  minlength="4"
 								maxlength="16" pattern="^([a-z0-9_]){4,16}$"
-								placeholder="영문소문자/숫자, 4~16자"  th:value="${vo != null? vo.user_id : ''}"  required>
+								placeholder="영문소문자/숫자, 4~16자"  th:value="${vo != null? vo.user_id:''}"  required>
 								<span class="id_ok" style="color:blue; display: none; font-size:12px;">사용 가능한 아이디입니다</span>
 								<span class="id_notok" style="color:red; display: none; font-size:12px;">이미 사용 중인 아이디입니다</span>
 								<br/><span style="color:red; font-size:12px;">[[${valid_user_id}]]</span>
@@ -139,7 +139,7 @@
 						</div>
 						<div class="join_info_content right">
 							<input type="password" name="user_pw"  id="pw" class="input pw"
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$"
 								minlength="8" maxlength="16"
 								placeholder="영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자"  th:value="${vo != null? vo.user_pw :''}"  required>
 								<span style="color: red; font-size:12px;">[[${valid_user_pw}]]</span>
@@ -155,7 +155,7 @@
 						</div>
 						<div class="join_info_content right">
 							<input type="password" id="pw2" class="input pw" name="user_pw2"
-								pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+								pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$"
 								minlength="8" maxlength="16"  th:value="${vo != null? vo.user_pw2:''}"   required>
 								<span style="color: red; font-size:12px;">[[${valid_user_pw2}]]</span>
 								
@@ -170,7 +170,7 @@
 								alt="필수사항표시"></strong>
 						</div>
 						<div class="join_info_content right">
-							<input type="email" name="user_email" class="input email"
+							<input type="email" name="user_email" class="input email" pattern="^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
 								placeholder="이메일 형식으로 입력하세요"  th:value="${vo != null?  vo.user_email:''}" required><span style="color:red; font-size:12px;">[[${valid_user_email}]]</span>
 						</div>
 					</div>
@@ -189,12 +189,12 @@
 
 							<span> - </span> 
 							<input type="text" name="user_contact" class="phone_num"
-								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="3"
-								maxlength="4" th:value="${vo != null? vo.user_contact:''}" required><span style="color:red; font-size:12px;">[[${valid_user_contact}]]</span>
-								 <span> - </span> 
-								<input type="text" name="user_contact2" class="phone_num"
 								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4"
-								maxlength="4" th:value="${vo != null? vo.user_contact2:''}" required><span style="color:red; font-size:12px;">[[${valid_user_contact2}]]</span>
+								maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
+								 <span> - </span> 
+								<input type="text" name="user_contact" class="phone_num"
+								oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4"
+								maxlength="4" th:value="${vo != null? vo.user_contact:''}" required><span style="color:red; font-size:12px;">[[${valid_user_contact}]]</span>
 								<!-- <input type="hidden" class="adminContact" name="admin_contact" value="" /> -->
 						</div>
 					</div>
@@ -212,11 +212,11 @@
 								placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;"
 								onclick="kakaopost()" required readonly> 
 								<input type="button"
-								value="우편번호찾기" id="zipcode" class="address_btn"
+								value="우편번호찾기" id="zipcode" name="user_address" class="address_btn"
 								onclick="kakaopost()" required><br /> <input
 								type="text" name="user_address" id="address" size="70" th:value="${vo != null? vo.user_address:''}"><br />
-							<input type="text" name="user_address2" id="address" size="70"
-								placeholder=" 나머지주소"  th:value="${vo != null? vo.user_address2:''}"><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
+							<input type="text" name="user_address" id="address" size="70"
+								placeholder=" 나머지주소" ><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
 						</div>
 					</div>
 
@@ -236,35 +236,35 @@
 								<span>블랙핑크</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" value="BLACKPINK" checked>
+								<input type="radio" name="user_fav_ent" class="entertainer" value="BLACKPINK" checked required>
 							</div>
 
 							<div class="entertainer">
 								<span>뉴진스</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/newjeans.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" value="NewJeans" >
+								<input type="radio" name="user_fav_ent" class="entertainer" value="NewJeans"  required>
 							</div>
 
 							<div class="entertainer">
 								<span>아이브</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" value="IVE" >
+								<input type="radio" name="user_fav_ent" class="entertainer" value="IVE" required >
 							</div>
 
 							<div class="entertainer">
 								<span>이도현</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/kiyong.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" value="이도현" >
+								<input type="radio" name="user_fav_ent" class="entertainer" value="이도현"  required>
 							</div>
 
 							<div class="entertainer chae">
 								<span>채수빈</span><br />
 								<img
 									src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/subin.png"><br />
-								<input type="radio" name="blackpink" class="entertainer" value="채수빈" >
+								<input type="radio" name="user_fav_ent" class="entertainer" value="채수빈" required >
 							</div>
 
 						</div>
@@ -1269,11 +1269,12 @@
 
 			<!-- 가입 버튼 및 취소 버튼 -->
 			<div class="join_btn">
-				<a href="#" class="join_cancel"><button onclick="location.href='user_login'" class="join_cancel">취소</button></a>
-				<a href="user_login"><button class="join_complete">가입</button></a>
+				<button onclick="location.href='user_login'" class="join_cancel">취소</button>
+				<button type="submit" class="join_complete">가입</button>
 			</div>
 	
 
+</form>
 	<!-- 상단, 하단으로 가는 버튼 -->
 	<div class="arrow_btn">
 		<a href="#" class="top_btn"> <img
@@ -1286,7 +1287,6 @@
 	</div>
 
 	</div>
-</form>
 
 	<footer id="footer">
 		<h3>Footer 입니다</h3>
@@ -1311,8 +1311,5 @@
 	pw.onchange = validatePassword;
 	pw2.onkeyup = validatePassword;
 	</script>
-
-
-
-
+	
 </html>

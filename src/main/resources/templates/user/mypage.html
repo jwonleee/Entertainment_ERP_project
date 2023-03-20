@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
 <html lang="en">
 
 <head>
@@ -31,8 +32,8 @@
                     </div>
                     
                     <div class="user_grade">
-                        <h3>회원님, 반갑습니다 </h3><strong>[일반 회원]</strong>
-                        <p>현재 <조규성>의 팬입니다</p>
+                        <h3>[[${session.vo.user_id}]]님, 반갑습니다 </h3><strong>[일반 회원]</strong>
+                        <p>현재 <span name="user_fav_ent"  style="border:none; text-align:center; font-size:18px; font-weight:600;">[[${session.vo.user_fav_ent}]]</span> 의 팬입니다</p>
                     </div>
 
                 </div>
@@ -43,38 +44,47 @@
 
                         <!-- 회원정보 수정 -->
                         <div class="content_box">
+                        <button onclick="location.href='/user/user_info_edit'" style="border:none; background-color:inherit; cursor:pointer;">
                             <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/user_info.png" alt="회원정보" >
-
-                            <a href="/user/user_info_edit" class="content_title">
+                            <div class="content_title">
                                 <h3>My Info</h3>
                                 회원정보 수정
-                            </a><br /><br />
-                            <a href="/user/user_info_edit" class="content_detail">회원님의 개인정보를 <br/>
-                                관리하는 공간입니다.</a>
+                            </div>
+                            <br /><br />
+                            <div class="content_detail">회원님의 개인정보를 <br/>
+                                관리하는 공간입니다.</div>
+                           </button>
                         </div>
 
                         <!-- 배송주소록 관리 -->
                         <div class="content_box">
+                        <button type="submit"  onclick="location.href='/user/cart'" style="border:none; background-color:inherit; cursor:pointer;">
                             <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/delievery_address.png" alt="배송지">
 
-                            <a href="#" class="content_title">
+                            <div class="content_title" style="font-size:13.3333px;">
                                 <h3>Delivery Address</h3>
                                 배송 주소록 관리
-                            </a><br /><br />
-                            <a href="#" class="content_detail">자주 사용하는 배송지를 등록하고<br/>
-                                관리하실 수 있습니다.</a>
+                            </div>
+                            <br /><br />
+                            <div class="content_detail">자주 사용하는 배송지를 등록하고<br/>
+                                관리하실 수 있습니다.
+                                </div>
+                                 </button>
                         </div>
 
                         <!-- 결제내역 조회 -->
                         <div class="content_box">
+                        	<button type="submit"  onclick="location.href='/user/order_list'" style="border:none; background-color:inherit; cursor:pointer;">
                             <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/order_list.png" alt="결제내역조회">
 
-                            <a href="/user/order_list" class="content_title">
+                            <div class="content_title">
                                 <h3>Order List</h3>
                                 주문내역 조회
-                            </a><br /><br />
-                            <a href="/user/order_list" class="content_detail">주문하신 상품의 <br />
-                                주문내역을 확인하실 수 있습니다.</a>
+                            </div>
+                            <br /><br />
+                            <div class="content_detail">주문하신 상품의 <br />
+                                주문내역을 확인하실 수 있습니다.</div>
+                                </button>
                         </div>
                     </div>
 

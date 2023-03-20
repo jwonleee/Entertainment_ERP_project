@@ -1,29 +1,206 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="css/order_details.css">
+	<!-- css -->
+    <link rel="stylesheet" href="/css/order_list.css">
+
+    <!-- 기간 조회하는 date-picker -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
+    <!-- 상단, 하단 버튼 jQuery -->
+    <!-- <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script> -->
+
+    <script>
+        $(function () {
+            $(".top_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 400);
+                return false;
+            });
+
+            $(".bottom_btn").click(function () {
+                $('html, body').animate({
+                    scrollTop: document.body.scrollHeight
+                }, 400);
+                return false;
+            });
+        });
+    </script>
 </head>
+
 <body>
-    
+
     <heaer>
         <h3>Y4J</h3>
     </heaer>
 
-    <div class="order_details_section">
-        <div class="order_details_box">
-            <div class="order_details_innerbox">
-                <h2>주문 내역</h2>
+    <div class="order_list_section">
+        <div class="order_list_box">
+
+            <!-- 주문 내역 조회 헤더 -->
+            <div class="order_list_header" style="padding: 40px; text-align: center; font-size: 28px;">
+                <h2><em>Order List</em></h2>
+            </div>
+            
+            <div class="order_list_innerbox">
+
+                <!-- 조회할 기간 설정 부분 -->
+                <div class="period_setting_box">
+                    <div class="date_picker" >
+                        <h4>조회기간</h4>
+                        <div class="select_period_btn">
+                            <div>
+                                <div class="choose_period">
+                                    <button class="today_btn">오늘</button>
+                                    <button class="1week_btn">7일</button>
+                                    <button class="1month_btn">1개월</button>
+                                    <button class="3months_btn">3개월</button>
+                                    <button class="6months_btn">6개월</button>
+                                </div>
+                                <!-- 달력 아이콘 -->
+                                <div class="calendar_open">
+                                    <input type="text"  id="start_date" class="start_date" style="text-align: center; height: 20px; border: none; border-bottom: 0.5px solid #b8b6b6; font-size: 14px;" > -
+                                    <input type="text"  id="end_date" class="end_date" style="text-align: center; height: 20px; border: none; border-bottom: 0.5px solid #b8b6b6;">
+    
+                                    <input type="submit" value="조회" class="check_btn">
+                                </div>
+                            </div>
+
+                            <!-- 조회 부가 설명 -->
+                            <div class="setting_info">
+                                <div >
+                                    <p><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/check.png" alt="체크아이콘" style="width: 10px; height: 25px; vertical-align: middle;"> 기간 검색 시 최대 금일 날짜 이후로는 검색이 불가합니다.</p>
+                                    <p><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/check.png" alt="체크아이콘" style="width: 10px; height: 25px; vertical-align: middle;"> [주문번호] 및 [상품정보]을 클릭하시면 주문상세 내역을 조회하실 수 있습니다.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 결제 상품 조회 -->
+                <div class="past_order_list">
+                    <h3 style="padding: 10px; border-bottom: 2px solid #333; font-size: 20px;">주문 내역 조회</h3>
+                    <div class="past_order_inner">
+                        <div class="past_order_title">
+                            <span>주문일자</span>
+                            <span>주문번호</span>
+                            <span style="width: 120px;">상품정보</span>
+                            <span>총 결제금액</span>
+                            <span>주문상태</span>
+                        </div>
+
+                        <div class="order_list_content">
+                            <!-- 주문일자 -->
+                            <div class="order_date">
+                                <span><input type="text" value=" 20130302" style="margin-left: -15px;" readonly></span>
+                            </div>
+
+                            <!-- 주문번호 -->
+                            <div class="order_num">
+                                <a href="order_details.html"><input type="text" value="19930925" style="margin-left: -22px; cursor: pointer;" readonly> </a>
+                            </div>
+
+                            <!-- 상품정보 -->
+                            <div class="product_info">
+                                <a href="order_details.html"><input type="text" value="[블랙핑크] Ayan-shirt 외 2건" style=" width: 200px; margin-left: -50px; cursor: pointer;" readonly></a>
+                            </div>
+
+                            <!-- 총 결제금액 -->
+                            <div class="total_price">
+                                <input type="text" value="1,564,800원" style="margin-left: -40px;" readonly>
+                            </div>
+
+                            <!-- 주문상태 -->
+                            <div class="order_state">
+                                <p >결제완료</p>
+                            </div>
+                        </div>
+
+                        <!-- 페이지네이션 부트스트랩 -->
+                        <nav aria-label="Page navigation example"  >
+                            <ul class="pagination paging">
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous">
+                                  <span aria-hidden="true">&laquo;</span>
+                                </a>
+                              </li>
+                              <li class="page-item"><a class="page-link" href="#">1</a></li>
+                              <li class="page-item"><a class="page-link" href="#">2</a></li>
+                              <li class="page-item"><a class="page-link" href="#">3</a></li>
+                              <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next">
+                                  <span aria-hidden="true">&raquo;</span>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                          
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div>
+
             </div>
         </div>
+    </div>
+
+    <!-- 상단, 하단으로 가는 버튼 -->
+    <div class="arrow_btn">
+        <a href="#" class="top_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
+        </a><br />
+        <a href="#" class="bottom_btn">
+            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
+        </a>
     </div>
 
     <footer>
         <h3>footer입니다</h3>
     </footer>
 </body>
+
+<!-- 기간 조회하는 date-picker -->
+<script>
+        $("#start_date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOn: "button",
+            buttonImage: "https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar1.png",
+            buttonImageOnly: true,
+            changeMonth: true,
+            changeYear: true,
+          /*   yearRange: "-10:100", */
+            nextText: "next",
+            prevText: "prev",
+            maxDate: new Date()
+        });
+        $("#end_date").datepicker({
+            dateFormat: 'yy-mm-dd',
+            showOn: "button",
+            buttonImage: "https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar1.png",
+            buttonImageOnly: true,
+            changeMonth: true,
+            changeYear: true,
+            /* yearRange: "-10:100", */
+            nextText: "next",
+            prevText: "prev",
+            maxDate: new Date()
+        });
+        
+        $("img.ui-datepicker-trigger").attr("style", "width:30px; heigt:30px; vertical-align:middle; cursor: pointer;");
+ 
+</script>
+
 </html>

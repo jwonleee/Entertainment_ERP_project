@@ -186,7 +186,7 @@ a {
 .checked_delete> div{
     margin: 10px 0 100px;
 }
-.checked_delete a{
+.checked_delete button{
     float: left;
     padding: 7px;
     background-color: inherit;
@@ -195,6 +195,7 @@ a {
     font-weight: bold;
     border: 0.5px solid #b4b5c1;
     border-radius: 5px;
+    cursor:pointer;
 }
 .checked_delete .right{
     float: right;
@@ -240,23 +241,27 @@ a {
     display: flex;
     justify-content: center;
 }
-.order_btnbox > a{
-    width: 200px;
-    font-size: 20px;
-    text-align: center;
-    padding: 10px;
-    margin: 0 5px;
-}
 .order_btnbox > :first-child{
     background-color: inherit;
     color: #2d2f43;
     border: 0.5px solid #8e8989;
     border-radius: 8px;
+     width: 200px;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px;
 }
 .order_btnbox > :last-child{
     background-color: rgb(243, 69, 69);
     color: whitesmoke;
     border-radius: 8px;
+    border:none;
+     width: 200px;
+    font-size: 20px;
+    text-align: center;
+    padding: 10px;
+    margin: 0 5px;
 }
 
 /* 상단, 하단으로 가는 버튼 */

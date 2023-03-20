@@ -26,8 +26,7 @@ import com.y4j.final_project.user.service.UserService;
 @RestController
 public class AjaxController {
 
-	@Autowired
-	UserService userService;
+	
 
 	@Autowired
 	AdminService adminService;
@@ -74,16 +73,6 @@ public class AjaxController {
 	}
 
 
-	//아이디 중복체크
-	@PostMapping("/idCheck")
-	@ResponseBody
-	public int idCheck(@RequestParam("user_id") String user_id) {
-
-		int cnt = userService.idCheck(user_id);
-		return cnt;
-	}
-
-	
 	//메세지 수신 날짜 업데이트
 	@PostMapping("/checkMsg")
 	public int checkMsg(@RequestBody MessageVO vo,

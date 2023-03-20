@@ -10,8 +10,8 @@
     <link rel="stylesheet" href="/css/user_login.css">
 
     <script src="/js/jquery-1.12.1.min.js"></script>
-
-    <!-- <script src="/js/user_login.js"></script>-->
+    
+ 	<script src="/js/user_login.js"></script>
 </head>
 
 <body>
@@ -24,7 +24,7 @@
         <div class="login_box">
             <div class="login_innerbox">
                 <div class="login_title">
-                    <h3><em style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">User Login</em> </h3>
+                    <h3><em style="font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Login</em> </h3>
                 </div>
 
 
@@ -35,10 +35,10 @@
                         <input type="password" class="pw" name="user_pw" placeholder="비밀번호" required><br />
 
                         <div class="login_input_under">
-                            <span class="left"><input type="checkbox" class="save_id"> 아이디 저장</span>
+                            <span class="left"><input type="checkbox" class="save_id" id="save_id" name="save_id"  onclick="javascript:sendit()">아이디 저장</span>
                             <span class="find_user_info right">
-                                <a href="#" class="find_id">아이디 찾기</a> /
-                                <a href="#" class="find_pw">비밀번호 찾기</a>
+                                <a href="user_find_id" class="find_id">아이디 찾기</a> /
+                                <a href="user_find_pw" class="find_pw">비밀번호 찾기</a>
                             </span>
                         </div>
                     </div>
@@ -70,11 +70,11 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
         </div>
          </form>
     </div>
-
 
     <footer>
         <h3>Footer 입니다</h3>
