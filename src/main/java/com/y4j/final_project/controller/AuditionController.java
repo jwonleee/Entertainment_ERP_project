@@ -44,11 +44,13 @@ public class AuditionController {
 	//오디션 공고 페이지
 	@GetMapping("/audition_notice")
 	public String audition_notice(HttpSession session, Model model) {
+	
+//		session.setAttribute("user_id", "ajsdkladsf");
+		session.setAttribute("user_id", "eee555");
 		
-//		session.setAttribute("user_id", "ccc333");
-//		Object user_id = session.getAttribute("user_id");
-//		
-//		model.addAttribute("userVO", userService.getUserInfo2(user_id));
+		Object user_id = session.getAttribute("user_id");
+		
+		model.addAttribute("userVO", userService.getUserInfo2(user_id));
 		
 		return "audition/audition_notice";
 	}
