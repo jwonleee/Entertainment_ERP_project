@@ -135,6 +135,12 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getMidCategory();
 	}
 
+	@Override
+	public ArrayList<String> getSmallCategory(CategoryVO vo) {
+		 return orderMapper.getSmallCategory(vo);
+	}
+
+
 
 
 
