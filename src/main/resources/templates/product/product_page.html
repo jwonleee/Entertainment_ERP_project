@@ -176,111 +176,64 @@
 			  <div class="swiper-button-next"></div>
 		</div>
 		
-		
-		<div  class="celebGoods_wrap"><!-- 여기도 데이터베이스로 끌고와야 함 -->
-			<div class="celebGoods_box1"><!-- 셀러브리티 굿즈 -->
-				<div>
-					<span>Celebrity's Goods</span>
+		<!-- search -->
+		<form id="prod_search" action="productList"  method="get">
+			<div class="productSearch_wrap">
+				<Strong>SEARCH</Strong>
+				<div class="productSearch_box">
+					<!-- 검색창 -->
+					<input id="AllprodSearch" class="productSearch" type="text" name="searchName" th:value="${cri.searchName}" placeholder="검색어를 입력해주세요">
+					<img style="width: 25px; height: 25px; margin:0" src="/img/search_icon.png"/>
+
+				</div>
+			
+				<div class="prod_hashTag_button">
+					<span data-value="BLACKPINK"># BLACKPINK</span>
+					<span data-value="LEEDOHYUN"># LEEDOHYUN</span>
+					<span  data-value="ALBUM"># ALBUM</span>
+					<span  data-value="CASE"># CASE</span>
 				</div>
 				
-				<!-- 셀럽 굿즈 파트에서 반복될 부분 -->
-				<ul class="celebGoods_box2" >
-					<li style="margin-right: 10px" >
-						<a th:href="@{/product/BLACKPINK}" > <!-- 연예인 별 상품 페이지로 이동 -->
-							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_all.jpeg"/>
-						</a>	
-					</li>
-					<li style="margin-right: 10px">
-						<a th:href="@{/product/IVE}" > <!-- 연예인 별 상품 페이지로 이동 -->
-							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_all.jpeg"/>
-						</a>	
-					</li>
-					<li>
-						<a th:href="@{/product/NEWJEANS}" > <!-- 연예인 별 상품 페이지로 이동 -->
-							<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/newjeans_main.jpg"/>
-						</a>	
-					</li>
-					<br/>
-					<ul style="display: flex; justify-content: center; margin-top: 30px;">
-						<li style=" margin-right: 10px">
-							<a th:href="@{/product/CHAESOOBIN}" > <!-- 연예인 별 상품 페이지로 이동 -->
-								<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/soobin_main.jpg"/>
-							</a>	
-						</li>
-						<li>
-							<a th:href="@{/product/LEEDOHYUN}" > <!-- 연예인 별 상품 페이지로 이동 -->
-								<img style="border-top-left-radius: 15px; border-top-right-radius: 15px; border-bottom-left-radius: 15px; width: 250px; height: 180px" src="/img/dohyun_main.jpg"/>
-							</a>	
-						</li>
-					</ul>
-				</ul>
-			</div>
-		</div>
-		
-		
-		
-
-		<!-- 모든 상품 나열: 페이지네이션과 카테고리? -->
-		<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 150px; margin-bottom:'50px'">
-			
-			<div style="display: flex; flex-direction: column;" class="about_goods">
-				<span style="font-family: 'Noto Rashi Hebrew', serif; font-size: 30px; margin-bottom: 10px; font-weight: 900; font-style: italic;">About Goods</span>
-				<span style="font-family: 'Nanum Gothic', sans-serif; font-size: 15px;">굿즈의 세계</span>
-			</div>
-		</div>
-		<div class="product_classfication_box">
-			<div class="product_classfication">
-				<span style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
-				<span>최신순</span>
-			</div>
-		</div>
-
-		<div class="allProduct">
-			<!-- 전체 상품 -->
-			<ul class="allProduct_list" th:each="vo: ${list}">
-				<li>
-					<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>		
-				</li>
-			</ul>
-			
-			<!-- 최신순 목록 -->
-			<ul class="allProduct_list1" th:each="vo1: ${list1}">
-				<li >
-					<img style="width: 230px; height: 230px;" th:src="@{${vo1.prod_img_path}}"/>
-				</li>					
-			</ul>
-			
-<!-- 
-			<div class="page">
-				<ul>
-					<li><a th:href="@{productList(page=1, amount=${pageVO.amount} )}"><i class="fa fa-angle-double-left" aria-hidden="true"></i></a></li>
-					
-					<th:block th:if="${pageVO.prev}">
-					<li style="margin-right:5px;">
-						<a th:href="@{productList(page=${pageVO.start - 1}, amount=${pageVO.amount} )}"><i class="fa fa-angle-left" aria-hidden="true"></i></a></li>
-					</th:block>
-					
-					<th:block th:each="page : ${pageVO.pageList}">
-					<li th:class="${page == pageVO.page ? 'on' : ''}">
-						<a th:href="@{productList(page=${page}, amount=${pageVO.amount} )}">[[${page}]]</a>
-					</li>
-					</th:block>
-					
-					<th:block th:if="${pageVO.next}">
-					<li style="margin-left:5px;">
-						<a th:href="@{productList(page=${pageVO.end + 1}, amount=${pageVO.amount} )}"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
-					</li>
-					</th:block>
-					
-					<li><a th:href="@{productList(page=${pageVO.realEnd}, amount=${pageVO.amount} )}"><i class="fa fa-angle-double-right" aria-hidden="true"></i></a></li>
-				</ul>
-			</div>
-										 -->
-			
 			</div>
 	
-		</div>
+			<!-- 모든 상품 나열: 페이지네이션과 카테고리? -->
+			<div style="display: flex; flex-direction: column; justify-content: center; align-items: center; margin-top: 150px; margin-bottom:'50px'">	
+				<div style="display: flex; flex-direction: column;" class="about_goods">
+					<span style="font-family: 'Noto Rashi Hebrew', serif; font-size: 30px; margin-bottom: 10px; font-weight: 900; font-style: italic;">About Goods</span>
+					<span style="font-family: 'Nanum Gothic', sans-serif; font-size: 15px;">굿즈의 세계</span>
+				</div>
+			</div>
+			<div class="product_classification_box">
+				<div class="product_classification">
+					<!-- 숨겨진 input 태그 -->
+					<input id="prod_classify" type="hidden"  name="searchContent" value="" >
+					<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+					<span >최신순</span>
+				</div>
+			</div>
+	
+			<div class="allProduct">
+				<!-- 전체 상품 -->
+			  <a th:each="vo: ${list}"  th:href="@{/product/detail_page(prod_no = ${vo.prod_no})}">
+				<div class="allProduct_list" >
+					<div class="allProduct_list_img" >
+						<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>	
+						<!-- <span>[[${vo.prod_regdate}]]</span> -->	<!-- //////// 나중에 없애야 할 태그 //////// -->
+					</div>
+					<div class="allProduct_list_info_box">
+						<div class="allProduct_list_info"><!-- hover이용해서 상품명이랑 가격 보이게 하기 -->
+							<span>[[${msg1}]]</span>
+							
+							<span>[[${vo.prod_name}]]</span>
+							<p style="color:rgba(227, 3, 3, 0.897)">\[[${vo.prod_price}]]</p>
+						</div>
+					</div>
+				</div>
+				</a>
+			</div>
+		</form>
 	</div>
+</div>
 </th:block>
 <script type="text/javascript" src="/js/product_detail/product_page.js"></script>
 <script>

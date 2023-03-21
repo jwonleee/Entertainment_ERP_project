@@ -16,7 +16,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
 
 <!-- css 링크 -->
- <link rel="stylesheet" href="/css/product_page/productDetail_blackpink_page.css">
+ <link rel="stylesheet" href="/css/product_page/productDetail_chaesoobin_page.css">
 
 
 
@@ -26,6 +26,18 @@
 	    		<div>
 		    		<img style="width:100%; height:800px;" src="/img/soobin_main.jpg"/>
 	    		</div>
+	    		 <div class="main_content_box">
+	    			<div class="main_content_img">
+	    				<img style="width: 255px; height: 295px; box-shadow: 1px 2px 10px black" src="/img/soobin_magazine.jpg">
+	    				<div class="main_new_img">
+	    					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in_pink.png" />
+	    				</div>
+	    			</div>
+	    			<div class="main_content_info">
+	    				<div style="font-family: 'Noto Rashi Hebrew', serif; font-size: 20px"> NYLON_COVERSTAR </div>
+	    				<div style="font-family: 'Nanum Gothic', sans-serif; ">나일론 6월호 커버 모델 채수빈</div>
+	    			</div>
+		    	</div>
 	    		
 	    		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
 	    			<div class="header_main_menu">
@@ -41,7 +53,7 @@
 	                      <li>
 	                           <span class="menu_bar_name"><a href="#">ENTERTAINER</a></span>
 	                           <ul class="menu_bar1">
-	                              <li><span><a href="#">NEWJEANS</a></span></li>
+	                              <li><span><a href="#">soobin</a></span></li>
 	                              <li><span><a href="#">BLACKPINK</a></span></li>
 	                              <li><span><a href="#">IVE</a></span></li>
 	                              <li><span><a href="#">LEE DOHYUN</a></span></li>
@@ -65,7 +77,9 @@
 	                       	</li>
 			    			<!-- 메뉴 상단바 y4j 로고 -->
 			    			<li>
-			    				<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				<a href="/product/CHAESOOBIN">
+			    					<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				</a>
 			    			</li>
 	                       </ul>
 	    				</div>
@@ -76,16 +90,17 @@
 			
 	
 
-	    <!-- 사이드 바 -->
+	   <!-- 사이드  -->
+      <form id="productList_sb" action="CHAESOOBIN" method="get" ><!-- 폼태그 시작 -->
 	    <div style="position: relative;">
-	    	<div class="aside_celeb_goods_wrap">
-	    		<div class="aside_celeb_goods_box1">
-	    			<div  class="aside_celeb_goods_box2">
-		    			<div  class="aside_celeb_goods_box3">
-		    				<p style="margin: 10px 5px;">
+	    	<div class="aside_soobin_goods_wrap">
+	    		<div class="aside_soobin_goods_box1">
+	    			<div  class="aside_soobin_goods_box2">
+		    			<div  class="aside_soobin_goods_box3">
+		    				<p style="margin: 10px 2px;">
 					    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">CHAE SOO BIN</span>
 		    				</p>
-		    				<div class="aside_celeb_goods_box4">
+		    				<div class="aside_soobin_goods_box4">
 				    			
 				    			<span>PRODUCT</span>
 				    			<p id="down_img"><img src="/img/down.png"></p>
@@ -94,12 +109,13 @@
 				    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
 				    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
 		    				</div>
-		    				<div class="aside_celeb_sidebar">
-				    			<ul>
-				    				<li>ALBUM</li>
+		    				<div class="aside_soobin_sidebar">
+		    					<input id="aside_soobin_input1" type="hidden" name="searchName" th:value="${cri.searchName}">
+				    			<ul class="aside_soobin_sidebar_check">
+				    				<li>MAGAZINE</li>
 				    				<li>PHOTO CARD</li>
-				    				<li>CLOTHING</li>
-				    				<li>CASE</li>	
+				    				<li>CLOTH</li>
+				    				<li>PHONECASE</li>	
 				    			</ul>
 		    				</div>
 		    			</div>
@@ -108,49 +124,49 @@
 	    	</div>
 		 </div>
 		 
-	
-	<!-- blackpink's goods -->
-	<div style="display: flex; flex-direction:column; justify-content: center; align-items: center">
-		<span id="blackpinkButton" style="font-size: 32px; font-family: 'Noto Rashi Hebrew', serif; font-style:italic; padding-left: 60px ">Chae Soobin's Goods</span>
-		<span style="font-family: 'Nanum Gothic', sans-serif;  font-size: 17px; padding-left: 60px; margin-top: 25px; font-weight: 500">Welcome to Chae Soobin's world</span>
-	</div>
-		    				    				
-	
-      <!-- 본문 -->	
-     <div class="celeb_main">
-     	<!-- 최신순 / 판매량순 -->
-	   	<div class="product_classfication_bp_box">
-			<div class="product_classfication_bp">
-				<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
-				<span >최신순</span>
-			</div>
+		
+		<!-- chaesoobin's goods -->
+		<div style="display: flex; flex-direction:column; justify-content: center; align-items: center">
+			<span id="soobinButton" style="font-size: 32px; font-family: 'Noto Rashi Hebrew', serif; font-style:italic; padding-left: 60px ">Chae Soobin's Goods</span>
+			<span style="font-family: 'Nanum Gothic', sans-serif;  font-size: 17px; padding-left: 60px; margin-top: 25px; font-weight: 500">Welcome to Chae Soobin's world</span>
 		</div>
+			    				    				
+		
+	      <!-- 본문 -->	
+	     <div class="soobin_main">
+	     	<!-- 최신순 / 판매량순 -->
+		   	<div class="product_classfication_sb_box">
+				<div class="product_classfication_sb">
+					<input id="aside_soobin_input2" type="hidden" name="searchContent" value="" >
+					<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+					<span >최신순</span>
+				</div>
+			</div>
+		
+			
+		<!-- 뉴진스 최신순 및 판매량순 상품 -->
 	
-		
-		<!-- 블랙핑크 전체 상품 -->
-		<div class="blackpink_allproduct_wrap">
-			<ul class="blackpink_allproduct_box" >
-				<li>
-					<img style="width: 240px; height: 240px;" />		
-				</li>
+		<div class="soobin_allproduct_wrap" >
+			<ul class="soobin_allProduct_box" >
+				<a th:each="soobin: ${soobin_list}" th:href="@{/product/detail_page(prod_no = ${soobin.prod_no})}">
+					<li class="soobin_allproduct">
+						<img style="width: 230px; height: 230px; text-align: center" name="prod_img_path" th:src="@{${soobin.prod_img_path}}"/>
+						<div class="soobin_allproduct_name">
+							<span name="prod_name" >[[${soobin.prod_name}]]</span>
+						</div>
+						<div  class="soobin_allproduct_info">
+							<span class="info_price" name="prod_price">\[[${soobin.prod_price}]]</span>
+							<span class="info_rate" style="color:red" name="prod_discount_rate">[[${soobin.prod_discount_rate}]]%</span>
+						</div>
+						<span>[[${soobin.prod_regdate}]]</span><!-- 나중에 삭제해야 함 -->
+					</li>
+				</a>
 			</ul>
-		
-			<!-- 최신순 -->
-			<ul class="blackpink_updateProduct_box" >
-				<li>
-					<img style="width: 240px; height: 240px;" />		
-				</li>
-			</ul>
-			
-			<!-- 판매량순 -->
-		<!-- <ul class="blackpink_updateProduct_box" th:each="vo2:${list2}">
-				<li class="blackpink_updateProduct">
-					<img style="width: 220px; height: 220px;" th:src="@{${vo2.prod_img_path}}"/>		
-				</li>
-			</ul> -->
-			
 		</div> 
-	</div><!-- 본문 내용 끝 -->
+	</div><!-- 본문 내용 끝 -->	 
+</form><!-- 폼태그 끝 -->		
+	
+	</div><!-- 사이즈 +  본문 내용 끝 -->
 
 	<!--footer  -->
 	<div class="footer-outer">
@@ -173,5 +189,5 @@
         </div>
         
  <!-- js 링크 -->
- <script src="/js/product_detail/productDetail_blackpink_page.js"></script>
+ <script src="/js/product_detail/productDetail_chaesoobin_page.js"></script>
 </html>

@@ -178,7 +178,7 @@
 				
 				
 				<!-- 주문 상품 정보-->
-				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)">
+				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)" th:each="uo: ${user_order}" >
 					<div class="order_product_wrap">
 						<span>주문 상품</span>
 						<div class="order_product_box">
@@ -186,9 +186,9 @@
 								<img style="width:100px; height: 90px; border:1px solid rgba(5, 3, 3, 0.328)" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg" />
 							</div>
 							<div class="order_product">
-								<span>상품명</span>
-								<span style="margin-top: 7px;">수량:   개</span>
-								<span style="margin-top: 23px;">(49000)총 가격 원</span>
+								<span>[[${uo.user_order_prod_name}]]</span>
+								<span style="margin-top: 7px;">수량: [[${uo.user_order_prod_cnt}]]개</span>
+								<span style="margin-top: 23px;"></span>
 							</div>
 						</div>
 					</div>
@@ -204,7 +204,7 @@
 						<span style="margin-bottom: 10px" >결제 정보</span>
 						<div class="payment_info_box">
 							<span class="payment_info_left">주문 상품</span>
-							<span class="payment_info_right">20000(주문 상품 가격)원</span>
+							<span class="payment_info_right">원</span>
 							
 						</div>
 						<div class="payment_info_box">
@@ -219,7 +219,7 @@
 				
 					<div class="payment_info_box1" >
 						<span class="payment_info_left">최종 결제 금액</span>
-						<span class="payment_info_right">50000(총 가격)원</span>
+						<span class="payment_info_right">원</span>
 					</div>
 				
 				
@@ -243,8 +243,8 @@
 		
 		</div>
 		
-	<!-- js 링크 -->
-	<script  type="text/javascript" src="/js/product_detail/product_buy_rightnow.js"></script>
+<!-- js 링크 -->
+<script  type="text/javascript" src="/js/product_detail/product_buy_rightnow.js"></script>
 </body>
 
 

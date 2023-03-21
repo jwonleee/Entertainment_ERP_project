@@ -26,6 +26,18 @@
 	    		<div>
 		    		<img style="width:100%; height:800px;" src="/img/dohyun_main.jpg"/>
 	    		</div>
+	    		<div class="main_content_box">
+	    			<div class="main_content_img">
+	    				<img style="width: 245px; height: 295px; box-shadow: 1px 2px 10px black" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/leedohyun2.jpg">
+	    				<div class="main_new_img">
+	    					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in_pink.png" />
+	    				</div>
+	    			</div>
+	    			<div class="main_content_info">
+	    				<div style="font-family: 'Noto Rashi Hebrew', serif; font-size: 20px"> W_COVERSTAR </div>
+	    				<div style="font-family: 'Nanum Gothic', sans-serif; ">더블유 10월호 커버 모델 이도현</div>
+	    			</div>
+		    	</div>
 	    		
 	    		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
 	    			<div class="header_main_menu">
@@ -41,7 +53,7 @@
 	                      <li>
 	                           <span class="menu_bar_name"><a href="#">ENTERTAINER</a></span>
 	                           <ul class="menu_bar1">
-	                              <li><span><a href="#">NEWJEANS</a></span></li>
+	                              <li><span><a href="#">dohyun</a></span></li>
 	                              <li><span><a href="#">BLACKPINK</a></span></li>
 	                              <li><span><a href="#">IVE</a></span></li>
 	                              <li><span><a href="#">LEE DOHYUN</a></span></li>
@@ -65,7 +77,9 @@
 	                       	</li>
 			    			<!-- 메뉴 상단바 y4j 로고 -->
 			    			<li>
-			    				<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/>
+				    			<a href="/product/LEEDOHYUN">
+				    				<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png"/>
+				    			</a>
 			    			</li>
 	                       </ul>
 	    				</div>
@@ -73,21 +87,20 @@
     		</div><!-- 헤더 상단 메뉴바 끝 -->
     	</div>
     	
-    
-      <!-- 본문 -->
-	<div class="celeb_main">
+
     	
-    <!-- 사이드  -->
+   <!-- 사이드  -->
+   <form id="productList_dh" action="LEEDOHYUN" method="get" ><!-- 폼태그 시작 -->
     <aside style="position: relative;">
-    	<div class="aside_celeb_goods_wrap">
-    		<div class="aside_celeb_goods_box1">
-    			<div  class="aside_celeb_goods_box2">
-	    			<div  class="aside_celeb_goods_box3">
+    	<div class="aside_dohyun_goods_wrap">
+    		<div class="aside_dohyun_goods_box1">
+    			<div  class="aside_dohyun_goods_box2">
+	    			<div  class="aside_dohyun_goods_box3">
 	    				<p style="margin: 10px 5px;">
 				    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">LEE DO HYUN</span>
 	    				</p>
 	    				
-	    				<div class="aside_celeb_goods_box4">
+	    				<div class="aside_dohyun_goods_box4">
 			    			
 			    			<span>PRODUCT</span>
 			    			<p id="down_img"><img src="/img/down.png"></p>
@@ -97,12 +110,13 @@
 			    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
 			    			
 	    				</div>
-	    				<div class="aside_celeb_sidebar">
-			    			<ul>
+	    				<div class="aside_dohyun_sidebar">
+	    					<input id="aside_dohyun_input1" type="hidden" name="searchName" th:value="${cri.searchName}">
+			    			<ul class="aside_dohyun_sidebar_check">
 			    				<li>MAGAZINE</li>
 			    				<li>PHOTO CARD</li>
-			    				<li>CLOTHING</li>
-			    				<li>CASE</li>
+			    				<li>CLOTH</li>
+			    				<li>PHONECASE</li>
 			    				
 			    			</ul>
 	    				</div>
@@ -115,13 +129,50 @@
     
     </aside>
     	
-    	
-    	
-  
-
-		
+    		
+	<!-- leedohyun's goods -->
+	<div style="display: flex; flex-direction:column; justify-content: center; align-items: center">
+		<span id="dohyunButton" style="font-size: 32px; font-family: 'Noto Rashi Hebrew', serif; font-style:italic; padding-left: 60px ">Lee Do Hyun's Goods</span>
+		<span style="font-family: 'Nanum Gothic', sans-serif;  font-size: 17px; padding-left: 60px; margin-top: 25px; font-weight: 500">Welcome to Lee Do Hyun's world</span>
 	</div>
+		    				    				
+	
+      <!-- 본문 -->	
+     <div class="dohyun_main">
+   
+	   	<div class="product_classfication_dh_box">
+			<div class="product_classfication_dh">
+				<input id="aside_dohyun_input2" type="hidden" name="searchContent" value="" >
+				<span id="salesVolume" style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+				<span id="uptodate" >최신순</span>
+			</div>
+		</div>
+	
+	
+		<!-- 뉴진스 최신순 및 판매량순 상품 -->
+	 
+			<div class="dohyun_allproduct_wrap" >
+				<ul class="dohyun_allProduct_box" >
+					<a th:each="dohyun: ${dohyun_list}" th:href="@{/product/detail_page(prod_no = ${dohyun.prod_no})}" >
+						<li class="dohyun_allproduct">
+							<img style="width: 230px; height: 230px; text-align: center" name="prod_img_path" th:src="@{${dohyun.prod_img_path}}"/>
+							<div class="dohyun_allproduct_name">
+								<span name="prod_name" >[[${dohyun.prod_name}]]</span>
+							</div>
+							<div  class="dohyun_allproduct_info">
+								<span class="info_price" name="prod_price">\[[${dohyun.prod_price}]]</span>
+								<span class="info_rate" style="color:red" name="prod_discount_rate">[[${dohyun.prod_discount_rate}]]%</span>
+							</div>
+							<span>[[${dohyun.prod_regdate}]]</span><!-- 나중에 삭제해야 함 -->
+						</li>
+					</a>
+				</ul>
+			</div> 
+		</div><!-- 본문 내용 끝 -->	 
+	</form><!-- 폼태그 끝 -->		
+</div><!-- 사이즈 +  본문 내용 끝 -->
 
+    	
 
 
 

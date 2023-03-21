@@ -26,6 +26,18 @@
 	    		<div>
 		    		<img style="width:100%; height:800px;" src="/img/ive_main.jpg"/>
 	    		</div>
+	    		<div class="main_content_box">
+	    			<div class="main_content_img">
+	    				<img style="width: 245px; height: 245px; box-shadow: 1px 2px 10px #151212" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/ive_album_all.jpg">
+	    				<div class="main_new_img">
+	    					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+	    				</div>
+	    			</div>
+	    			<div class="main_content_info">
+	    				<div style="font-family: 'Noto Rashi Hebrew', serif; font-size: 20px">THE 3RD SINGLE ALBUM </div>
+	    				<div style="font-family: 'Nanum Gothic', sans-serif; font-weight: 600 ">아이브 After LIKE 신곡 음원 발매</div>
+	    			</div>
+		    	</div>
 	    		
 	    		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
 	    			<div class="header_main_menu">
@@ -65,7 +77,9 @@
 	                       	</li>
 			    			<!-- 메뉴 상단바 y4j 로고 -->
 			    			<li>
-			    				<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				<a href="/product/IVE">
+			    					<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				</a>
 			    			</li>
 	                       </ul>
 	    				</div>
@@ -74,53 +88,93 @@
     	</div>
     	
     
-      <!-- 본문 -->
-	<div class="celeb_main">
+
     	
     <!-- 사이드  -->
-    <aside style="position: relative;">
-    	<div class="aside_celeb_goods_wrap">
-    		<div class="aside_celeb_goods_box1">
-    			<div  class="aside_celeb_goods_box2">
-	    			<div  class="aside_celeb_goods_box3">
-	    				<p style="margin: 10px 5px;">
-				    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">IVE</span>
-	    				</p>
-	    				
-	    				<div class="aside_celeb_goods_box4">
-			    			
-			    			<span>PRODUCT</span>
-			    			<p id="down_img"><img src="/img/down.png"></p>
-			    			<p id="up_img"><img src="/img/up.png"></p>
-			  
-			    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
-			    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
-			    			
-	    				</div>
-	    				<div class="aside_celeb_sidebar">
-			    			<ul>
-			    				<li>ALBUM</li>
-			    				<li>PHOTO CARD</li>
-			    				<li>CLOTHING</li>
-			    				<li>CASE</li>
-			    				
-			    			</ul>
-	    				</div>
-	    			</div>
-    			</div>
-    		</div>
-    	
-    	</div>
-    
-    
-    </aside>
-    	
-    	
-    	
-  
-
+	<form id="ive_page" action="IVE" name="actionForm" method="get">
+		<input id="product_value" type="hidden" name="searchName" th:value="${cri.searchName}"/>
+		<input id="product_classfication_button" type="hidden" name="searchContent" value=""/>
 		
+		
+	    <aside style="position: relative;">
+	    	<div class="aside_ive_goods_wrap">
+	    		<div class="aside_ive_goods_box1">
+	    			<div  class="aside_ive_goods_box2">
+		    			<div  class="aside_ive_goods_box3">
+		    				<p style="margin: 10px 5px;">
+					    		<span style="font-size: 17px; font-family: 'Nanum Gothic', sans-serif; font-weight: 500;">IVE</span>
+		    				</p>
+		    				
+		    				<div class="aside_ive_goods_box4">
+				    			
+				    			<span>PRODUCT</span>
+				    			<p id="down_img"><img src="/img/down.png"></p>
+				    			<p id="up_img"><img src="/img/up.png"></p>
+				  
+				    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
+				    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
+				    			
+		    				</div>
+		    				<div class="aside_ive_sidebar">
+		    				<!-- 클릭 시에 value값에 강제로 값 넣기 -->
+				    			<ul class="ive_sidebar">
+				    				<li>ALBUM</li>
+				    				<li>PHOTO CARD</li>
+				    				<li>CLOTH</li>
+				    				<li>PHONECASE</li>
+				    			</ul>
+		    				</div>
+		    			</div>
+	    			</div>
+	    		</div>
+	    	
+	    	</div>
+	    
+	    
+	    </aside>
+    	
+    	
+    
+	<!-- IVE's goods -->
+	<div style="display: flex; flex-direction:column; justify-content: center; align-items: center">
+		<span id="iveButton" style="font-size: 32px; font-family: 'Noto Rashi Hebrew', serif; font-style:italic; padding-left: 60px ">IVE's Goods</span>
+		<span style="font-family: 'Nanum Gothic', sans-serif;  font-size: 17px; padding-left: 60px; margin-top: 25px; font-weight: 500">Welcome to Chae Soobin's world</span>
 	</div>
+		    				    				
+	
+      <!-- 본문 -->	
+     <div class="ive_main">
+     	<!-- 최신순 / 판매량순 -->
+	   	<div class="product_classfication_ive_box">
+			<div class="product_classfication_ive">
+				<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+				<span>최신순</span>
+			</div>
+		</div>
+	
+		
+		<!-- 아이브 전체 상품 -->
+		<div class="ive_allproduct_wrap">
+				<ul class="ive_allProduct_box" >
+					<a th:each="ive: ${ive_list}" th:href="@{/product/detail_page(prod_no = ${ive.prod_no})}">
+						<li class="ive_allproduct">
+							<img style="width: 230px; height: 230px; text-align: center" name="prod_img_path" th:src="@{${ive.prod_img_path}}"/>
+							<div class="ive_allproduct_name">
+								<span name="prod_name" >[[${ive.prod_name}]]</span>
+							</div>
+							<div  class="ive_allproduct_info">
+								<span class="info_price" name="prod_price">\[[${ive.prod_price}]]</span>
+								<span class="info_rate" style="color:red" name="prod_discount_rate">[[${ive.prod_discount_rate}]]%</span>
+							</div>
+							<span>[[${ive.prod_regdate}]]</span>
+						</li>
+					</a>
+				</ul>
+			</div> 
+		</div><!-- 본문 내용 끝 -->	 
+	</form>
+
+	
 
 
 

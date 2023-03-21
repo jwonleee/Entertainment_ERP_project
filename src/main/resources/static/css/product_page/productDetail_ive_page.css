@@ -19,12 +19,6 @@ a {
 
 /* header */
 
-.header1{
-/* 	position: absolute; */
-	
-}
-
-
 
 .header_main_menu ul{
 	display: flex;
@@ -59,23 +53,24 @@ a {
 }
 
 .header_main_menu .menu_bar1 li {
- position: relative;
- height: 40px;
- top: 30px;
- left:0;
+  position: relative;
+  height: 40px;
+  top: 30px;
+  left:0;
   color:white;
   font-weight :800;
   font-size: 16px;
   font-family: 'Nanum Gothic', sans-serif;
   font-style: italic;
   cursor: pointer;
+  text-shadow: 1px 1px 2px #bebebe;
 }
 
 
 
 /* 메뉴바 상단 고정 관련 CSS */
 .header_main{
-  position: fixed;
+  position: absolute;
   top: 60px;
   left: 0px;
   z-index: 5;
@@ -87,32 +82,76 @@ a {
 	margin-bottom: 300px;
 }
 
+/* 메인 배너 */
+.header1-bottom{
+	
+	position: relative;
+}
+
+.main_content_box{
+	position: absolute;
+	top: 460px;
+	left: 260px;
+	display: flex;
+}
+
+.main_content_info{
+	display: flex;
+	flex-direction: column;
+	color:BLACK;
+	padding-top: 160px;
+	margin-left: 30px;
+}
+
+
+.main_content_img{
+	position: relative;
+}
+
+.main_new_img{
+	position: absolute;
+	top:35px;
+	left:160px;
+	width: 100%;
+  	height: 100%;
+  	
+}
+
+.main_new_img img{
+	box-shadow: 1px 1px 20px gray;
+}
+
+
+.main_content_info div{
+	line-height: 35px;
+	margin: 0;
+}
+
 
 /* 사이드 바 */
 
 
-.aside_celeb_goods_wrap{
+.aside_ive_goods_wrap{
 	margin-top: 80px;
 	margin-left: 90px;
 	position: static;
 	top:900px;
-	left:50px;
 	width: 180px;
 }
 
 
-.aside_celeb_goods_box3 >div  > p {
+.aside_ive_goods_box3 >div  > p {
 	font-family: 'Noto Rashi Hebrew', serif;
 	font-size: 25px;
 	cursor: pointer;
 }
 
-.aside_celeb_goods_box3 > div > ul {
+.aside_ive_goods_box3 > div > ul {
 	margin-top: 20px;
 	margin-left: 10px;
 }
 
-.aside_celeb_goods_box4 > span{
+.aside_ive_goods_box4 > span{
 	font-size: 25px;
   	font-family: 'Noto Rashi Hebrew', serif;
   	line-height: 48px;
@@ -121,13 +160,13 @@ a {
 }
 
 
-.aside_celeb_goods_box3 {
+.aside_ive_goods_box3 {
 	width:100%;
 	display:inline;
 }
 
 
- .aside_celeb_goods_box3 .aside_celeb_goods_box4{
+ .aside_ive_goods_box3 .aside_ive_goods_box4{
 	overflow: hidden;
 	display: flex;
 	justify-content: center;
@@ -135,12 +174,12 @@ a {
 	
 } 
 
-.aside_celeb_goods_box3 div p{
+.aside_ive_goods_box3 div p{
 	float: left;
 	
 	}
 
-.aside_celeb_goods_box3 #down_img{
+.aside_ive_goods_box3 #down_img{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -150,7 +189,7 @@ a {
 	
 }
 
-.aside_celeb_goods_box3 #up_img{
+.aside_ive_goods_box3 #up_img{
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -160,14 +199,9 @@ a {
 	margin-left: 13px;
 }
 
-/* .aside_celeb_goods_box3 > div > p > img{
-	width: 30px; 
-	height: 35px; 
-	
-	} */
 
 
-.aside_celeb_goods_box3 .aside_celeb_sidebar ul{
+.aside_ive_goods_box3 .aside_ive_sidebar ul{
 
   
 	 position: absolute;
@@ -178,7 +212,7 @@ a {
 }
 
 
-.aside_celeb_goods_box3 .aside_celeb_sidebar ul > li{
+.aside_ive_goods_box3 .aside_ive_sidebar ul > li{
 	position: relative;
 	 top: 10px;
  	left:0;
@@ -190,10 +224,102 @@ a {
   	   
 }	
 
- .aside_celeb_goods_box3 >div{
+ .aside_ive_goods_box3 >div{
 
  	border-bottom: 2px solid rgba(0, 0, 0, 0.73);
  }
+ 
+  /* 본문 내용 */
+
+#iveButton{
+	cursor: pointer;	
+}
+
+
+.ive_main {
+
+	margin-bottom: 300px;
+	overflow: hidden;
+}
+
+
+ .product_classfication_ive_box{
+	margin-right:50px;
+ 	float:right;
+ }
+ 
+ .product_classfication_ive_box .product_classfication_ive{
+	
+	overflow: hidden;
+	margin-right: 60px;
+	padding-right:140px;
+	padding-bottom: 20px;	
+}
+
+ .product_classfication_ive span{
+	float: right;
+	padding: 0 20px;
+	cursor: pointer;
+}
+
+/* ================================================== */
+
+.ive_allproduct_wrap{
+
+    width: 1000px;
+ 	margin-top: 80px;
+ 	margin-left: 300px;
+}
+
+.ive_allProduct_box {
+ 	display: flex;
+    flex-flow: row wrap; 
+   justify-content: center;
+    align-items: center;
+    align-content: center;	
+}
+
+.ive_allProduct_box a{
+	flex-basis: 26%;
+	 margin: 30px ;
+	 
+}
+
+.dohyun_allProduct_box a li img{
+	margin-bottom: 20px;
+}
+
+.ive_allproduct_name{
+	font-size: 13px;
+  	font-family: 'Nanum Gothic', sans-serif;
+  	line-height: 25px;
+  	
+}
+
+.ive_allproduct_info{
+	overflow: hidden;
+	margin-top: 15px;
+	text-align: center;
+	font-size: 13px;
+  	font-family: 'Nanum Gothic', sans-serif;
+  	font-weight: 700;
+}
+
+
+.ive_allproduct_info .info_price{
+	float:left;
+}
+
+.ive_allproduct_info .info_rate{
+	float:right;
+	margin-right: 20px;
+}
+ 
+.ive_allProduct_box a li img{
+	margin-bottom: 20px;
+}
+
+
 	
 /* footer */
 .footer-outer {

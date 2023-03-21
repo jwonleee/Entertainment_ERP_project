@@ -1,3 +1,4 @@
+
 //상단 메뉴바 드롭다운
 $('.header_main_menu > ul > li > span').mouseenter(function(){
  $('.header_main').css("height", "250px");
@@ -31,31 +32,23 @@ $('.aside_celeb_goods_box4 #up_img').click(function(){
 });
 
 
-/*전체 목록 나오게끔 버튼 기능*/
-$('#blackpinkButton').click(function(){
-	$('.blackpink_allproduct_box').css("display", "block");
-	$('.blackpink_updateProduct_box').css("display", "none");
-})
+/*사이드 바 목록 나오게 하기 - 앨범, 포토카드, 의류, 케이스*/
 
-
-/*판매량순, 최신순 기능*/
-$('.product_classfication_bp').on("click", "span", function(){
-
-	if(event.target.innerHTML == '최신순'){
-		$('.blackpink_allproduct_box').css("display", "none");
-		$('.blackpink_updateProduct_box').css("display", "block");
-	}
+$('.aside_celeb_sidebar_check').on("click", "li", function(){
+	console.log(event.target.innerHTML);
+	$('#blackpink_sidebar').val(event.target.innerHTML);
+	$("#productList_bp").submit();
 });
 
-/*
-// 푸터 고정
-var fragmentHeight = document.querySelector(".fragment").scrollHeight;
-function footerFixed() {
-  if(fragmentHeight + 170 < window.innerHeight) {
-    $(".footer-outer").css({position: "fixed", bottom: "0px"});
+$('.product_classification_bp').on("click", "span", function(){
+	console.log(event.target.innerHTML);
+	$("#blackpink_classify").val(event.target.innerHTML);
+	$("#productList_bp").submit();
+});
 
-  } else {
-    $(".footer-outer").css({position: "static", })
-  }
-}
-window.addEventListener('resize', footerFixed);*/
+
+/* BLACKPINK'S GOODS 버튼 기능*/
+$("#blackpinkButton ").click(function(){
+	$('.blackpink_allproduct').val();
+	$('#productList_bp').submit();
+});

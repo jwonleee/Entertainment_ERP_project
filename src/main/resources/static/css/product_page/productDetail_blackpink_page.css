@@ -52,23 +52,24 @@ a {
 }
 
 .header_main_menu .menu_bar1 li {
- position: relative;
- height: 40px;
- top: 30px;
- left:0;
+  position: relative;
+  height: 40px;
+  top: 30px;
+  left:0;
   color:white;
   font-weight :800;
   font-size: 16px;
   font-family: 'Nanum Gothic', sans-serif;
   font-style: italic;
   cursor: pointer;
+  z-index: 1000000;
 }
 
 
 
 /* 메뉴바 상단 고정 관련 CSS */
 .header_main{
-  position: fixed;
+  position: absolute;
   top: 60px;
   left: 0px;
   z-index: 5;
@@ -76,16 +77,57 @@ a {
 }
 
 
+/* 메인 배너 */
+.header1-bottom{
+	
+	position: relative;
+}
+
+.main_content_box{
+	position: absolute;
+	top: 460px;
+	left: 260px;
+	display: flex;
+}
+
+.main_content_info{
+	display: flex;
+	flex-direction: column;
+	color:white;
+	padding-top: 160px;
+	margin-left: 30px;
+}
+
+
+.main_content_img{
+	position: relative;
+}
+
+.main_new_img{
+	position: absolute;
+	top:35px;
+	left:160px;
+	width: 100%;
+  	height: 100%;
+  	
+}
+
+.main_new_img img{
+	box-shadow: 1px 1px 6px gray;
+}
+
+
+.main_content_info div{
+	line-height: 35px;
+	margin: 0;
+}
 
 /* 사이드 바 */
-
-
 .aside_celeb_goods_wrap{
 	margin-top: 80px;
 	margin-left: 90px;
 	position: static;
 	top:900px;
-	left:50px;
 	width: 180px;
 }
 
@@ -191,49 +233,84 @@ a {
 }
 
 
- .product_classfication_bp_box{
-
+ .product_classification_bp_box{
+	margin-right:250px;
+	margin-top: 30px;
  	float:right;
  }
  
- .product_classfication_bp_box .product_classfication_bp{
+ .product_classification_bp_box .product_classfication_bp{
 	
 	overflow: hidden;
 	margin: 0 40px;
 	padding-right:140px;
-	padding-bottom: 20px;
-	
+	padding-bottom: 20px;	
 }
 
- .product_classfication_bp span{
+ .product_classification_bp span{
 	float: right;
 	padding: 0 20px;
 	cursor: pointer;
-	
-	
 }
 
+/* ================================================== */
+
 .blackpink_allproduct_wrap{
+    width: 1000px;
+    margin-top:80px;
+       margin-left: 300px;
+}
+
+
+.blackpink_allProduct_box {
 	display: flex;
     flex-flow: row wrap;
     justify-content: center;
     align-items: center;
-    align-content: center;
-    width: 1000px;
-    margin-left: 270px;
+    align-content: center;	 
+}
+
+.blackpink_allProduct_box a{
+	flex-basis: 25%;
+	 margin: 30px ;
+}
+
+.dohyun_allProduct_box a li img{
+	margin-bottom: 20px;
+}
+
+.blackpink_allproduct_name{
+	font-size: 13px;
+  	font-family: 'Nanum Gothic', sans-serif;
+  	line-height: 25px;
+  	
+}
+
+.blackpink_allproduct_info{
+	overflow: hidden;
+	margin-top: 15px;
+	text-align: center;
+	font-size: 13px;
+  	font-family: 'Nanum Gothic', sans-serif;
+  	font-weight: 700;
 }
 
 
-.blackpink_allproduct_box {
-	flex-basis: 25%;
-	margin-right: 5px;
+.blackpink_allproduct_info .info_price{
+	float:left;
 }
-	
-.blackpink_updateProduct_box {
-	flex-basis: 25%;
-	margin-right: 5px;
-	display: none;
+
+.blackpink_allproduct_info .info_rate{
+	float:right;
+	margin-right: 20px;
 }
+
+
+ .blackpink_allProduct_box a li img{
+	margin-bottom: 20px;
+}
+
+
 
 /* footer */
 .footer-outer {
@@ -289,4 +366,4 @@ footer .footer-inner .footer-right span {
   font-size: 13px;
   margin-left: 10px;
   cursor: pointer;
-}
+}				
