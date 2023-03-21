@@ -124,7 +124,7 @@
 		p.prod_price
 	from cart c
 	left outer join product p
-	on c.cart_prod_no = p.prod_no
+	on c.cart_no = p.prod_no
 	where c.user_id = #{user_id};
 
 	</select>

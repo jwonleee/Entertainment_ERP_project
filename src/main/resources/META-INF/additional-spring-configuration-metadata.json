@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "mail.smtp.auth",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.smtp.auth'"
+  },
+  {
+    "name": "AdminMail.id",
+    "type": "java.lang.String",
+    "description": "A description for 'AdminMail.id'"
+  },
+  {
+    "name": "mail.smtp.socketFactory.port",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.smtp.socketFactory.port'"
+  },
+  {
+    "name": "AdminMail.password",
+    "type": "java.lang.String",
+    "description": "A description for 'AdminMail.password'"
+  },
+  {
+    "name": "mail.smtp.starttls.enable",
+    "type": "java.lang.String",
+    "description": "A description for 'mail.smtp.starttls.enable'"
+  }
+]}

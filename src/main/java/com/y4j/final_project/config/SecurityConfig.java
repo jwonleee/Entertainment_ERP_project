@@ -57,7 +57,7 @@ public class SecurityConfig {
 				.and()
 				.authorizeRequests()
 				.dispatcherTypeMatchers(DispatcherType.FORWARD).permitAll() //모든 사용자가 접근할 수 있도록 허용하는 보안 구성 코드
-				.antMatchers("/js/**", "/css/**", "/user/user_login", "/user/user_join", "/admin/admin_join", "/audition//audition_notice", "audition/audApplyForm", "product/**", "/**").permitAll() //URL 패턴에 대한 권한 검사 예외처리할 경로
+				.antMatchers("/js/**", "/css/**", "/user/user_login", "/user/user_join", "/admin/admin_join", "/audition/audition_notice", "audition/audApplyForm", "product/**", "/**").permitAll() //URL 패턴에 대한 권한 검사 예외처리할 경로
 				.anyRequest().authenticated();
 				
 			return http.build();
