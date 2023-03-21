@@ -72,33 +72,31 @@ public class WebConfig implements WebMvcConfigurer{
 //		.excludePathPatterns("/css/*");
 
 
-		//일반 회원 접근 권한 처리
-		registry.addInterceptor(userAuthHandler())
-			.addPathPatterns("/user/*")
-			.excludePathPatterns("/user/login")
-			.excludePathPatterns("/user/join");
-		
-		//권한 관리 탭 접근 권한 처리
-		registry.addInterceptor(authorityAuthHandler())
-			.addPathPatterns("/authority/*");
-		
-		//일정 관리 탭 접근 권한 처리
-		registry.addInterceptor(scheduleAuthHandler())
-			.addPathPatterns("/schedule/*");
-		
-		//상품 관리 탭 접근 권한 처리
-		registry.addInterceptor(saleAuthHandler())
-			.addPathPatterns("/order/*");
-		
-		//오디션 관리 탭 접근 권한 처리
-		registry.addInterceptor(auditionAuthHandler())
-			.addPathPatterns("/audition/*");
-		
-		//breadcrumb nav 및 사이드 메뉴바 선택 탭 확장 유지
-		registry.addInterceptor(menuHandler())
-			.addPathPatterns("/authority/*", "/audition/*", "/schedule/*", "/order/*");
-		
-		
+//		//일반 회원 접근 권한 처리
+//		registry.addInterceptor(userAuthHandler())
+//			.addPathPatterns("/user/*")
+//			.excludePathPatterns("/user/login")
+//			.excludePathPatterns("/user/join");
+//		
+//		//권한 관리 탭 접근 권한 처리
+//		registry.addInterceptor(authorityAuthHandler())
+//			.addPathPatterns("/authority/*");
+//		
+//		//일정 관리 탭 접근 권한 처리
+//		registry.addInterceptor(scheduleAuthHandler())
+//			.addPathPatterns("/schedule/*");
+//		
+//		//상품 관리 탭 접근 권한 처리
+//		registry.addInterceptor(saleAuthHandler())
+//			.addPathPatterns("/order/*");
+//		
+//		//오디션 관리 탭 접근 권한 처리
+//		registry.addInterceptor(auditionAuthHandler())
+//			.addPathPatterns("/audition/*");
+//		
+//		//breadcrumb nav 및 사이드 메뉴바 선택 탭 확장 유지
+//		registry.addInterceptor(menuHandler())
+//			.addPathPatterns("/authority/*", "/audition/*", "/schedule/*", "/order/*");
 		
 	}
 	
