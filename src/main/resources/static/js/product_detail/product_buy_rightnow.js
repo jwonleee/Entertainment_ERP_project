@@ -11,7 +11,7 @@ $(".next_icon").click(function(){
 
 
 /* 결제 수단 */
-$(".payment_real_method").on("click","li", function(){
+/*$(".payment_real_method").on("click","li", function(){
 	
 
 	
@@ -19,4 +19,4 @@ $(".payment_real_method").on("click","li", function(){
 	
 
 
-});
+});*/

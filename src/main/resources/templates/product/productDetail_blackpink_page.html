@@ -5,6 +5,7 @@
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <!-- 폰트 2 -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -23,10 +24,22 @@
     
     	<div class="header1">
     		<div class="header1-bottom">
-	    		<div>
+	    		<div class="main_img">
 		    		<img style="width:100%; height:800px;" src="/img/blackpink_main.jpg.crdownload"/>
 	    		</div>
-	    		
+		    	<div class="main_content_box">
+	    			<div class="main_content_img">
+	    				<img style="width: 235px; height: 235px; box-shadow: 1px 2px 10px black" src="/img/bornPink_shut_down.webp">
+	    				<div class="main_new_img">
+	    					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/new_in.png" />
+	    				</div>
+	    			</div>
+	    			<div class="main_content_info">
+	    				<div style="font-family: 'Noto Rashi Hebrew', serif; font-size: 20px">[Born Pink] Shut down </div>
+	    				<div style="font-family: 'Nanum Gothic', sans-serif; ">블랙핑크 신곡 발매</div>
+	    			</div>
+		    	</div>
+	    	
 	    		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
 	    			<div class="header_main_menu">
 	    				<ul>
@@ -49,12 +62,13 @@
 	                            </ul>
 	                       </li>
 	                       <li>
-	                            <span class="menu_bar_name"><a href="#">PRODUCTION</a></span>
+	                            <span class="menu_bar_name"><a href="/product/productList">PRODUCTION</a></span>
 	                            <ul class="menu_bar1">
-	                              <li><span><a href="#">ALBUM</a></span></li>
-	                              <li><span><a href="#">GOODS</a></span></li>
-	                              <li><span><a href="#">MAGAZINE</a></span></li>
-	                              <li><span><a href="#">PICTURE CARD</a></span></li>
+	                              <li><span><a href="/product/NEWJEANS">NEWJEANS</a></span></li>
+	                              <li><span><a href="/product/BLACKPINK">BLACKPINK</a></span></li>
+	                              <li><span><a href="/product/IVE">IVE</a></span></li>
+	                              <li><span><a href="/product/LEEDOHYUN">LEE DOHYUN</a></span></li>
+	                              <li><span><a href="/product/CHAESOOBIN">CHAE SOOBIN</a></span></li>
 	                            </ul>
 	                         </li>
 	                         <li>
@@ -65,7 +79,9 @@
 	                       	</li>
 			    			<!-- 메뉴 상단바 y4j 로고 -->
 			    			<li>
-			    				<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				<a href="/product/BLACKPINK">
+			    					<img style="width:100px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+			    				</a>
 			    			</li>
 	                       </ul>
 	    				</div>
@@ -74,9 +90,8 @@
 		 </div>
 
 			
-	
-
-	    <!-- 사이드 바 -->
+	  <!-- 사이드 바 -->
+	<form id="productList_bp" action="BLACKPINK" method="get" ><!-- 폼태그 시작 -->
 	    <div style="position: relative;">
 	    	<div class="aside_celeb_goods_wrap">
 	    		<div class="aside_celeb_goods_box1">
@@ -95,11 +110,13 @@
 				    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
 		    				</div>
 		    				<div class="aside_celeb_sidebar">
-				    			<ul>
+		    					<!-- 컨트롤러로 보낼 히든 인풋태그 1-->
+				    			<input id="blackpink_sidebar" type="hidden" name="searchName" th:value="${cri.searchName}" />
+				    			<ul class="aside_celeb_sidebar_check">
 				    				<li>ALBUM</li>
 				    				<li>PHOTO CARD</li>
-				    				<li>CLOTHING</li>
-				    				<li>CASE</li>	
+				    				<li>CLOTH</li>
+				    				<li>PHONECASE</li>	
 				    			</ul>
 		    				</div>
 		    			</div>
@@ -118,39 +135,41 @@
 	
       <!-- 본문 -->	
      <div class="celeb_main">
-     	<!-- 최신순 / 판매량순 -->
-	   	<div class="product_classfication_bp_box">
-			<div class="product_classfication_bp">
-				<span  style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
-				<span >최신순</span>
+   		
+	   	<div class="product_classification_bp_box">
+			<div class="product_classification_bp">
+				<!-- 컨트롤러로 보낼 히든 인풋태그 2-->
+				<input id="blackpink_classify" type="hidden" name="searchContent" value="">
+				<span id="salesVolume" style="border-left:1px solid  rgba(5, 3, 3, 0.148)">판매량순</span>
+				<span id="uptodate" >최신순</span>
 			</div>
 		</div>
 	
-		
-		<!-- 블랙핑크 전체 상품 -->
+	
+		<!-- 블랙핑크 상품 페이지 -->
 		<div class="blackpink_allproduct_wrap">
-			<ul class="blackpink_allproduct_box" th:each="vo2:${list2}">
-				<li>
-					<img style="width: 240px; height: 240px;" th:src="@{${vo2.prod_img_path}}"/>		
-				</li>
-			</ul>
+				<ul class="blackpink_allProduct_box" >
+					<a th:each="blackpink: ${blackpink_list}" th:href="@{/product/detail_page(prod_no = ${blackpink.prod_no})}">
+						<li class="blackpink_allproduct">
+							<img style="width: 230px; height: 230px; text-align: center" name="prod_img_path" th:src="@{${blackpink.prod_img_path}}"/>
+							<div class="blackpink_allproduct_name">
+								<span name="prod_name" >[[${blackpink.prod_name}]]</span>
+							</div>
+							<div  class="blackpink_allproduct_info">
+								<span class="info_price" name="prod_price">\[[${blackpink.prod_price}]]</span>
+								<span class="info_rate" style="color:red" name="prod_discount_rate">[[${blackpink.prod_discount_rate}]]%</span>
+							</div>
+							<span>[[${blackpink.prod_regdate}]]</span><!-- 나중에 삭제해야 함 -->
+						</li>
+					</a>
+				</ul>
+			</div> 
+		</div><!-- 본문 내용 끝 -->	 
+	</form><!-- 폼태그 끝 -->
+
 		
-			<!-- 최신순 -->
-			<ul class="blackpink_updateProduct_box" th:each="vo3:${list3}">
-				<li>
-					<img style="width: 240px; height: 240px;" th:src="@{${vo3.prod_img_path}}"/>		
-				</li>
-			</ul>
-			
-			<!-- 판매량순 -->
-		<!-- <ul class="blackpink_updateProduct_box" th:each="vo2:${list2}">
-				<li class="blackpink_updateProduct">
-					<img style="width: 220px; height: 220px;" th:src="@{${vo2.prod_img_path}}"/>		
-				</li>
-			</ul> -->
-			
-		</div> 
-	</div><!-- 본문 내용 끝 -->
+		
+	</div><!-- 사이드 + 본문 내용 끝 -->
 
 	<!--footer  -->
 	<div class="footer-outer">

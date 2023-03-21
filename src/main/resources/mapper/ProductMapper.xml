@@ -6,46 +6,159 @@
   
    <mapper namespace="com.y4j.final_project.product.service.ProductMapper">
    
-  	 <!--  전체 상품 데이터 끌고와서 보여주기 -->
+  	 <!--  전체 상품 데이터 - 검색 기능 추가 -->
    	<select id="productList" resultType="ProductVO">
    		select * from product
-   	</select>
-   	
-   	<!-- 상품 최신순 리스트 -->
-   	<select id="uptoDate" resultType="ProductVO">
-   		select * from product order by prod_regdate desc
-   	</select>
-   	
-   <!-- 페이지네이션 -->
-  <!--  	<select id="pageTtotal" resultType="int">
-   		select count(*) from product
-   		where
-   		<if test="cri.startDate != null and cri.startDate != '' ">
-		<![CDATA[date_format(prod_enddate, '%Y-%m-%d') >= date_format (#{cri.startDate},'%Y-%m-%d')]]>
-		</if>
+   		<if test="searchName != null and searchName != ''">
+   			where prod_name like concat('%',#{searchName } , '%')
+   			or prod_artist like concat('%', #{searchName }, '%')
+   			or prod_type like concat('%', #{searchName }, '%')
 
-		<if test="cri.endDate != null and cri.endDate != '' ">
-		<![CDATA[and date_format(prod_enddate, '%Y-%m-%d') <= date_format (#{cri.endDate},'%Y-%m-%d')]]>
-		</if>
-		
-		<if test="cri.searchName != null and cri.searchName != '' ">
-		and prod_name like concat('%', #{cri.searchName}, '%')
-		</if>
-		
-		<if test="cri.searchContent != null and cri.searchContent != '' ">
-		and prod_content like concat('%', #{cri.searchContent}, '%')
-		</if>
+   		</if>
+   		<if test="searchContent == '최신순'">
+   			order by  prod_regdate desc
+   		</if>
+   		<if test="searchContent == '판매량순'">
+   			order by  prod_regdate
+   		</if>
+   	</select>
+   	
+	<!-- 상품 상세 페이지 -->
+	<select id="productDetailList" resultType="ProductVO">
+		select * from product 
+		where prod_no = #{prod_no}
+	</select>
 	
-   	</select> -->
-   
-   <!-- 블랙핑크 전체상품 목록 -->
-   <select id="blackpink_allList" resultType="ProductVO">
+	
+	<select id="userOrderRightNow" resultType="UserOrderVO">
+		select * from `user_order` 
+	</select>
+	
+	
+	
+	<!-- 결제 페이지 -->
+<!--    <select id="buyRightnow" resultType="ProductVO">
+   		select u.user_id,
+			   p.*
+			from product p 
+		    left outer join order_history oh
+			on p.prod_no = oh.prod_no 
+			left outer join users u
+			on oh.user_id = u.user_id
+		where p.prod_no = #{prod_no}
+   		
+   </select> -->
+ <!-- ============================================ 블랙핑크 상품 페이지 =========================================  -->
+ 	   
+ 	<!-- 블랙핑크 전체상품 목록 -->
+   <select id="productList_blackpink" resultType="ProductVO">
    		select * from product where prod_artist = 'BLACKPINK'
+   	 		<!-- 블핑 각 굿즈에 대한 목록 -->
+   			<if test="searchName != null and searchName != ''">
+   				and prod_type = #{searchName}
+   			</if>
+   		
+   			<!-- 블핑 전체 상품에 대한 최신순 / 판매량순 -->
+  				<if test="searchContent != null and searchContent == '판매량순'">
+   			order by prod_regdate asc
+   			
+	   		</if>
+	   		<if test="searchContent != null and searchContent == '최신순'">
+	   			order by prod_regdate desc
+	   		</if>
+	
+   		
+   </select>
+
+	   
+ <!-- ============================================ 아이브 상품 페이지 =========================================  -->
+
+	<!-- 아이브 전체상품 목록 -->
+   <select id="productList_ive" resultType="ProductVO">
+   		select * from product where prod_artist = 'IVE'
+   	 		<!-- 아이브 각 굿즈에 대한 목록 -->
+   			<if test="searchName != null and searchName != ''">
+   				and prod_type = #{searchName}
+   			</if>
+   		
+   			<!-- 아이브 전체 상품에 대한 최신순 / 판매량순 -->
+	   		<if test="searchContent != null and searchContent == '최신순'">
+	   			order by prod_regdate desc
+	   		</if>
+  				<if test="searchContent != null and searchContent == '판매량순'">
+   			order by prod_regdate asc	   			
+	   		</if>
+	
+   		
+   </select>
+	
+		   
+ <!-- ============================================ 뉴진스 상품 페이지 ==========================================  -->
+ 
+	<!-- 뉴진스 전체상품 목록 -->
+   <select id="productList_newjeans" resultType="ProductVO">
+   		select * from product where prod_artist = 'NEWJEANS'
+   	 		<!-- 뉴진스 각 굿즈에 대한 목록 -->
+   			<if test="searchName != null and searchName != ''">
+   				and prod_type = #{searchName}
+   			</if>
+   		
+   			<!-- 뉴진스 전체 상품에 대한 최신순 / 판매량순 -->
+	   		<if test="searchContent != null and searchContent == '최신순'">
+	   			order by prod_regdate desc
+	   		</if>
+  				<if test="searchContent != null and searchContent == '판매량순'">
+   			order by prod_regdate asc	   			
+	   		</if>
+   		
    </select>
    
-   <!-- 블랙핑크 최신순 상품 목록 -->
-    <select id="blackpink_uptodateList" resultType="ProductVO">
-   		select * from product where prod_artist = 'BLACKPINK' order by prod_regdate desc
+ <!-- ============================================ 이도현 상품 페이지 ==========================================  -->
+
+	<!-- 이도현 전체상품 목록 -->
+   <select id="productList_dohyun" resultType="ProductVO">
+   		select * from product where prod_artist = 'LEEDOHYUN'
+			<!-- <if test="searchType != null and searchType !=''">
+				and prod_type like concat("%", "#{searchType}", "%")
+			
+			</if> -->
+   	 		<!-- 이도현 각 굿즈에 대한 목록 -->
+   			<if test="searchName != null and searchName != ''">
+   				and prod_type = #{searchName}
+   			</if>
+   		
+   			<!-- 이도현 전체 상품에 대한 최신순 / 판매량순 -->
+	   		<if test="searchContent != null and searchContent == '최신순'">
+	   			order by prod_regdate desc
+	   		</if>
+  				<if test="searchContent != null and searchContent == '판매량순'">
+   			order by prod_regdate asc	   			
+	   		</if>
+   		
    </select>
-   
+
+ <!-- ============================================ 채수빈 상품 페이지 ==========================================  -->
+ 
+	<!-- 채수빈 전체상품 목록 -->
+   <select id="productList_soobin" resultType="ProductVO">
+   		select * from product where prod_artist = 'CHAESOOBIN'
+			<!-- <if test="searchType != null and searchType !=''">
+				and prod_type like concat("%", "#{searchType}", "%")
+			
+			</if> -->
+   	 		<!-- 채수빈 각 굿즈에 대한 목록 -->
+   			<if test="searchName != null and searchName != ''">
+   				and prod_type = #{searchName}
+   			</if>
+   		
+   			<!-- 채수빈 전체 상품에 대한 최신순 / 판매량순 -->
+	   		<if test="searchContent != null and searchContent == '최신순'">
+	   			order by prod_regdate desc
+	   		</if>
+  				<if test="searchContent != null and searchContent == '판매량순'">
+   			order by prod_regdate asc	   			
+	   		</if>
+   		
+   </select>
+
    </mapper>

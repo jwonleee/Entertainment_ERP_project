@@ -14,34 +14,37 @@ $('.header_main').mouseleave(function(){
 
 
 // 사이드 메뉴바 드롭다운
-$('.aside_celeb_goods_box4 #down_img').click(function(){
-/* $('.aside_celeb_goods_box3').css("height", "250px");*/
-  $('.aside_celeb_goods_box3 .aside_celeb_sidebar > ul' ).css("height", "270px");
-  $('.aside_celeb_goods_box4 #down_img').css("display", "none");
-  $('.aside_celeb_goods_box4 #up_img').css("display", "block");
+$('.aside_ive_goods_box4 #down_img').click(function(){
+/* $('.aside_ive_goods_box3').css("height", "250px");*/
+  $('.aside_ive_goods_box3 .aside_ive_sidebar > ul' ).css("height", "270px");
+  $('.aside_ive_goods_box4 #down_img').css("display", "none");
+  $('.aside_ive_goods_box4 #up_img').css("display", "block");
   
  /* $('.menu-outer .header-bottom').css("borderBottom", "1px solid #999");*/
 });
 
 //사이드 메뉴바 드롭다운 해제
-$('.aside_celeb_goods_box4 #up_img').click(function(){
-  $('.aside_celeb_goods_box3 .aside_celeb_sidebar > ul' ).css("height", "0px");
- $('.aside_celeb_goods_box4 #up_img').css("display", "none");
-  $('.aside_celeb_goods_box4 #down_img').css("display", "block");
+$('.aside_ive_goods_box4 #up_img').click(function(){
+  $('.aside_ive_goods_box3 .aside_ive_sidebar > ul' ).css("height", "0px");
+ $('.aside_ive_goods_box4 #up_img').css("display", "none");
+  $('.aside_ive_goods_box4 #down_img').css("display", "block");
 });
 
 
+//데이터 끌어오기!!!!!!
+//전체 상품 목록 (아이브)
+$(".ive_sidebar").on("click", "li", function(){
+	$("#product_value").val(event.target.innerHTML);
+	$('#ive_page').submit();
+})
 
+$('.product_classfication_ive').on("click", "span", function(){
+	$("#product_classfication_button").val(event.target.innerHTML);
+	$('#ive_page').submit();
+});
 
-/*
-// 푸터 고정
-var fragmentHeight = document.querySelector(".fragment").scrollHeight;
-function footerFixed() {
-  if(fragmentHeight + 170 < window.innerHeight) {
-    $(".footer-outer").css({position: "fixed", bottom: "0px"});
-
-  } else {
-    $(".footer-outer").css({position: "static", })
-  }
-}
-window.addEventListener('resize', footerFixed);*/
+/* IVE'S GOODS 버튼 기능*/
+$("#iveButton ").click(function(){
+	$('.ive_allproduct').val();
+	$('#ive_page').submit();
+});

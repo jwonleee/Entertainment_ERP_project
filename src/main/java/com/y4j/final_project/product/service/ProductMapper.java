@@ -1,34 +1,41 @@
 package com.y4j.final_project.product.service;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 
+import com.y4j.final_project.command.OrderHistoryVO;
+import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.ordercommand.ProductVO;
 import com.y4j.final_project.util.Criteria;
 
 @Mapper
 public interface ProductMapper {
 	
+	//전체 상품 목록
+	public ArrayList<ProductVO> productList(Criteria cri);
 	
-
-	//상품 판매 페이지(전체 상품 목록)
-	public ArrayList<ProductVO> productList(ProductVO vo);
-
-	//상품 최신순
-	public ArrayList<ProductVO> uptoDate(ProductVO vo);
-
-	//페이지네이션
-	public int pageTotal(Criteria cri);
+	//상품 상세 페이지 
+	public ArrayList<ProductVO> productDetailList(int prod_no);
 	
-	//====================블랙핑크 페이지========================//
-		//블랙핑크 전체상품 목록
-		public ArrayList<ProductVO> blackpink_allList (ProductVO vo1);
-		
-		//블랙핑크 최신순 상품 목록
-		public ArrayList<ProductVO> blackpink_uptodateList (ProductVO vo1);
-		
-		
-		//블랙핑크 판매량순 상품 목록
-		public ArrayList<ProductVO> blackpink_popularList (ProductVO vo1);
+	//상품 상세 페이지 -> 결제 페이지
+	public ArrayList<UserOrderVO> userOrderRightNow(UserOrderVO vo1);
+	
+	//블랙핑크 페이지-전체 상품 
+	public ArrayList<ProductVO> productList_blackpink(Criteria cri);
+	
+	//아이브 전체 상품
+	public ArrayList<ProductVO> productList_ive(Criteria cri);
+	
+	//뉴진스 전체 상품
+	public ArrayList<ProductVO> productList_newjeans(Criteria cri);
+	
+	//이도현 전체 상품
+	public ArrayList<ProductVO> productList_dohyun(Criteria cri);
+	
+	//채수빈 전체 상품
+	public ArrayList<ProductVO> productList_soobin(Criteria cri);
+	
+	
 }

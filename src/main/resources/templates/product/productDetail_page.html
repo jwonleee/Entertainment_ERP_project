@@ -1,254 +1,421 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
 
-<!-- 폰트 1 -->
-<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
-<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
-<!-- 폰트 2 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
-<!-- 폰트 3 - 나눔고딕 --> 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 스와이퍼 -->
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	<!-- 제이쿼리 -->
+	<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+	<!-- 폰트 1 -->
+	<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<!-- 폰트 2 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+	<!-- 폰트 3 - 나눔고딕 --> 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<!-------------------------------------------------------------------------------------------------------------->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+	<link rel="stylesheet" type="text/css" media="screen"
+		href="../css/jquery.datetimepicker.min.css">
+	<script src="../js/jquery.datetimepicker.full.min.js"></script>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	
+	 <!-- popper.js -->
+	 <script src="https://unpkg.com/@popperjs/core@2"></script>
+	<!-- bootstrap -->
+	<!-- css링크 -->
+	<link rel="stylesheet" href="/css/bootstrapcss/bootstrap.min.css">
+	<!-- 부트스트랩 테마가 필요하면 이쯤 추가 -->
+	<!-- js링크 -->
+	 <script src="/js/bootstrapjs/bootstrap.min.js"></script>
+	
+	<!-- 전체 폰트 적용 -->
+	<style>
+	body, html {
+		font-family:  'Nanum Gothic', sans-serif;
+		font-weight: 500;
+	}
+	</style> 
+	 
+	<!-- css 링크 -->
+	 <link rel="stylesheet" href="/css/product_page/productDetail_page.css">
+</head>
 
-<!-- css 링크 -->
- <link rel="stylesheet" href="/css/product_page/productDetail_page.css">
-
-<!-- 레이아웃 -->
-<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+  
+   <!-- 헤더 만드는 중 -->
+	<div class="header1_user_bar_box">
+		<div class="header1_user_bar">
+		 	<ul class="main-header-inner main-header-inner2">
+		      <li class="header_middle_user">
+		        <a href="/user/user_login">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+		          <!-- <span>LOGIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/admin/admin_join">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+		          <!-- <span>JOIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/message">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+		          <!-- <span>MY PAGE</span> -->
+		        </a>
+		      </li>
+		      <li><!-- 여기 로그인 했을 때 구입 가능하기에 회원인지 여부 확인 하기 위한...! -->
+		      	<div>회원아이디</div>
+		      </li>
+		   	</ul>
+		</div>
+	</div>
+   	<div class="header1">
+   		<div class="header1-bottom">
+	   		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
+	   			<div class="header_main_menu">
+	   				<ul class="header_main_menu_bar">
+	                     <li>
+	                         <span class="menu_bar_name"><a href="#">COMPANY</a></span>
+	                         <ul class="menu_bar1">
+	                            <li><span><a href="#">ABOUT Y4J</a></span></li>
+	                            <li><span><a href="#">HISTORY</a></span></li>
+	                            <li><span><a href="#">CONTACT</a></span></li>
+	                         </ul>
+	                     </li>
+	                     <li>
+	                          <span class="menu_bar_name"><a href="#">ENTERTAINER</a></span>
+	                          <ul class="menu_bar1">
+	                             <li><span><a href="#">NEWJEANS</a></span></li>
+	                             <li><span><a href="#">BLACKPINK</a></span></li>
+	                             <li><span><a href="#">IVE</a></span></li>
+	                             <li><span><a href="#">LEE DOHYUN</a></span></li>
+	                             <li><span><a href="#">CHAE SOOBIN</a></span></li>
+	                           </ul>
+	                      </li>
+	                      <li>
+	                          <span class="menu_bar_name"><a href="/product/productList">PRODUCTION</a></span>
+	                          <ul class="menu_bar1">
+	                            <li><span><a href="/product/NEWJEANS">NEWJEANS</a></span></li>
+	                            <li><span><a href="/product/BLACKPINK">BLACKPINK</a></span></li>
+	                            <li><span><a href="/product/IVE">IVE</a></span></li>
+	                            <li><span><a href="/product/LEEDOHYUN">LEE DOHYUN</a></span></li>
+	                            <li><span><a href="/product/CHAESOOBIN">CHAE SOOBIN</a></span></li>
+	                          </ul>
+	                      </li>
+	                      <li>
+	                          <span class="menu_bar_name"><a href="#">AUDITION</a></span>
+	                          <ul class="menu_bar1">
+	                             <li class="menu_bar_content">AUDITION</li>
+	                          </ul>
+	                      </li>
+	                	</ul>
+		   			</div>
+	   			</div>
+   				<!-- 메뉴 상단바 y4j 로고 -->
+    			<div class="header_main_menu_logo">
+	    			<div>
+	    			 	<a th:href="@{/product/BLACKPINK}">
+	    					<img style="width:115px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+	    				</a>
+	    			</div>
+    			</div>
+   			</div><!-- 헤더 상단 메뉴바 끝 -->
+	 	</div>
+    
+  
+   	<!-- 상품 구매하기 및 장바구니 창 -->
+   <form id="product_buy_rightnow" action="buy_page" method="get">
+   
+   	<!-- 주문하면 현재 날짜 보내기-->
+   	<input id="order_date_now" type="hidden" name="user_order_date" th:value="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}">
+    <div style="display:flex; width:1080px; margin-top:30px; flex-direction:'row'; justify-content:center; align-items:center; position: relative; margin-bottom:150px; padding-bottom: 70px"  th:each="pd: ${detail}">
+    	<!-- 상품 이미지 -->
+    	<div style=" display: flex; flex-direction:column; overflow: hidden; margin:0;">
+    		<img style="float:left; margin-bottom: 20px; margin-top:170px; width: 430px; height: 450px;" th:src="${pd.prod_img_path}"/>	
+   		</div>
+    	<!-- 상품 박스(구매버튼 및 장바구니) -->
+    
+    	<div style=" margin-top:70px;  line-height: 28px;  width: 490px; float: right; margin-left: 90px" >
+    		<div class="productDetail_info">
+    			<p style="color: gray; font-weight: 700;">[[${pd.prod_artist}]]</p>
+		    	<div class="productDetail_name">	
+	    			<p class="productDetail_name_1" style="font-family: 'Nanum Gothic', sans-serif; font-size: 18px; font-weight: 700;">상품명</p>
+	    			<!-- 결제 페이지로 보낼 상품명 -->
+	    			<input id="prod_name_rightnow" type="hidden" th:value="${pd.prod_name}" name="user_order_prod_name">
+		    		<p class="productDetail_name_2" style="font-family: 'Nanum Gothic', sans-serif; font-size: 14px; font-weight: 700;">[[${pd.prod_name}]]</p>
+	    		</div>
+				<div class="productDetail_price" th:with="price = ${pd.prod_price}">
+		    		<p class="productDetail_price_1" style="font-family: 'Nanum Gothic', sans-serif; font-size: 18px; font-weight: 700;">상품 가격</p>
+		    		<p class="productDetail_price_2"  style="font-family: 'Nanum Gothic', sans-serif; font-size: 16px; font-weight: 700;" th:text="${#numbers.formatInteger(price, 3, 'COMMA') + '원'}"></p>
+				</div>		    		
+    		</div>
+    		
+    		<div style="overflow:hidden; border-top: 1px solid rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding: 10px 0; ">
+	    		<p style="float: left; font-family: 'Nanum Gothic', sans-serif; font-size: 17px; font-weight:800; margin:0; margin-left: 13px;">할인율</p>
+	    		<p style="float: right; color: red; font-weight: bold; margin:0; margin-right: 13px;">[[${pd.prod_discount_rate}]]%</p>
+    		</div>
+    		
+    		<!-- 상품 선택 -->
+    		<div style=" display:flex; flex-direction:column; justify-content:center; align-items:center; border: none; border-radius: 5px; background-color: rgba(0, 0, 0, 0.03); padding: 20px; margin:20px 0; line-height: 50px">
+    			<div class="decide_box">
+			    	<span>회원아이디</span>
+    			</div>
+	  		
+ 
+    			<div class="decide_box_price" style="overflow:hidden; width: 420px; height: 45px; margin: 0; line-height: 45px;">
+					<div  class="decide_cnt_box" style="float: left; margin-left: 2px; margin-right:40px; display: flex; justify-content: center; align-items: center;">
+						<button type="button" id="decide_cnt_minus" style="cursor:pointer; border: none; width: 35px; height: 40px; text-align: center">-</button>
+						
+						<input id="decide_cnt" name="user_order_prod_cnt"  min="1" type="number" style="  height: 40px; margin: 0 ; border: none; outline:none;  width: 40px; text-align: center" th:value="1" >
+						<button  type="button" id="decide_cnt_plus" style="cursor:pointer; border: none;  height: 40px; width: 35px; ">+</button>
+					</div>
+					<div th:with="result =(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" style="float: right; margin-right: 2px;">
+		    			<span id="total_price" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" th:text="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'"></span>
+					</div>
+    			</div>
+    			    		    	
+    		</div>
+    		
+    		<div style=" overflow: hidden; margin-top: 29px; margin-bottom: 14px">
+    			<p style="font-family: 'Noto Rashi Hebrew', serif; font-size:23px; float: left; margin-left: 13px;">TOTAL</p>
+    			<!-- 결제페이지로 보낼 상품 가격 -->
+    			<input id="user_order_total_price" type="hidden" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'" name="user_order_total_price">
+    			<p id="total_price2" style="font-family:  'Nanum Gothic', sans-serif; font-size:23px; font-style:800; float:right; margin-right: 13px;"th:text="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'"></p>
+    		</div>
+    		
+    		<!-- 구매하기 버튼 -->
+    		<div style="display: flex; justify-content:center; align-items:center;">
+	    		<button id="buyButton" type="submit"  style=" font-family:'Nanum Gothic', sans-serif; 
+		    		font-size: 16px; font-weight: 900; width:490px; height: 55px;  
+		    		box-shadow:1px 1px 6px rgba(200, 184, 194, 0.582); border: none; 
+		    		background-color:  rgba(248, 238, 219, 0.879); border-radius: 30px; color: #333;" >
+		    		바로 구매하기
+		    	</button>
+    		</div>
+    		
+    		<!-- 장바구니 버튼, 위시리스트 버튼 -->
+    		<div style="display: flex; flex-direction: row; margin: 10px 0; justify-content: center">
+	    		<button id="cartButton" style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;width: 245px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit" >장바구니 담기</button>
+				<!-- 위시리스트 버튼은 일단 나중에 -->
+				<button style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;  margin-right:10px; width: 245px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit">위시리스트 담기</button> 
+    		</div>
+    	</div>
+  	</div>
+   </form>
+  		  
+  	<!--  상품 상세 이미지와 주문 및 배송 / 환불 정보 -->
+  	  <div style="display: flex; justify-content: center; margin-bottom: 80px; width:1300px; ">
+  		<!-- 상품 상세 이미지 (이건 데이터 넣고 다시 지정) -->
+	    <div class="product_detail_img">
+		    <img style="float:left;  width: 500px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album_detail.jpg"/>
+	    </div>
+  		  <div style="width:580px">
+		  	<div class="productTabWrap1">
+		  		<ul class="productTabBox" style="padding-left: 0px"><!-- 클릭 시에 해당 내용 보이게 클릭 이벤트 -->
+			  		<li  class="orderTab">주문 및 배송</li>
+			  		<li  class="cahngeTab">환불 및 교환 정보</li>
+		  		</ul>
+		  	</div>
+		  		<!-- 주문 빛 배송 -->
+  			<div class="orderContent">
+  			  <div style="font-family:'Nanum Gothic', sans-serif; font-size: 13px; font-weight: 500; line-height: 26px">
+  				[배송 안내] <br/>
+				- 배송 방법 : 택배 <br/>
+				- 배송 지역 : 전국 지역 <br/>
+				- 배송 비용 : 3,000원 / 주문 금액 50,000원 이상 무료 <br/>
+				- 배송 기간 : 3일 ~ 7일 <br/>
+				<br/>
+				[주문 안내] <br/>
+				- 주문일로부터 2일 이내 미입금시, 주문이 자동 취소됩니다. <br/>
+				- 미성년자 권리보호 안내: 전자상거래 등에서의 소비자보호법에 관한 법률에 의거하여 미성년자가 
+				체결한 계약은 법정대리인이 동의하지 않은 경우 본인 또는 법정대리인이 취소할 수 있습니다. <br/>
+				<br/>
+				- Y4J는 대한통운 택배를 이용하고 있으며 기본요금은 3,000원, 5만원 이상 구매 시 무료배송입니다. <br/>
+				- 산간벽지나 도서지방의 경우 별도의 추가 배송비를 지불해야 할 수 있습니다. <br/>
+				- 상품의 재고상황 및 물류센터 사정으로 인해 배송기간이 다소 지연될 수 있습니다. <br/> 
+				- 입점 업체 상품은 상품설명에 별도로 기입된 브랜드에서 상품을 직접 출고하며, 브랜드마다 개별 배송비가 부여됩니다. <br/>
+				- 예약판매 및 주문제작 상품의 경우 상품설명에 고지된 상품 출고일 및 제작기간을 확인 및 숙지 부탁드립니다. <br/>
+				- 예약판매 및 주문제작 상품 등 당일 배송이 어려운 상품을 함께 구매하는 경우 모든 상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송됩니다. <br/>
+				- 주문하신 상품이 품절되어 출고가 어려운 경우 개별 연락 드리겠습니다. <br/>
+				 (※ 품절된 품목에 대한 문자 혹은 이메일 알림에 응답이 없을 경우, 안내 7일 후 주문이 자동으로 취소됩니다.) <br/>
+				<br/>
+				[국내 지역별 추가 배송비] <br/>
+				・울릉군: 5,000원 추가 <br/>
+				・제주시/서귀포시: 3,000원 추가<br/>
+  			</div>
+  		  </div>
+  		
+  		<!-- 환불 및 교환 정보 -->
+  		 <div class="changeContent">
+  			<div style="font-family:'Nanum Gothic', sans-serif; font-size: 13px; font-weight: 500; line-height: 26px ">
+				[교환 및 반품이 가능한 경우]<br/>
+				- 상품을 공급 받으신 날로부터 7일 이내 <br/>(단, 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우에는 교환/반품이 불가능합니다)<br/>
+				- 공급받으신 상품 및 용역의 내용이 표시. 광고 내용과 다르거나 다르게 이행된 경우에는  <br/>공급받은 날로부터 3개월이내,그 사실을 알게 된 날로부터 30일이내<br/>
+				<br/>
+				※ 고객님의 단순 변심으로 인한 교환, 반품을 하실 경우 <br/>상품 반송 비용 3,000원은 고객님께서 부담하셔야 합니다. <br/>(색상 교환, 사이즈 교환 등 포함)<br/>
+				※ 교환 및 반품은 상품 회수, 회수확인 후 새상품 발송이나 환불 절차로 진행됩니다. <br/>교환 및 반품은 최대 2주 정도 시간이 소요될 수 있음을 미리 양해부탁드립니다.<br/>
+				※ 임의로 상품먼저 보내시면 확인이 어려울 수 있으니 발송전 1:1 문의게시판에 접수 부탁드립니다.<br/>
+				<br/>
+				[교환 및 반품이 불가능한 경우]<br/>
+				- 사인회 응모, 이벤트, 세일 상품 및 주문 제작 등 상품 상세페이지에 교환/환불 불가를 공지한 상품의 경우<br/>
+				- 고객님의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우.<br/> 단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외<br/>
+				- 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우 <br/>
+				 (예 : 가전제품, 식품, 음반 등, 단 액정화면이 부착된 노트북, LCD모니터,디지털 카메라 등의 불량화소에 따른 반품/교환은 제조사 기준에 따릅니다.)<br/>
+				- 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우<br/>
+				 (단, 화장품 등의 경우 시용제품을  제공한 경우에 한 합니다.)<br/>
+				- 시간의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우<br/>
+				- 복제가 가능한 상품 등의 포장을 훼손한 경우<br/>
+				- Y4J 온라인 스토어에서 구매한 상품을 Y4J 공식 오프라인 매장에서 교환/환불할 경우<br/>
+				- Y4J 공식 오프라인 매장에서 구매한 상품을 Y4J 온라인 스토어에서 교환/환불할 경우<br/>
+				<br/>
+				※ 단순반품의 경우 회수 상품 확인 후 불량일시 고객님께 다시 재발송되며, <br/>이 과정에서 왕복 배송비가 고객님께 청구될 수 있습니다.<br/>
+				※ 자세한 내용은 고객만족센터 1:1 문의게시판을 이용해 주시기 바랍니다.<br/>
+  			</div>
+  		 </div>
+  	 </div>
+   </div>
 
 	
-    <!-- 본문에 들어갈 내용 -->
-    <div class="fragment">
-    
-    	<!-- 상품 구매하기 및 장바구니 창 -->
-	    <div style="display:flex; flex-direction:'row'; position: relative; margin-bottom: 100px">
-		    	
-		    	<!-- 상품 이미지 -->
-		    	<div style=" display: flex; flex-direction:column; overflow: hidden; margin:0; ">
-		    
-		    		<img style="float:left; margin-bottom: 20px; width: 430px; height: 450px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg"/>
-
-			    	<!-- 상품 상세 이미지 -->
-			    	<img style="float:left;  width: 500px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album_detail.jpg"/>
-	    		</div>
-	   	
-	    
-		    	<!-- 상품 박스(구매버튼 및 장바구니) -->
-		    
-		    	<div style=" margin-top:80px;  line-height: 28px;  width: 435px; float: right; margin-left: 90px" >
-		    		<div>
-			    		<p style="color: gray">해당 아티스트</p>
-			    		<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 22px; font-weight: 700;">상품명</p>
-			    		<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 22px; font-weight: 700;">상품 가격</p>
-		    		</div>
-		    		
-		    		<div style="border-top: 1px solid rgba(0, 0, 0, 0.2); border-bottom: 1px solid rgba(0, 0, 0, 0.2); padding: 10px 0; ">
-			    		<p style="font-family: 'Nanum Gothic', sans-serif; font-size: 17px; font-style:900; margin:0">할인율</p>
-		    		</div>
-		    		
-		    		<!-- 상품 선택 -->
-		    		<div style=" display:flex; flex-direction:column; justify-content:center; align-items:center; border: none; border-radius: 5px; background-color: rgba(0, 0, 0, 0.03); padding: 10px; margin:20px 0;">
-		    	
-		    			
-				    	<span style="margin-bottom: 15px">여기는 상품명이 들어갈 곳</span>
-		    	
-		    	
-		    			<div style="overflow: hidden; width: 320px; height: 35px; margin: 0">
-							<span style="float: left; margin-right: 15px;">-</span><span style="float: left;  margin-right: 15px;">주문 수량</span><Span style="float: left;  margin-right: 15px;">+</Span>
-			    			<span style="float: right">주문 가격</span>
-		    			</div>
-		    		</div>
-		    		
-		    		<div style=" overflow: hidden; margin-top: 29px; margin-bottom: 14px">
-		    			<p style="font-family: 'Noto Rashi Hebrew', serif; font-size:23px; float: left;">TOTAL</p>
-		    			<p style="font-family:  'Nanum Gothic', sans-serif; font-size:23px; font-style:800; float:right;">총 가격</p>
-		    		</div>
-		    		
-		    		<!-- 구매하기 버튼 -->
-		    		<div style="display: flex; justify-content:center; align-items:center;">
-			    		<button type="submit" style=" font-family:'Nanum Gothic', sans-serif; font-size: 16px; font-style: 900; width: 430px; height: 55px; border: none; ;background-color: rgba(15, 44, 66, 0.895); border-radius: 30px; color: white;"> 바로 구매하기</button>
-		    		</div>
-		    		
-		    		<!-- 장바구니 버튼, 위시리스트 버튼 -->
-		    		<div style="display: flex; flex-direction: row; margin: 10px 0; justify-content: center">
-			    		<button style="font-family:'Nanum Gothic', sans-serif; font-size: 14px; margin-right:10px; width: 215px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px;  " type="submit">장바구니 담기</button>
-			    		<button style="font-family:'Nanum Gothic', sans-serif; font-size: 14px; width: 215px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px;" type="submit">위시리스트 담기</button>
-		    		</div>
-		    	</div>
-		    	
-		    
-	     </div>
-	    
-	  
-	  	<!-- 환불/ 배송 / 리뷰  -->
-	  	
-	  	<!-- 주문 및 배송 / 환불 및 교환 정보 / 리뷰 탭 -->
-	  	<div class="productTabWrap">
-	  		<ul class="productTabBox" ><!-- 클릭 시에 해당 내용 보이게 클릭 이벤트 -->
-		  		<li  class="orderTab">주문 및 배송</li>
-		  		<li  class="cahngeTab">환불 및 교환 정보</li>
-		  		<li class="reviewTab">리뷰</li>
-	  		</ul>
-	  	</div>
+	<!-- 리뷰  -->
+	<div style="margin-bottom: 100px;">
+	  <div style="width:1150px">
 	  	  	
-	  	<div>
-	  	
-	  		<!-- 주문 빛 배송 -->
-	  		<div class="orderContent">
-	  			<div style="font-family:'Nanum Gothic', sans-serif; font-size: 13px; font-weight: 500 ">
-	  				[배송 안내] <br/>
-					- 배송 방법 : 택배 <br/>
-					- 배송 지역 : 전국 지역 <br/>
-					- 배송 비용 : 3,000원 / 주문 금액 50,000원 이상 무료 <br/>
-					- 배송 기간 : 3일 ~ 7일 <br/>
-					<br/>
-					[주문 안내] <br/>
-					- 주문일로부터 2일 이내 미입금시, 주문이 자동 취소됩니다. <br/>
-					- 미성년자 권리보호 안내: 전자상거래 등에서의 소비자보호법에 관한 법률에 의거하여 미성년자가 
-					체결한 계약은 법정대리인이 동의하지 않은 경우 본인 또는 법정대리인이 취소할 수 있습니다. <br/>
-					<br/>
-					- Y4J는 대한통운 택배를 이용하고 있으며 기본요금은 3,000원, 5만원 이상 구매 시 무료배송입니다. <br/>
-					- 산간벽지나 도서지방의 경우 별도의 추가 배송비를 지불해야 할 수 있습니다. <br/>
-					- 상품의 재고상황 및 물류센터 사정으로 인해 배송기간이 다소 지연될 수 있습니다. <br/> 
-					- 입점 업체 상품은 상품설명에 별도로 기입된 브랜드에서 상품을 직접 출고하며, 브랜드마다 개별 배송비가 부여됩니다. <br/>
-					- 예약판매 및 주문제작 상품의 경우 상품설명에 고지된 상품 출고일 및 제작기간을 확인 및 숙지 부탁드립니다. <br/>
-					- 예약판매 및 주문제작 상품 등 당일 배송이 어려운 상품을 함께 구매하는 경우 모든 상품이 배송 가능한 상태가 되는 시점에 주문하신 상품이 함께 배송됩니다. <br/>
-					- 주문하신 상품이 품절되어 출고가 어려운 경우 개별 연락 드리겠습니다. <br/>
-					 (※ 품절된 품목에 대한 문자 혹은 이메일 알림에 응답이 없을 경우, 안내 7일 후 주문이 자동으로 취소됩니다.) <br/>
-					<br/>
-					[국내 지역별 추가 배송비] <br/>
-					・울릉군: 5,000원 추가 <br/>
-					・제주시/서귀포시: 3,000원 추가<br/>
-	  			</div>
-	  		</div>
-	  		
-	  		<!-- 환불 및 교환 정보 -->
-	  		<div class="changeContent">
-	  			<div style="font-family:'Nanum Gothic', sans-serif; font-size: 13px; font-weight: 500 ">
-					[교환 및 반품이 가능한 경우]<br/>
-					- 상품을 공급 받으신 날로부터 7일 이내 (단, 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우에는 교환/반품이 불가능합니다)<br/>
-					- 공급받으신 상품 및 용역의 내용이 표시.광고 내용과 다르거나 다르게 이행된 경우에는 공급받은 날로부터 3개월이내, 그 사실을 알게 된 날로부터 30일이내<br/>
-					<br/>
-					※ 고객님의 단순 변심으로 인한 교환, 반품을 하실 경우 상품 반송 비용 3,000원은 고객님께서 부담하셔야 합니다.  (색상 교환, 사이즈 교환 등 포함)<br/>
-					※ 교환 및 반품은 상품 회수, 회수확인 후 새상품 발송이나 환불 절차로 진행됩니다. 교환 및 반품은 최대 2주 정도 시간이 소요될 수 있음을 미리 양해부탁드립니다.<br/>
-					※ 임의로 상품먼저 보내시면 확인이 어려울 수 있으니 발송전 1:1 문의게시판에 접수 부탁드립니다.<br/>
-					<br/>
-					[교환 및 반품이 불가능한 경우]<br/>
-					- 사인회 응모, 이벤트, 세일 상품 및 주문 제작 등 상품 상세페이지에 교환/환불 불가를 공지한 상품의 경우<br/>
-					- 고객님의 책임 있는 사유로 상품 등이 멸실 또는 훼손된 경우. 단, 상품의 내용을 확인하기 위하여 포장 등을 훼손한 경우는 제외<br/>
-					- 포장을 개봉하였거나 포장이 훼손되어 상품가치가 상실된 경우 <br/>
-					 (예 : 가전제품, 식품, 음반 등, 단 액정화면이 부착된 노트북, LCD모니터, 디지털 카메라 등의 불량화소에  따른 반품/교환은 제조사 기준에 따릅니다.)<br/>
-					- 고객님의 사용 또는 일부 소비에 의하여 상품의 가치가 현저히 감소한 경우<br/>
-					 (단, 화장품 등의 경우 시용제품을  제공한 경우에 한 합니다.)<br/>
-					- 시간의 경과에 의하여 재판매가 곤란할 정도로 상품 등의 가치가 현저히 감소한 경우<br/>
-					- 복제가 가능한 상품 등의 포장을 훼손한 경우<br/>
-					- Y4J 온라인 스토어에서 구매한 상품을 Y4J 공식 오프라인 매장에서 교환/환불할 경우<br/>
-					- Y4J 공식 오프라인 매장에서 구매한 상품을 Y4J 온라인 스토어에서 교환/환불할 경우<br/>
-					<br/>
-					※ 단순반품의 경우 회수 상품 확인 후 불량일시 고객님께 다시 재발송되며, 이 과정에서 왕복 배송비가 고객님께 청구될 수 있습니다.<br/>
-					※ 자세한 내용은 고객만족센터 1:1 문의게시판을 이용해 주시기 바랍니다.<br/>
+		<div class="reviewContent_wrap">
+			<div class="reviewContent_box">
+				<p style="border-bottom: 1px solid  rgba(5, 3, 3, 0.948); padding-bottom: 20px; font-family:'Noto Rashi Hebrew', serif; font-size:21px; padding-left: 10px; margin:0">REVIEW</p>
+				<div class="reviewContent">
+					<div class="reviewContent_left">
+						<div>
+ 						<span style="display: flex; justify-content: center; margin-bottom: 11px">구매자 평점</span>
+						</div>
+						<div style="display: flex; justify-content: center; align-items: center">
+ 						<img style="width: 35px; height:35px" src="/img/star.png"/>
+ 						<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="별 아이콘">별 아이콘  제작자: Pixel perfect - Flaticon</a> -->
+ 						<span style="margin-left: 12px; font-size: 20px; font-weight: 600">(5.0)평점</span>
+						</div>
+  				<div class="review_reg_button">
+  					<button type="submit" >상품 리뷰 작성하기</button>
+  				</div>
+					</div>
+					<div class="reviewContent_right">
+						<div class="reviewContent_right_content">
+ 						<div>
+  						<span>아주 좋아요</span>
+ 						</div>
+ 						<div>
+  						<span>좋아요</span>
+ 						</div>
+ 						<div>
+  						<span>보통이에요</span>	
+ 						</div>
+ 						<div>
+  						<span>그냥 그래요</span>
+ 						</div>
+ 						<div>
+  						<span>별로예요</span>
+ 						</div>
+						</div>
+ 					<div class="reviewContent_right_content1">
+  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
+  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
+  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
+  					<span style="width:500px; height: 7px; line-height:7px;border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
+  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
+ 					</div>
+ 					<div class="reviewContent_right_content">
+ 						<span>갯수</span>
+ 						<span>갯수</span>
+ 						<span>갯수</span>
+ 						<span>갯수</span>
+ 						<span>갯수</span>
+ 					</div>
+					</div>
 					
-	  			</div>
-	  		</div>
-	  		
-	  		<!-- 리뷰  -->
-	  		<div class="reviewContent_wrap">
-	  			<div class="reviewContent_box">
-	  				<p style="border-bottom: 1px solid  rgba(5, 3, 3, 0.948); padding-bottom: 20px; font-family:'Noto Rashi Hebrew', serif; font-size:21px; padding-left: 10px; margin:0">REVIEW</p>
-	  				<div class="reviewContent">
-	  					<div class="reviewContent_left">
-	  						<div>
-		  						<span style="display: flex; justify-content: center; margin-bottom: 11px">구매자 평점</span>
-	  						</div>
-	  						<div style="display: flex; justify-content: center; align-items: center">
-		  						<img style="width: 35px; height:35px" src="/img/star.png"/>
-		  						<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="별 아이콘">별 아이콘  제작자: Pixel perfect - Flaticon</a> -->
-		  						<span style="margin-left: 12px; font-size: 20px; font-weight: 600">(5.0)평점</span>
-	  						</div>
-			  				<div class="review_reg_button">
-			  					<button type="submit" >상품 리뷰 작성하기</button>
-			  				</div>
-	  					</div>
-	  					<div class="reviewContent_right">
-	  						<div class="reviewContent_right_content">
-		  						<div>
-			  						<span>아주 좋아요</span>
-		  						</div>
-		  						<div>
-			  						<span>좋아요</span>
-		  						</div>
-		  						<div>
-			  						<span>보통이에요</span>	
-		  						</div>
-		  						<div>
-			  						<span>그냥 그래요</span>
-		  						</div>
-		  						<div>
-			  						<span>별로예요</span>
-		  						</div>
-	  						</div>
-		  					<div class="reviewContent_right_content1">
-			  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
-			  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
-			  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
-			  					<span style="width:500px; height: 7px; line-height:7px;border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
-			  					<span style="width:500px; height: 7px; line-height:7px; border-radius:4px; background-color: rgba(5, 3, 3, 0.148)"></span>
-		  					</div>
-		  					<div class="reviewContent_right_content">
-		  						<span>갯수</span>
-		  						<span>갯수</span>
-		  						<span>갯수</span>
-		  						<span>갯수</span>
-		  						<span>갯수</span>
-		  					</div>
-	  					</div>
-	  					
-	  				</div>
-	  				<div class="review_select">
-	  					<select>
-	  						<option>최신순</option>
-	  						<option>좋아요순</option>
-	  						<option>별점순</option>
-	  					</select>
-	  				</div>
-	  			</div>
-	  			
-	  			<!-- 회원들이 작성한 리뷰 리스트  -->
-	  			<div class="reviewList_wrap">
-	  				<div class="reviewList_box">
-	  					<div class="reviewList">
-	  						<div class="reviewList_star">
-		  						<!-- 만약 별이 3개라면 이미지가 3개 그려지게 해야 함 -->
-		  						<img style="width: 13px; height: 13px" src="/img/star.png"/>
-		  						<img style="width: 13px; height: 13px" src="/img/star.png"/>
-		  						<img style="width: 13px; height: 13px" src="/img/star.png"/>
-		  						<img style="width: 13px; height: 13px" src="/img/star.png"/>
-		  						<img style="width: 13px; height: 13px" src="/img/star.png"/>
-	  						</div>
-	  						<span>아주 좋아요</span>
-	  						<div>
-	  							<span>리뷰 등록 날짜</span>
-	  						</div>
-	  					</div>
-	  					<div>
-	  						리뷰 내용(여기는 리뷰 내용이 보일 공간 알간?)
-	  					</div>
-	  					<div>(하트) 좋아요</div>
-	  				</div>
-	  			</div>
-	  		</div> <!-- 리뷰 창 -->
-	  	
-	  	</div>
+				</div>
+				<div class="review_select">
+					<select>
+						<option>최신순</option>
+						<option>좋아요순</option>
+						<option>별점순</option>
+					</select>
+				</div>
+			</div>
+			
+			<!-- 회원들이 작성한 리뷰 리스트  -->
+			<div class="reviewList_wrap">
+				<div class="reviewList_box">
+					<div class="reviewList">
+						<div class="reviewList_star">
+ 						<!-- 만약 별이 3개라면 이미지가 3개 그려지게 해야 함 -->
+ 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+ 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+ 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+ 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+ 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+						</div>
+						<span>아주 좋아요</span>
+						<div>
+							<span>리뷰 등록 날짜</span>
+						</div>
+					</div>
+					<div>
+						리뷰 내용(여기는 리뷰 내용이 보일 공간 알간?)
+					</div>
+					<div>(하트) 좋아요</div>
+				</div>
+			</div>
+		</div> <!-- 리뷰 창 -->
+  	
+  	</div>
+ </div>
 
-    </div>
-    
-    
-
-</th:block>
+   
+	<!--footer  -->
+	<div class="footer-outer">
+        <footer>
+          <div class="footer-inner">
+            <div class="footer-left">
+              <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
+            </div>
+            <div class="footer-left footer-left2">
+              <div>개인정보 취급 방침 ㅣ 이용약관 ㅣ 고객센터/문의하기</div>
+              <div>서울시 강남구 테헤란로 7길 7 ㅣ TEL. 02)123-4567 ㅣ FAX. 02)345-6789</div>
+              <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
+            </div>
+            <div class="footer-right">
+              <span>개인정보처리방침</span>
+              <span>▼ 관련 사이트</span>
+            </div>
+          </div>
+        </footer>
+        </div>
+ 
 <!-- js 링크 -->
- <script src="/js/product_detail/product_detail_tab.js"></script>
+ <script src="/js/product_detail/product_detail_page.js"></script>
+  <script th:inline="javascript">
+      var menu = JSON.parse('[[${uri}]]');
+      //a태그
+      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
+    </script>
+    <script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      });
+    </script>
+  </body>
 </html>
