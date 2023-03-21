@@ -2,15 +2,17 @@ package com.y4j.final_project.controller.ordercontroller;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
 import com.y4j.final_project.command.ordercommand.CategoryVO;
@@ -41,6 +43,34 @@ public class OrderAjaxController {
 	public ArrayList<CategoryVO> getMidCategory(){
 		return orderService.getMidCategory();
 	}
+	
+	//특정 중분류에 속한 소분류 카테고리의 디테일 이름
+	@PostMapping("/get_small_category")
+	public ArrayList<String> getSmallCategory(HttpServletRequest req){
+		ArrayList<String> result = new ArrayList<>();//success콜백에 보낼 배열
+		
+		String[]lang = req.getParameterValues("midArr");
+		for(int i=0;i<lang.length;i++) {
+			//System.out.println(lang[i]);
+			JsonParser parser = new JsonParser(); //lang[i]는 json문자열 형태. 파싱 필요
+			try {
+				JsonObject obj=(JsonObject)parser.parse(lang[i]);
+				String category_group_id=obj.get("category_group_id").toString().replaceAll("\"", "");
+				int category_detail_lv=Integer.parseInt(obj.get("category_detail_lv").toString());
+				CategoryVO vo=CategoryVO.builder().category_group_id(category_group_id).category_detail_lv(category_detail_lv).build();//vo 생성
+				result.addAll(orderService.getSmallCategory(vo));//기본배열에 내용 합치기
+				
+				
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}//end for
+		return result;
+	}
+	
+	
+	
+	
 	
 	//상세조회
 	@GetMapping("/get_admin/{admin_order_no}")
