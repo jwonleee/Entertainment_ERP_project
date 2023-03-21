@@ -107,6 +107,7 @@ public class OrderController {
 		//로그인 했다고 가정
 		session.setAttribute("user_id", "orderadministrator");
 		String user_id=(String)session.getAttribute("user_id");
+		
 		//발주관리자가 아니라면
 		if(!user_id.equals("orderadministrator")) {
 			return "redirect:/admin/hold";
