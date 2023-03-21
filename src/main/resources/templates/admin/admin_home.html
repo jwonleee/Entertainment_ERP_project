@@ -5,13 +5,23 @@
 	<div class="fragment">
 		<div class="fragment-inner" style="margin-top: 30px">
 		
-		<h2>관리자 페이지입니다.</h2>
-		
-		<h3 style="margin-top: 30px">사이드 메뉴바에서 담당하는 분야를 클릭하세요.</h3>
-		
+			<h2>관리자 페이지입니다.</h2>
+			
+			<h3 style="margin-top: 30px">사이드 메뉴바에서 담당하는 분야를 클릭하세요.</h3>
+			
+			<p th:if="${session.admin_id} != null">admin_id : [[${session.admin_id}]]</p>
+			<p th:if="${session.admin_id != null}">admin_type : [[${session.admin_type}]]</p>
+
 		</div>
 	</div>
 
 </th:block>
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+															console.log(msg + 1);
+	if(msg != null) {
+		alert(msg);
+	};
+</script>
 
 </html>

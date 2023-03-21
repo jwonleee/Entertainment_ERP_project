@@ -69,27 +69,27 @@
 										</fieldset>
 										<div class="mb-3">
 											<label for="audition_cv_age" class="form-label">나이</label>
-											<input type="number" name="audition_cv_age" class="form-control" id="audition_cv_age" placeholder="만 나이 입력" required />
+											<input type="number" name="audition_cv_age" class="form-control" id="audition_cv_age" placeholder="만 나이 입력" min="1" max="100" pattern="^(?!-)[0-9]$" required />
 											<div class="invalid-feedback">나이는 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_height" class="form-label">신장</label>
-											<input type="number" name="audition_cv_height" class="form-control" id="audition_cv_height" placeholder="일의 자리까지만 입력" required />
+											<input type="number" name="audition_cv_height" class="form-control" id="audition_cv_height" placeholder="일의 자리까지만 입력" min="1" max="220" pattern="^(?!-)[0-9]$"  required />
 											<div class="invalid-feedback">신장은 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_weight" class="form-label">체중</label>
-											<input type="number" name="audition_cv_weight" class="form-control" id="audition_cv_weight" placeholder="일의 자리까지만 입력" required />
+											<input type="number" name="audition_cv_weight" class="form-control" id="audition_cv_weight" placeholder="일의 자리까지만 입력" min="1" max="150" pattern="^(?!-)[0-9]$" required />
 											<div class="invalid-feedback">체중은 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_contact" class="form-label">연락처</label>
-											<input type="text" name="audition_cv_contact" class="form-control" id="audition_cv_contact" th:value="${userVO != null ? userVO.user_contact : ''}" required />
+											<input type="text" name="audition_cv_contact" class="form-control" id="audition_cv_contact" placeholder="010-0000-0000 형식으로 입력" pattern="^[0-9]{3}(?:-)[0-9]{4}(?:-)[0-9]{4}(?:4)?$" th:value="${userVO != null ? userVO.user_contact : ''}" required />
 											<div class="invalid-feedback">연락처는 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_email" class="form-label">이메일</label>
-											<input type="email" name="audition_cv_email" class="form-control" id="audition_cv_email" th:value="${userVO != null ? userVO.user_email : ''}" required />
+											<input type="email" name="audition_cv_email" class="form-control" id="audition_cv_email" pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" th:value="${userVO != null ? userVO.user_email : ''}" required />
 											<div class="invalid-feedback">이메일은 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
@@ -100,7 +100,7 @@
 												</span>
 											</label>
 											<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
-											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file1" aria-label="file example" required />
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file1" accept=".jpg, .jpeg" aria-label="file example" required />
 											<div class="invalid-feedback">선택된 파일이 없습니다.</div>
 										</div>
 										<div class="mb-3">
@@ -111,18 +111,18 @@
 												</span>
 											</label>
 											<!-- <input class="upload-name" value="파일선택" disabled="disabled"> -->
-											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file2" aria-label="file example" required />
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file2" accept=".jpg, .jpeg" aria-label="file example" required />
 											<div class="invalid-feedback">선택된 파일이 없습니다.</div>
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_file3" class="form-label">영상 (mp4 확장자만 가능) (선택)</label>
-											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file3" aria-label="file example" />
+											<input type="file" name="file" class="form-control upload-file" id="audition_cv_file3" accept=".mp4" aria-label="file example" />
 										</div>
 										<input type="hidden" name="audition_cv_user_id" class="form-control" id="audition_cv_user_id" th:value="${userVO != null ? userVO.user_id : ''}">
 
 									</div>
 									<div class="modal-footer">
-										<button type="button" id="audApplyBtn" class="btn btn-outline-dark">접수</button>
+										<button type="submit" id="audApplyBtn" class="btn btn-outline-dark">접수</button>
 										<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
 									</div>
 								</div>

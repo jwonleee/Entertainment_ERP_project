@@ -1,7 +1,7 @@
 // 지원서 접수 버튼 클릭
-$('#audApplyBtn').click(function() {
-  $("#audApply").submit();
-});
+// $('#audApplyBtn').click(function() {
+//   $("#audApply").submit();
+// });
 
 //이미지 미리보기
 $(document).ready(function() {
@@ -29,9 +29,6 @@ $(document).ready(function() {
 			reader.onload = function(e){ 
 				var src = e.target.result; 
         
-        console.log(e.target);
-        console.log(e.target.result);
-
 				// parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>'); 
         parent.find(".upload-thumb-wrap").children().attr("src", src);
         parent.find(".upload-thumb-wrap").css("border", "none");
@@ -50,3 +47,6 @@ $(document).ready(function() {
 	});
 
 });
+
+// 유효성 검사
+$('.invalid-feedback')
