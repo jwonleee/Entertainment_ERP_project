@@ -14,8 +14,6 @@ import com.y4j.final_project.interceptor.SaleAuthHandler;
 import com.y4j.final_project.interceptor.ScheduleAuthHandler;
 import com.y4j.final_project.interceptor.UserAuthHandler;
 
-
-
 @Configuration
 @ConditionalOnMissingBean(CacheManager.class)
 public class WebConfig implements WebMvcConfigurer{

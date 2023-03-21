@@ -11,10 +11,17 @@
 			
 			<p th:if="${session.admin_id} != null">admin_id : [[${session.admin_id}]]</p>
 			<p th:if="${session.admin_id != null}">admin_type : [[${session.admin_type}]]</p>
-			
+
 		</div>
 	</div>
 
 </th:block>
+<script th:inline="javascript">
+	var msg = JSON.parse('[[${msg}]]');
+															console.log(msg + 1);
+	if(msg != null) {
+		alert(msg);
+	};
+</script>
 
 </html>

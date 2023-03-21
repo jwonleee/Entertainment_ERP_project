@@ -109,4 +109,12 @@ public class AdminController {
 			return "admin/admin_home";
 	}
 	
+	@GetMapping("/accessDenied")
+	public String accessDenied(RedirectAttributes ra) {
+		
+		ra.addFlashAttribute("msg", "접근 권한이 없는 페이지입니다.");
+		
+		return "redirect:/admin/admin_home";
+	}
+	
 }

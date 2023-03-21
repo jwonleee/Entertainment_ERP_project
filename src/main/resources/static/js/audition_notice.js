@@ -29,9 +29,6 @@ $(document).ready(function() {
 			reader.onload = function(e){ 
 				var src = e.target.result; 
         
-        console.log(e.target);
-        console.log(e.target.result);
-
 				// parent.prepend('<div class="upload-display"><div class="upload-thumb-wrap"><img src="'+src+'" class="upload-thumb"></div></div>'); 
         parent.find(".upload-thumb-wrap").children().attr("src", src);
         parent.find(".upload-thumb-wrap").css("border", "none");

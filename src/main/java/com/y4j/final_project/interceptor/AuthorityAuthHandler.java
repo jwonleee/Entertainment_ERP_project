@@ -18,6 +18,7 @@ public class AuthorityAuthHandler implements HandlerInterceptor {
 		String admin_type = (String)session.getAttribute("admin_type");
 		
 		if(!admin_type.equals("master")) {
+//			response.sendRedirect(request.getContextPath() + "/admin/accessDenied");
 			response.sendRedirect(request.getContextPath() + "/admin/admin_home");
 			return false;  //컨트롤러 실행(X)
 			
