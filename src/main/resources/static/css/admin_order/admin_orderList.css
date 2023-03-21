@@ -42,7 +42,7 @@ input::-webkit-inner-spin-button {
    margin: 50px 0; 
 }
 .toDetail{
-    color:teal;
+    color:darkcyan;
     text-decoration: none;
 }
 
@@ -80,11 +80,11 @@ input::-webkit-inner-spin-button {
     text-decoration: none;/* 밑줄제거 */
     font-size:15px;
     font-weight: 500;
-    color:black;
+    color: black;
 }
 
 .pages a:hover{
-    background-color: rgb(126, 126, 126);
+    background-color: #3f3f3f;
 }
 
 
@@ -97,8 +97,8 @@ input::-webkit-inner-spin-button {
 }
 
 .pon{
+    background-color:#3f3f3f;
     color:white;
-	background-color:#002d72;
 }
 
 /* 모달창 */
@@ -117,7 +117,7 @@ input::-webkit-inner-spin-button {
 
 .modal_wrap{ 
     width:50%;
-    height:100%;
+    height:50%;
 	background-color: white;
     border-radius: 20px;
     margin: 0 auto;
@@ -213,9 +213,20 @@ input::-webkit-inner-spin-button {
     color: rgb(15, 119, 238);
 }
 
+#modify_btn:hover{
+	border: 2px solid rgb(15, 119, 238);
+    background-color: rgb(15, 119, 238);
+    color: white;
+}
+
 #additional_btn{
     border: 2px solid green;
     color: green;
+}
+#additional_btn:hover{
+    border: 2px solid green;
+    background-color:green;
+    color: white;
 }
 
 #additional_confirm_btn{
@@ -223,14 +234,32 @@ input::-webkit-inner-spin-button {
     color: yellowgreen;
 }
 
+#additional_confirm_btn:hover{
+	border: 2px solid yellowgreen;
+    background-color: yellowgreen;
+    color: white;
+}
+
 #close_btn{
     border: 2px solid red;
     color: red;
 }
 
+#close_btn:hover{
+    border: 2px solid red;
+    background-color: red;
+    color: white;
+}
+
 #close_btn2{
     border: 2px solid red;
     color: red;
+}
+
+#close_btn2:hover{
+    border: 2px solid red;
+    background-color: red;
+    color: white;
 }
 
 .btn{

@@ -130,7 +130,7 @@ $("#category_reg_selector").change(() => {
                     str += `<input type="hidden" name="category_detail_parent_lv" value="0"/>`;
                     str += `<tr>`;
                     str += `<th>등록할 대분류 카테고리</th>`;
-                    str += `<td><input type="text" name="category_detail_nm"/></td>`;
+                    str += `<td><input type="text" name="category_detail_nm" class="form-control"/></td>`;
                     var gstr = '';
                     var lstr = '';
                     result.forEach((item) => {
@@ -152,14 +152,14 @@ $("#category_reg_selector").change(() => {
                     str += `<tr>`;
                     str += `<th>대분류</th>`;
                     str += `<td>`;
-                    result.forEach((item) => {
-                        str += `<input type="radio" name="radio_big" data-set=${JSON.stringify(item)}>${item.category_detail_nm}`;
+                    result.forEach((item,index) => {
+                        str += `<label for="r+${index}"><input type="radio" id="r+${index}" name="radio_big" data-set=${JSON.stringify(item)}>${item.category_detail_nm}</label>`;
                     })
                     str += `</td>`;
                     str += `</tr>`;
                     str += `<tr>`;
                     str += `<th>등록할 중분류 카테고리</th>`;
-                    str += `<td><input type="text" name="category_detail_nm"/></td>`;
+                    str += `<td><input type="text" name="category_detail_nm" class="form-control"/></td>`;
                     str += `</tr>`;
                     str += `</tbody>`;
                     $("#reg_table_sector").html(str);//내용그리기
@@ -179,21 +179,21 @@ $("#category_reg_selector").change(() => {
                 str += `<th>중분류</th>`;
                 str += `<td>`;
                 var setArr = [];
-                result.forEach((item) => {
-                    str += `<input type="checkbox" class="${item.category_group_id}" value="${item.category_detail_nm}" name="check_mid" data-set=${JSON.stringify(item)}>${item.category_detail_nm}`;
+                result.forEach((item,index) => {
+                    str += `<label for="c+${index}"><input type="checkbox" id="c+${index}" class="${item.category_group_id} scheck" value="${item.category_detail_nm}" name="check_mid" data-set=${JSON.stringify(item)}>${item.category_detail_nm}</label>`;
                     setArr.push(item.category_group_id);
                 })
                 str += `<br/>`;
-                str += `<input type="checkbox" id="check_all" class="partial_select"/>모두선택`;
+                str += `<label for="check_all"><input type="checkbox" id="check_all" class="partial_select"/>모두선택</label>`;
                 setArr = [...new Set(setArr)]; //배열중복제거
                 bigcateDetailNameMap.forEach((item, index) => {
-                    str += `<input type="checkbox" class="partial_select" name="bigCateCheck" id="${setArr[index]}" value="${setArr[index]}"/>${item[setArr[index]]}`;
+                    str += `<label for="${setArr[index]}"><input type="checkbox" class="partial_select" name="bigCateCheck" id="${setArr[index]}" value="${setArr[index]}"/>${item[setArr[index]]}</label>`;
                 });
                 str += `</td>`;
                 str += `<tr>`;
                 str += `<tr>`;
                 str += `<th>등록할 소분류 카테고리</th>`;
-                str += `<td><input type="text" name="category_detail_nm"/></td>`;
+                str += `<td><input type="text" name="category_detail_nm" class="form-control"/></td>`;
                 str += `<tr>`;
                 str += `</tbody>`;
                 $("#reg_table_sector").html(str);//내용그리기
@@ -214,7 +214,6 @@ $("#reg_table_sector").on("click", '#check_all', () => {
     var checked = $('#check_all').is(':checked');
     if (checked) {
         $("input[name='check_mid']").prop("checked", true);//전체 소분류 체크박스
-        $("input[name='bigCateCheck']").prop("checked", true);//대분류 체크박스
     } else {
         $("input[name='check_mid']").prop("checked", false);
         $("input[name='bigCateCheck']").prop("checked", false);
