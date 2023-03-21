@@ -6,6 +6,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.crypto.bcrypt.BCrypt;
@@ -26,6 +28,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.email.service.EmailService;
 import com.y4j.final_project.user.service.UserService;
 import com.y4j.final_project.util.Criteria;
 import com.y4j.final_project.util.GoogleAPI;
@@ -44,7 +47,10 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	@Autowired
+	private EmailService emailService;
+	
 	@Autowired
 	private KakaoAPI kakao;
 
@@ -86,6 +92,17 @@ public class UserController {
 		
 		return "user/user_join"; 
 	}
+	
+	//이메일 인증 - 회원가입&비밀번호 찾기
+	@PostMapping("/emailConfirm")
+	public String emailConfirm(@RequestParam String email, HttpServletRequest request) throws Exception {
+		
+	  String confirm = emailService.sendSimpleMessage(email);
+
+	  return confirm;
+	}
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//소셜 간편 로그인 - 카카오
 	@GetMapping("/kakao")
@@ -127,6 +144,8 @@ public class UserController {
 
 		return "redirect:/";
 	}
+	
+	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//회원 로그인
 	@GetMapping("/user_login")
@@ -260,7 +279,6 @@ public class UserController {
 	@PostMapping("userCartForm")
 	public String userCartForm() {
 		
-		
 		return "redirect:/user/order_list";
 	}
 	
@@ -287,10 +305,5 @@ public class UserController {
 		
 		return "user/order_list";
 	}
-	
-	
-
-
-
 
 }
