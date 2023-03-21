@@ -69,7 +69,7 @@
 										</fieldset>
 										<div class="mb-3">
 											<label for="audition_cv_age" class="form-label">나이</label>
-											<input type="number" name="audition_cv_age" class="form-control" id="audition_cv_age" placeholder="만 나이 입력" required />
+											<input type="number" name="audition_cv_age" class="form-control" id="audition_cv_age" placeholder="만 나이 입력" pattern="" required />
 											<div class="invalid-feedback">나이는 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
@@ -84,7 +84,7 @@
 										</div>
 										<div class="mb-3">
 											<label for="audition_cv_contact" class="form-label">연락처</label>
-											<input type="text" name="audition_cv_contact" class="form-control" id="audition_cv_contact" th:value="${userVO != null ? userVO.user_contact : ''}" required />
+											<input type="text" name="audition_cv_contact" class="form-control" id="audition_cv_contact" placeholder="010-0000-0000 형식으로 입력" pattern="^[0-9]{3}(?:-)[0-9]{4}(?:-)[0-9]{4}(?:4)?$" th:value="${userVO != null ? userVO.user_contact : ''}" required />
 											<div class="invalid-feedback">연락처는 필수 항목입니다.</div>
 										</div>
 										<div class="mb-3">
@@ -122,7 +122,7 @@
 
 									</div>
 									<div class="modal-footer">
-										<button type="button" id="audApplyBtn" class="btn btn-outline-dark">접수</button>
+										<button type="submit" id="audApplyBtn" class="btn btn-outline-dark">접수</button>
 										<button type="button" class="btn btn-secondary closeModal" data-bs-dismiss="modal">닫기</button>
 									</div>
 								</div>
@@ -143,5 +143,25 @@
 	};
 </script>
 <script src="/js/audition_notice.js"></script>
+
+<script>
+	var regex = VerEx()
+							.startOfLine()
+							.range('0', '9')
+							.repeatPrevious(3)
+							.then('-')
+							.range('0', '9')
+							.repeatPrevious(4)
+							.then('-')
+							.range('0', '9')
+							.repeatPrevious(4)
+							.maybe('4')
+							.endOfLine();
+	console.log(regex.test('010-1234-2678'));
+	console.log(regex);
+	console.log(/^[0-9]{3}(?:-)[0-9]{4}(?:-)[0-9]{4}(?:4)?$/.test('010-12345678'));	//false
+	console.log(/^[0-9]{3}(?:-)[0-9]{4}(?:-)[0-9]{4}(?:4)?$/.test('010-1234-5678'));	//true
+
+</script>
 
 </html>

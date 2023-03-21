@@ -1,7 +1,7 @@
 // 지원서 접수 버튼 클릭
-$('#audApplyBtn').click(function() {
-  $("#audApply").submit();
-});
+// $('#audApplyBtn').click(function() {
+//   $("#audApply").submit();
+// });
 
 //이미지 미리보기
 $(document).ready(function() {
@@ -50,3 +50,6 @@ $(document).ready(function() {
 	});
 
 });
+
+// 유효성 검사
+$('.invalid-feedback')
