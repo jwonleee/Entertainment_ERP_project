@@ -1,6 +1,5 @@
 //예시 카테고리 생성
 
-
 var bigcateDetailNameMap = [];//대분류 detail_nm 저장할 맵을 원소로 가지는 배열
 
 var bigcateDetailNameArr = [];//대분류 detail_nm 저장할 배열
