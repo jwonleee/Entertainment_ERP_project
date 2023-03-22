@@ -8,21 +8,25 @@
 	<!-- 관리자 등록 메서드(회원가입) -->
 	<insert id="registAdmin" parameterType="com.y4j.final_project.command.AdminVO">
 		insert into administrator(
+			admin_type,
 			admin_id,
 			admin_pw,
 			admin_name,
 			admin_contact,
 			admin_address,
 			admin_gender,
-			admin_email)
+			admin_email,
+			ent_name)
 		values(
+			#{admin_type},
 			#{admin_id},
 			#{admin_pw},
 			#{admin_name},
 			#{admin_contact},
 			#{admin_address},
 			#{admin_gender},
-			#{admin_email})
+			#{admin_email},
+			#{ent_name})
 	</insert>
 	
 	<!-- 관리자 전체 정보 조회 메서드 -->
@@ -64,6 +68,14 @@
 		where admin_no = #{authority_mng_admin_no}
   	</update>
   	
+	<!-- 관리자 회원가입 아이디 중복 검사 및 로그인 시 아이디 유무 확인 -->
+	<select id="idCheck2" parameterType="String" resultType="Integer">
+		select count(admin_id) from administrator where admin_id = #{admin_id}
+	</select>
 	
-
+		<!-- 로그인 시 암호화한 비밀번호 확인 -->
+	<select id="login" resultType="String">
+		select admin_pw from administrator where admin_id=#{admin_id}
+	</select>
+	
 </mapper>

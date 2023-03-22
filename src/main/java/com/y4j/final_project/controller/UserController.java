@@ -86,11 +86,11 @@ public class UserController {
 			vo.setUser_pw(pw);
 			userService.registUser(vo);
 
-			return "user/user_login"; //실패하면 원래 화면으로
+			return "user/user_login"; 
 		}
 		model.addAttribute("vo", null);
 		
-		return "user/user_join"; 
+		return "user/user_join"; //실패하면 원래 화면으로
 	}
 	
 	//이메일 인증 - 회원가입&비밀번호 찾기

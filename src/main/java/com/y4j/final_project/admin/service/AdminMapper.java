@@ -33,4 +33,10 @@ public interface AdminMapper {
 	//권한 신청 목록 승인 처리 메서드
 	public int approveAuth(AuthorityVO vo);
 	
+	//관리자 아이디 중복 검사 및 로그인 시 아이디 유무 확인
+	public int idCheck2(String admin_id);
+	
+	//관리자 로그인
+	public String login(String admin_id);
+	
 }
