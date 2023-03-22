@@ -99,10 +99,10 @@ public class AuditionController {
 		}
 		
 		//오디션 접수(ServiceImpl)
-//		int result = auditionService.registAud(vo, list);
+		int result = auditionService.registAud(vo, list);
 		
-//		String msg = (result == 1) ? "정상적으로 접수 처리되었습니다." : "오디션 접수에 실패했습니다.";
-//		ra.addFlashAttribute("msg", msg);
+		String msg = (result == 1) ? "정상적으로 접수 처리되었습니다." : "오디션 접수에 실패했습니다.";
+		ra.addFlashAttribute("msg", msg);
 		
 		return "redirect:/audition/audition_notice";
 	}	
