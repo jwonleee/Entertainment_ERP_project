@@ -8,6 +8,7 @@
     <title>admin_join</title>
 
     <link rel="stylesheet" href="/css/admin_join.css">
+    <script src="/js/admin_join.js"></script>
 
     <!-- 카카오 우편번호 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -33,7 +34,6 @@
                 }, 400);
                 return false;
             });
-
 
             $(".bottom_btn").click(function () {
                 $('html, body').animate({
@@ -63,10 +63,12 @@
         <a href="admin_login"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
     </header>
 
+ <div class="join_section">
     <form class="adminJoinForm" action="adminJoinForm" method="post">
-        <div class="join_section_title" style="text-align: center;">
+        <h3 class="join_section_title" style="text-align: center;">
             <!-- 회원가입 제목 -->
-            <em style="font-size: 50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Join</em></h3>
+            <em style="font-size: 50px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">Join</em>
+        </h3>
             <div class="join_box">
 
                 <div class="join_info_box">
@@ -106,7 +108,8 @@
                             <strong class="left">이름<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="text" name="admin_name" class="input" required>
+                            <input type="text" name="admin_name" class="input" th:value="${vo1 != null? vo1.admin_name:''}" required>
+                            <span style="color:red; font-size:12px;">[[${valid_admin_name}]]</span>
                         </div>
                     </div>
 
@@ -128,8 +131,11 @@
                             <strong>아이디 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="text" name="admin_id" class="input id" minlength="6" maxlength="16"
-                                pattern="^([a-z0-9_]){4,16}$" placeholder="영문소문자/숫자, 6~16자" required>
+                            <input type="text" id="admin_id" name="admin_id" class="input id" onkeyup="checkId2()" minlength="4" maxlength="16"
+                                pattern="^([a-z0-9_]){4,16}$" placeholder="영문소문자/숫자, 4~16자" required>
+                            <span class="id_ok" style="color:blue; display: none; font-size:12px;">사용 가능한 아이디입니다</span>
+                        	<span class="id_notok" style="color:red; display: none; font-size:12px;">이미 사용 중인 아이디입니다</span>
+                        	<br/><span style="color:red; font-size:12px;">[[${valid_admin_id}]]</span>
                         </div>
                     </div>
 
@@ -139,9 +145,10 @@
                             <strong>비밀번호 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="password" name="admin_pw" class="input pw"
-                                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+                            <input type="password" id="pw" name="admin_pw" class="input pw"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$" th:value="${vo1 != null? vo1.admin_pw:''}"
                                 minlength="8" maxlength="16" placeholder="영문 대소문자/숫자/특수문자 중 3가지 이상 조합, 8자~16자" required>
+                                <span style="color: red; font-size:12px;">[[${valid_admin_pw}]]</span>
                         </div>
                     </div>
 
@@ -151,8 +158,8 @@
                             <strong>비밀번호 확인 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="password" name="pw" class="input pw"
-                                pattern="^(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*()_-+=[]{}~?:;`|/]).{8,16}$"
+                            <input type="password" id="pw2"  class="input pw"
+                                pattern="^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,16}$"
                                 minlength="8" maxlength="16" required>
                         </div>
                     </div>
@@ -163,7 +170,7 @@
                             <strong>이메일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" required>
+                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
                         </div>
                     </div>
 
@@ -173,22 +180,17 @@
                             <strong>휴대전화 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <select name="start_num" class="region_num left" required>
-                                <option value="010" selected>010</option>
-                                <option value="011">011</option>
-                                <option value="016">016</option>
-                                <option value="017">017</option>
-                                <option value="018">018</option>
-                                <option value="019">019</option>
-                            </select>
+                           <input type="text" value="010" readonly name="adminContact"
+                        class="region_num left"
+                        style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
                             <span> - </span>
-                            <input type="text" name="mid_num" class="phone_num phone_num1"
+                            <input type="text" name="admin_contact" class="phone_num phone_num1"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                maxlength="4" required>
+                                maxlength="4" th:value="${vo1 != null? vo1.admin_contact:''}" required>
                             <span> - </span>
-                            <input type="text" name="last_num" class="phone_num phone_num2"
+                            <input type="text" name="admin_contact" class="phone_num phone_num2"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
-                                maxlength="4" required>
+                                maxlength="4" th:value="${vo1 != null? vo1.admin_contact:''}" required>
                             <input type="hidden" class="adminContact" name="admin_contact" value="" />
                         </div>
                     </div>
@@ -200,11 +202,12 @@
                         </diV>
                         <div class="join_info_content right address">
                             <input type="text" name="zipcode" id="zipcode" size="7" placeholder="우편번호"
-                                style="border-bottom: 0.5px solid #dfdfdf;;" onclick="kakaopost()" readonly>
+                                style="border-bottom: 0.5px solid #dfdfdf;;" onclick="kakaopost()" required readonly>
                             <input type="button" value="우편번호찾기" id="zipcode" class="address_btn" onclick="kakaopost()"
                                 required><br />
-                            <input type="text" class="admin_addresses admin_address1" name="address" id="address" size="70"><br />
-                            <input type="text" class="admin_addresses admin_address2" name="address" id="address" size="70" placeholder=" 나머지주소">
+                            <input type="text" class="admin_addresses admin_address1" name="admin_address" id="address" size="70" required><br />
+                            <input type="text" class="admin_addresses admin_address2" name="admin_address" id="address" size="70" placeholder=" 나머지주소" required>
+                        	<span style="color:red; font-size:12px;">[[${valid_admin_address}]]</span>
                         </div>
                     </div>
                     <input type="hidden" class="admin_address" name="admin_address" />
@@ -215,8 +218,8 @@
                             <strong>담당 연예인 <span></span></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <select class="ent_name" name="ent_name" aria-label=".form-select-sm example">
-                                <option selected>none</option>
+                            <select class="ent_name" name="ent_name" aria-label=".form-select-sm example" required>
+                                <option selected></option>
                                 <option value="BLACKPINK">BLACKPINK</option>
                                 <option value="NewJeans">NewJeans</option>
                                 <option value="IVE">IVE</option>
@@ -285,12 +288,12 @@
 
                         <div class="join_contract_all">
                             <h3>모든 약관에 동의합니다</h3>
-                            <input type="radio" id="check_all" class="check_all">
+                            <input type="checkbox" id="check_all" class="check_all" name="check_all" onclick="agreeContractAll()">
                         </div>
                         <!-- 이용 약관 동의 -->
                         <div class="join_contract_use contract_content">
                             <h3>이용 약관 동의 <span>(필수)</span></h3>
-                            <input type="radio" name="agree">
+                            <input type="checkbox" name="agree" onclick="agreeContract()" required>
                         </div>
                         <!-- 약관 내용 -->
                         <div class="join_contract_detail detail1">
@@ -1038,7 +1041,7 @@
                         <!-- 개인정보 수집 및 이용 동의 -->
                         <div class="join_contract_info contract_content">
                             <h3>개인정보 수집 및 이용 동의 <span>(필수)</span></h3>
-                            <input type="radio" name="agree">
+                            <input type="checkbox" name="agree" onclick="agreeContract()" required>
                         </div>
                         <!-- 약관 내용 -->
                         <div class="join_contract_detail detail2">
@@ -1254,7 +1257,7 @@
                         <!-- 14세 이상 가입 동의 -->
                         <div class="join_contract_youth contract_content">
                             <h3>14세 이상 가입동의 <span>(필수)</span></h3>
-                            <input type="radio" name="agree">
+                            <input type="checkbox" name="agree" required>
                         </div>
                         <div class="join_contract_detail detail3">
                             <div>
@@ -1265,7 +1268,7 @@
                         <!-- 개인정보 제3자 제공 -->
                         <div class="join_contract_info contract_content">
                             <h3>개인정보 제3자 제공 동의 <span>(선택)</span></h3>
-                            <input type="radio" name="agree">
+                            <input type="checkbox" name="agree" onclick="agreeContract()">
                         </div>
                         <div class="join_contract_detail detail4">
                             <div>
@@ -1286,16 +1289,44 @@
             </div>
 
             <div class="join_btn">
-                <a href="admin_login" class="join_cancel"><button class="join_cancel">취소</button></a>
-                <button type="submit" class="join_complete">가입</button>
+                <a href="/" class="join_cancel"><button class="join_cancel">취소</button></a>
+                <button type="submit" class="join_complete" style="cursor:pointer;">가입</button>
             </div>
-        </div>
     </form>
+    
+    <!-- 상단, 하단으로 가는 버튼 -->
+   <div class="arrow_btn">
+      <a href="#" class="top_btn"> <img
+         src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png"
+         alt="상단버튼">
+      </a><br /> <a href="#" class="bottom_btn"> <img
+         src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png"
+         alt="하단버튼">
+      </a>
+   </div>
+        </div>
 
     <footer>
         <h3>Footer 입니다</h3>
     </footer>
 
 </body>
+
+<!-- /* 비밀번호 일치 확인 */ -->
+   <script>
+
+   var pw = document.getElementById("pw")
+   var pw2 = document.getElementById("pw2");
+
+   function validatePassword(){
+   if(pw.value != pw2.value) {
+     pw2.setCustomValidity("비밀번호가 일치하지 않습니다");
+   } else {
+     pw2.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
+   }
+   }
+   pw.onchange = validatePassword;
+   pw2.onkeyup = validatePassword;
+   </script>
 
 </html>

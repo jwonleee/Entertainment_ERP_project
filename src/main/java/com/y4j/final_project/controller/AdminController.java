@@ -1,11 +1,17 @@
 package com.y4j.final_project.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +35,9 @@ public class AdminController {
 	@Autowired
 	private AuthorityService authorityService;
 	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
 	
 	@GetMapping("/admin_login")
 	public String admin_login(HttpSession session, AdminVO adminVO, Model model) {
@@ -43,7 +52,7 @@ public class AdminController {
 		
 		return "admin/admin_login";
 	}
-
+	
 	@GetMapping("/admin_join")
 	public String admin_join() {
 		
@@ -57,11 +66,33 @@ public class AdminController {
 	}
 	
 	@PostMapping("/adminJoinForm")
-	public String adminJoinForm(AdminVO vo1,Criteria cri,
+	public String adminJoinForm(@Valid AdminVO vo1, Errors errors, Model model, Criteria cri,
 								RedirectAttributes ra) {
-		//관리자 회원가입
-		vo1.setAdmin_no(adminService.getAdminTotal(cri) + 1);
-		System.out.println("AdminVO Total : " + vo1.getAdmin_no());
+		
+		//유효성 검사
+		if(errors.hasErrors()) { //에러가 있다면 true, 없다면 false
+			List<FieldError> list = errors.getFieldErrors();
+			for(FieldError err : list) {
+				if(err.isBindingFailure()) { //유효성 검사의 실패가 아니라, 자바 내부의 에러라면 true 반환
+					model.addAttribute("valid_" + err.getField(), "형식이 올바르지 않습니다");
+				} else { //유효성 검사에 실패한 목록
+					model.addAttribute("valid_" +err.getField(), err.getDefaultMessage());
+				}
+			}
+
+//			//아이디 중복 검사
+//			int result = adminService.idCheck2(vo1.getAdmin_id()); 
+//			System.out.println("아이디 중복 검사 결과 : " + result);
+//			model.addAttribute("vo1", vo1);
+
+			//비밀번호 암호화
+			String pw = passwordEncoder.encode(vo1.getAdmin_pw());
+			vo1.setAdmin_pw(pw);
+			
+			adminService.registAdmin(vo1);
+			return "admin/admin_login";
+		}
+		
 		//권한 신청
 		AuthorityVO vo2 = AuthorityVO.builder()
 						  .authority_mng_no(authorityService.getAuthorityApplyTotal(cri) + 1)
@@ -77,36 +108,38 @@ public class AdminController {
 		
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 회원가입 되었습니다.\n관리자 권한 승인을 기다려주세요." : "회원가입에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
+
+//		//관리자 회원가입
+//		vo1.setAdmin_no(adminService.getAdminTotal(cri) + 1);
+//		System.out.println("AdminVO Total : " + vo1.getAdmin_no());
 		
-		return "redirect:/admin/admin_login";
+		model.addAttribute("vo1", null);
+		return "admin/admin_join";
 	}
 	
 	@PostMapping("/adminLoginForm")
 	public String adminLoginForm(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw, 
 			AdminVO vo, HttpServletRequest request, Model model) {
 
-//		int count = userService.idCheck(user_id); //db에 저장되어있는 아이디
-//		String saved_pw = userService.login(user_id); //db에 저장되어있는 비밀번호
+		int count = adminService.idCheck2(admin_id); //db에 저장되어있는 아이디
+		String saved_pw = adminService.login(admin_id); //db에 저장되어있는 비밀번호
 
 		//세션이 있으면 세션 반환, 없으면 새로 생성해서 반환
 		//getSession()은 기본값이 true인데 false로 설정할 경우, 세션이 없을 때 새로 생성하지 않고 null 반환
 		HttpSession session = request.getSession();
 
-//		if(count == 1 && passwordEncoder.matches(user_pw, saved_pw) ) {
+		if(count == 1 && passwordEncoder.matches(admin_pw, saved_pw) ) {
 
 			//세션에 회원정보 저장 - 아이디로 가져와서
 		AdminVO adminVO = adminService.getAdminInfo2(admin_id);
 			session.setAttribute("admin_id", adminVO.getAdmin_id());
 			session.setAttribute("admin_type", adminVO.getAdmin_type());
 			
-//			return "user/mypage";
-//			
-//		} else {
-//			session.setAttribute("vo", null);
-//			//model.addAttribute("vo", null);
-//			return "user/user_login";
-//		}
+			return "user/mypage";
+		} else {
+			session.setAttribute("admin_id", null);
 			return "admin/admin_home";
+		}
 	}
 	
 	@GetMapping("/accessDenied")

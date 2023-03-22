@@ -40,6 +40,14 @@ public class AjaxController {
 	@Autowired
 	AuditionService auditionService;
 	
+	//아이디 중복체크
+	@PostMapping("/idCheck2")
+	@ResponseBody
+	public int idCheck2(@RequestParam("admin_id") String admin_id) {
+
+		int cnt = adminService.idCheck2(admin_id);
+		return cnt;
+	}
 
 	@PostMapping("/getAdminInfo")
 	public AdminVO getAdminInfo(@RequestBody AdminVO vo) {
