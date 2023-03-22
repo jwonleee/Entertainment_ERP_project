@@ -1,268 +1,304 @@
-*{
-    padding:0;
+* {
+    padding: 0;
     margin: 0;
     list-style: none;
 }
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
- }
-
-/* ******** 검색********* */
-.search_wrap{
-    overflow:hidden;
-    width:100%;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
-.search_form{
+/* ******** 검색********* */
+.search_wrap {
+    overflow: hidden;
+    width: 100%;
+}
+
+.search_form {
     float: right;
 }
 
-.title_right{
-    float:left;
-    margin-left:5px;
+.title_right {
+    float: left;
+    margin-left: 5px;
+}
+
+.search_input {
+    border: 3px solid #ced4da;
+    border-radius: 0.375rem;
+    padding: 0.1rem 0.75rem;
+}
+
+.search_input:focus{
+    border: 3px solid rgb(146, 183, 240);
+    outline:none;
+}
+
+#search_btn{
+    background: none;
+    border: 3px solid yellowgreen;
+    border-radius: 0.375rem;
+    padding: 0.1rem 0.75rem;
+
+}
+
+#search_btn:hover{
+    border: 3px solid yellowgreen;
+    background-color: yellowgreen;
+    color:white;
 }
 
 
 /****** 게시글 ********/
-.whole_content{
+.whole_content {
     width: 100%;
 }
 
-.search_wrap{
-	margin-top:10px;
-	margin-bottom:10px;
+.search_wrap {
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
 
 
-.listwrap{
-   margin: 50px 0; 
+.listwrap {
+    margin: 50px 0;
 }
-.toDetail{
-    color:darkcyan;
+
+.toDetail {
+    color: darkcyan;
     text-decoration: none;
 }
 
-.toDetail:hover{
+.toDetail:hover {
     color: red;
     cursor: pointer;
 }
 
 /***********pagenation***********/
-.pagination_section{
-	margin-top:20px;
+.pagination_section {
+    margin: 20px 0;
+    
     text-align: center;
 }
 
-.pagination{
+.pagination {
     margin: 0 auto;
-    width:900px;
+    width: 900px;
 }
 
-.pages{
+.pages {
     margin: 0 auto;
     display: inline-block;
 }
 
-.pages li{
+.pages li {
     display: inline;
 }
 
-.pages li a{
-    border:1px solid #bab9b9;
+.pages li a {
+    border: 1px solid #bab9b9;
     display: inline-block;
     height: 30px;
     width: 50px;
     line-height: 30px;
-    text-decoration: none;/* 밑줄제거 */
-    font-size:15px;
+    text-decoration: none;
+    /* 밑줄제거 */
+    font-size: 15px;
     font-weight: 500;
     color: black;
 }
 
-.pages a:hover{
-    background-color: #3f3f3f;
+.pages a:hover {
+    outline: 3px solid yellowgreen;
 }
 
 
-.page_num{
+.page_num {
     height: 30px;
     line-height: 30px;
 }
-.page_num:hover{
-    color:white;
-}
 
-.pon{
-    background-color:#3f3f3f;
-    color:white !important;
+
+
+.pon {
+    background-color: #3f3f3f;
+    color: white !important;
 }
 
 /* 모달창 */
- .modal{
+.modal {
     width: 100%;
-	height: 100%;
-	background-color: rgba(0, 0, 0, 0.5);
-	top: 0;
-	left: 0;
-	display: none;
-} 
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    top: 0;
+    left: 0;
+    display: none;
+}
 
-.modal_content{
+.modal_content {
     display: block;
 }
 
-.modal_wrap{ 
-    width:50%;
-    height:50%;
-	background-color: white;
+.modal_wrap {
+    width: 50%;
+    height: 50%;
+    background-color: white;
     border-radius: 20px;
     margin: 0 auto;
     text-align: center;
     position: relative;
-    overflow-y:auto;
-} 
-
-.modal_wrap h5{
-    margin-top:20px;
+    overflow-y: auto;
 }
 
-.modal_wrap .modal_close{
-    position:absolute;
-	top:3px;
-	right:8px;		
-	text-decoration:none;
-	background-color:#fff;
-	font-weight:bold;
-	font-size: large;
-	padding: 10px 30px;
-	border: none;
-	cursor: pointer;
+.modal_wrap h5 {
+    margin-top: 20px;
+}
+
+.modal_wrap .modal_close {
+    position: absolute;
+    top: 3px;
+    right: 8px;
+    text-decoration: none;
+    background-color: #fff;
+    font-weight: bold;
+    font-size: large;
+    padding: 10px 30px;
+    border: none;
+    cursor: pointer;
 }
 
 
 /* 모달 테이블 */
-.detailTable{
-    width:90%;
+.detailTable {
+    width: 90%;
 }
 
 
 
-.modal_table{
+.modal_table {
     /* border: 1px solid #777; */
     padding: 20px;
-    text-align:center;
+    text-align: center;
 }
 
 
-.modal_table .th{
+.modal_table .th {
     padding: 20px 3px;
     border-right: 1px solid #777;
     border-bottom: 1px solid #777;
-    box-shadow:0.5px 1px #777;
+    box-shadow: 0.5px 1px #777;
 }
 
-.modal_table th{
-    padding:30px 40px;
+.modal_table th {
+    padding: 30px 40px;
     /* border-right: 1px solid #777; */
     border-top: 1px solid #777;
 }
 
-.modal_table td{
+.modal_table td {
     padding: 25px;
     border-top: 1px solid #777;
-    color:#002d72
+    color: #002d72
 }
 
-.modal_table td input{
+.modal_table td input {
     padding: 25px;
     border: none;
-    text-align:center;
-    color:#002d72;
+    text-align: center;
+    color: #002d72;
 
 }
 
-.modal_table td .change_input{
+.modal_table td .change_input {
     border-bottom: 3px solid red;
 }
 
+.modal_table td .change_input:focus{
+    border-bottom: none;
+}
+
+.modal_input:focus{
+    outline: 3px solid rgb(146, 183, 240);
+}
+
 /* 이미지 */
-.modal_table img{
-    width:100px;
+.modal_table img {
+    width: 100px;
     height: 100px;
 }
 
 /* 버튼 */
-.btn_wrap{
-    width:90%;
+.btn_wrap {
+    width: 90%;
     border-top: 1px solid #777;
 }
 
 
-.btn_area{
+.btn_area {
     margin: 0 auto;
     text-align: center;
     padding: 20px;
 }
 
-#modify_btn{
-	border: 2px solid rgb(15, 119, 238);
+#modify_btn {
+    border: 2px solid rgb(15, 119, 238);
     color: rgb(15, 119, 238);
 }
 
-#modify_btn:hover{
-	border: 2px solid rgb(15, 119, 238);
+#modify_btn:hover {
+    border: 2px solid rgb(15, 119, 238);
     background-color: rgb(15, 119, 238);
     color: white;
 }
 
-#additional_btn{
+#additional_btn {
     border: 2px solid green;
     color: green;
 }
-#additional_btn:hover{
+
+#additional_btn:hover {
     border: 2px solid green;
-    background-color:green;
+    background-color: green;
     color: white;
 }
 
-#additional_confirm_btn{
-	border: 2px solid yellowgreen;
+#additional_confirm_btn {
+    border: 2px solid yellowgreen;
     color: yellowgreen;
 }
 
-#additional_confirm_btn:hover{
-	border: 2px solid yellowgreen;
+#additional_confirm_btn:hover {
+    border: 2px solid yellowgreen;
     background-color: yellowgreen;
     color: white;
 }
 
-#close_btn{
+#close_btn {
     border: 2px solid red;
     color: red;
 }
 
-#close_btn:hover{
+#close_btn:hover {
     border: 2px solid red;
     background-color: red;
     color: white;
 }
 
-#close_btn2{
+#close_btn2 {
     border: 2px solid red;
     color: red;
 }
 
-#close_btn2:hover{
+#close_btn2:hover {
     border: 2px solid red;
     background-color: red;
     color: white;
 }
 
-.btn{
+.btn {
     background-color: white;
     border-radius: 20px;
     padding: 2px;
@@ -271,14 +307,18 @@ input::-webkit-inner-spin-button {
 
 /* toggle용 */
 
-.td_show_none{
-    display:none;
+.td_show_none {
+    display: none;
 }
 
 
-@keyframes fadeIn {from { opacity:0.5;
-	background-color: #dddcd4;
-	}to {
-		opacity: 1;
-	}
+@keyframes fadeIn {
+    from {
+        opacity: 0.5;
+        background-color: #dddcd4;
+    }
+
+    to {
+        opacity: 1;
+    }
 }
