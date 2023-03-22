@@ -307,6 +307,8 @@
       // }
 
       $('.sideMenuTitle').html($('a[href*=' + '[[${uri}]]' + ']').parent().parent().parent().children(0).find("span").html());
+      // console.log($('a[href*=' + '[[${uri}]]' + ']').parent().parent().parent().first().find("span").html());
+      // console.log($('a[href*=' + '[[${uri}]]' + ']').parent().parent().html());
       $('.sideMenuContent').html($('a[href*=' + '[[${uri}]]' + ']').html());
     </script>
     <script>
