@@ -38,8 +38,7 @@
 
 	<!-- 회원가입 시 아이디 중복검사 및 로그인 아이디 확인 -->
 	<select id="idCheck" parameterType="String" resultType="Integer">
-		select
-		count(user_id) from users WHERE user_id= #{user_id}
+		select count(user_id) from users WHERE user_id= #{user_id}
 	</select>
 
 	<!-- 로그인 시 암호화한 비밀번호 확인 -->
@@ -100,21 +99,9 @@
 	<!-- ////////////////////////////////////////////////////////////////////// -->
 
 	<!-- 장바구니 전체 상품 조회 -->
-	<select id="getCartList" resultType="CartVO">
-<!-- 		  select 
-	c.cart_prod_no,
-    c.cart_prod_img_path,
-    c.cart_prod_artist,
-    c.cart_prod_name,
-    c.cart_prod_cnt,
-    c.cart_prod_discount_rate,
-    c.cart_prod_price
-     from users u
-  inner join cart c
-  on u.user_id = c.user_id
-  where u.user_id = #{user_id} -->
-  
+	<select id="getCartList" resultType="CartListVO1">
     select
+		c.cart_no,
 		c.cart_prod_no,
 		p.prod_img_path,
 		p.prod_artist,
@@ -123,9 +110,9 @@
 		p.prod_discount_rate,
 		p.prod_price
 	from cart c
-	left outer join product p
-	on c.cart_no = p.prod_no
-	where c.user_id = #{user_id};
+	inner join product p
+	on c.cart_prod_name = p.prod_name
+	where c.user_id = #{user_id}
 
 	</select>
 	

@@ -178,7 +178,7 @@
 						alt="필수사항표시"></strong>
 				</div>
 				<div class="edit_info_content right">
-					<input type="email" name="user_email" class="input email"
+					<input type="email" name="user_email" class="input email" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*"
 						placeholder="이메일 형식으로 입력하세요"
 						 th:value="${session.vo.user_email}" required><span
 						style="color: red; font-size: 12px;">[[${valid_user_email}]]</span>
