@@ -62,7 +62,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminDate_td">`;
             str += `<div id="adminDate_div" class="insertToggle">${result.admin_order_regdate}</div>`;
-            str += `<input type="text" id="adminDateInput" readonly required="required" value="${today}" name="admin_order_regdate" class="insertToggle td_show_none"/>`;
+            str += `<input type="text" id="adminDateInput" readonly required="required" value="${today}" name="admin_order_regdate" class="insertToggle td_show_none modal_input"/>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -78,7 +78,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminPrice_td">`;
             str += `<div id="adminPrice_div" class="insertToggle">${result.admin_order_price}원</div>`;
-            str += `<div class="insertToggle td_show_none"><input type="text" value="${result.admin_order_price}" name="admin_order_price" placeholder="상품가격 * 재고" readonly required="required" class="insertToggle td_show_none"/>원</div>`;
+            str += `<div class="insertToggle td_show_none"><input type="text" value="${result.admin_order_price}" name="admin_order_price" placeholder="상품가격 * 재고" readonly required="required" class="insertToggle td_show_none modal_input"/>원</div>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -87,7 +87,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminProdCnt_td">`;
             str += `<div class="insertToggle">${result.admin_order_prod_cnt}개</div>`;
-            str += `<div class="insertToggle td_show_none"><input type="number" value="${result.admin_order_prod_cnt}" name="admin_order_prod_cnt" oninput="handleInputLength(this, 8)" required="required" class="insertToggle td_show_none change_input"/>개</div>`;
+            str += `<div class="insertToggle td_show_none"><input type="number" value="${result.admin_order_prod_cnt}" name="admin_order_prod_cnt" oninput="handleInputLength(this, 8)" required="required" class="insertToggle td_show_none change_input modal_input"/>개</div>`;
             str += `</div></td>`;
             str += `</tr>`;
             str += `<tr>`;
@@ -96,7 +96,7 @@ function drawModal(admin_order_album_no, admin_order_prod_no, admin_order_no) {
             str += `</th>`;
             str += `<td><div id="adminCompany_td">`;
             str += `<div id="adminCompany_div" class="insertToggle">(주)${result.admin_order_company}</div>`;
-            str += `<input type="text" value="${result.admin_order_company}" name="admin_order_company" required="required" class="insertToggle td_show_none change_input"/>`;
+            str += `<input type="text" value="${result.admin_order_company}" name="admin_order_company" required="required" class="insertToggle td_show_none change_input modal_input"/>`;
             str == `</div></td>`;
             str += `</tr>`;
             str += `</tbody>`;

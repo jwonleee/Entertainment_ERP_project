@@ -8,59 +8,19 @@
     <title>admin_join</title>
 
     <link rel="stylesheet" href="/css/admin_join.css">
-    <script src="/js/admin_join.js"></script>
 
     <!-- 카카오 우편번호 API -->
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-    <script>
-        function kakaopost() {
-            new daum.Postcode({
-                oncomplete: function (data) {
-                    document.querySelector("#zipcode").value = data.zonecode;
-                    document.querySelector("#address").value = data.address
-                }
-            }).open();
-        }
-    </script>
-
-    <!-- 상단, 하단 버튼 jQuery -->
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script	src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-    <script>
-        $(function () {
-            $(".top_btn").click(function () {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 400);
-                return false;
-            });
-
-            $(".bottom_btn").click(function () {
-                $('html, body').animate({
-                    scrollTop: document.body.scrollHeight
-                }, 400);
-                return false;
-            });
-
-        });
-    </script>
-
-    <style>
-        header {
-            display: flex;
-            justify-content: center;
-        }
-
-        header>a>img {
-            width: 160px;
-            height: 120px;
-        }
-    </style>
 </head>
 
 <body>
     <header>
-        <a href="admin_login"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
+        <a href="admin_login"><img id="top-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
     </header>
 
  <div class="join_section">
@@ -78,11 +38,11 @@
                 <!-- 사원코드 -->
                 <div class="join_info_innerbox">
                     <diV class="join_info left">
-                        <strong>사원코드 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
+                        <strong>사원코드<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                     </diV>
                     <div class="join_info_content right">
                         <input type="text" name="email" class="input email" minlength="4" maxlength="16"
-                            pattern="^([a-z0-9_]){4,16}$" placeholder="발급받은 코드를 인증해주세요" required>
+                            pattern="^Y4JAdmin$" placeholder="발급받은 코드를 인증해주세요" required>
                     </div>
                 </div>
 
@@ -92,14 +52,14 @@
                             <strong class="left">관리자 유형<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right admin_type">
-                            <span>판매 관리<input type="radio" name="adminType" value="sale" class="input adminType" required
+                            <span>판매 관리<input type="radio" name="admin_type" value="sale" class="input adminType" required
                                     style="margin-top: 10px;" checked></span>
-                            <span>오디션 관리<input type="radio" name="adminType" value="audition" class="input adminType"
+                            <span>오디션 관리<input type="radio" name="admin_type" value="audition" class="input adminType"
                                     style="margin-top: 10px;" required></span>
-                            <span>매니저<input type="radio" name="adminType" value="manager" class="input adminType"  style="margin-top: 10px;"
+                            <span>매니저<input type="radio" name="admin_type" value="manager" class="input adminType"  style="margin-top: 10px;"
                                     required></span>
                         </div>
-                        <input type="hidden" name="admin_type" id="admin_type" value="" />
+                        <!-- <input type="hidden" name="admin_type" id="admin_type" value="" /> -->
                     </div>
 
                     <!-- 이름 -->
@@ -116,13 +76,13 @@
                     <!-- 성별 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>성별 <img src="img/red_circle.png" alt="필수사항표시"></strong>
+                            <strong>성별 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right gender">
-                            <span>여성 <input type="radio" name="adminGender" value="F" class="female adminGender" style="margin-left: 8px;" checked required></span>
-                            <span>남성 <input type="radio" name="adminGender" value="M" class="male adminGender" style="margin-left: 8px;" required></span>
+                            <span>여성 <input type="radio" name="admin_gender" value="F" class="female adminGender" style="margin-left: 8px;" checked required></span>
+                            <span>남성 <input type="radio" name="admin_gender" value="M" class="male adminGender" style="margin-left: 8px;" required></span>
                         </div>
-                        <input type="hidden" class="admin_gender" name="admin_gender" value="" />
+                        <!-- <input type="hidden" class="admin_gender" name="admin_gender" value="" /> -->
                     </div>
 
                     <!-- 아이디 -->
@@ -170,7 +130,7 @@
                             <strong>이메일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
                         </diV>
                         <div class="join_info_content right">
-                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
+                            <input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" required>
                         </div>
                     </div>
 
@@ -184,14 +144,14 @@
                         class="region_num left"
                         style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
                             <span> - </span>
-                            <input type="text" name="admin_contact" class="phone_num phone_num1"
+                            <input type="text" class="phone_num phone_num1"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 maxlength="4" th:value="${vo1 != null? vo1.admin_contact:''}" required>
                             <span> - </span>
-                            <input type="text" name="admin_contact" class="phone_num phone_num2"
+                            <input type="text" class="phone_num phone_num2"
                                 oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
                                 maxlength="4" th:value="${vo1 != null? vo1.admin_contact:''}" required>
-                            <input type="hidden" class="adminContact" name="admin_contact" value="" />
+                            <input type="hidden" class="adminContact" name="admin_contact" />
                         </div>
                     </div>
 
@@ -203,10 +163,10 @@
                         <div class="join_info_content right address">
                             <input type="text" name="zipcode" id="zipcode" size="7" placeholder="우편번호"
                                 style="border-bottom: 0.5px solid #dfdfdf;;" onclick="kakaopost()" required readonly>
-                            <input type="button" value="우편번호찾기" id="zipcode" class="address_btn" onclick="kakaopost()"
+                            <input type="button" value="우편번호찾기" id="zipcode2" class="address_btn" onclick="kakaopost()"
                                 required><br />
                             <input type="text" class="admin_addresses admin_address1" name="admin_address" id="address" size="70" required><br />
-                            <input type="text" class="admin_addresses admin_address2" name="admin_address" id="address" size="70" placeholder=" 나머지주소" required>
+                            <input type="text" class="admin_addresses admin_address2" name="admin_address" id="address2" size="70" placeholder=" 나머지주소" required>
                         	<span style="color:red; font-size:12px;">[[${valid_admin_address}]]</span>
                         </div>
                     </div>
@@ -215,10 +175,10 @@
                     <!-- 담당 연예인 -->
                     <div class="join_info_innerbox">
                         <diV class="join_info left">
-                            <strong>담당 연예인 <span></span></strong>
+                            <strong>담당 연예인</strong>
                         </diV>
                         <div class="join_info_content right">
-                            <select class="ent_name" name="ent_name" aria-label=".form-select-sm example" required>
+                            <select class="ent_name" name="ent_name" aria-label=".form-select-sm example">
                                 <option selected></option>
                                 <option value="BLACKPINK">BLACKPINK</option>
                                 <option value="NewJeans">NewJeans</option>
@@ -228,59 +188,6 @@
                             </select>
                         </div>
                     </div>
-
-
-                    <script>
-                        // admin_contact 조합 구문
-                        var c1 = document.querySelector(".region_num");
-                        var c2 = document.querySelector(".phone_num1");
-                        var c3 = document.querySelector(".phone_num2");
-
-                        var adminContact = document.querySelector(".adminContact");
-                        function contactCombine() {
-                            adminContact.value = c1.value + "-" + c2.value + "-" + c3.value;
-                        }
-                        c1.addEventListener("change", contactCombine);
-                        c2.addEventListener("change", contactCombine);
-                        c3.addEventListener("change", contactCombine);
-
-                        // admin_gender 값 추출
-                        function getAdminGender() {
-                            var adminGender = document.getElementsByName("adminGender");
-                            var admin_gender = document.querySelector(".admin_gender");
-
-                            adminGender.forEach((v) => {
-                                if (v.checked) {
-                                    admin_gender.value = v.value;
-                                }
-                            });
-                        }
-                        $(".adminGender").change(getAdminGender);
-                        $(document).ready(getAdminGender);
-
-                        // admin_type 값 추출
-                        function getAdminType() {
-                            var adminType = document.getElementsByName("adminType");
-                            var admin_type = document.getElementById("admin_type");
-
-                            adminType.forEach((v) => {
-                                if (v.checked) {
-                                    admin_type.value = v.value;
-                                }
-                            });
-                        }
-                        $(".adminType").change(getAdminType);
-                        $(document).ready(getAdminType);
-
-                        // admin_address 값 추출
-                        function getAddress() {
-                            $(".admin_address").val($(".admin_address1").val() + " " + $(".admin_address2").val());
-                        }
-                        $(".admin_addresses").change(getAddress);
-                        $(document).ready(getAddress);
-
-                    </script>
-
 
                     <div class="join_contract">
 
@@ -1312,21 +1219,6 @@
 
 </body>
 
-<!-- /* 비밀번호 일치 확인 */ -->
-   <script>
-
-   var pw = document.getElementById("pw")
-   var pw2 = document.getElementById("pw2");
-
-   function validatePassword(){
-   if(pw.value != pw2.value) {
-     pw2.setCustomValidity("비밀번호가 일치하지 않습니다");
-   } else {
-     pw2.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
-   }
-   }
-   pw.onchange = validatePassword;
-   pw2.onkeyup = validatePassword;
-   </script>
+<script src="/js/admin_join.js"></script>
 
 </html>

@@ -89,12 +89,13 @@
 /*카테고리설명*/
 .category_explain_wrap{
 	box-sizing:border-box;
+	overflow: hidden;
 	border:1px solid black;
 	border-top:none;
 	border-left: none;
 	background-color: #3f3f3f;
 	margin:0;	
-	width:958px; 
+	width:100%; 
 	color:#f8f7f7;
 }
 
@@ -102,13 +103,14 @@
 	box-sizing: border-box;
 	display:inline-block;
 	text-align:center;
-	width:314px;
+	width:310.5px;
+	padding: 5px 0;
 }
 
 
 
-.border_right{
-	border-right:1px solid black;
+.border_left{
+	border-left:1px solid black;
 }
 
 
@@ -123,7 +125,6 @@
 }
 
 /* 등록 */
-
 .select_sector{
 	margin:20px 0;
 }
@@ -255,4 +256,14 @@ label{
 	border:2px solid red;
 	background-color: red;
 	color:white;
+}
+
+[type="button"]:hover{
+	animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {from { opacity:0.5;
+}to {
+	opacity: 1;
+}
 }

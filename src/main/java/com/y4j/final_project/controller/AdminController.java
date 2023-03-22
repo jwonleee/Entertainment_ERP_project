@@ -79,31 +79,26 @@ public class AdminController {
 					model.addAttribute("valid_" +err.getField(), err.getDefaultMessage());
 				}
 			}
-
-//			//아이디 중복 검사
-//			int result = adminService.idCheck2(vo1.getAdmin_id()); 
-//			System.out.println("아이디 중복 검사 결과 : " + result);
-//			model.addAttribute("vo1", vo1);
-
-			//비밀번호 암호화
-			String pw = passwordEncoder.encode(vo1.getAdmin_pw());
-			vo1.setAdmin_pw(pw);
+			model.addAttribute("vo1", vo1);
 			
-			adminService.registAdmin(vo1);
-			return "admin/admin_login";
+			return "admin/admin_join";
 		}
+		
+		//비밀번호 암호화
+		vo1.setAdmin_pw(passwordEncoder.encode(vo1.getAdmin_pw()));
+
+		//관리자 회원가입
+		int result1 = adminService.registAdmin(vo1);
 		
 		//권한 신청
 		AuthorityVO vo2 = AuthorityVO.builder()
 						  .authority_mng_no(authorityService.getAuthorityApplyTotal(cri) + 1)
-						  .authority_mng_admin_no(vo1.getAdmin_no())
+						  .authority_mng_admin_no(adminService.getAdminInfo2(vo1.getAdmin_id()).getAdmin_no())
 						  .authority_mng_admin_id(vo1.getAdmin_id())
 						  .authority_mng_admin_name(vo1.getAdmin_name())
 						  .authority_mng_admin_apply_type(vo1.getAdmin_type())
 						  .ent_name(vo1.getEnt_name())
 						  .build();
-		
-		int result1 = adminService.registAdmin(vo1);
 		int result2 = authorityService.applyAuthority(vo2);
 		
 		String pw = passwordEncoder.encode(vo1.getAdmin_pw());
@@ -113,13 +108,8 @@ public class AdminController {
 		
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 회원가입 되었습니다.\n관리자 권한 승인을 기다려주세요." : "회원가입에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
-
-//		//관리자 회원가입
-//		vo1.setAdmin_no(adminService.getAdminTotal(cri) + 1);
-//		System.out.println("AdminVO Total : " + vo1.getAdmin_no());
 		
-		model.addAttribute("vo1", vo1);
-		return "admin/admin_join";
+		return "admin/admin_login";
 	}
 	
 	@PostMapping("/adminLoginForm")
