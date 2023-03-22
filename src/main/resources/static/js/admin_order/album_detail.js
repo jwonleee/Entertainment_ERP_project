@@ -15,9 +15,11 @@ $("#fileBtn").click(()=>{
 	$("#imgReg").click();
 });
 
+var filecnt=0;//파일변경 확인용 변수
 //이미지 미리보기
 function readURL(input) {
     //이미지 파일인지 검사하기  
+    filecnt++;
     var obj = $("#imgReg");
     var pathpoint = obj.val().lastIndexOf('.');
     var filepoint = obj.val().substring(pathpoint + 1, obj.val().length);
@@ -27,7 +29,7 @@ function readURL(input) {
     check_file_type = ['jpg', 'gif', 'png', 'jpeg', 'bmp', 'webp'];
 
     if (check_file_type.indexOf(filetype) == -1) {//이미지파일인지 검사
-        alert('이미지 파일만 선택가능합니다.');
+        alert('이미지 파일만 선택가능합니다. 다시 등록하세요.');
         return;
     } else {
         if (input.files && input.files[0]) {
@@ -43,6 +45,21 @@ function readURL(input) {
         }
     }
 };
+
+//이미지 클릭시 새창에서 띄우기
+$("#imgModify").click((e)=>{
+    if(filecnt==0){
+        window.open(e.currentTarget.src);
+    }else{//base64이미지 새 창에서 띄우기
+        let data=e.currentTarget.src;
+        let w = window.open('about:blank');
+        let image = new Image();
+        image.src=data;
+        setTimeout(function(){
+            w.document.write(image.outerHTML);
+        },0);
+    };
+});
 
 
 //submit
@@ -83,12 +100,12 @@ $("#album_modify_btn").click(() => {
             async:false,
             success: (result) => {
                 $('input[name="album_img_path"]').val(result.path);
+                $("#modifyAlbumForm").attr("action", "/order/albumModify").submit();
             },
             error: (err) => {
                 alert('이미지 업로드에 실패하였습니다.')
                 return;
             }
 		});
-        $("#modifyAlbumForm").attr("action", "/order/albumModify").submit();
     }
 })

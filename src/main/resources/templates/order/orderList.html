@@ -4,7 +4,7 @@
 <link rel="stylesheet" href="/css/admin_order/admin_orderList.css">
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 	<div class="fragment">
-		<h3 style="text-align: center">여긴 상품 조회 페이지입니다.</h3>
+		<h3 style="text-align: center">발주 조회</h3>
 		<!-- 부트스트랩 -->
 		<section class="intro listwrap">
 			<div class="bg-image h-100" style="background-color: #f5f7fa;">
@@ -22,10 +22,10 @@
 												</div>
 												<input type="hidden" name="amount" th:value="${pageVO.amount}" />
 												<div class="search_form">
-													<input type="text" id="handleSearchName" name="searchName"
+													<input type="text" id="handleSearchName" name="searchName" class="search_input"
 														placeholder="상품명으로 검색 가능합니다."
 														th:value="${pageVO.cri.searchName}" />
-													<select id="handleType" name="searchContent">
+													<select id="handleType" name="searchContent" class="search_input">
 														<option value="all"
 															th:selected="${pageVO.cri.searchContent}=='all'">전체보기
 														</option>
@@ -36,17 +36,17 @@
 															th:selected="${pageVO.cri.searchContent}=='product'">상품발주
 														</option>
 													</select>
-													<select id="handleStock" name="searchStock">
+													<select id="handleStock" name="searchStock" class="search_input">
 														<option value="new"
 															th:selected="${pageVO.cri.searchStock}==new">발주일자 최신순</option>
-														<option value="asc"
-															th:selected="${pageVO.cri.searchStock}=='asc'">재고 높은순
-														</option>
 														<option value="desc"
-															th:selected="${pageVO.cri.searchStock}=='desc'">재고 낮은순
+															th:selected="${pageVO.cri.searchStock}=='desc'">재고 높은순
+														</option>
+														<option value="asc"
+															th:selected="${pageVO.cri.searchStock}=='asc'">재고 낮은순
 														</option>
 													</select>
-													<input type="submit" value="검색" />
+													<input type="submit" value="검색" id="search_btn"/>
 												</div>
 											</div>
 											<table class="table table-striped mb-0 orderTable">

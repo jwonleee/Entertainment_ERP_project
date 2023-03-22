@@ -15,8 +15,12 @@ function handleInputLength(el, max) {
 $("#fileBtn").click(()=>{$("#imgReg").click();});
 $("#pdfileBtn").click(()=>{$("#pdimgReg").click();});
 
+
+var filecnt=0;//파일변경 확인용 변수
+var pdfilecnt=0;//파일변경 확인용 변수
 //이미지 미리보기
 function readURL(input) {
+    filecnt++;
     //이미지 파일인지 검사하기  
     var obj = $("#imgReg");
     var pathpoint = obj.val().lastIndexOf('.');
@@ -46,6 +50,7 @@ function readURL(input) {
 
 //상세이미지 미리보기
 function pdreadURL(input) {
+    pdfilecnt++;
     //이미지 파일인지 검사하기  
     var pdobj = $("#pdimgReg");
     var pdpathpoint = pdobj.val().lastIndexOf('.');
@@ -73,6 +78,34 @@ function pdreadURL(input) {
     }
 };
 
+//이미지 클릭시 새창에서 띄우기
+$("#imgModify").click((e)=>{
+    if(filecnt==0){
+        window.open(e.currentTarget.src);
+    }else{//base64이미지 새 창에서 띄우기
+        let data=e.currentTarget.src;
+        let w = window.open('about:blank');
+        let image = new Image();
+        image.src=data;
+        setTimeout(function(){
+            w.document.write(image.outerHTML);
+        },0);
+    }
+});
+
+$("#pdimgModify").click((e)=>{
+    if(pdfilecnt==0){
+        window.open(e.currentTarget.src);
+    }else{//base64이미지 새 창에서 띄우기
+        let data=e.currentTarget.src;
+        let w = window.open('about:blank');
+        let image = new Image();
+        image.src=data;
+        setTimeout(function(){
+            w.document.write(image.outerHTML);
+        },0);
+    }
+});
 
 
 //submit
@@ -118,12 +151,13 @@ $("#product_modify_btn").click(()=>{
             success: (result) => {
                 $("input[name='prod_img_path']").val(result.pimg.path);
                 $("input[name='prod_info_img_path']").val(result.pdimg.path);
+                $("#modifyProductForm").attr("action", "/order/productModify").submit();
             },
             error: (err) => {
-                alert('상세설명 이미지 업로드에 실패하였습니다.')
+                alert('상세설명 이미지 업로드에 실패하였습니다.');
                 return;
             }
         });
-        $("#modifyProductForm").attr("action", "/order/productModify").submit();
+        
     }
 })

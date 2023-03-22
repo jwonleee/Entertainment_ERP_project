@@ -97,6 +97,7 @@ $(".categoryListWrap").on("click", ".forOn>a", (e) => {
     $(e.currentTarget).closest('li').addClass("categoryOn");
     $(e.currentTarget).closest('li').siblings().removeClass("categoryOn");
     detailCnt = 0;
+    $(".tbx").remove();
 });
 
 //상세등록창 띄우기
