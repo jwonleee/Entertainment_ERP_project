@@ -98,7 +98,7 @@ input::-webkit-inner-spin-button {
 
 .pon{
     background-color:#3f3f3f;
-    color:white;
+    color:white !important;
 }
 
 /* 모달창 */

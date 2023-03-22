@@ -214,6 +214,7 @@ $("#reg_table_sector").on("click", '#check_all', () => {
     var checked = $('#check_all').is(':checked');
     if (checked) {
         $("input[name='check_mid']").prop("checked", true);//전체 소분류 체크박스
+        $("input[name='bigCateCheck']").prop("checked",false);
     } else {
         $("input[name='check_mid']").prop("checked", false);
         $("input[name='bigCateCheck']").prop("checked", false);
