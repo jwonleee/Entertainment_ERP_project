@@ -16,7 +16,16 @@ header {
 header > h3 {
     color: #1F2124;
     font-size: 60px;
-   
+}
+
+header {
+    display: flex;
+    justify-content: center;
+}
+
+#top-logo {
+    width: 200px;
+    height: 160px;
 }
 
 /*=============== 회원가입 부분 ===============*/
