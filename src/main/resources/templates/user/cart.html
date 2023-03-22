@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<html xmlns:th=“http://www.thymeleaf.org”>
 <head>
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,21 +16,21 @@
 	src="http://code.jquery.com/jquery-latest.js"></script>
 
 <script>
-	$(function() {
-		$(".top_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
+   $(function() {
+      $(".top_btn").click(function() {
+         $('html, body').animate({
+            scrollTop : 0
+         }, 400);
+         return false;
+      });
 
-		$(".bottom_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : document.body.scrollHeight
-			}, 400);
-			return false;
-		});
-	});
+      $(".bottom_btn").click(function() {
+         $('html, body').animate({
+            scrollTop : document.body.scrollHeight
+         }, 400);
+         return false;
+      });
+   });
 </script>
 </head>
 
@@ -40,14 +40,14 @@
 
 	<div class="cart_section">
 		<div class="cart_box">
+			<form action="userCartForm" method="post">
 			<!-- 장바구니 헤더 -->
 			<div class="cart_header">
 				<em>Cart</em>
 			</div>
 
-			<form action="userCartForm" method="post">
 
-				<div class="cart_innerbox">
+				<div class="cart_innerbox"  th:each="cvo:${cvo}">
 
 					<!-- 장바구니 양식 제목 -->
 					<div class="cart_content_title">
@@ -76,21 +76,22 @@
 
 							<!-- 상품 번호 -->
 							<div class="product_code left">
-								<input type="text" th:value="${cvo.get(0).cart_prod_no}"
+								<input type="text"  th:value="${cvo.cart_prod_no}"
 									name="cart_prod_no" readonly>
 							</div>
 
 							<!-- 상품 이미지 -->
 							<div class="product_img left">
-								<img src="${cvo.get(0).cart_prod_img_path}" alt="박명수짤"
+								<img th:src="${cvo.prod_img_path}" alt="박명수짤"
 									style="width: 100px; height: 100px;">
 							</div>
 
 							<!-- 상품 정보 -->
 							<div class="product_info left">
 								<div>
-									<a href="/product.html"> <em>[ [[${cvo.get(0).cart_prod_artist}]] ] 상품 종류</em><br /> 
-									<span name="cart_prod_name">[[${cvo.get(0).cart_prod_name}]]</span>
+									<a href="/product.html"> <em>[ [[${cvo.prod_artist}]] ] </em>
+									<br /> 
+									<span name="cart_prod_name">[[${cvo.prod_name}]]</span>
 									</a>
 								</div>
 
@@ -98,17 +99,14 @@
 
 							<!-- 상품 수량 -->
 							<div class="product_quantity left">
-								<button type="button" class="quantity_subtract"
-									onclick="quantity()"
+								<button type="button" class="quantity_subtract"  onclick="quantity()"
 									style="border: none; background-color: inherit; cursor: pointer;">
-									<img
-										src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/minus.png"
-										alt="빼기"
+									<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/minus.png" alt="빼기"
 										style="width: 13px; height: 13px; vertical-align: middle;">
 								</button>
 								<input type="text" class="prod_quantity" name="cart_prod_cnt"
-									th:value="${cvo.get(0).cart_prod_cnt}" size="3">
-								<button type="button" class="quantity_add" onclick="quantity()"
+									th:value="${cvo.cart_prod_cnt}" size="3">
+								<button type="button" class="quantity_add"  onclick="quantity()"
 									style="border: none; background-color: inherit; cursor: pointer;">
 									<img
 										src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/plus2.png"
@@ -120,9 +118,9 @@
 							<!-- 상품 수량 별 가격 -->
 							<div class="product_price left">
 								<div class="product_price_inner">
-									<em style="color: crimson; font-weight: 600;">[[${cvo.get(0).cart_prod_discount_rate}]]%</em>
+									<em style="color: crimson; font-weight: 600;">[[${cvo.prod_discount_rate}]]%</em>
 									<input type="text" name="cart_prod_price"
-										th:value="${cvo.get(0).cart_prod_price}" readonly>
+										th:value="${cvo.prod_price}" readonly>
 								</div>
 							</div>
 
@@ -138,13 +136,13 @@
 										style="cursor: pointer;">주문하기</button>
 									<br />
 									<form action="deleteCartForm" method="post">
-									<button type="button" class="delete_btn"
-										style="cursor: pointer;">
-										<img
-											src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/delete.png"
-											alt="휴지통아이콘"
-											style="width: 19px; height: 19px; vertical-align: middle;">삭제
-									</button>
+										<button type="button" class="delete_btn"
+											style="cursor: pointer;">
+											<img
+												src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/delete.png"
+												alt="휴지통아이콘"
+												style="width: 19px; height: 19px; vertical-align: middle;">삭제
+										</button>
 									</form>
 								</div>
 							</div>
@@ -152,25 +150,25 @@
 					</div>
 
 					<!-- 선택 상품 삭제 버튼 -->
-					
-						<div class="checked_delete">
-							<div>
-								<button type="button" class="checked_del_btn delete_btn">선택상품 삭제</button>
-								<span class="mid_confirm_price right">상품구매금액
-									[[${cvo.get(0).cart_prod_price}]] + 배송비 0 = 합계 :
-									[[${cvo.get(0).cart_prod_price}]]원</span>
-							</div>
+
+					<div class="checked_delete">
+						<div>
+							<button type="button" class="checked_del_btn delete_btn">선택상품
+								삭제</button>
+							<span class="mid_confirm_price right">상품구매금액
+								[[${cvo.prod_price}]] * [[${cvo.cart_prod_cnt}]] + 배송비 0 = 합계 : [[${cvo.prod_price}]] * [[${cvo.cart_prod_cnt}]]원</span>
 						</div>
-					
+					</div>
+
 
 					<script>
-						$(".delete_btn").click(
-								function() {
-									var confirm_val = confirm("정말 삭제하시겠습니까?");
+                  $(".delete_btn").click(
+                        function() {
+                           var confirm_val = confirm("정말 삭제하시겠습니까?");
 
-								
-							});
-					</script>
+                        
+                     });
+               </script>
 
 
 					<!-- 총 결제 금액 -->
@@ -180,20 +178,21 @@
 						</div>
 						<div class="total_price_box">
 							<div class="total_price_innerbox">
-								<span>[[${cvo.get(0).cart_prod_price}]]원</span> <span>+</span> <span>0원</span>
-								<span>=</span> <span style="color: rgb(221, 64, 64);">[[${cvo.get(0).cart_prod_price}]]원</span>
+								<span>[[${cvo.prod_price}]]원</span> <span>+</span> <span>0원</span>
+								<span>=</span> <span style="color: rgb(221, 64, 64);">[[${cvo.prod_price}]]원</span>
 							</div>
-
 						</div>
 					</div>
 
 					<!-- 최종 상품 주문 -->
 					<div class="finally_order">
 						<div class="order_btnbox">
-							<button type="button" onclick="location.href='mypage'" style="cursor:pointer;">쇼핑 계속하기</button>
+							<button type="button" onclick="location.href='mypage'"
+								style="cursor: pointer;">쇼핑 계속하기</button>
 							<button type="submit" style="cursor: pointer;">선택상품 주문하기</button>
 						</div>
 					</div>
+					
 				</div>
 			</form>
 		</div>

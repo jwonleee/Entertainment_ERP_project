@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 import org.springframework.validation.FieldError;
 
+import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.util.Criteria;
@@ -85,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
 	//유저의 장바구니 리스트 조회
 	@Override
-	public ArrayList<CartVO> getCartList(String user_id) {
+	public ArrayList<CartListVO1> getCartList(String user_id) {
 		return userMapper.getCartList(user_id);
 	}
 

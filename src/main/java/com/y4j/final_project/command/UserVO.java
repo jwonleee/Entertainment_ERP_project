@@ -44,7 +44,7 @@ public class UserVO {
 	private String user_name;
 	
 	@NotBlank (message = "생년월일을 입력하세요")
-	@Pattern (regexp = "(?=.*[0-9]).{1,2}", message = "생년월일을 정확히 입력하세요")
+	@Pattern (regexp = "(?=.*[0-9]).{2,}", message = "생년월일을 정확히 입력하세요")
 	private String user_birth;
 	
 	@NotBlank (message = "휴대전화를 입력하세요")

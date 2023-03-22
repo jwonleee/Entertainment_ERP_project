@@ -101,6 +101,11 @@ public class AdminController {
 						  .build();
 		int result2 = authorityService.applyAuthority(vo2);
 		
+		String pw = passwordEncoder.encode(vo1.getAdmin_pw());
+		vo1.setAdmin_pw(pw);
+		
+		adminService.registAdmin(vo1);
+		
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 회원가입 되었습니다.\n관리자 권한 승인을 기다려주세요." : "회원가입에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
 		
@@ -121,14 +126,15 @@ public class AdminController {
 		if(count == 1 && passwordEncoder.matches(admin_pw, saved_pw) ) {
 
 			//세션에 회원정보 저장 - 아이디로 가져와서
-		AdminVO adminVO = adminService.getAdminInfo2(admin_id);
-			session.setAttribute("admin_id", adminVO.getAdmin_id());
-			session.setAttribute("admin_type", adminVO.getAdmin_type());
+			session.setAttribute("vo", adminService.getAdminInfo2(vo.getAdmin_id()));
+//		AdminVO adminVO = adminService.getAdminInfo2(admin_id);
+//			session.setAttribute("admin_id", adminVO.getAdmin_id());
+//			session.setAttribute("admin_type", adminVO.getAdmin_type());
 			
-			return "user/mypage";
+			return "/";
 		} else {
-			session.setAttribute("admin_id", null);
-			return "admin/admin_home";
+			session.setAttribute("vo", null);
+			return "admin/admin_login";
 		}
 	}
 	
