@@ -69,9 +69,6 @@ public class OrderAjaxController {
 	}
 	
 	
-	
-	
-	
 	//상세조회
 	@GetMapping("/get_admin/{admin_order_no}")
 	public Admin_orderVO getAdmin(@PathVariable("admin_order_no")String admin_order_no) {
