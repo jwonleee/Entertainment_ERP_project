@@ -284,7 +284,13 @@
   				,#{category_detail_parent_lv})
   	</insert>
   	
+  	<select id="getTopProduct" resultType="ProductVO">
+  		select prod_artist, prod_name, prod_sales_volume from product order by prod_sales_volume desc limit 0,10
+  	</select>
   	
+  	<select id="getTopAlbum" resultType="AlbumVO">
+  		select album_artist, album_title, album_sales_volume from album order by album_sales_volume desc limit 0,10
+  	</select>
   	
   	
   </mapper>

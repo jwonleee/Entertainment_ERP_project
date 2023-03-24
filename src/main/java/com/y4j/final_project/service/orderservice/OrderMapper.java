@@ -50,7 +50,9 @@ public interface OrderMapper {
 	public int bigCategoryReg(CategoryVO vo); //대분류 카테고리 추가
 	public int midSmallCategoryReg(CategoryVO vo); //중, 소분류 카테고리 추가
 	
-	
+	//top10 가져오기
+	public ArrayList<ProductVO> getTopProduct();//상품
+	public ArrayList<AlbumVO> getTopAlbum();//앨범
 	
 	
 }

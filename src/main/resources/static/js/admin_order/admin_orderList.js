@@ -306,9 +306,10 @@ function handleInputLength(el, max) {
 /****************************************************************************************************************** */
 /****추가발주****/
 $("#additional_btn").click(() => {
-    alert("상품 가격과 할인율은 상세페이지에서 수정 가능합니다.");
-    $(".modal").scrollTop(0); //스크롤이 위로 가도록.
-    $(".insertToggle").toggleClass("td_show_none");//보여주기에서 입력으로 전환
+    if(confirm('상품 가격과 할인율은 상세페이지에서 수정 가능합니다.')){
+        $(".modal").scrollTop(0); //스크롤이 위로 가도록.
+        $(".insertToggle").toggleClass("td_show_none");//보여주기에서 입력으로 전환
+    }
 });
 
 

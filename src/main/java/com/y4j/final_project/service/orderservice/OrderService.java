@@ -1,6 +1,7 @@
 package com.y4j.final_project.service.orderservice;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
@@ -44,5 +45,9 @@ public interface OrderService {
 	//카테고리 추가
 	public int bigCategoryReg(CategoryVO vo); //대분류 카테고리 추가
 	public int midSmallCategoryReg(CategoryVO vo); //중분류 카테고리 추가
+	
+	//top10 가져오기
+	public ArrayList<Map<String, String>> getTopProduct();//상품
+	public ArrayList<Map<String, String>> getTopAlbum();//앨범
 	
 }

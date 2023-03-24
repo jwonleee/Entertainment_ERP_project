@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+    <div class="fragment">
+        <input type="hidden" id="pdata" th:data-pdata="${parr}"/>
+        <input type="hidden" id="adata" th:data-adata="${aarr}"/>
+
+
+        <div>
+            <div>
+                <h3>Top 10 판매율</h3>
+            </div>
+            <section>
+                <div>
+                    <h5>Top 10 상품</h5>
+                </div>
+                <div style="width: 400px; height: 400px;">
+                    <canvas id="prodChart"></canvas>
+                </div>
+            </section>
+            <section>
+                <div>
+                    <h5>Top 10 앨범</h5>
+                </div>
+                <div style="width: 400px; height: 400px;">
+                    <canvas id="albumChart"></canvas>
+                </div>
+            </section>
+        </div>
+    </div>
+</th:block>
+<!-- chart js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
+<!-- js -->
+<script src="/js/admin_order/best_seller_chart.js" th:inline="javascript"></script>
+</html>

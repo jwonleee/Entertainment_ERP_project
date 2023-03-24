@@ -23,7 +23,6 @@ public class ProductVO {
 	private String prod_img_path;
 	private String prod_info_img_path;
 	private String prod_regdate;
-	private Integer prod_hit;
 	private Integer prod_sales_volume;
 	
 	

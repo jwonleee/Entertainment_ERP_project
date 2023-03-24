@@ -88,7 +88,6 @@ $("#album_modify_btn").click(() => {
 
 
         if (filecnt == 0) {//파일변경이 없었다면
-            console.log($("#imgModify").attr('src'));
             $("#modifyAlbumForm").attr("action", "/order/albumModify").submit();
         } else {
             //aws업로드

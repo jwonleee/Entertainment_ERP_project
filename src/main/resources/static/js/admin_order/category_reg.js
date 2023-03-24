@@ -92,7 +92,7 @@ function category_create(result) {
 $(".categoryListWrap").on("click", ".forOn>a", (e) => {
     $(e.currentTarget).closest('li').addClass("categoryOn");
     $(e.currentTarget).closest('li').siblings().removeClass("categoryOn");
-
+    
     //카테고리 설명창 변화
     if ($("#category_count").val() == 1) {//대분류
         $("#categoryLV1").addClass("category_explain_on");
@@ -103,11 +103,18 @@ $(".categoryListWrap").on("click", ".forOn>a", (e) => {
     } else if ($("#category_count").val() == 3) {//소분류
         $("#categoryLV3").addClass("category_explain_on");
         if ($("#categoryLV3").siblings().hasClass("category_explain_on")) $("#categoryLV3").siblings().removeClass("category_explain_on");
-
+        
     }
+
+
+    //수정 삭제를 위해 내용 담기
+    // console.log($(e.currentTarget).data("set"));
+    // $("#modify_reg_nmInput").val($(e.currentTarget).data("set").category_detail_nm);
 });
 
 
+
+/////////////////////////////////////////////////////////////////////////
 
 
 //카테고리 select박스

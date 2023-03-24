@@ -177,5 +177,17 @@ public class OrderController {
 		return "redirect:/order/categoryReg";
 	}
 	
+	///////////////////////////////////////////////////////////////
+	//차트페이지
+	@GetMapping("bestSellerChart")
+	public String bestSellerChart(Model model) {
+		ArrayList<Map<String, String>> parr = orderService.getTopProduct();
+		ArrayList<Map<String, String>> aarr = orderService.getTopAlbum();
+		
+		model.addAttribute("parr", parr);
+		model.addAttribute("aarr", aarr);
+		
+		return "order/bestSellerChart";
+	}
 	
 }
