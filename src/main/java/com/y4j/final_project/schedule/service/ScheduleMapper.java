@@ -2,6 +2,7 @@ package com.y4j.final_project.schedule.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.joda.time.LocalDate;
@@ -27,6 +28,9 @@ public interface ScheduleMapper {
 	public ArrayList<ScheduleVO> getList(Criteria cri);
 	public int getScheduleTotal(Criteria cri); //전체 게시글 수
 	public int getTodayScheduleCnt(LocalDate now); //오늘 일정 수
+	
+	//일반페이지 일정 - axios
+	public List<Map<String, Object>> axiosGetList();
 	
 	//일정 상세
 	public ScheduleVO getDetail(int schedule_no);
