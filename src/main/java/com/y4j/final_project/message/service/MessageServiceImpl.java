@@ -21,12 +21,12 @@ public class MessageServiceImpl implements MessageService {
 	}
 	
 	//받은 쪽지 조회 메서드(id 기준)
-	public ArrayList<MessageVO> getReceivedMsg(String receiver) {
+	public ArrayList<MessageVO> getReceivedMsg(Object receiver) {
 		return messageMapper.getReceivedMsg(receiver);
 	}
 	
 	//보낸 쪽지 조회 메서드(id 기준)
-	public ArrayList<MessageVO> getSentMsg(String writer) {
+	public ArrayList<MessageVO> getSentMsg(Object writer) {
 		return messageMapper.getSentMsg(writer);
 	}
 	

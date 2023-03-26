@@ -54,8 +54,8 @@ public class AdminServiceImpl implements AdminService {
 
 	//관리자 아이디 중복 검사 및 로그인 시 아이디 존재 유무 확인
 	@Override
-	public int idCheck2(String admin_id) {
-		return adminMapper.idCheck2(admin_id);
+	public int adminIdCheck(String admin_id) {
+		return adminMapper.adminIdCheck(admin_id);
 	}
 	
 	//관리자 로그인

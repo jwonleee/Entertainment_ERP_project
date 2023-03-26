@@ -1,16 +1,11 @@
 package com.y4j.final_project.user.service;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
@@ -85,7 +80,6 @@ public class UserServiceImpl implements UserService {
 	}
 
 	//유저의 장바구니 리스트 조회
-	@Override
 	public ArrayList<CartListVO1> getCartList(String user_id) {
 		return userMapper.getCartList(user_id);
 	}
@@ -95,9 +89,5 @@ public class UserServiceImpl implements UserService {
 	public void deleteCart(CartVO cvo) {
 		userMapper.deleteCart(cvo);
 	}
-
-
-
-
 
 }

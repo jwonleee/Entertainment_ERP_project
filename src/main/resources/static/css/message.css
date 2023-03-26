@@ -1,4 +1,8 @@
 /* 쪽지 페이지 */
+.body {
+  overflow: auto !important;
+}
+
 .msg-outer {
   margin-bottom: 140px;
 }
@@ -61,4 +65,13 @@
 
 .accordion-item .rounded-circle {
   z-index: 2;
+}
+
+.receiverType-outer .rt1 {
+  width: 120px !important;
+  margin: 0;
+}
+
+.receiverType-outer .rt2 {
+  margin: 0;
 }

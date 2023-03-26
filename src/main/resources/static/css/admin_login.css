@@ -69,7 +69,7 @@ header h3 {
     margin-bottom: 5px;
     font-size: 16px;
     border: none;
-    padding: 10px 0;
+    padding: 10px 15px;
 }
 
 .login_input .id {
@@ -112,7 +112,7 @@ header h3 {
     border-bottom: 0.5px solid #d7d7d7;
 }
 
-.btn>form>button {
+.btn button {
     width: 100%;
     margin: 0 auto;
     padding: 10px;

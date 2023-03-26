@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Builder
 public class CartListVO1 {
-	
+
 	private int cart_no; 
 	private int cart_prod_no;
 	private String prod_img_path;
@@ -21,7 +21,7 @@ public class CartListVO1 {
 	private int prod_discount_rate;
 	private String prod_price;
 	private String user_id;
-	
-	}
-	
+
+}
+
 

@@ -69,7 +69,7 @@
   	</update>
   	
 	<!-- 관리자 회원가입 아이디 중복 검사 및 로그인 시 아이디 유무 확인 -->
-	<select id="idCheck2" parameterType="String" resultType="Integer">
+	<select id="adminIdCheck" parameterType="String" resultType="Integer">
 		select count(admin_id) from administrator where admin_id = #{admin_id}
 	</select>
 	
