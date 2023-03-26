@@ -28,7 +28,7 @@ public interface ScheduleService {
 	public int getTodayScheduleCnt(LocalDate now); //오늘 일정 수
 	
 	//일반페이지 일정 - axios
-	public List<Map<String, Object>> axiosGetList();
+	public List<Map<String, Object>> axiosGetList(String schedule_start_time);
 	
 	//일정 상세
 	public ScheduleVO getDetail(int schedule_no);
