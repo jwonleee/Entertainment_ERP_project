@@ -54,5 +54,4 @@ public interface OrderMapper {
 	public ArrayList<ProductVO> getTopProduct();//상품
 	public ArrayList<AlbumVO> getTopAlbum();//앨범
 	
-	
 }

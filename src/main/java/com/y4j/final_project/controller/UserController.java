@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.y4j.final_project.command.CartListVO1;
+import com.y4j.final_project.command.CartListVO;
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.email.service.EmailService;
@@ -273,7 +273,7 @@ public class UserController {
 				System.out.println(user_id);
 				
 				//장바구니 리스트 가져와서 화면에 보내기
-				ArrayList<CartListVO1> cvo = userService.getCartList(user_id);
+				ArrayList<CartListVO> cvo = userService.getCartList(user_id);
 				model.addAttribute("cvo", cvo);
 				System.out.println(cvo);
 				

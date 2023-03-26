@@ -1,0 +1,84 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+.best_seller_title{
+    padding: 20px;
+    border-bottom: 2px solid #ced4da;
+}
+
+
+.best_seller_wrap{
+    padding-top: 20px;
+    display: flex;
+    justify-content: flex-start ;
+}
+
+
+/* 차트 */
+.best_prod_section{
+    padding: 10px;
+    color:yellowgreen;
+}
+
+.best_album_section{
+    padding: 10px;
+    margin-left: 30px;
+    color:red;
+}
+
+.prod_canvas_section{
+    width: 500px; 
+    height: 350px; 
+    border:2px solid yellowgreen;
+}
+
+.album_canvas_section{
+    width: 500px;
+    height: 350px; 
+    border:2px solid red;
+}
+
+/* 페이지네이션 */
+.pagination_section {
+    margin: 20px 0;
+    text-align: center;
+}
+
+.pagination {
+    margin: 0 auto;
+    width: 900px;
+}
+
+.pages {
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.pages li {
+    display: inline;
+}
+
+.pages li a {
+    border: 1px solid #bab9b9;
+    display: inline-block;
+    height: 30px;
+    width: 50px;
+    line-height: 30px;
+    text-decoration: none;
+    /* 밑줄제거 */
+    font-size: 15px;
+    font-weight: 500;
+    color: black;
+}
+
+.pages a:hover {
+    outline: 3px solid yellowgreen;
+}
+
+
+.page_num {
+    height: 30px;
+    line-height: 30px;
+}

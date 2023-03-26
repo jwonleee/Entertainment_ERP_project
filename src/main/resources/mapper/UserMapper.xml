@@ -99,7 +99,7 @@
 	<!-- ////////////////////////////////////////////////////////////////////// -->
 
 	<!-- 장바구니 전체 상품 조회 -->
-	<select id="getCartList" resultType="CartListVO1">
+	<select id="getCartList" resultType="CartListVO">
     select
 		c.cart_no,
 		c.cart_prod_no,

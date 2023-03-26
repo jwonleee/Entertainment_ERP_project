@@ -1,32 +1,130 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
+<!-- css -->
+<link rel="stylesheet" href="/css/admin_order/best_seller_chart.css">
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
     <div class="fragment">
-        <input type="hidden" id="pdata" th:data-pdata="${parr}"/>
-        <input type="hidden" id="adata" th:data-adata="${aarr}"/>
-
+        <input type="hidden" id="pdata" th:value="${parr}" />
+        <input type="hidden" id="adata" th:value="${aarr}" />
+        <div class="best_seller_title">
+            <h3>Top 10 판매율</h3>
+        </div>
+        <div class="best_seller_wrap">
+            <div class="best_prod_section">
+                    <div class="prod_section_wrap">
+                        <h5>Top 10 상품</h5>
+                    </div>
+                    <div class="prod_canvas_section">
+                        <canvas id="prodChart"></canvas>
+                    </div>
+            </div>
+            <div class="best_album_section">
+                    <div class="album_section_wrap">
+                        <h5>Top 10 앨범</h5>
+                    </div>
+                    <div class="album_canvas_section">
+                        <canvas id="albumChart"></canvas>
+                    </div>
+            </div>
+        </div>
 
         <div>
-            <div>
-                <h3>Top 10 판매율</h3>
-            </div>
-            <section>
-                <div>
-                    <h5>Top 10 상품</h5>
-                </div>
-                <div style="width: 400px; height: 400px;">
-                    <canvas id="prodChart"></canvas>
+            <table class="table table-bordered table-hover">
+                <thead class="thead-dark">
+                  <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">First</th>
+                    <th scope="col">Last</th>
+                    <th scope="col">Handle</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <th scope="row">1</th>
+                    <td>Mark</td>
+                    <td>Otto</td>
+                    <td>@mdo</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">2</th>
+                    <td>Jacob</td>
+                    <td>Thornton</td>
+                    <td>@fat</td>
+                  </tr>
+                  <tr>
+                    <th scope="row">3</th>
+                    <td>Larry</td>
+                    <td>the Bird</td>
+                    <td>@twitter</td>
+                  </tr>
+                </tbody>
+              </table>
+              <section class="pagination_section">
+                <div class="pagination">
+                    <ul class="pages">
+                        <th:block>
+                            <li><a href="#"
+                                class="page_num"><svg xmlns="http://www.w3.org/2000/svg"
+                                width="16" height="16" fill="currentColor"
+                                class="bi bi-chevron-double-left size"
+                                viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                <path fill-rule="evenodd"
+                                d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                            </svg></a></li>
+                        </th:block>
+                        <th:block>
+                            <li><a href="#"
+                                    class="page_num"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor"
+                                        class="bi bi-chevron-compact-left size"
+                                        viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
+                                    </svg></a></li>
+                        </th:block>
+                        <th:block>
+                            <li><a href="#">1</a>
+                            </li>
+                        </th:block>
+                        <th:block>
+                            <li><a href="#"
+                                    class="page_num"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16"
+                                        height="16" fill="currentColor"
+                                        class="bi bi-chevron-compact-right size"
+                                        viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
+                                    </svg></a></li>
+                        </th:block>
+                        <th:block>
+                            <li><a
+                                href="#"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16"
+                                height="16" fill="currentColor"
+                                class="bi bi-chevron-double-right size"
+                                viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                <path fill-rule="evenodd"
+                                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                            </svg></a></li>
+                        </th:block>
+                    </ul>
                 </div>
             </section>
-            <section>
-                <div>
-                    <h5>Top 10 앨범</h5>
-                </div>
-                <div style="width: 400px; height: 400px;">
-                    <canvas id="albumChart"></canvas>
-                </div>
-            </section>
-        </div>
+        </div>      
+        
+        
+        
+        
+        
+        
+        
+        
     </div>
 </th:block>
 <!-- chart js -->
