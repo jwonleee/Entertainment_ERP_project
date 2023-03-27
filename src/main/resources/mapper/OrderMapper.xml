@@ -7,16 +7,16 @@
   
   	<select id="getOrderTotal" resultType="Integer">
   		select count(*) as total from admin_order where 1=1
-  		<if test='cri.searchName !=null and cri.searchName != ""'>
-  			and admin_order_prod_name like concat('%','${cri.searchName}','%')
+  		<if test='searchName !=null and searchName != ""'>
+  			and admin_order_prod_name like concat('%','${searchName}','%')
   		</if>
-		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
+		<if test='searchContent!=null and searchContent eq "album"'>
   			<![CDATA[and admin_order_album_no !=0]]>
   		</if>
-  		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
+  		<if test='searchContent!=null and searchContent eq "product"'>
   			<![CDATA[and admin_order_prod_no !=0]]>
   		</if>
-  		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
+  		<if test='searchContent!=null and searchContent eq "all"'>
   			<![CDATA[and admin_order_no >=1]]>
   		</if>
   	</select>
@@ -26,29 +26,29 @@
   
   	<select id="getOrderList" resultType="Admin_orderVO">
   		SELECT * FROM admin_order where 1=1
-  		<if test='cri.searchName !=null and cri.searchName != ""'>
-  			and admin_order_prod_name like concat('%','${cri.searchName}','%')
+  		<if test='searchName !=null and searchName != ""'>
+  			and admin_order_prod_name like concat('%','${searchName}','%')
   		</if>
-  		<if test='cri.searchContent!=null and cri.searchContent eq "album"'>
+  		<if test='searchContent!=null and searchContent eq "album"'>
   			<![CDATA[and admin_order_album_no!=0]]>
   		</if>
-  		<if test='cri.searchContent!=null and cri.searchContent eq "product"'>
+  		<if test='searchContent!=null and searchContent eq "product"'>
   			<![CDATA[and admin_order_prod_no!=0]]>
   		</if>
-  		<if test='cri.searchContent!=null and cri.searchContent eq "all"'>
+  		<if test='searchContent!=null and searchContent eq "all"'>
   			<![CDATA[and admin_order_no >=1]]>
   		</if>
   			order by 
-  		<if test='cri.searchStock !=null and cri.searchStock eq "asc"'>
+  		<if test='searchStock !=null and searchStock eq "asc"'>
   			cast(admin_order_prod_cnt as decimal(10,0)) asc,
   		</if>
-  		<if test='cri.searchStock !=null and cri.searchStock eq "desc"'>
+  		<if test='searchStock !=null and searchStock eq "desc"'>
   			cast(admin_order_prod_cnt as decimal(10,0)) desc,
   		</if>
-  		<if test='cri.searchStock !=null and cri.searchStock eq "new"'>
+  		<if test='searchStock !=null and searchStock eq "new"'>
   			admin_order_regdate desc,
   		</if>
-  		 admin_order_no desc limit #{cri.pageStart}, #{cri.amount}
+  		 admin_order_no desc limit #{pageStart}, #{amount}
   	</select>
   	
   	

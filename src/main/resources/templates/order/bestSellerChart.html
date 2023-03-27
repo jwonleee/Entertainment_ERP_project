@@ -57,7 +57,7 @@
                                 <div class="state_update">
                                     <button type="button" value="주문완료"
                                         th:class="${vo.order_state=='주문완료'?'state_now OrderStateNow':'OrderStateNow'}"
-                                        disabled="true">주문준비</button>
+                                        disabled="true">주문완료</button>
                                     <button type="button" value="발송준비"
                                         th:class="${vo.order_state=='발송준비'?'state_now OrderStateNow':'OrderStateNow'}">발송준비</button>
                                     <button type="button" value="배송준비"
@@ -123,14 +123,6 @@
                 </div>
             </section>
         </div>
-
-
-
-
-
-
-
-
     </div>
 </th:block>
 <!-- chart js -->
