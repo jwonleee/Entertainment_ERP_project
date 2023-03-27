@@ -54,108 +54,31 @@
 	 <link rel="stylesheet" href="/css/product_page/productDetail_page.css">
 </head>
 
+<th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
+
+	<div class="fragment" style="margin-top: 100px; width: 1200px">
   
    <!-- 헤더 만드는 중 -->
-	<div class="header1_user_bar_box">
-		<div class="header1_user_bar">
-		 	<ul class="main-header-inner main-header-inner2">
-		      <li class="header_middle_user">
-		        <a href="/user/user_login">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
-		          <!-- <span>LOGIN</span> -->
-		        </a>
-		      </li>
-		      <li class="header_middle_user">
-		        <a href="/admin/admin_join">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
-		          <!-- <span>JOIN</span> -->
-		        </a>
-		      </li>
-		      <li class="header_middle_user">
-		        <a href="/message">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
-		          <!-- <span>MY PAGE</span> -->
-		        </a>
-		      </li>
-		      <li><!-- 여기 로그인 했을 때 구입 가능하기에 회원인지 여부 확인 하기 위한...! -->
-		      	<div>회원아이디</div>
-		      </li>
-		   	</ul>
-		</div>
-	</div>
-   	<div class="header1">
-   		<div class="header1-bottom">
-	   		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
-	   			<div class="header_main_menu">
-	   				<ul class="header_main_menu_bar">
-	                     <li>
-	                         <span class="menu_bar_name"><a href="#">COMPANY</a></span>
-	                         <ul class="menu_bar1">
-	                            <li><span><a href="#">ABOUT Y4J</a></span></li>
-	                            <li><span><a href="#">HISTORY</a></span></li>
-	                            <li><span><a href="#">CONTACT</a></span></li>
-	                         </ul>
-	                     </li>
-	                     <li>
-	                          <span class="menu_bar_name"><a href="#">ENTERTAINER</a></span>
-	                          <ul class="menu_bar1">
-	                             <li><span><a href="#">NEWJEANS</a></span></li>
-	                             <li><span><a href="#">BLACKPINK</a></span></li>
-	                             <li><span><a href="#">IVE</a></span></li>
-	                             <li><span><a href="#">LEE DOHYUN</a></span></li>
-	                             <li><span><a href="#">CHAE SOOBIN</a></span></li>
-	                           </ul>
-	                      </li>
-	                      <li>
-	                          <span class="menu_bar_name"><a href="/product/productList">PRODUCTION</a></span>
-	                          <ul class="menu_bar1">
-	                            <li><span><a href="/product/NEWJEANS">NEWJEANS</a></span></li>
-	                            <li><span><a href="/product/BLACKPINK">BLACKPINK</a></span></li>
-	                            <li><span><a href="/product/IVE">IVE</a></span></li>
-	                            <li><span><a href="/product/LEEDOHYUN">LEE DOHYUN</a></span></li>
-	                            <li><span><a href="/product/CHAESOOBIN">CHAE SOOBIN</a></span></li>
-	                          </ul>
-	                      </li>
-	                      <li>
-	                          <span class="menu_bar_name"><a href="#">AUDITION</a></span>
-	                          <ul class="menu_bar1">
-	                             <li class="menu_bar_content">AUDITION</li>
-	                          </ul>
-	                      </li>
-	                	</ul>
-		   			</div>
-	   			</div>
-   				<!-- 메뉴 상단바 y4j 로고 -->
-    			<div class="header_main_menu_logo">
-	    			<div>
-	    			 	<a th:href="@{/product/BLACKPINK}">
-	    					<img style="width:115px; height: 80px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
-	    				</a>
-	    			</div>
-    			</div>
-   			</div><!-- 헤더 상단 메뉴바 끝 -->
-	 	</div>
-    
-  
+    <form id="product_buy_rightnow" action="buy_page" method="post">
+	<!-- 여기 로그인 했을 때 구입 가능하기에 회원인지 여부 확인 하기 위한...! -->
+	 <input type="hidden" name="user_id" value="gmlwjd852369">	
    	<!-- 상품 구매하기 및 장바구니 창 -->
-   <form id="product_buy_rightnow" action="buy_page" method="get">
-   
-   	<!-- 주문하면 현재 날짜 보내기-->
-   	<input id="order_date_now" type="hidden" name="user_order_date" th:value="${#calendars.format(#calendars.createNow(), 'yyyy년 MM월 dd일')}">
-    <div style="display:flex; width:1080px; margin-top:30px; flex-direction:'row'; justify-content:center; align-items:center; position: relative; margin-bottom:150px; padding-bottom: 70px"  th:each="pd: ${detail}">
+    <div style="display:flex; width:1080px; margin-top:50px; flex-direction:'row'; justify-content:center; align-items:center; position: relative; margin-bottom:30px; padding-bottom: 70px"  th:each="pd: ${detail}">
     	<!-- 상품 이미지 -->
     	<div style=" display: flex; flex-direction:column; overflow: hidden; margin:0;">
-    		<img style="float:left; margin-bottom: 20px; margin-top:170px; width: 430px; height: 450px;" th:src="${pd.prod_img_path}"/>	
+    		<input type="hidden" name="user_order_prod_img" th:value="${pd.prod_img_path}">
+    		<img style="float:left; margin-bottom: 20px; margin-top:170px; width: 540px; height: 490px; margin-right: 30px;  padding-right: 30px" th:src="${pd.prod_img_path}"/>	
    		</div>
+   		
     	<!-- 상품 박스(구매버튼 및 장바구니) -->
-    
     	<div style=" margin-top:70px;  line-height: 28px;  width: 490px; float: right; margin-left: 90px" >
     		<div class="productDetail_info">
-    			<p style="color: gray; font-weight: 700;">[[${pd.prod_artist}]]</p>
+    			<p style="color: gray; font-weight: 700; margin-left: 10px">[[${pd.prod_artist}]]</p>
 		    	<div class="productDetail_name">	
 	    			<p class="productDetail_name_1" style="font-family: 'Nanum Gothic', sans-serif; font-size: 18px; font-weight: 700;">상품명</p>
 	    			<!-- 결제 페이지로 보낼 상품명 -->
 	    			<input id="prod_name_rightnow" type="hidden" th:value="${pd.prod_name}" name="user_order_prod_name">
+	    			<input id="prod_no_rightnow" type="hidden" th:value="${pd.prod_no}" name="user_order_prod_no">
 		    		<p class="productDetail_name_2" style="font-family: 'Nanum Gothic', sans-serif; font-size: 14px; font-weight: 700;">[[${pd.prod_name}]]</p>
 	    		</div>
 				<div class="productDetail_price" th:with="price = ${pd.prod_price}">
@@ -170,10 +93,10 @@
     		</div>
     		
     		<!-- 상품 선택 -->
-    		<div style=" display:flex; flex-direction:column; justify-content:center; align-items:center; border: none; border-radius: 5px; background-color: rgba(0, 0, 0, 0.03); padding: 20px; margin:20px 0; line-height: 50px">
-    			<div class="decide_box">
+    		<div style=" display:flex; flex-direction:column; justify-content:center; align-items:center; border: none; border-radius: 5px; background-color: rgba(0, 0, 0, 0.03); padding: 20px; line-height: 50px">
+    			<!-- <div class="decide_box">
 			    	<span>회원아이디</span>
-    			</div>
+    			</div> -->
 	  		
  
     			<div class="decide_box_price" style="overflow:hidden; width: 420px; height: 45px; margin: 0; line-height: 45px;">
@@ -182,19 +105,20 @@
 						
 						<input id="decide_cnt" name="user_order_prod_cnt"  min="1" type="number" style="  height: 40px; margin: 0 ; border: none; outline:none;  width: 40px; text-align: center" th:value="1" >
 						<button  type="button" id="decide_cnt_plus" style="cursor:pointer; border: none;  height: 40px; width: 35px; ">+</button>
+			    		<input id="discount_sum" type="hidden" name="user_discount_rate" th:value="${pd.prod_discount_rate}*0.01*${pd.prod_price}">
 					</div>
 					<div th:with="result =(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" style="float: right; margin-right: 2px;">
-		    			<span id="total_price" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" th:text="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'"></span>
+		    			<span id="total_price" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" th:text="${#numbers.formatInteger(result, 3, 'COMMA')} +'원'"></span>
 					</div>
     			</div>
     			    		    	
     		</div>
     		
-    		<div style=" overflow: hidden; margin-top: 29px; margin-bottom: 14px">
+    		<div style=" overflow: hidden; margin-top: 29px; margin-bottom: 14px" th:with="result1 = (${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})">
     			<p style="font-family: 'Noto Rashi Hebrew', serif; font-size:23px; float: left; margin-left: 13px;">TOTAL</p>
     			<!-- 결제페이지로 보낼 상품 가격 -->
-    			<input id="user_order_total_price" type="hidden" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'" name="user_order_total_price">
-    			<p id="total_price2" style="font-family:  'Nanum Gothic', sans-serif; font-size:23px; font-style:800; float:right; margin-right: 13px;"th:text="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})+'원'"></p>
+    			<input id="user_order_total_price" type="hidden" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" name="user_order_total_price">
+    			<p id="total_price2" style="font-family:  'Nanum Gothic', sans-serif; font-size:23px; font-style:800; float:right; margin-right: 13px;" th:text="${#numbers.formatInteger(result1, 3, 'COMMA')}+'원'"></p>
     		</div>
     		
     		<!-- 구매하기 버튼 -->
@@ -209,9 +133,9 @@
     		
     		<!-- 장바구니 버튼, 위시리스트 버튼 -->
     		<div style="display: flex; flex-direction: row; margin: 10px 0; justify-content: center">
-	    		<button id="cartButton" style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;width: 245px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit" >장바구니 담기</button>
+	    		<button id="cartButton" style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;width: 490px; height: 55px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit" >장바구니 담기</button>
 				<!-- 위시리스트 버튼은 일단 나중에 -->
-				<button style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;  margin-right:10px; width: 245px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit">위시리스트 담기</button> 
+				<!--<button style="font-family:'Nanum Gothic', sans-serif; font-size: 14px;  margin-left:10px; width: 240px; height: 50px; border:1px solid rgba(0, 0, 0, 0.2); border-radius: 30px; background-color: rgba(200, 184, 194, 0.182)" type="submit">위시리스트 담기</button> --> 
     		</div>
     	</div>
   	</div>
@@ -220,8 +144,8 @@
   	<!--  상품 상세 이미지와 주문 및 배송 / 환불 정보 -->
   	  <div style="display: flex; justify-content: center; margin-bottom: 80px; width:1300px; ">
   		<!-- 상품 상세 이미지 (이건 데이터 넣고 다시 지정) -->
-	    <div class="product_detail_img">
-		    <img style="float:left;  width: 500px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album_detail.jpg"/>
+	    <div class="product_detail_img" th:each="pd1:${detail}">
+		    <img style="float:left;  width: 500px;" th:src="${pd1.prod_info_img_path}">
 	    </div>
   		  <div style="width:580px">
 		  	<div class="productTabWrap1">
@@ -349,7 +273,6 @@
 				<div class="review_select">
 					<select>
 						<option>최신순</option>
-						<option>좋아요순</option>
 						<option>별점순</option>
 					</select>
 				</div>
@@ -359,13 +282,14 @@
 			<div class="reviewList_wrap">
 				<div class="reviewList_box">
 					<div class="reviewList">
-						<div class="reviewList_star">
- 						<!-- 만약 별이 3개라면 이미지가 3개 그려지게 해야 함 -->
- 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
- 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
- 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
- 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
- 						<img style="width: 13px; height: 13px" src="/img/star.png"/>
+						<div class="reviewList_star">			
+							<div>
+								<img style="width: 13px; height: 13px" src="/img/star.png"/>
+								<img style="width: 13px; height: 13px" src="/img/star.png"/>
+								<img style="width: 13px; height: 13px" src="/img/star.png"/>
+								<img style="width: 13px; height: 13px" src="/img/star.png"/>
+								<img style="width: 13px; height: 13px" src="/img/star.png"/>
+							</div>
 						</div>
 						<span>아주 좋아요</span>
 						<div>
@@ -375,47 +299,16 @@
 					<div>
 						리뷰 내용(여기는 리뷰 내용이 보일 공간 알간?)
 					</div>
-					<div>(하트) 좋아요</div>
 				</div>
 			</div>
 		</div> <!-- 리뷰 창 -->
   	
   	</div>
  </div>
-
-   
-	<!--footer  -->
-	<div class="footer-outer">
-        <footer>
-          <div class="footer-inner">
-            <div class="footer-left">
-              <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
-            </div>
-            <div class="footer-left footer-left2">
-              <div>개인정보 취급 방침 ㅣ 이용약관 ㅣ 고객센터/문의하기</div>
-              <div>서울시 강남구 테헤란로 7길 7 ㅣ TEL. 02)123-4567 ㅣ FAX. 02)345-6789</div>
-              <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
-            </div>
-            <div class="footer-right">
-              <span>개인정보처리방침</span>
-              <span>▼ 관련 사이트</span>
-            </div>
-          </div>
-        </footer>
-        </div>
+</div>
+</th:block>
  
 <!-- js 링크 -->
  <script src="/js/product_detail/product_detail_page.js"></script>
-  <script th:inline="javascript">
-      var menu = JSON.parse('[[${uri}]]');
-      //a태그
-      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
-    </script>
-    <script>
-      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl)
-      });
-    </script>
-  </body>
+
 </html>

@@ -2,7 +2,7 @@
 <html xmlns:th=“http://www.thymeleaf.org”>
 <head>
 <!-- 제이쿼리 -->
-<script src="https://code.jquery.com/jquery-1.12.1.mim.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -24,7 +24,7 @@
 <!-- 카카오 우편번호 API -->
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
+	<script>
         function kakaopost() {
             new daum.Postcode({
                 oncomplete: function (data) {
@@ -33,13 +33,13 @@
                 }
             }).open();
         }
-    </script>
+	</script>
 
 </head>
 
 <body>
 
-
+<form action="orderform" method="post">
 	<div class="buyMain">
 		
 		<div class="buyTable">
@@ -65,7 +65,7 @@
 			</div>	
 			<!-- 주문/ 결제 top -->
 			<div class="orderTop">
-				<span>주문 /  결제</span>
+				<span>주문 / 결제</span>
 			</div>
 			
 			<!-- 주문자 정보 -->
@@ -87,12 +87,16 @@
 								<span>주소</span><span style="color:blue; margin-left: 4px">*</span>
 							</div>
 						</div>
-						<div class="orderer_realInfo"> <!-- db에서 가져오기 -->
+						<div class="orderer_realInfo" th:each="user_info:${user}"> <!-- db에서 가져오기 -->
 							<span></span>
-							<span >유희정</span>
-							<span >gmlwjd852369@naver.com</span>
-							<span >010-4890-0923</span>
-							<span >경기도 수원시 어쩌구 저쩌구</span>
+							<span >[[${user_info.user_name}]]</span>
+							<span >[[${user_info.user_email}]]</span>
+							<span >[[${user_info.user_contact}]]</span>
+							<span>[[${user_info.user_address}]]</span>
+							<input id="user_name" type="hidden" th:value="${user_info.user_name}">
+							<input id="user_contact" type="hidden" th:value="${user_info.user_contact}">
+							<input id="user_zipcode" type="hidden" th:value="${user_info.user_zipcode}">
+							<input id="user_address" type="hidden" th:value="${user_info.user_address}">
 						</div>
 					</div>
 				</div>
@@ -102,10 +106,10 @@
 			<div class="shipping_address_wrap">
 				<div class="shipping_address_box">
 					<span>배송지</span>
-					<div class="shipping_check">
+					<div id="shipping_chk" class="shipping_check">
 					<!-- radio박스 중복 방지 : name을 같은 값으로 -->
-						<input type="radio" name="shipping" value="same" checked required><span>주문 정보와 동일</span>
-						<input type="radio" name="shipping" value="new" required><span>새로운 배송지</span>
+						<input id="same_ship" type="radio" name="shipping" value="same" required><span>기본 배송지</span>
+						<input id="new_ship" type="radio" name="shipping" value="new" checked required><span>새로운 배송지</span>
 					</div>
 					<div class="shipping_address">
 					
@@ -125,35 +129,31 @@
 						</div>
 						<div class="shipping_real_address">
 							<!-- 받는 사람 -->
-							<input type="text" id="receiver" size="20">
+							<input type="text"  id="receiver" size="20" name="order_addressee">
 							<!-- 주소 -->
+							
 							<div class="shipping_address_content" >
-								<input type="text" name="zipcode" id="zipcode" size="7" class="address_btn1"
-									placeholder="우편번호" 
-									onclick="kakaopost()" readonly> 
-								<input type="button" value="주소검색" id="zipcode" class="address_btn2"
+								<input type="text" name="order_zipcode" id="zipcode" size="7" class="address_btn1"
+									placeholder="우편번호" onclick="kakaopost()"  required  readonly> 
+								<input type="button" value="주소검색" id="zipcode" class="address_btn2" 
 									onclick="kakaopost()" required><br> 
-								<input type="text" name="user_address" id="address" size="70" placeholder=" 기본 주소" th:value="${vo != null? vo.user_address:''}"><br />
-								<input type="text" name="user_address" id="address" size="70"
-									placeholder=" 나머지 주소"  th:value="${vo != null? vo.user_address:''}"><span style="color:red; font-size:12px;">[[${valid_user_address}]]</span>
+								<input type="text" name="order_shipping_address" id="address" size="70" placeholder=" 기본 주소" th:value="${vo != null? vo.user_address:''}"><br />
+								<input type="text" name="order_shipping_address"  id="address2" size="70" required
+									placeholder=" 나머지 주소" ><span style="color:red; font-size:12px;"></span>
 							</div>
 							<!-- 전화번호 -->
-							<div class="phone_wrap">
-								<div>
-									<select class="phone_option">
-										<option>010</option>
-										<option>011</option>
-										<option>016</option>
-										<option>017</option>
-										<option>018</option>
-										<option>019</option>
-									</select>
-								</div>
+							<div class="phone_wrap" >
 								<div class="phone_input">
+									<input type="text" value="010" class="phone_option" readonly>
 									<span> -</span>
-									<input type="text" id="phone_front" size="8">
+									<input type="text" id="phone_front"
+	                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+	                                maxlength="4" required>
 									<span>-</span>
-									<input type="text" id="phone_back" size="8">
+									<input type="text" id="phone_back"
+	                                oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"
+	                                maxlength="4" required>
+	                                <input type="hidden" id="user_orderContact" name="order_addressee_contact">
 								</div>
 							</div>
 						</div>
@@ -165,36 +165,46 @@
 		</div> <!-- 배송지 정보 끝 -->
 		
 			<!-- 배송시 부탁 사항 -->
-			<div class="shipping_msg">
-				<select>
+			<div class="shipping_msg" >
+				<select name="order_shipping_message" >
 					<option>-- 메세지 선택 (선택사항) --</option>
-					<option>배송 전에 미리 연락바랍니다.</option>
-					<option>부재 시 경비실에 맡겨주세요.</option>
-					<option>부재 시 문 앞에 놓아주세요.</option>
-					<option>빠른 배송 부탁드립니다.</option>
-					<option>택배함에 보관해 주세요.</option>
+					<option value="배송 전에 미리 연락바랍니다.">배송 전에 미리 연락바랍니다.</option>
+					<option value="부재 시 경비실에 맡겨주세요.">부재 시 경비실에 맡겨주세요.</option>
+					<option value="부재 시 문 앞에 놓아주세요.">부재 시 문 앞에 놓아주세요.</option>
+					<option value="빠른 배송 부탁드립니다.">빠른 배송 부탁드립니다.</option>
+					<option value="택배함에 보관해 주세요.">택배함에 보관해 주세요.</option>
 				</select>
 			</div>
 				
+			
+			<!-- 주문 상품 정보-->
+			<div th:each="uo: ${user_order}">
+				<input type="hidden" name="user_id" value="gmlwjd852369">
+				<input type="hidden" name="order_cnt" value="1"> <!-- 구매한 물품 종류 1개 (바로 구매하기 기준) -->
+				<input type="hidden" name="order_prod_name" th:value="${uo.user_order_prod_name}"> <!-- 주문한 상품명 -->
+				<input type="hidden" name="order_prod_cnt" th:value="${uo.user_order_prod_cnt}"> <!-- 주문한 상품의 갯수 -->
+				<input type="hidden" name="order_date" th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"> <!-- 주문 날짜 -->
+				<input type="hidden" name="order_state" value="주문 완료"><!-- 주문 상태 -->
+				<input type="hidden" name="order_prod_no" value=""><!-- 주문 상태 -->
+				<input type="hidden" name="prod_no" th:value="${uo.user_order_prod_no}"> 
 				
-				<!-- 주문 상품 정보-->
-				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)" th:each="uo: ${user_order}" >
+				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)"  >
 					<div class="order_product_wrap">
 						<span>주문 상품</span>
 						<div class="order_product_box">
 							<div><!-- 상품 사진도 데베에서 가져와야 함 -->
-								<img style="width:100px; height: 90px; border:1px solid rgba(5, 3, 3, 0.328)" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/blackpink_album.jpg" />
+								<img style="width:100px; height: 90px; border:1px solid rgba(5, 3, 3, 0.328)" th:src="${uo.user_order_prod_img}" />
 							</div>
-							<div class="order_product">
+							<div class="order_product" th:with="r = ${uo.user_order_total_price}+ ${uo.user_discount_rate}">
 								<span>[[${uo.user_order_prod_name}]]</span>
 								<span style="margin-top: 7px;">수량: [[${uo.user_order_prod_cnt}]]개</span>
-								<span style="margin-top: 23px;"></span>
+								<span style="margin-top: 23px;"th:text="${#numbers.formatInteger(r, 3, 'COMMA')} +'원'"></span><!-- 정가 -->
 							</div>
 						</div>
 					</div>
 					<div class="shipping_cost">
 						<span id="shipping_cost_name">배송비</span>
-						<span id="shipping_real_cost">배송가격(가격에 따라 다름)</span>
+						<span id="shipping_real_cost">[[${uo.user_delivery_fee}]]</span>
 					</div>
 				</div><!-- 주문 상품 정보 끝 -->
 				
@@ -202,49 +212,60 @@
 				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)">
 					<div class="payment_info_wrap">
 						<span style="margin-bottom: 10px" >결제 정보</span>
-						<div class="payment_info_box">
+						<div class="payment_info_box" th:with="regular =${uo.user_order_total_price} +${uo.user_discount_rate}">
 							<span class="payment_info_left">주문 상품</span>
-							<span class="payment_info_right">원</span>
+							<span class="payment_info_right" th:text="${#numbers.formatInteger(regular, 3, 'COMMA')} +'원'"></span><!-- 정가 -->
 							
 						</div>
 						<div class="payment_info_box">
 							<span class="payment_info_left">배송비</span>
-							<span class="payment_info_right">배송비(3000원 or 0원)원</span>
+							<span class="payment_info_right">[[${uo.user_delivery_fee}]]</span>
 						</div>
-						<div class="payment_info_box">
+						<div class="payment_info_box" th:with="discount = ${uo.user_discount_rate}">
 							<span class="payment_info_left">할인</span>
-							<span class="payment_info_right">(할인 가격)원</span>
+							<span class="payment_info_right" style="color:red" th:text="'-' + ${#numbers.formatInteger(discount, 3, 'COMMA')}+'원'"></span>
 						</div>
 					</div>
 				
-					<div class="payment_info_box1" >
+					<div class="payment_info_box1" th:with="fee=${uo.user_delivery_fee}, total=${uo.user_order_total_price}">
 						<span class="payment_info_left">최종 결제 금액</span>
-						<span class="payment_info_right">원</span>
+						<span class="payment_info_right" th:with=" total = ${fee == '무료' ? total : total + 3000}" th:text="${#numbers.formatInteger(total, 3, 'COMMA')} + '원'"  ></span>
+						<input id="total_total_price" name="order_total_price" th:value="${uo.user_order_total_price}" type="hidden">
 					</div>
+				
 				
 				
 				</div><!-- 결제 정보 끝 -->
+						
 				
+			</div>
 				<!-- 결제 수단 -->
 				<div class="payment_method_box">
 					<div class="payment_method">
 						<span>결제 수단</span>
 						<span>결제 수단 선택</span>
 					</div>
+					<input id="payment_method" type="hidden" name="order_payment_method" value=""><!-- 결제 방법1 -->
 					<ul class="payment_real_method">
-						<li class="payment_real_method1 on">카드 결제</li>
-						<li class="payment_real_method2 ">카카오 페이</li>
-						<li class="payment_real_method3 " style="border:none">계좌이체</li>
+						<li class="payment_real_method1">카드 결제</li>
+						<li class="payment_real_method2 ">카카오페이</li>
+						<li class="payment_real_method3 " >계좌이체</li>
 					</ul>
 				</div> <!-- 걀제수단 창 끝 -->
 				
-				<button id="buy_button" type="submit">결제하기</button>
+				<button id="buy_btn" type="submit">결제하기</button>
 			</div>
 		
 		</div>
-		
+	</form>	
+	
+	
+	
 <!-- js 링크 -->
 <script  type="text/javascript" src="/js/product_detail/product_buy_rightnow.js"></script>
+  
+
+
 </body>
 
 

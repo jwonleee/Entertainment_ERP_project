@@ -8,19 +8,10 @@ button{
     cursor: pointer;
 }
 
-/*=========== header부분 ==============*/
-header {
-   padding: 20px;
-    margin: 0 auto;
-}
-header > h3 {
-    color: #1F2124;
-    font-size: 60px;
-}
 
 /*=========== 조회 기간 설정 부분 ==========*/
 .order_list_innerbox{
-    width: 65%;
+    width: 70%;
     padding: 30px 40px; 
     margin: 0 auto; 
 }
@@ -40,7 +31,6 @@ header > h3 {
 }
 
 /* 기간별 버튼 */
-
 .choose_period > button{
     width: 75px;
     margin: 7px 0 10px;
@@ -99,51 +89,62 @@ header > h3 {
 }
 .past_order_list input:focus {outline: none;}
 .past_order_inner .past_order_title{
-    padding: 15px 0;
+    padding: 10px 0;
     display: flex;
+    text-align:center;
     justify-content: space-around;
     border-bottom: 1px solid #b8b6b6;
 }
 .past1-order_title span{
-    width: 90px;
+    width: 80px;
+  
+  
+}
+
+.order_list_header >h2 {
+	font-family: 'Nanum Gothic', sans-serif;
 }
 
 .order_list_content{
-    line-height: 50px;
+    line-height: 30px;
     padding: 15px 0;
     display: flex;
     justify-content: space-around;
     border-bottom: 0.5px solid #dfdfdf;
 }
 .order_list_content div{
+
     height: 50px;
     padding: 10px;
 }
 .order_list_content input{
-    width: 90px;
+    width: 80px;
     text-align: center;
-    font-size: 15px;
-    vertical-align: middle;
+    font-size: 14px;
     border: none;
+   
 }
 
 /* 페이지네이션 부트스트랩 */
 .paging{
-    margin-top: 20px;
+    margin-top: 40px;
     display: flex;
     justify-content: center;
-}
-.paging li{
-    
-    align-items: center;
-    padding: 8px 25px;
-}
-.page-link{
-    color: rgb(43, 53, 71);
-    font-size: 17px;
-    font-weight: 600;
+	
 }
 
+.paging .page-item {
+	margin:0 10px;
+	font-weight: 700;
+
+}
+
+.paging .page-item  a{
+	color:black;
+	font-size: 17px;
+	font-family: 'Alkatra', cursive;
+	
+}
 
 /* 상단, 하단으로 가는 버튼 */
 .arrow_btn{
@@ -151,10 +152,10 @@ header > h3 {
     display: block;
     text-align:center;
     margin:auto;
-   
     width: 350px;
-    height: 250px;
+    height: 80px;
 }
+
 .arrow_btn a >img {
     width: 35px;
     height: 35px;
@@ -183,7 +184,4 @@ header > h3 {
     scroll-behavior: smooth;
 }
 
-/*============== footer부분 =============*/
-footer {padding: 20px;}
 
-footer h3 {text-align: center;}

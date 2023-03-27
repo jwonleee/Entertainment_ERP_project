@@ -29,12 +29,76 @@ $(".product_classification").on("click", "span", function(){
 });
 
 
-
 /*about goods 누르면 전체 목록 나오게 구현*/
 $(".about_goods > span ").click(function(){
 $('.allProduct_list').val();
 $('#prod_search').submit();
 });
+
+/* 더보기 버튼 기능 구현 */
+$("#more").click(function(){
+	
+/*  <a th:each="vo: ${list}"  th:href="@{/product/detail_page(prod_no = ${vo.prod_no})}">
+		<div class="allProduct_list" >
+			<div class="allProduct_list_img" >
+				<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>	
+				<!-- <span>[[${vo.prod_regdate}]]</span> -->	<!-- //////// 나중에 없애야 할 태그 //////// -->
+			</div>
+			<div class="allProduct_list_info_box">
+				<div class="allProduct_list_info" th:with="price=${vo.prod_price}"><!-- hover이용해서 상품명이랑 가격 보이게 하기 -->
+					<span>[[${vo.prod_name}]]</span>
+					<p style="color:rgba(227, 3, 3, 0.897)" th:text="${#numbers.formatInteger(price, 3, 'COMMA')}+'원'"></p>
+				</div>
+			</div>
+		</div>
+		</a>*/
+		
+
+	const endIndex = $(".allProduct_list .allProduct_box").length;
+	
+
+
+	let str = "";
+	$.ajax({
+		url:'/getProduct',
+		type: 'post',
+		dataType : 'json',
+		data : {
+			"endIndex" : endIndex
+		},
+		success:function(result){
+
+		 
+			console.log("더보기에 성공하셨습니다!");
+		 result.forEach(function(item, index){
+			 str += `<a href="/product/detail_page?prod_no=${item.prod_no}">`;	 
+				 str += `<div class="allProduct_list">`;
+				   str += `<div class="allProduct_list_img" >`;
+				     str += `<img style="width: 230px; height: 230px;" src="${item.prod_img_path}"/>`;
+				   str += `</div>`;
+				   str += `<div class="allProduct_list_info_box">`;
+				     str += `<div class="allProduct_list_info">`;
+				       str += `<span>${item.prod_name}</span>`;
+				       str += `<p id="prod_price" style="color:rgba(227, 3, 3, 0.897)" >${item.prod_price}원</p>`;
+				     str += `</div>`;
+				    str += `</div>`
+				 str += `</div>`; 
+			 str += `</a>`;
+		 }) /*반복문의 끝*/
+		
+		
+  			$("#more").fadeOut();  
+				
+			$(".allProduct").append(str);
+  			  
+			
+		},
+		error:function(err){
+			alert("더보기에 실패하셨습니다!");
+		}
+		
+	})
+})
 
 
 /*var menuHeight = document.querySelector(".menu").offsetHeight;

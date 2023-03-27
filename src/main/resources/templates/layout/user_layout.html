@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns:th=“http://www.thymeleaf.org”>
+<th:block th:fragment="function(userContent)">
+
+<head>
+	<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<!-- 스와이퍼 -->
+	<link rel="stylesheet"
+		href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css" />
+	
+	<!-- 폰트 1 -->
+	<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+	<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+	<!-- 폰트 2 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+	<!-- 폰트 3 - 나눔고딕 --> 
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+	<!-- 폰트 4 -->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@600&display=swap" rel="stylesheet">
+	
+	<!-------------------------------------------------------------------------------------------------------------->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+	
+	<link rel="stylesheet" type="text/css" media="screen"
+		href="../css/jquery.datetimepicker.min.css">
+	<script src="../js/jquery.datetimepicker.full.min.js"></script>
+	<link rel="stylesheet"
+		href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+	
+	 <!-- popper.js -->
+	 <script src="https://unpkg.com/@popperjs/core@2"></script>
+	<!-- bootstrap -->
+	<!-- css링크 -->
+	<link rel="stylesheet" href="/css/bootstrapcss/bootstrap.min.css">
+	<!-- 부트스트랩 테마가 필요하면 이쯤 추가 -->
+	 <!-- js링크 -->
+	 <script src="/js/bootstrapjs/bootstrap.min.js"></script>
+   <!-- 개별 css -->
+ 	<link rel="stylesheet" href="/css/product_page/user_layout.css">
+
+ </head>
+  
+	<!-- 헤더 --> 
+	<header>
+	 <div class="header1_user_bar_box">
+		<div class="header1_user_bar">
+		 	<ul class="main-header-inner main-header-inner2">
+		      <li class="header_middle_user">
+		        <a href="/user/user_login">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+		          <!-- <span>LOGIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/admin/admin_join">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+		          <!-- <span>JOIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/mypage">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+		          <!-- <span>MY PAGE</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/cart">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART" src="/img/shopping_cart.png">
+		          <!-- <span>CART</span> -->
+		          <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
+		        </a>
+		      </li>
+		   	</ul>
+		</div>
+	</div>
+
+   	<div class="header1">
+   		<div class="header1-bottom">
+    		<div class="header_main"><!-- 헤더 상단 메뉴바 -->
+    			<div class="header_main_menu">
+    				<ul class="header_main_menu_box">
+                      	<li>
+                          <span class="menu_bar_name"><a href="#">COMPANY</a></span>
+                          <ul class="menu_bar1">
+                             <li><span><a href="#">ABOUT Y4J</a></span></li>
+                             <li><span><a href="#">HISTORY</a></span></li>
+                             <li><span><a href="#">CONTACT</a></span></li>
+                          </ul>
+                      	</li>
+                     	 <li style="margin-left:0px">
+                           <span class="menu_bar_name" ><a href="#">ENTERTAINER</a></span>
+                           <ul class="menu_bar1">
+                              <li><span><a href="#">NEWJEANS</a></span></li>
+                              <li><span><a href="#">BLACKPINK</a></span></li>
+                              <li><span><a href="#">IVE</a></span></li>
+                              <li><span><a href="#">LEE DOHYUN</a></span></li>
+                              <li><span><a href="#">CHAE SOOBIN</a></span></li>
+                            </ul>
+                      	 </li>
+                      	 <li>
+                            <span class="menu_bar_name"><a href="/product/productList">PRODUCTION</a></span>
+                            <ul class="menu_bar1">
+                         	  <li><span><a href="/product/NEWJEANS">NEWJEANS</a></span></li>
+                              <li><span><a href="/product/BLACKPINK">BLACKPINK</a></span></li>
+                              <li><span><a href="/product/IVE">IVE</a></span></li>
+                              <li><span><a href="/product/LEEDOHYUN">LEE DOHYUN</a></span></li>
+                              <li><span><a href="/product/CHAESOOBIN">CHAE SOOBIN</a></span></li>
+                            </ul>
+                         </li>
+                         <li>
+                            <span class="menu_bar_name"><a href="/audition/audition_notice">AUDITION</a></span>
+                            <ul class="menu_bar1">
+                              	<li class="menu_bar_content"><a href="/audition/audition_notice">AUDITION</a></li>
+                            </ul>
+                       	</li>
+		    			<!-- 메뉴 상단바 y4j 로고 -->
+                       </ul>
+    				</div>
+    			</div>
+   			</div><!-- 헤더 상단 메뉴바 끝 -->
+		     <div class="logo_box"> 
+				<a href="/">
+				  <img style="width:115px; height: 85px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>
+				</a>
+		      </div>
+   		</div>
+    	
+	 </header>
+	 
+	 <!-- 개별 본문이 들어갈 곳 -->	
+	 <section th:replace="${userContent}">
+	 
+	 </section>
+	 
+	 
+   
+	<!--footer  -->
+	<div class="footer-outer">
+        <footer>
+          <div class="footer-inner">
+            <div class="footer-left">
+              <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
+            </div>
+            <div class="footer-left footer-left2">
+              <div>개인정보 취급 방침 ㅣ 이용약관 ㅣ 고객센터/문의하기</div>
+              <div>서울시 강남구 테헤란로 7길 7 ㅣ TEL. 02)123-4567 ㅣ FAX. 02)345-6789</div>
+              <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
+            </div>
+            <div class="footer-right">
+              <span>개인정보처리방침</span>
+              <span>▼ 관련 사이트</span>
+            </div>
+          </div>
+        </footer>
+     </div>
+
+	<script src="/js/product_detail/user_layout.js"></script>	 	
+   </th:block>
+    
+	<script th:inline="javascript">
+      var menu = JSON.parse('[[${uri}]]');
+      //a태그
+      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
+	</script>
+	
+	<script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      });
+    </script>
+	
+</html>
