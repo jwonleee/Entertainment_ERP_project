@@ -78,7 +78,7 @@ $(document).ready(() => {
     });
 
 
-//////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////////
 
 
     //앨범
@@ -157,9 +157,43 @@ $(document).ready(() => {
                     beginAtZero: true
                 }
             }
-        } 
-       
-            
+        }
+
+
     });
 
 });
+
+/////////////////////////테이블///////////////////////////////////
+//state변경
+$(".state_update").on("click", ".OrderStateNow", (e) => {
+    if (confirm('주문상태를 "' + e.target.value + '"으로 변경하시겠습니까?')) {
+        $(e.currentTarget).prevAll().attr('disabled', true);//이전단계 disabled
+        $(e.currentTarget).addClass("state_now");//현상태로
+        $(e.currentTarget).prevAll().removeClass("state_now");//이전단계 현상태class 지우기
+        $("input[name='order_state']").val($(e.currentTarget).val());
+        
+        var formData = new FormData();
+        formData.append("order_no", $(e.currentTarget).closest("tr").find("input[name='order_no']").val());
+        formData.append("order_state", $(e.currentTarget).val());
+
+        $.ajax({
+            url: '/update_order_history_state',
+            type: 'post',
+            data: formData,
+            contentType: false, //보내는 데이터 타입 multipart/form-data로
+            processData: false, //폼데이터가 name=값&형식으로 변경되는 것 막기
+            async: false,
+            success: (result) => {
+                alert(result);
+            },
+            error: (err) => { alert('주문현황 수정 실패! 담당자에게 문의하세요.') }
+        })
+
+    }
+});
+
+//state적용
+$(document).ready(() => {
+    $(".state_now").prevAll().attr('disabled', true);
+})

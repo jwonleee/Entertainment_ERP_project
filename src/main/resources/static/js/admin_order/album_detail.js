@@ -94,8 +94,6 @@ $("#album_modify_btn").click(() => {
             var formData = new FormData();
             var file = $("#imgReg");
 
-            console.log($("input[name='album_img_path']").val())//.확인용
-
             formData.append("file", file[0].files[0]);
             $.ajax({
                 url: "/s3/resource",

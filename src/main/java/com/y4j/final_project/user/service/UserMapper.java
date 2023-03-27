@@ -6,7 +6,7 @@ import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.validation.Errors;
 
-import com.y4j.final_project.command.CartListVO;
+import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.util.Criteria;
@@ -47,7 +47,7 @@ public interface UserMapper {
 	//////////////////////////////////////////////////////////////////////
 
 	//유저의 장바구니 리스트 조회
-	public ArrayList<CartListVO> getCartList(String user_id);
+	public ArrayList<CartListVO1> getCartList(String user_id);
 
 	//장바구니 선택 상품 삭제
 	public void deleteCart(CartVO cvo);

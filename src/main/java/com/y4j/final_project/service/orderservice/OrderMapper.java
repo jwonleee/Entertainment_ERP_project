@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
 import com.y4j.final_project.command.ordercommand.CategoryVO;
@@ -53,5 +54,12 @@ public interface OrderMapper {
 	//top10 가져오기
 	public ArrayList<ProductVO> getTopProduct();//상품
 	public ArrayList<AlbumVO> getTopAlbum();//앨범
+	
+	//order_history 가져오기
+	public ArrayList<OrderHistoryVO> getOrderHistoryList(Criteria cri);
+	public int getOrderHistoryTotal(Criteria cri); //전체게시글수 조회
+	
+	//order_history state 변경
+	public int updateOrderHistoryState(OrderHistoryVO vo);
 	
 }

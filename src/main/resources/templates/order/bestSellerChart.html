@@ -11,124 +11,131 @@
         </div>
         <div class="best_seller_wrap">
             <div class="best_prod_section">
-                    <div class="prod_section_wrap">
-                        <h5>Top 10 상품</h5>
-                    </div>
-                    <div class="prod_canvas_section">
-                        <canvas id="prodChart"></canvas>
-                    </div>
+                <div class="prod_section_wrap">
+                    <h5>Top 10 상품</h5>
+                </div>
+                <div class="prod_canvas_section">
+                    <canvas id="prodChart"></canvas>
+                </div>
             </div>
             <div class="best_album_section">
-                    <div class="album_section_wrap">
-                        <h5>Top 10 앨범</h5>
-                    </div>
-                    <div class="album_canvas_section">
-                        <canvas id="albumChart"></canvas>
-                    </div>
+                <div class="album_section_wrap">
+                    <h5>Top 10 앨범</h5>
+                </div>
+                <div class="album_canvas_section">
+                    <canvas id="albumChart"></canvas>
+                </div>
             </div>
         </div>
 
-        <div>
-            <table class="table table-bordered table-hover">
-                <thead class="thead-dark">
-                  <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                  </tr>
+        <div class="table_section">
+            <h3>전체주문현황</h3>
+            <table class="table table-bordered table-hover order_history_table">
+                <thead class="order_history_thead">
+                    <tr>
+                        <th scope="col">주문번호</th>
+                        <th scope="col">주문일자</th>
+                        <th scope="col">상품번호</th>
+                        <th scope="col">구매자</th>
+                        <th scope="col">상품명</th>
+                        <th scope="col">총 결제금액</th>
+                        <th scope="col">비고</th>
+                    </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                  </tr>
-                  <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                  </tr>
+                    <form id="update_order_history_form" method="post">
+                        <tr th:each="vo, status:${list}">
+                            <input type="hidden" name="order_no" th:value="${vo.order_no}" />
+                            <input type="hidden" name="order_state" th:value="${vo.order_state}" />
+                            <th scope="row">[[${vo.order_no}]]</th>
+                            <td>[[${vo.order_date}]]</td>
+                            <td>[[${vo.order_prod_no}]]</td>
+                            <td>[[${vo.user_id}]]</td>
+                            <td>[[${vo.order_prod_name}]]</td>
+                            <td>[[${vo.order_total_price}]]</td>
+                            <td>
+                                <div class="state_update">
+                                    <button type="button" value="주문완료"
+                                        th:class="${vo.order_state=='주문완료'?'state_now OrderStateNow':'OrderStateNow'}"
+                                        disabled="true">주문준비</button>
+                                    <button type="button" value="발송준비"
+                                        th:class="${vo.order_state=='발송준비'?'state_now OrderStateNow':'OrderStateNow'}">발송준비</button>
+                                    <button type="button" value="배송준비"
+                                        th:class="${vo.order_state=='배송준비'?'state_now OrderStateNow':'OrderStateNow'}">배송준비</button>
+                                    <button type="button" value="배송중"
+                                        th:class="${vo.order_state=='배송중'?'state_now OrderStateNow':'OrderStateNow'}">배송중</button>
+                                    <button type="button" value="배송완료"
+                                        th:class="${vo.order_state=='배송완료'?'state_now OrderStateNow':'OrderStateNow'}">배송완료</button>
+                                    <button type="button" value="구매확정"
+                                        th:class="${vo.order_state=='구매확정'?'state_now OrderStateNow':'OrderStateNow'}">구매확정</button>
+                                </div>
+                            </td>
+                        </tr>
+                    </form>
                 </tbody>
-              </table>
-              <section class="pagination_section">
+            </table>
+            <section class="pagination_section">
                 <div class="pagination">
                     <ul class="pages">
-                        <th:block>
-                            <li><a href="#"
-                                class="page_num"><svg xmlns="http://www.w3.org/2000/svg"
-                                width="16" height="16" fill="currentColor"
-                                class="bi bi-chevron-double-left size"
-                                viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                                <path fill-rule="evenodd"
-                                d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
-                            </svg></a></li>
+                        <th:block th:if="${pageVO.total!=0}">
+                            <li><a th:href="@{bestSellerChart(pageNum=1,amount=${pageVO.amount})}" class="page_num"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-double-left size" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M8.354 1.646a.5.5 0 0 1 0 .708L2.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                        <path fill-rule="evenodd"
+                                            d="M12.354 1.646a.5.5 0 0 1 0 .708L6.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0z" />
+                                    </svg></a></li>
                         </th:block>
-                        <th:block>
-                            <li><a href="#"
-                                    class="page_num"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor"
-                                        class="bi bi-chevron-compact-left size"
-                                        viewBox="0 0 16 16">
+                        <th:block thif="${pageVO.prev}">
+                            <li><a th:href="@{bestSellerChart(pageNum=${pageVO.startPage-1},amount=${pageVO.amount})}"
+                                    class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-chevron-compact-left size" viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M9.224 1.553a.5.5 0 0 1 .223.67L6.56 8l2.888 5.776a.5.5 0 1 1-.894.448l-3-6a.5.5 0 0 1 0-.448l3-6a.5.5 0 0 1 .67-.223z" />
                                     </svg></a></li>
                         </th:block>
-                        <th:block>
-                            <li><a href="#">1</a>
+                        <th:block th:each="pageNum:${pageVO.pageList}">
+                            <li><a th:href="@{bestSellerChart(pageNum=${pageNum},amount=${pageVO.amount})}"
+                                    th:class="${pageNum == pageVO.pageNum?'pon':''}">[[${pageNum}]]</a>
                             </li>
                         </th:block>
-                        <th:block>
-                            <li><a href="#"
-                                    class="page_num"><svg
-                                        xmlns="http://www.w3.org/2000/svg" width="16"
-                                        height="16" fill="currentColor"
-                                        class="bi bi-chevron-compact-right size"
+                        <th:block th:if="${pageVO.next}">
+                            <li><a th:href="@{bestSellerChart(pageNum=${pageVO.endPage+1},amount=${pageVO.amount})}"
+                                    class="page_num"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        fill="currentColor" class="bi bi-chevron-compact-right size"
                                         viewBox="0 0 16 16">
                                         <path fill-rule="evenodd"
                                             d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671z" />
                                     </svg></a></li>
                         </th:block>
-                        <th:block>
-                            <li><a
-                                href="#"><svg
-                                xmlns="http://www.w3.org/2000/svg" width="16"
-                                height="16" fill="currentColor"
-                                class="bi bi-chevron-double-right size"
-                                viewBox="0 0 16 16">
-                                <path fill-rule="evenodd"
-                                d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
-                                <path fill-rule="evenodd"
-                                d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
-                            </svg></a></li>
+                        <th:block th:if="${pageVO.total!=0}">
+                            <li><a th:href="@{bestSellerChart(pageNum=${pageVO.realEnd},amount=${pageVO.amount})}"><svg
+                                        xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                        class="bi bi-chevron-double-right size" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd"
+                                            d="M3.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L9.293 8 3.646 2.354a.5.5 0 0 1 0-.708z" />
+                                        <path fill-rule="evenodd"
+                                            d="M7.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L13.293 8 7.646 2.354a.5.5 0 0 1 0-.708z" />
+                                    </svg></a></li>
                         </th:block>
                     </ul>
                 </div>
             </section>
-        </div>      
-        
-        
-        
-        
-        
-        
-        
-        
+        </div>
+
+
+
+
+
+
+
+
     </div>
 </th:block>
 <!-- chart js -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>
 <!-- js -->
 <script src="/js/admin_order/best_seller_chart.js" th:inline="javascript"></script>
+
 </html>

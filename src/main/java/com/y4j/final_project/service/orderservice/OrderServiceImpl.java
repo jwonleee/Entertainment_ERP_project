@@ -7,6 +7,7 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
 import com.y4j.final_project.command.ordercommand.CategoryVO;
@@ -185,6 +186,23 @@ public class OrderServiceImpl implements OrderService{
 		}	
 
 		return list;
+	}
+
+	@Override
+	public ArrayList<OrderHistoryVO> getOrderHistoryList(Criteria cri) {
+		return orderMapper.getOrderHistoryList(cri);
+	}
+
+	@Override
+	public int getOrderHistoryTotal(Criteria cri) {
+		return orderMapper.getOrderHistoryTotal(cri);
+	}
+
+	@Override
+	public String updateOrderHistoryState(OrderHistoryVO vo) {
+		int result=orderMapper.updateOrderHistoryState(vo);
+		String msg=result==1?"성공적으로 수정되었습니다.":"수정에 실패하였습니다.";
+		return msg;
 	}
 
 

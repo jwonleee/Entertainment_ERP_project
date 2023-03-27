@@ -3,6 +3,7 @@ package com.y4j.final_project.service.orderservice;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
 import com.y4j.final_project.command.ordercommand.CategoryVO;
@@ -49,5 +50,12 @@ public interface OrderService {
 	//top10 가져오기
 	public ArrayList<Map<String, String>> getTopProduct();//상품
 	public ArrayList<Map<String, String>> getTopAlbum();//앨범
+	
+	//order_history 가져오기
+	public ArrayList<OrderHistoryVO> getOrderHistoryList(Criteria cri);
+	public int getOrderHistoryTotal(Criteria cri); //전체게시글수 조회
+	
+	//order_history state 변경
+	public String updateOrderHistoryState(OrderHistoryVO vo);
 	
 }

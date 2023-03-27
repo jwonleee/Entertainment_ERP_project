@@ -5,6 +5,7 @@
 <th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment orderRegFragment">
+		
 		<h3 style="text-align: center; margin-bottom: 30px;">신규 발주 등록</h3>
 		<section class="formSection">
 			<div class="regist_wrap"></div>
@@ -29,7 +30,7 @@
 										<table class="regTable">
 											<tr>
 												<th>발주자ID</th>
-												<td><input type="text" class="regId" readonly th:value="${admin_id}"
+												<td><input type="text" class="regId" readonly th:value="${session.admin_id}"
 														name="admin_order_id" /></td>
 											</tr>
 											<tr>

@@ -5,7 +5,7 @@
 }
 
 .orderRegFragment{
-	height: 150vh;
+	height: 200vh;
 }
 
 
@@ -37,6 +37,7 @@ input::-webkit-inner-spin-button {
 .regTable {
 	color: white;
 	width: 100%;
+	height: auto;
 }
 
 .regTable th {

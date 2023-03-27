@@ -40,6 +40,63 @@
     border:2px solid red;
 }
 
+
+/* 테이블 */
+.table_section{
+    margin-top:100px;
+    border-top: 2px solid #ced4da;
+    text-align: center;
+}
+
+.table_section > h3{
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.order_history_thead{
+    background-color: #3f3f3f;
+    color: white;
+}
+
+
+/* 버튼 */
+.OrderStateNow{
+    font-size:13px;
+    background: none;
+    padding:5px;
+    margin-right:5px;
+    border:2px solid yellowgreen;
+    color:yellowgreen;
+    border-radius: 20px;
+}
+
+.OrderStateNow:hover{
+    border:2px solid green;
+    background-color:green;
+    color:white;
+}
+
+.OrderStateNow:disabled{
+    border:2px solid gray;
+    color:gray;
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+
+
+.state_now{
+    font-size:13px;
+    background: none;
+    padding:5px;
+    margin-right:5px;
+    border:2px solid green;
+    color:green;
+    border-radius: 20px;
+}
+
+
+
 /* 페이지네이션 */
 .pagination_section {
     margin: 20px 0;
@@ -77,8 +134,12 @@
     outline: 3px solid yellowgreen;
 }
 
-
 .page_num {
     height: 30px;
     line-height: 30px;
+}
+
+.pon {
+    background-color: #3f3f3f;
+    color: white !important;
 }
