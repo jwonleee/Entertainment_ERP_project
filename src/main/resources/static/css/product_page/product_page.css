@@ -114,6 +114,7 @@ img {max-width: 100%; height: auto;}
 	font-family: 'Nanum Gothic', sans-serif;
 	font-weight: 600;
 	cursor: pointer;
+	font-style: italic;
 }
 
 .prod_hashTag_button span:hover{
@@ -160,7 +161,7 @@ img {max-width: 100%; height: auto;}
 
 .allProduct_list{
 
-	flex-basis: 22%;
+	flex-basis: 25%;
 	margin:20px 15px;
 	position: relative;
 	display: flex;
@@ -212,4 +213,34 @@ img {max-width: 100%; height: auto;}
     flex-direction:column;
     justify-content: center;
     padding: 20px;
+}
+
+
+
+
+/* 더보기 버튼 */
+#more {
+	width: 185px;
+	border-radius: 25px;
+	height:48px;	
+	border:none;
+	color:white;
+	background-color:  rgba(0, 0, 0, 0.769);
+	padding-bottom: 3px;
+
+}
+
+#more span{
+	height:25px;
+	font-size:20px;
+	line-height: 25px;
+	text-align: center;
+	font-family: 'Alkatra', cursive;
+}
+
+.more_button{
+	width:1100px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }

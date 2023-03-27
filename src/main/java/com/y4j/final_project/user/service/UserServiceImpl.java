@@ -5,13 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-import org.springframework.validation.Errors;
-import org.springframework.validation.FieldError;
 
 import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
@@ -87,9 +85,11 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo2(user_id);
 	}
 
+
 	//유저의 장바구니 리스트 조회 - product
 	@Override
 	public List<CartListVO1> getCartList(String user_id) {
+
 		return userMapper.getCartList(user_id);
 	}
 	
@@ -105,18 +105,10 @@ public class UserServiceImpl implements UserService {
 		return userMapper.deleteCartOne(cvo);
 	}
 
-	
-
-
 //	//유저의 장바구니 상품 주문
 //	@Override
 //	public int orderCart(UserOrderVO ovo) {
 //		return userMapper.orderCart(ovo);
 //	}
-
-	
-
-	
-
 
 }

@@ -1,0 +1,231 @@
+* {margin: 0 auto; list-style: none;}
+a {text-decoration: none; color:inherit;}
+img {max-width: 100%; height: auto;}
+
+  
+/* header */
+.header_main_menu{
+	width: 100%;
+	margin-right:0;	
+	margin-left:0;	
+}
+.header_main_menu ul{
+	display: flex;
+}
+
+.header_main{
+  position: absolute;
+  top: 120px;
+  z-index: 1;
+  width: 100%;
+  overflow: hidden;
+}
+
+
+/* .header_main_menu .header_main_menu_bar li {
+	font-family: 'Noto Rashi Hebrew', serif;
+	font-size: 16px;
+	color:rgba(3, 8, 34, 0.851);
+} */
+
+/********* 조장님이 만든 소중한 아이콘들 **********/
+
+.header1_user_bar_box{
+	width: 100%;
+	margin:0;
+	background-color: rgba(248, 238, 219, 0.279);
+	padding: 10px;
+	margin-bottom: 40px;
+}
+
+.header1_user_bar{
+	width: 1200px;
+	height: 45px;
+	line-height: 45px;
+}
+
+.main-header-inner2 {
+  	float: left;
+ 	margin:0;
+  	padding-left: 0px;
+  	 
+}
+
+.main-header-inner2 li {
+  display: inline-block;
+
+}
+
+ .main-header-inner2 li a {
+  display: block;
+  text-decoration: none;
+  cursor: default;
+  width: 50px;
+  box-sizing: border-box;
+
+}
+
+ .main-header-inner2 .header_middle_user img {
+  width: 35px;
+  height: 36px;
+  margin: 0px 27px 0px 0px;
+  cursor: pointer;
+}
+
+ .main-header-inner2 li span {
+  display: block;
+  text-align: center;
+  font-size: 10pt;
+
+}
+
+/* header */
+
+.header_main_menu ul{
+	display: flex;
+
+
+}
+
+.header_main_menu{
+	width:1350px;
+	overflow: hidden;
+	position: relative;
+	left: 50px;
+	margin: 0;
+	padding: 0;
+}
+.header_main_menu_box{
+	width:100%;
+	float:left;
+	display: flex;
+	justify-content: center;
+	text-align: center;
+	background-color: white;
+	margin-top: 45px;
+	padding-bottom: 50px;
+}
+
+.header_main_menu_box > li{
+	flex-basis: 20%;
+	margin: 0;
+
+}
+
+.logo_box{
+	float:right;
+	position: relative;
+	top:0;
+	right: 270px;
+	z-index: 5000;
+}
+
+.header_main_menu_box >li >span {
+	font-family: 'Noto Rashi Hebrew', serif;
+	font-size: 16px;
+	height: 20px;
+
+}
+
+
+.header_main_menu > ul > li > .menu_bar1 {
+ display: flex;
+ flex-direction: column;
+  height: 0px;
+  position:relative;
+  padding-left:0px;
+  z-index: 3; 
+  overflow: hidden;
+  transition: height ease-out 0.4s 0s;
+}
+
+.header_main_menu .menu_bar_name a:hover{
+	color:#cecece;
+	transition: ease-in 0.3s;
+}
+
+.header_main_menu .menu_bar1 li span a:hover{
+	color:#cecece;
+	transition: ease-in 0.3s;
+}
+
+.header_main_menu .menu_bar1 li {
+  position: relative;
+  top: 32px;
+  line-height:40px;
+  left:0;
+  color:black;
+  font-weight :800;
+  font-size: 17px;
+  font-family: 'Alkatra', cursive;
+  cursor: pointer;
+
+ 
+}
+
+/* 메뉴바 상단 고정 관련 CSS */
+.header_main{
+  position: absolute;
+  top: 60px;
+  left: 0px;
+  z-index: 5;
+  width: 100%;
+}
+
+/* footer */
+.footer-outer {
+  position: static;
+  bottom: 0px;
+  width: 100%;
+  background-color: rgba(248, 238, 219, 0.279);
+  z-index: 5;
+
+}
+
+footer {
+  width: 1200px;
+  height: 200px;
+  margin: 0 auto;
+  padding: 25px 0px;
+  overflow: hidden;
+  box-sizing: border-box;
+  z-index: 5;
+}
+
+footer .footer-inner {
+  overflow: hidden;
+  color: black;
+  height: 200px;
+  padding: 25px 0px;
+}
+
+footer .footer-inner .footer-left {
+  float: left;
+}
+
+footer .footer-inner .footer-left img {
+  width: 130px;
+  height: 95px;
+  margin-right:56px;
+  display: inline-block;
+}
+
+footer .footer-inner .footer-left > div {
+  font-size: 13px;
+  line-height: 25px;
+}
+
+footer .footer-inner .footer-left2 {
+  margin-top: 10px;
+}
+
+footer .footer-inner .footer-right {
+  float: right;
+  margin-top: 10px;
+}
+
+footer .footer-inner .footer-right span {
+  font-size: 13px;
+  margin-left: 10px;
+  cursor: pointer;
+}

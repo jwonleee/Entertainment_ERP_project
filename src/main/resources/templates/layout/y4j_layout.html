@@ -148,7 +148,7 @@
         <div class="aside_wrap">
           <div class="aside_wrap_box">
             <!-- 여기 메인으로 가는 경로 다시 지정해야 함 -->
-            <span style="color:rgba(251, 245, 245, 0.862);">"관리자 닉네임"님</span>
+            <span style="color:rgba(251, 245, 245, 0.862);">"[[${session.admin_id}]]"님</span>
           </div>
             <div class="aside_menu_bar aside_menu_bar_1">
               <ul class="slide">
@@ -180,6 +180,7 @@
                 <li><a href="/order/orderReg">신규 발주 등록</a></li>
                 <li><a href="/order/orderList">발주 조회</a></li>
                 <li><a href="/order/categoryReg">카테고리 등록</a></li>
+                <li><a href="/order/bestSellerChart">주문 현황</a></li>
               </ul>
             </div>
             
@@ -282,8 +283,54 @@
         </footer>
       </div>
 
+      <!-- 고정 버튼 -->
+      <div class="fixedBtn">
+        <button type="button" class="btn chatBotBtn showModal" data-bs-toggle="modal" data-bs-target="#y4j-chatbot"><span>Y4J 챗봇</span></button>
+        <a href="#" class="gotoTopBtn">
+          <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/gotoTopImg.png" style="width:15px; height:20px;">
+        </a>
+      </div>
+
+      <!-- Modal -->
+      <form id="y4jchatbotForm" >
+        <div class="modal fade" id="y4j-chatbot" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"><img class="cb-logo" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"><span>Y4J Chat Bot</span></h1>
+                <button type="button" class="btn-close closeModal" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="cb-modal-body" style="width: 550px">
+
+                <div id="chat" class="chat-container">
+                  <div class="chat-box">
+                    <div class="chat-message">
+                      <p class="assistant">소속 엔터테이너에 대해서 물어봐 주세요!</p>
+                    </div>
+                    <!-- 채팅 내용 -->
+                  </div>
+                  <div id="loader" class="loader" style="display: none;">
+                    <i class="fa fa-spinner fa-spin"></i>
+                  </div>
+                  <div class="chat-input">
+                    <input type="text" placeholder="Type your message here...">
+                    <button type="button" class="btn btn-outline-dark" onclick="spinner()">전송</button>
+                  </div>
+                </div>
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-dark closeModal" data-bs-dismiss="modal">닫기</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
     </div>
     <script src="/js/y4j_layout.js"></script>
+    <script src="/js/y4jChatbot.js"></script>
+    
     <script th:inline="javascript">
       var menu = JSON.parse('[[${uri}]]');
 
