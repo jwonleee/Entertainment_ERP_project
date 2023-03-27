@@ -2,6 +2,7 @@ package com.y4j.final_project.schedule.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -56,6 +57,12 @@ public class ScheduleServiceImpl implements ScheduleService {
 	@Override
 	public ArrayList<ScheduleVO> getList(Criteria cri) {
 		return scheduleMapper.getList(cri);
+	}
+	
+	//일반페이지 일정 - axios
+	@Override
+	public List<Map<String, Object>> axiosGetList(String schedule_start_time, String ent_name) {
+		return scheduleMapper.axiosGetList(schedule_start_time, ent_name);
 	}
 	
 	//일정 전체 개수

@@ -51,17 +51,10 @@ $(".type_wrap").click(function(e) {
 
 //DB에 담겨있어야 하는 날짜와 시간들, array형식으로 저장
 let specificDates = {};
-// let specificDates = {"2023-03-04": ["13:00"]};
-// console.log(specificDates);
-
-// var tempDate = "2023-03-04";
-// console.log(specificDates[tempDate]);
-// console.log(Object.keys(specificDates).includes(tempDate));
 
 //아티스트 선택하면 해당 아티스트의 기존 스케줄 가져와서 배열에 담기
 $(".artistList_wrap").on("change", function() {
-	var artistSelect = $(this).val();
-	//console.log(artistSelect); //blackpink
+	var artistSelect = $(this).val(); //blackpink
 
 	//아티스트 선택시 ajax 태움
 	if(artistSelect != '') {
@@ -86,37 +79,37 @@ $(".artistList_wrap").on("change", function() {
 
 })
 
+/////////////////////////////////////////////////시작-종료 사이 시간 넣어야 함///////////////////////////////////////////////
 // date, time List에 담는 함수
 function addTimeList (data) {
 	
 	//반복문
 	$.each(data, function(index, item) {
-		console.log(data);
 
 		let selectedStartDate = item.schedule_start_time.substring(0, 10); //시작 날짜: 2023-03-04
 		let selectedStartTime = item.schedule_start_time.substring(11, 16); //시작 시간: 13:00
-		// console.log(selectedStartDate);
-		// console.log(selectedStartTime);
+
+		let selectedEndDate = item.schedule_end_time.substring(0, 10); //종료 날짜
+		let selectedEndTime = item.schedule_end_time.substring(11, 16); //종료 시간
 
 		if(!Object.keys(specificDates).includes(selectedStartDate)) { //같은 날짜가 없으면
-			// console.log(selectedStartDate);
-			return specificDates[selectedStartDate] = [selectedStartTime];
+			specificDates[selectedStartDate] = [selectedStartTime];
 		}
 		else { //같은 날짜가 있으면 그 날짜의 뒤에 시간 담기
-			return specificDates[selectedStartDate].push(...[selectedStartTime]);
+			specificDates[selectedStartDate].push(...[selectedStartTime]);
 		}
+
+		if(!Object.keys(specificDates).includes(selectedEndDate)) { //같은 날짜가 없으면
+			specificDates[selectedEndDate] = [selectedEndTime];
+		}
+		else { //같은 날짜가 있으면 그 날짜의 뒤에 시간 담기
+			specificDates[selectedEndDate].push(...[selectedEndTime]);
+		}
+
 	})
 	console.log(specificDates);
 };
 
-
-	// const selectedEndDate = item.schedule_end_time.substring(0, 10); //종료 날짜
-	// console.log(selectedEndDate);
-	
-	
-	// console.log(item.schedule_start_time.indexOf(specificDates));
-	// const selectedEndTime = item.schedule_end_time.substring(11, 16); //종료 시간
-	// console.log(selectedEndTime);
 
 // datetimepicker
 $(function(){
@@ -126,15 +119,15 @@ $(function(){
 			format:'Y-m-d H:i',
 			onShow:function( ct ){
 				
-				//아티스트 선택 안 했을 경우
-				if($('.artistList_wrap').val() == '') {
-					alert("해당 아티스트를 선택해주세요.");
-					document.location.reload(true);	
-				}
+			//아티스트 선택 안 했을 경우
+			if($('.artistList_wrap').val() == '') {
+				alert("해당 아티스트를 선택해주세요.");
+				document.location.reload(true);	
+			}
 
 			this.setOptions({
-				maxDate:$('#date_timepicker_end').val()? $('#date_timepicker_end').val() : false,
-				minDate: 0,
+				maxDate: $('#date_timepicker_end').val()? $('#date_timepicker_end').val() : false,
+				minDate: "d",
 				})
 			},
 			timepicker:true,
@@ -146,39 +139,26 @@ $(function(){
 				ct.setHours(ct.getHours() + 9) //9시간 추가
 				timeZone = ct.toISOString().replace('T', ' ').substring(0, 16); //2023-03-19 11:21
 				pickDate = timeZone.substring(0, 10); //날짜
-				
-				// ind = specificDates.findIndex(e => e.date === pickDate); //고른 날짜가 있는지 확인
-				var date = Object.keys(specificDates);
-				console.log(date); //['2023-03-04', '2023-03-19', '2023-03-20']
-				
+
+				var date = Object.keys(specificDates); //일정 있는 날짜(키)의 배열				
 				var ind = date.indexOf(pickDate); //선택한 인덱스 값
-				console.log(ind); //2 (선택한 인덱스 값)
 				
 				// $('.xdsoft_time_variant .xdsoft_time').show();
 				
 				if(ind != -1) { //찾는 날짜가 있으면
 					$('.xdsoft_time_variant .xdsoft_time').each(function(index){
 						//if 조건문으로 해당 날짜의 시간 뽑아오기
-
-						// console.log(Object.values(specificDates)[ind]);
 						if(Object.values(specificDates)[ind].indexOf($(this).text()) !== -1) {
-							$(this).addClass('xdsoft_disabled'); //선택한 날짜 시간 다 걸림
+							$(this).addClass('xdsoft_disabled'); //시간 막기
 						}
 					});
-					
-					
 				}
-	
+
 			  }
 	
 		});
 
-		
-		
-
-
-
-////////////////////////////////////////////////////////////////////////////////////////////		
+	
 	//종료 날짜
 		$('#date_timepicker_end').datetimepicker({
 			format:'Y-m-d H:i',
@@ -198,14 +178,30 @@ $(function(){
 			step: 30,
 			inline:false,
 
-			/////////////여기 시간 막기 해야함///////////
+			//스케줄 시간 막기
+			onGenerate:function(ct){
+				ct.setHours(ct.getHours() + 9) //9시간 추가
+				timeZone = ct.toISOString().replace('T', ' ').substring(0, 16); //2023-03-19 11:21
+				pickDate = timeZone.substring(0, 10); //날짜
+
+				var date = Object.keys(specificDates); //일정 있는 날짜(키)의 배열				
+				var ind = date.indexOf(pickDate); //선택한 인덱스 값
+				
+				// $('.xdsoft_time_variant .xdsoft_time').show();
+				
+				if(ind != -1) { //찾는 날짜가 있으면
+					$('.xdsoft_time_variant .xdsoft_time').each(function(index){
+						//if 조건문으로 해당 날짜의 시간 뽑아오기
+						if(Object.values(specificDates)[ind].indexOf($(this).text()) !== -1) {
+							$(this).addClass('xdsoft_disabled'); //시간 막기
+						}
+					});
+				}
+
+			  }
 		});
 		
 	}); // datetimepicker 끝
-
-
-
-
 
 
 
@@ -216,15 +212,3 @@ $(document).ready(function() {
 		console.log(typeSelect);
 	})
 });
-
-
-
-
-
-$('#date_timepicker_start').on('click', function() {
-	// console.log(timeZone);
-	// console.log(pickDate);
-	// console.log(pickTime);
-	// console.log(ind);
-})
-	
