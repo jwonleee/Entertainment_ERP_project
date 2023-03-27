@@ -21,7 +21,8 @@ public class CartListVO1 {
 	private int prod_discount_rate;
 	private String prod_price;
 	private String user_id;
-
+	private int cart_total_price;
 }
+	
 
 

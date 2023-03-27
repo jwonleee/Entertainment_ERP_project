@@ -22,6 +22,7 @@ public class OrderHistoryVO {
 	private String order_prod_no; //상품마다 나오는 주문번호
 	private String order_prod_cnt; // 각 상품의 구매한 갯수
 	private String order_cnt; // 총 구매한 상품 갯수
+
 	private String order_date; // 주문한 날짜
 	private int order_total_price; //총 결제 가격
 	
@@ -39,7 +40,5 @@ public class OrderHistoryVO {
 	@NotBlank (message = "결제수단을 선택해주세요")
 	private String order_payment_method; //결제 수단
 	
-	private String order_state; //주문 상태
-	
-	
+	private String order_state; //주문 상태	
 }

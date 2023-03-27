@@ -1,14 +1,20 @@
 package com.y4j.final_project.user.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.util.Criteria;
 
@@ -79,15 +85,30 @@ public class UserServiceImpl implements UserService {
 		return userMapper.getUserInfo2(user_id);
 	}
 
-	//유저의 장바구니 리스트 조회
-	public ArrayList<CartListVO1> getCartList(String user_id) {
+
+	//유저의 장바구니 리스트 조회 - product
+	@Override
+	public List<CartListVO1> getCartList(String user_id) {
+
 		return userMapper.getCartList(user_id);
 	}
-
-	// 장바구니 선택 상품 삭제
+	
+	//유저의 장바구니 리스트 조회 - album
 	@Override
-	public void deleteCart(CartVO cvo) {
-		userMapper.deleteCart(cvo);
+	public List<AlbumCartVO> getAlbumList(String user_id) {
+		return userMapper.getAlbumList(user_id);
 	}
+	
+	//유저의 장바구니 상품 삭제 - 개별, 선택
+	@Override
+	public int deleteCartOne(CartVO cvo) {
+		return userMapper.deleteCartOne(cvo);
+	}
+
+//	//유저의 장바구니 상품 주문
+//	@Override
+//	public int orderCart(UserOrderVO ovo) {
+//		return userMapper.orderCart(ovo);
+//	}
 
 }
