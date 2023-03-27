@@ -38,14 +38,13 @@ public class OrderController {
 	//목록화면
 	@GetMapping("/orderList")
 	public String orderList(HttpSession session, Model model, Criteria cri) {
-		String user_id=(String)session.getAttribute("admin_id");
 		
 		//발주리스트 가져오기
-		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(user_id,cri);
+		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(cri);
 		model.addAttribute("orderList",orderList);
 	
 		//페이징 처리
-		int total=orderService.getOrderTotal(user_id, cri);
+		int total=orderService.getOrderTotal(cri);
 		PageVO pageVO=new PageVO(cri,total);
 		model.addAttribute("pageVO",pageVO);
 
