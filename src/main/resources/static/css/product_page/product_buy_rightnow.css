@@ -131,8 +131,6 @@
 
 .shipping_check span{
 	margin : 0 10px;
-	
-	
 }
 
 
@@ -152,13 +150,22 @@
 	padding:5px;
 }
 
-.shipping_real_address #address{
+.shipping_real_address #address {
 	border: 1px solid  rgba(5, 3, 3, 0.228);
 	width: 670px;
 	height: 23px;
 	padding:5px;
 	font-size: 12px;
 }
+
+.shipping_real_address #address2 {
+	border: 1px solid  rgba(5, 3, 3, 0.228);
+	width: 670px;
+	height: 23px;
+	padding:5px;
+	font-size: 12px;
+}
+
 
 
 .shipping_address_content .address_btn1{
@@ -187,23 +194,9 @@
 	
 }
 
-.phone_option{
-	border: 1px solid  rgba(5, 3, 3, 0.228);
-	width: 210px;
-	height: 33px;
-	padding:5px;
-	margin-right: 5px;
-}
-
-.phone_option option{
-	background-color: rgba(0, 0, 0, 0.721);
-	color:white;
-}
-
-
 .phone_input input{
 	border: 1px solid  rgba(5, 3, 3, 0.228);
-	width: 210px;
+	width: 208px;
 	height: 23px;
 	padding:5px;
 }
@@ -348,12 +341,20 @@
 	
 }
 
-#buy_button{
+.payment_method_box  .active{
+ 	border: 3px solid black;
+ 	width: 756px;
+}
+
+
+
+#buy_btn{
 	width: 100%;
 	background-color: black;
 	color:white;
 	height:50px;
 	line-height: 50px;
+	cursor: pointer;
 	
 	
 }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<!-- 제이쿼리 -->
-<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+  
+ 
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -15,10 +15,47 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
-
+<!-- 폰트 4 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@600&display=swap" rel="stylesheet">
 <!-- css 링크 -->
  <link rel="stylesheet" href="/css/product_page/productDetail_blackpink_page.css">
-
+<!-- 제이쿼리 -->
+<script src="https://code.jquery.com/jquery-1.12.1.min.js"></script>
+	
+   
+	<div class="header1_user_bar_box">
+		<div class="header1_user_bar">
+		 	<ul class="main-header-inner main-header-inner2">
+		      <li class="header_middle_user">
+		        <a href="/user/user_login">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+		          <!-- <span>LOGIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/admin/admin_join">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+		          <!-- <span>JOIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/mypage">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+		          <!-- <span>MY PAGE</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/cart">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART" src="/img/shopping_cart.png">
+		          <!-- <span>CART</span> -->
+		          <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
+		        </a>
+		      </li>
+		   	</ul>
+		</div>
+	</div>
 
 
     
@@ -111,7 +148,7 @@
 		    				</div>
 		    				<div class="aside_celeb_sidebar">
 		    					<!-- 컨트롤러로 보낼 히든 인풋태그 1-->
-				    			<input id="blackpink_sidebar" type="hidden" name="searchName" th:value="${cri.searchName}" />
+				    			<input id="blackpink_sidebar" type="hidden" name="searchName" th:value="${searchName}" />
 				    			<ul class="aside_celeb_sidebar_check">
 				    				<li>ALBUM</li>
 				    				<li>PHOTO CARD</li>
@@ -159,7 +196,6 @@
 								<span class="info_price" name="prod_price">\[[${blackpink.prod_price}]]</span>
 								<span class="info_rate" style="color:red" name="prod_discount_rate">[[${blackpink.prod_discount_rate}]]%</span>
 							</div>
-							<span>[[${blackpink.prod_regdate}]]</span><!-- 나중에 삭제해야 함 -->
 						</li>
 					</a>
 				</ul>
@@ -167,10 +203,7 @@
 		</div><!-- 본문 내용 끝 -->	 
 	</form><!-- 폼태그 끝 -->
 
-		
-		
-	</div><!-- 사이드 + 본문 내용 끝 -->
-
+	
 	<!--footer  -->
 	<div class="footer-outer">
         <footer>
@@ -179,8 +212,8 @@
               <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png" />
             </div>
             <div class="footer-left footer-left2">
-              <div>개인정보 취급 방침 ⎮ 이용약관 ⎮ 고객센터/문의하기</div>
-              <div>서울시 강남구 테헤란로 7길 7 ⎮ TEL. 02)123-4567 ⎮ FAX. 02)345-6789</div>
+              <div>개인정보 취급 방침 ㅣ 이용약관 ㅣ 고객센터/문의하기</div>
+              <div>서울시 강남구 테헤란로 7길 7 ㅣ TEL. 02)123-4567 ㅣ FAX. 02)345-6789</div>
               <div class="footer-left2-div3">COPYRIGHT ⓒ Y4J ENTTERTAINMENT All RIGHTS RESERVED</div>
             </div>
             <div class="footer-right">
@@ -189,8 +222,22 @@
             </div>
           </div>
         </footer>
-        </div>
-        
+     </div>
+
  <!-- js 링크 -->
  <script src="/js/product_detail/productDetail_blackpink_page.js"></script>
+ <script th:inline="javascript">
+      var menu = JSON.parse('[[${uri}]]');
+      //a태그
+      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
+	</script>
+	
+	<script>
+      var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+      });
+    </script>
+
+	
 </html>

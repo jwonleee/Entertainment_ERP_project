@@ -19,6 +19,37 @@
  <link rel="stylesheet" href="/css/product_page/productDetail_newjeans_page.css">
 
 
+    <div class="header1_user_bar_box">
+		<div class="header1_user_bar">
+		 	<ul class="main-header-inner main-header-inner2">
+		      <li class="header_middle_user">
+		        <a href="/user/user_login">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+		          <!-- <span>LOGIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/admin/admin_join">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+		          <!-- <span>JOIN</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/mypage">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+		          <!-- <span>MY PAGE</span> -->
+		        </a>
+		      </li>
+		      <li class="header_middle_user">
+		        <a href="/user/cart">
+		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART" src="/img/shopping_cart.png">
+		          <!-- <span>CART</span> -->
+		          <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
+		        </a>
+		      </li>
+		   	</ul>
+		</div>
+	</div>
 
    
    	<div class="header1">
@@ -67,18 +98,19 @@
                             </ul>
                        </li>
                        <li>
-                            <span class="menu_bar_name"><a href="#">PRODUCTION</a></span>
+                            <span class="menu_bar_name"><a href="/product/productList">PRODUCTION</a></span>
                             <ul class="menu_bar1">
-                              <li><span><a href="#">ALBUM</a></span></li>
-                              <li><span><a href="#">GOODS</a></span></li>
-                              <li><span><a href="#">MAGAZINE</a></span></li>
-                              <li><span><a href="#">PICTURE CARD</a></span></li>
+                               <li><span><a href="/product/NEWJEANS">NEWJEANS</a></span></li>
+                               <li><span><a href="/product/BLACKPINK">BLACKPINK</a></span></li>
+                               <li><span><a href="/product/IVE">IVE</a></span></li>
+                               <li><span><a href="/product/LEEDOHYUN">LEE DOHYUN</a></span></li>
+                               <li><span><a href="/product/CHAESOOBIN">CHAE SOOBIN</a></span></li>
                             </ul>
                          </li>
                          <li>
-                            <span class="menu_bar_name"><a href="#">AUDITION</a></span>
+                            <span class="menu_bar_name"><a href="/audition/audition_notice">AUDITION</a></span>
                             <ul class="menu_bar1">
-                              	<li class="menu_bar_content">AUDITION</li>
+                              	<li class="menu_bar_content"><a href="/audition/audition_notice">AUDITION</a></li>
                             </ul>
                        	</li>
 		    			<!-- 메뉴 상단바 y4j 로고 -->
@@ -117,7 +149,7 @@
 				    			
 		    				</div>
 		    				<div class="aside_newjeans_sidebar">
-		    					<input id="aside_newjeans_input1" type="hidden" name="searchName" th:value="${cri.searchName}">
+		    					<input id="aside_newjeans_input1" type="hidden" name="searchName" th:value="${searchName}">
 				    			<ul class="aside_newjeans_sidebar_check">
 				    				<li>ALBUM</li>
 				    				<li>PHOTO CARD</li>

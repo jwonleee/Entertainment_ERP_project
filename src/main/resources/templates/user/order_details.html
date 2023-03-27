@@ -1,124 +1,249 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html xmlns:th=“http://www.thymeleaf.org”>
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
 
-    <link rel="stylesheet" href="/css/order_details.css">
+<!-- 폰트 1 -->
+<link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- 폰트 2 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Rashi+Hebrew:wght@900&display=swap" rel="stylesheet">
+<!-- 폰트 3 - 나눔고딕 --> 
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<!-- 폰트 4 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@600&display=swap" rel="stylesheet">
 
-    <!-- 상단, 하단 버튼 jQuery -->
-    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-
-    <script>
-        $(function () {
-            $(".top_btn").click(function () {
-                $('html, body').animate({
-                    scrollTop: 0
-                }, 400);
-                return false;
-            });
-
-            $(".bottom_btn").click(function () {
-                $('html, body').animate({
-                    scrollTop: document.body.scrollHeight
-                }, 400);
-                return false;
-            });
-        });
-    </script>
+<!-- css 링크 -->
+<link rel="stylesheet" href="/css/order_details.css">
 </head>
 
-<body>
-    <header>
-        <h3>Y4J</h3>
-    </header>
+<th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
 
-    <div class="order_detail_section">
-        <div class="order_detail_box">
-            <!-- 주문 상세 내역 헤더 -->
-            <div class="order_detail_header">
-                <h3><em>Order Details</em></h3>
-            </div>
-
-            <!-- 주문 상세 내역 내용 부분 -->
-            <div class="order_detail_innerbox">
-                <div class="order_detail_content">
-                    <!-- 주문 정보 -->
-                    <div class="order_info">
-                        <div class="order_info_item">
-                            <h4>주문 정보</h4>
-                        </div>
-
-                        <div class="order_info_content">
-                            <div class="order_info_detail">
-                                <div class="order_info_title">
-                                    <span>주문번호</span>
-                                </div>
-                                <div class="order_info">
-                                    <p>19930925</p>
-                                </div>
-                            </div>
-
-                            <div class="order_info_detail">
-                                <div class="order_info_title">
-                                    <span>주문일자</span>
-                                </div>
-                                <div class="order_info">
-                                    <p>20130302</p>
-                                </div>
-                            </div>
-
-                            <div class="order_info_detail">
-                                <div class="order_info_title">
-                                    <span>주문자</span>
-                                </div>
-                                <div class="order_info">
-                                    <p>도은영</p>
-                                </div>
-                            </div>
-
-                            <div class="order_info_detail">
-                                <div class="order_info_title">
-                                    <span>주문처리상태</span>
-                                </div>
-                                <div class="order_info">
-                                    <p>배송완료</p>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
+<div class="fragment">
+    <!-- 주문 상세 내역 헤더 -->
+    <div class="order_detail_header">
+        <span style="font-family: 'Alkatra', cursive;">Order Details</span>
     </div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	  <div th:each="user_order_details:${user_order_details}">
+	    <!-- 주문 상세 내역 내용 부분 -->
+	    <div class="order_detail_section">
+	          <div class="order_info">
+		         <div class="order_info_item">
+		             <span>주문 정보</span>
+		         </div>
+	             <table  class="order_info_content">
+	                <tr class="order_info_detail">
+	                   <th class="order_info_title" scope="row">
+	                      <span>주문번호</span>
+	                   </th>
+	                   <td class="order_real_info">
+	            		  <p>[[${user_order_details.order_prod_no}]]</p>
+	        		   </td>
+	    		    </tr>
+	
+	                <tr class="order_info_detail">
+	                   <th class="order_info_title" scope="row">
+	                       <span>주문일자</span>
+	                   </th>
+	                   <td class="order_real_info">
+	        		     	<p>[[${user_order_details.order_date}]]</p>
+	       			   </td>
+	                </tr>
+	
+	                <tr class="order_info_detail">
+	                   <th class="order_info_title" scope="row">
+	                       <span>주문자</span>
+	                   </th>                      		
+			           <td class="order_real_info">
+			              <p>[[${user_order_details.user_name}]]</p>
+			           </td>		     
+	                </tr>
+	
+	               <tr class="order_info_detail">
+	                  <th class="order_info_title" scope="row">
+	                      <span>주문처리상태</span>
+	                  </th>
+	                  <td class="order_real_info">
+	            	      <p>배송준비중</p>
+	       			  </td>
+	              </tr>
+	          </table>
+	       </div>
+	    </div>        
+		
+		
+		<!-- 결제 내역 내용 부분 -->
+	    <div class="payment_detail_section">
+	          <div class="payment_info">
+		         <div class="payment_info_item">
+		             <span>결제 정보</span>
+		         </div>
+	             <table  class="payment_info_content">
+	                <tr class="payment_info_detail">
+	                   <th class="payment_info_title" scope="row">
+	                      <span>총 주문금액</span>
+	                   </th>
+	                   <td class="payment_real_info" th:with="price = ${user_order_details.prod_price} *${user_order_details.order_prod_cnt}">
+	            		  <p th:text="${#numbers.formatInteger(price, 3, 'COMMA')} + '원'"></p>
+	        		   </td>
+	    		    </tr>
+	
+	                <tr class="payment_info_detail">
+	                   <th class="payment_info_title" scope="row">
+	                       <span>총 할인금액</span>
+	                   </th>
+	                   <td class="payment_real_info" th:with="total_discount=${user_order_details.prod_discount_rate}*0.01*${user_order_details.prod_price}*${user_order_details.order_prod_cnt}">
+	        		     	<p th:text="${#numbers.formatInteger(total_discount, 3, 'COMMA')}+'원'"><p>
+	       			   </td>
+	                </tr>
+	          </table>
+	          <table  class="payment_info_content2">
+		         <tr class="payment_info_detail2">
+	                <th class="payment_info_title" scope="row" > 
+	                   <span>총 결제금액</span>
+	                </th>                      		
+	       	        <td class="payment_real_info" th:with="result = (${user_order_details.prod_price}-(${user_order_details.prod_discount_rate}*0.01*${user_order_details.prod_price}))*${user_order_details.order_prod_cnt}">
+	                   <p th:text="${#numbers.formatInteger(result, 3, 'COMMA')}+'원'"></p>
+	                </td>		     
+	             </tr>
+	
+	            <tr class="payment_info_detail2">
+	               <th class="payment_info_title" scope="row">
+	                  <span>결제 수단</span>
+	               </th>
+	               <td class="payment_real_info">
+	     	          <p>[[${user_order_details.order_payment_method}]]</p>
+			       </td>
+	           </tr>
+		    </table>
+	      </div>
+	   </div>      
+	     
+	   <!-- 주문 상품 정보 -->
+	   <div class="prod_detail_section" >
+	          <div class="prod_info">
+		        <div class="prod_info_item">
+		            <span>상품 정보</span>
+		         </div>
+	             <table  class="prod_info_content">
+	                <tr class="prod_info_detail">
+	                   <th class="prod_info_title" scope="row" style="width:200px">
+	                      <span>상품</span>
+	                   </th>
+	                   <th class="prod_info_title" scope="row" style="width:500px">
+	                      <span>상품정보</span>
+	                   </th>
+	                   <th class="prod_info_title" scope="row" style="width: 40px">
+	                      <span>수량</span>
+	                   </th>
+	                   <th class="prod_info_title" scope="row">
+	                      <span>상품 구매 금액</span>
+	                   </th>
+	                   <th class="prod_info_title" scope="row">
+	                      <span>배송 구분</span>
+	                   </th>
+	                   <th class="prod_info_title" scope="row">
+	                      <span>주문 처리 상태</span>
+	                   </th>
+	    		    </tr>
+	    		    <tr class="prod_info_detail">
+	                   <td class="prod_real_info">
+	            		  <a th:href="@{/product/detail_page(prod_no = ${user_order_details.prod_no})}"><img style="width: 150px; height:140px" th:src="${user_order_details.prod_img_path}"></a>        		
+	        		   </td>
+		              <td class="prod_real_info">
+	            		  <span style="font-weight: 600"> <a th:href="@{/product/detail_page(prod_no = ${user_order_details.prod_no})}">[[${user_order_details.order_prod_name}]]</a></span>
+	        		   </td>
+		               <td class="prod_real_info">
+		     	          <span>[[${user_order_details.order_prod_cnt}]]</span>
+				       </td>
+		               <td class="prod_real_info" th:with="result = (${user_order_details.prod_price}-(${user_order_details.prod_discount_rate}*0.01*${user_order_details.prod_price}))*${user_order_details.order_prod_cnt}">
+		     	          <span th:text="${#numbers.formatInteger(result, 3, 'COMMA')}+'원'"></span>
+				       </td>
+		               <td class="prod_real_info">
+		     	          <span>기본 배송</span>
+				       </td>
+		               <td class="prod_real_info">
+		     	          <span>배송준비중</span>
+				       </td>
+	    		    </tr>
+	    		    <tr class="prod_info_detail" style="padding-right: 25px">
+	    		    	<th class="prod_info_title1" scope="row" style="width:  1297px;" th:with="total = ${user_order_details.order_total_price}, result=(${user_order_details.prod_price}-(${user_order_details.prod_discount_rate}*0.01*${user_order_details.prod_price}))*${user_order_details.order_prod_cnt}">
+	                      <span style="margin-right: 5px" th:text="'상품구매금액 ' + ${#numbers.formatInteger(result, 3, 'COMMA')} + ' + ' +'배송비 '"></span>
+	                      <span style="margin-right: 5px" th:text="${user_order_details.order_total_price} > 50000 ? 0 : '3,000'"></span>
+	                      <span style="margin-right: 5px" th:text="' = ' + '합계: '"></span>
+	                      <span style="margin-right: 15px; font-size: 19px; color:red; font-weight: 700" th:text="${#numbers.formatInteger(total, 3, 'COMMA')} +'원'"></span>
+	                   </th>
+	    		    </tr>
+	          </table>
+	      </div>
+	   </div> 
+		
+		<!-- 배송지 내용 부분 -->
+	    <div class="order_detail_section" style="margin-top: 35px; ">
+	          <div class="order_info">
+		         <div class="order_info_item">
+		             <span>배송지 정보</span>
+		         </div>
+	             <table  class="order_info_content">
+	                <tr class="order_info_detail">
+	                   <th class="order_info_title" scope="row">
+	                      <span>받으시는 분</span>
+	                   </th>
+	                   <td class="order_real_info">
+	            		  <p>[[${user_order_details.order_addressee}]]</p>
+	        		   </td>
+	    		    </tr>
+	
+	                <tr class="order_info_detail">
+	                   <th class="order_info_title" scope="row">
+	                       <span>우편번호</span>
+	                   </th>
+	                   <td class="order_real_info">
+	        		     	<p>[[${user_order_details.order_zipcode}]]</p>
+	       			   </td>
+	                </tr>
+			         <tr class="order_info_detail">
+		                <th class="order_info_title" scope="row">
+		                   <span>주소</span>
+		                </th>                      		
+		       	        <td class="order_real_info">
+		                   <p>[[${user_order_details.order_shipping_address}]]</p>
+		                </td>		     
+		             </tr>
+		
+		            <tr class="order_info_detail">
+		               <th class="order_info_title" scope="row">
+		                  <span>연락처</span>
+		               </th>
+		               <td class="order_real_info">
+		     	          <p>[[${user_order_details.order_addressee_contact}]]</p>
+				       </td>
+		           </tr>
+		            <tr class="order_info_detail">
+		               <th class="order_info_title" scope="row">
+		                  <span>배송메시지</span>
+		               </th>
+		               <td class="order_real_info">
+		     	          <p>[[${user_order_details.order_shipping_message}]]</p>
+				       </td>
+		           </tr>
+	          </table>
+			   <!-- 주문 목록으로 가는 버튼 구현 -->
+			   <div class="user_orderList_button_wrap">
+			   		<div class="user_orderList_button">
+			   			<a th:href="@{/product/user_orderList}">주문 목록 보기</a>
+			   		</div>
+			   </div>   
+	      </div>
+	   </div> 
+   </div>
 
     <!-- 상단, 하단으로 가는 버튼 -->
     <div class="arrow_btn">
@@ -130,9 +255,24 @@
         </a>
     </div>
 
-    <footer>
-        <h3>footer입니다</h3>
-    </footer>
-</body>
+</div>
 
+</th:block>
+  <script>
+      $(function () {
+          $(".top_btn").click(function () {
+              $('html, body').animate({
+                  scrollTop: 0
+              }, 400);
+              return false;
+          });
+
+          $(".bottom_btn").click(function () {
+              $('html, body').animate({
+                  scrollTop: document.body.scrollHeight
+              }, 800);
+              return false;
+          });
+      });
+  </script>
 </html>
