@@ -50,7 +50,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-security:2.7.9'
 	
 	//이메일 인증
-	implementation 'org.springframework.boot:spring-boot-starter-mail:2.7.9'
+	implementation 'org.springframework.boot:spring-boot-starter-mail'
 }
 
 tasks.named('test') {

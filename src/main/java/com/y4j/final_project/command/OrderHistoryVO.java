@@ -35,6 +35,6 @@ public class OrderHistoryVO {
 	private String order_total_price;
 	private String order_shipping_address;
 	private String order_state;
-	private String order_addressee;
+	private String order_address;
 	
 }

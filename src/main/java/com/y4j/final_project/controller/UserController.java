@@ -26,8 +26,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.AlbumCartVO;
+import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.email.service.EmailService;
 import com.y4j.final_project.user.service.UserService;
@@ -48,10 +49,10 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
+
 	@Autowired
 	private EmailService emailService;
-	
+
 	@Autowired
 	private KakaoAPI kakao;
 
@@ -80,29 +81,30 @@ public class UserController {
 					model.addAttribute("valid_" +err.getField(), err.getDefaultMessage());
 				}
 			}
-			userService.idCheck(vo.getUser_id()); //아이디 중복 검사
+			model.addAttribute("vo", null);
 
-			model.addAttribute("vo", vo); //사용자가 작성한 값을 화면으로 보내기(vo에 사용자가 작성한 값 들어있음)
-			String pw = passwordEncoder.encode(vo.getUser_pw());
-			vo.setUser_pw(pw);
-			userService.registUser(vo);
-
-			return "user/user_login"; 
+			return "user/user_join"; //실패하면 원래 화면으로
 		}
-		model.addAttribute("vo", null);
-		
-		return "user/user_join"; //실패하면 원래 화면으로
+
+		//비밀번호 암호화
+		String pw = passwordEncoder.encode(vo.getUser_pw());
+		vo.setUser_pw(pw);
+
+		userService.registUser(vo);
+		model.addAttribute("vo", vo); //사용자가 작성한 값을 화면으로 보내기(vo에 사용자가 작성한 값 들어있음)
+
+		return "user/user_login"; 
 	}
-	
-//	//이메일 인증 - 회원가입&비밀번호 찾기
-//	@PostMapping("/emailConfirm")
-//	public String emailConfirm(@RequestParam String email, HttpServletRequest request) throws Exception {
-//		
-//	  String confirm = emailService.sendSimpleMessage(email);
-//
-//	  return confirm;
-//	}
-	
+
+	//	//이메일 인증 - 회원가입&비밀번호 찾기
+	//	@PostMapping("/emailConfirm")
+	//	public String emailConfirm(@RequestParam String email, HttpServletRequest request) throws Exception {
+	//		
+	//	  String confirm = emailService.sendSimpleMessage(email);
+	//
+	//	  return confirm;
+	//	}
+
 	////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//소셜 간편 로그인 - 카카오
@@ -145,7 +147,7 @@ public class UserController {
 
 		return "redirect:/";
 	}
-	
+
 	///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 	//회원 로그인
@@ -191,11 +193,11 @@ public class UserController {
 	public String userFindIdForm(UserVO vo, Model model) {
 		UserVO result = userService.getUserId(vo); //db에 담겨있는 vo값들
 		//System.out.println(result);
-		
+
 		model.addAttribute("vo", result); //model에 담아서 화면에 뿌리기 
 		return "user/user_find_id_result"; //결과페이지로
 	}
-
+ 
 	//아이디찾기 결과
 	@GetMapping("user_find_id_result")
 	public String user_find_id_result() {
@@ -220,7 +222,7 @@ public class UserController {
 	//회원정보수정
 	@GetMapping("/user_info_edit")
 	public String user_info_edit(HttpSession session) {
-		
+
 		UserVO vo = (UserVO)session.getAttribute("vo"); //세션에 저장된 회원 정보
 		String user_id = (String)session.getAttribute("user_id"); //세션에 저장된 회원 아이디
 
@@ -254,62 +256,52 @@ public class UserController {
 		model.addAttribute("vo", vo);
 		//비밀번호 암호화
 		vo.setUser_pw(pw);
-		
+
 		userService.updateUserInfo(vo);
-		
+
 		return "user/mypage";
 	}
-	
+
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-	
-	
+
+
 	@GetMapping("/cart")
 	public String cart(HttpSession session, Model model, UserVO vo) {
-		
+
 		//세션에 저장되어 있는 유저 아이디 가져오기
-				vo = (UserVO)session.getAttribute("vo");
-				String user_id = vo.getUser_id();
-				System.out.println(vo.toString());
-				System.out.println(user_id);
-				
-				//장바구니 리스트 가져와서 화면에 보내기
-				ArrayList<CartListVO1> cvo = userService.getCartList(user_id);
-				model.addAttribute("cvo", cvo);
-				System.out.println(cvo);
-				
-				
-				
+		vo = (UserVO)session.getAttribute("vo");
+		String user_id = vo.getUser_id();
+//		System.out.println(vo.toString());
+//		System.out.println(user_id);
+
+		Map<String, Object> map = new HashMap<>();
+		
+		//장바구니 리스트 가져와서 화면에 보내기
+		List<CartListVO1> cvo = userService.getCartList(user_id);
+		map.put("cvo", cvo);
+		
+		// 앨범 리스트 
+		List<AlbumCartVO> avo = userService.getAlbumList(user_id);
+		map.put("avo", avo);
+		model.addAttribute("map", map);
+
+		if(map == null) {
+			return "redirect:/user/empty_cart";
+		}
 		return "user/cart";
 	}
-
-	@PostMapping("/userCartForm")
-	public String userCartForm() {
-		
-		return "redirect:/user/order_list";
+	
+	// 빈 장바구니
+	@GetMapping("/empty_cart")
+	public String empty_cart() {
+		return "user/empty_cart";
 	}
 	
-//	//장바구니 리스트 삭제
-//	@PostMapping("/deleteCartForm")
-//	public int deleteCartForm(HttpSession session, @RequestParam("cart_no") int cart_no, CartVO cvo) {
-//		UserVO vo = (UserVO)session.getAttribute("vo");
-//		String user_id = vo.getUser_id();
-//		
-//		int result = 0;
-//		
-//		if(vo != null) {
-//			cvo.setUser_id(user_id);
-//			cvo.setCart_no(cart_no);
-//			userService.deleteCart(cvo);
-//			
-//			result = 1;
-//		}
-//		return result;
-//	}
-//	
 	@GetMapping("/order_list")
 	public String order_list() {
-		
 		return "user/order_list";
 	}
+	
+	
 
 }
