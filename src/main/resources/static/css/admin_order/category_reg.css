@@ -118,10 +118,50 @@
 	color:yellowgreen;
 }
 
-/* 카테고리 등록칸 */
-.new_category_reg{
+/* 
+//카테고리 수정,삭제칸 
+.category_modify_reg{
 	margin-top:50px;
 	border-top:1px solid #817b7b41;
+}
+
+
+#modify_reg_input{
+	width: 30%;
+	margin-left:6px;
+}
+
+//수정 삭제 버튼
+#modify_btn{
+	border:2px solid rgb(0, 119, 255);
+	color:rgb(0, 119, 255);
+}
+
+#modify_btn:hover{
+	border:2px solid rgb(0, 119, 255);
+	background-color:rgb(0, 119, 255);
+	color:white;
+}
+
+#delete_btn{
+	border:2px solid red;
+	color:red;
+}
+
+#delete_btn:hover{
+	border:2px solid red;
+	background-color:red;
+	color: white;
+}
+*/
+
+/* 카테고리 등록칸 */
+.new_category_reg{
+	margin-top:20px;
+	border-top:1px solid #817b7b41;
+}
+.category_modify_input{
+	margin:20px 0;
 }
 
 /* 등록 */
@@ -145,7 +185,6 @@
 	border-radius: 10px;
 	color:navy;
 }
-
 
 
 .reg_table{

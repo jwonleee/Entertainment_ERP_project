@@ -21,7 +21,6 @@ public class AlbumVO {
 	private Integer album_stock;
 	private String album_version;
 	private String album_img_path;
-	private Integer album_hit;
 	private Integer album_sales_volume;
 
 }

@@ -6,8 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@AllArgsConstructor
 @NoArgsConstructor
+@AllArgsConstructor
 @Builder
 public class CartListVO1 {
 
@@ -23,6 +23,3 @@ public class CartListVO1 {
 	private String user_id;
 	private int cart_total_price;
 }
-	
-
-

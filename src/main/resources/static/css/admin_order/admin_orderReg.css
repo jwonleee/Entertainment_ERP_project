@@ -4,6 +4,11 @@
 	list-style: none;
 }
 
+.orderRegFragment{
+	height: 200vh;
+}
+
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
@@ -32,6 +37,7 @@ input::-webkit-inner-spin-button {
 .regTable {
 	color: white;
 	width: 100%;
+	height: auto;
 }
 
 .regTable th {

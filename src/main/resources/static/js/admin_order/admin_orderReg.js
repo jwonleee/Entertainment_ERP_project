@@ -426,9 +426,10 @@ $("#submitOrder").click((e) => {
             async: false,
             success: (result) => {
                 $('input[name="album_img_path"]').val(result.path);
+                $("#registForm").attr("action", "/order/registForm").submit();//form보내기
             },
             error: (err) => {
-                alert('이미지 업로드에 실패하였습니다.')
+                alert('이미지 업로드에 실패하였습니다.');
                 return;
             }
         });
@@ -450,6 +451,7 @@ $("#submitOrder").click((e) => {
             success: (result) => {
                 $("input[name='prod_img_path']").val(result.pimg.path);
                 $("input[name='prod_info_img_path']").val(result.pdimg.path);
+                $("#registForm").attr("action", "/order/registForm").submit();//form보내기
             },
             error: (err) => {
                 alert('상세설명 이미지 업로드에 실패하였습니다.')
@@ -459,9 +461,7 @@ $("#submitOrder").click((e) => {
 
     }
 
-    //form보내기
-    //document.registForm.submit();
-    $("#registForm").attr("action", "/order/registForm").submit();
+    // $("#registForm").attr("action", "/order/registForm").submit();//form보내기
 });
 
 
@@ -480,8 +480,6 @@ $('.regTable').on("click", function (e) {
     $(".modal_close").click(() => { $(".modal2").fadeOut() });
     
 });
-
-
 
 
 /***이미지 미리보기****/
@@ -514,7 +512,6 @@ $("#imgUpload").click(function () {
 	var categoryDetailName = ''; //상세이름. 앨범,케이스 등등
     categoryDetailName=$("input[name='admin_order_category']").data("dnm");
 
-    var categorySelected = $("input[name='admin_order_category']").val();
     var obj = $("#imgReg");
     var pathpoint = obj.val().lastIndexOf('.');
     var filepoint = obj.val().substring(pathpoint + 1, obj.val().length);

@@ -284,8 +284,26 @@
   				,#{category_detail_parent_lv})
   	</insert>
   	
+  	<select id="getTopProduct" resultType="ProductVO">
+  		select prod_artist, prod_name, prod_sales_volume from product order by prod_sales_volume desc limit 0,10
+  	</select>
   	
+  	<select id="getTopAlbum" resultType="AlbumVO">
+  		select album_artist, album_title, album_sales_volume from album order by album_sales_volume desc limit 0,10
+  	</select>
   	
+	<!-- order_history -->
+  	<select id="getOrderHistoryList" resultType="OrderHistoryVO">
+  		select * from order_history order by order_no desc limit #{pageStart}, #{amount}
+  	</select>
+  	
+  	<select id="getOrderHistoryTotal" resultType="Integer">
+  		select count(*) as total from order_history
+  	</select>
+  	
+  	<update id="updateOrderHistoryState" parameterType="OrderHistoryVO">
+  		update order_history set order_state=#{order_state} where order_no=#{order_no};
+  	</update>
   	
   </mapper>
   

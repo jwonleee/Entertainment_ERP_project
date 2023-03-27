@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.command.ordercommand.AlbumVO;
 import com.y4j.final_project.command.ordercommand.CategoryVO;
@@ -91,5 +92,11 @@ public class OrderAjaxController {
 	public Integer smallCategoryReg(@RequestParam("category_group_id")String category_group_id, @RequestParam("category_detail_parent_lv")String category_detail_parent_lv,@RequestParam("category_detail_nm")String category_detail_nm) {
 		CategoryVO vo = CategoryVO.builder().category_group_id(category_group_id).category_lv(3).category_nm("소분류").category_detail_nm(category_detail_parent_lv).category_detail_nm(category_detail_nm).category_parent_lv(2).category_detail_parent_lv(Integer.parseInt(category_detail_parent_lv)).build();
 		return orderService.midSmallCategoryReg(vo);
+	}
+	
+	//주문현황 수정
+	@PostMapping("/update_order_history_state")
+	public String updateOrderHistoryState(OrderHistoryVO vo) {
+		return orderService.updateOrderHistoryState(vo);
 	}
 }

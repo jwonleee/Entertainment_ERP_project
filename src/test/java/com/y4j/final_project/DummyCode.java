@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.ordercommand.Admin_orderVO;
 import com.y4j.final_project.service.orderservice.OrderMapper;
 
@@ -30,6 +31,19 @@ public class DummyCode {
 //							.admin_order_sizetype("free").build();
 //							
 //			orderMapper.testRegist(vo);
+//		}
+//	}
+	
+//	@Test
+//	public void testCode02() {
+//		for(int i=1;i<=200;i++) {
+//			OrderHistoryVO vo =OrderHistoryVO.builder().order_date("2023-03-27")
+//					.order_prod_no(Integer.toString(i))
+//					.user_id(i+"testID")
+//					.order_prod_name("testName"+i)
+//					.order_total_price(Integer.toString(i*50)).order_state("주문완료").build();
+//			orderMapper.setOrderHistory(vo);
+//			
 //		}
 //	}
 }
