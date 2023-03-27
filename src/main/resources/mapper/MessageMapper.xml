@@ -9,18 +9,22 @@
 		insert into message(
 			msg_writer_no,
 			msg_writer_id,
+			msg_writer_type,
 			msg_writer_name,
 			msg_receiver_no,
 			msg_receiver_id,
+			msg_receiver_type,
 			msg_receiver_name,
 			msg_title,
 			msg_content)
 		values(
 			#{msg_writer_no},
 			#{msg_writer_id},
+			#{msg_writer_type},
 			#{msg_writer_name},
 			#{msg_receiver_no},
 			#{msg_receiver_id},
+			#{msg_receiver_type},
 			#{msg_receiver_name},
 			#{msg_title},
 			#{msg_content})

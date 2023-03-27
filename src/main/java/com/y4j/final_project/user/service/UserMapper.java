@@ -1,10 +1,8 @@
 package com.y4j.final_project.user.service;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
-import org.springframework.validation.Errors;
 
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;

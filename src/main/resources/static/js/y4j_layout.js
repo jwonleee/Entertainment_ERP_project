@@ -241,6 +241,7 @@ $('aside .aside-wrap .sideMenuBarBtn').click(function () {
 // 푸터 고정
 var fragmentHeight = document.querySelector(".fragment").scrollHeight;
 function footerFixed() {
+
   if (fragmentHeight + 272 < window.innerHeight) {
     $(".footer-outer").css({ position: "fixed", bottom: "0px" });
     $("body").css("overflow", "hidden");
@@ -254,3 +255,6 @@ window.addEventListener('resize', footerFixed);
 //화면 렌더링 완료 시, view size 측정 후 적용
 $(document).ready(resizeFragment());
 $(document).ready(footerFixed());
+// $(document).on('change', document.querySelector(".fragment").scrollHeight, function(e) {
+//   footerFixed();
+// });

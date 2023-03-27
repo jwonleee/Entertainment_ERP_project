@@ -9,16 +9,15 @@
 			
 			<h3 style="margin-top: 30px">사이드 메뉴바에서 담당하는 분야를 클릭하세요.</h3>
 			
-			<p th:if="${session.admin_id} != null">admin_id : [[${session.admin_id}]]</p>
-			<p th:if="${session.admin_id != null}">admin_type : [[${session.admin_type}]]</p>
-
+			<p th:if="${session.admin_id} != null">아이디 : [[${session.admin_id}]]</p>
+			<p th:if="${session.admin_id != null}">관리자 유형 : [[${session.admin_type}]]</p>
 		</div>
 	</div>
 
 </th:block>
 <script th:inline="javascript">
 	var msg = JSON.parse('[[${msg}]]');
-															console.log(msg + 1);
+console.log(msg + 1);	// - 접근 권한 없는 페이지 접근 시도 시, 경고 메세지 뜨도록 조치 필요
 	if(msg != null) {
 		alert(msg);
 	};
