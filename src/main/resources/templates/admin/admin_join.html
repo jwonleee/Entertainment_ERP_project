@@ -86,7 +86,7 @@
 							<strong>아이디 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 						</diV>
 						<div class="join_info_content right">
-							<input type="text" id="admin_id" name="admin_id" class="input id" onkeyup="checkId2()" minlength="4" maxlength="16" pattern="^([a-z0-9_]){4,16}$" placeholder="영문소문자/숫자, 4~16자" required>
+							<input type="text" id="admin_id" name="admin_id" class="input id" onkeyup="adminIdCheck()" minlength="4" maxlength="16" pattern="^([a-z0-9_]){4,16}$" placeholder="영문소문자/숫자, 4~16자" required>
 							<span class="id_ok" style="color: blue; display: none; font-size: 12px;">사용 가능한 아이디입니다</span> 
 							<span class="id_notok" style="color: red; display: none; font-size: 12px;">이미 사용 중인 아이디입니다</span> <br />
 							<span style="color: red; font-size: 12px;">[[${valid_admin_id}]]</span>
@@ -120,7 +120,7 @@
 							<strong>이메일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 						</diV>
 						<div class="join_info_content right">
-							<input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" pattern="[a-z0-9]+@[a-z]+\.[a-z]{2,3}" required>
+							<input type="email" name="admin_email" class="input email" placeholder="이메일 형식으로 입력하세요" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
 						</div>
 					</div>
 
@@ -167,8 +167,8 @@
 								<option value="BLACKPINK">BLACKPINK</option>
 								<option value="NewJeans">NewJeans</option>
 								<option value="IVE">IVE</option>
-								<option value="LEEDOHYUN">LEEDOHYUN</option>
-								<option value="CHAESOOBIN">CHAESOOBIN</option>
+								<option value="이도현">이도현</option>
+								<option value="채수빈">채수빈</option>
 							</select>
 						</div>
 					</div>
