@@ -23,13 +23,13 @@ public class OrderServiceImpl implements OrderService{
 
 
 	@Override
-	public int getOrderTotal(String user_id, Criteria cri) {
-		return orderMapper.getOrderTotal(user_id, cri);
+	public int getOrderTotal(Criteria cri) {
+		return orderMapper.getOrderTotal(cri);
 	}
 
 	@Override
-	public ArrayList<Admin_orderVO> getOrderList(String user_id,Criteria cri) {
-		return orderMapper.getOrderList(user_id,cri);
+	public ArrayList<Admin_orderVO> getOrderList(Criteria cri) {
+		return orderMapper.getOrderList(cri);
 	}
 
 	@Override

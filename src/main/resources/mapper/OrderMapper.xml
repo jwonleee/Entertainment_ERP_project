@@ -6,7 +6,7 @@
   <mapper namespace="com.y4j.final_project.service.orderservice.OrderMapper">
   
   	<select id="getOrderTotal" resultType="Integer">
-  		select count(*) as total from admin_order where admin_order_id=#{user_id}
+  		select count(*) as total from admin_order where 1=1
   		<if test='cri.searchName !=null and cri.searchName != ""'>
   			and admin_order_prod_name like concat('%','${cri.searchName}','%')
   		</if>
@@ -25,7 +25,7 @@
   
   
   	<select id="getOrderList" resultType="Admin_orderVO">
-  		SELECT * FROM admin_order where admin_order_id=#{user_id}
+  		SELECT * FROM admin_order where 1=1
   		<if test='cri.searchName !=null and cri.searchName != ""'>
   			and admin_order_prod_name like concat('%','${cri.searchName}','%')
   		</if>
