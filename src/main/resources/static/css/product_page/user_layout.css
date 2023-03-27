@@ -229,3 +229,126 @@ footer .footer-inner .footer-right span {
   margin-left: 10px;
   cursor: pointer;
 }
+
+
+/* 챗봇 및 상단 이동 고정 버튼 */
+.fixedBtn {
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: 60px;
+  bottom: 80px;
+  z-index: 11;
+  box-sizing: border-box;
+}
+
+.fixedBtn .chatBotBtn {
+  display: inline-block;
+  width: 120px;
+  height: 45px;
+  line-height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 100px;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fixedBtn .chatBotBtn span {
+  font-size: 16px;
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+.fixedBtn>img {
+  width: 10px;
+  height: 14px;
+  position: absolute;
+  top: 7px;
+  left: 75px;
+}
+
+.fixedBtn .gotoTopBtn {
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* Chat Bot Modal */
+#y4jchatbotForm .modal-content{
+  overflow: scroll;
+}
+
+/* 챗봇  */
+.cb-logo {
+  width: 50px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+#y4jchatbotForm .modal-header > h1 span {
+  vertical-align: middle;
+}
+
+.chat-container {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.chat-box {
+  height: 500px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message p {
+  padding: 5px 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  display: inline-block;
+}
+
+.assistant {
+  background-color: #E5E5EA;
+  color: black;
+  float: left;
+}
+
+.user {
+  background-color: #0B93F6;
+  color: white;
+  float: right;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+  border-top: 1px solid #999;
+}
+
+.chat-input input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  border: 1px solid #999;
+}
+
+.chat-input button {
+  height: 46px;
+  border: 1px solid #999;
+  border-radius: 10px;
+}
