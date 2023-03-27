@@ -61,8 +61,8 @@ public class ScheduleServiceImpl implements ScheduleService {
 	
 	//일반페이지 일정 - axios
 	@Override
-	public List<Map<String, Object>> axiosGetList(String schedule_start_time) {
-		return scheduleMapper.axiosGetList(schedule_start_time);
+	public List<Map<String, Object>> axiosGetList(String schedule_start_time, String ent_name) {
+		return scheduleMapper.axiosGetList(schedule_start_time, ent_name);
 	}
 	
 	//일정 전체 개수

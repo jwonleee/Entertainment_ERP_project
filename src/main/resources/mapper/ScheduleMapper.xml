@@ -131,8 +131,9 @@
 			on es.schedule_no = s.schedule_no
 		left join ENTERTAINER e
 			on es.ent_name = e.ent_name
-		where SUBSTR(schedule_start_time, 1, 10) = #{schedule_start_time}
-		order by schedule_start_time asc
+		where SUBSTR(s.schedule_start_time, 1, 10) = #{schedule_start_time}
+		  and es.ent_name = #{ent_name}
+		order by s.schedule_start_time asc
 	</select>
 	
 	<!-- 일정 상세 -->

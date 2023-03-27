@@ -37,25 +37,22 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String intro(Model model) {
-		
 		return "y4j_intro";
 	}
 	
 	@GetMapping("/layout")
 	public String layout(Model model) {
-	
 		return "layout/y4j_layout";
 	}
 
-	@GetMapping("/index")
-	public String index() {
-		
+	// react build 파일 연결
+	@GetMapping({"/about", "/history", "/contact", "/artist/musicianList"})
+	public String about() {
 		return "index";
 	}
-
+	
 	@GetMapping("/popup")
 	public String popup() {
-		
 		return "y4j_popup";
 	}
 	

@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.joda.time.LocalDate;
 
 import com.y4j.final_project.command.EntertainerScheduleVO;
@@ -30,7 +31,8 @@ public interface ScheduleMapper {
 	public int getTodayScheduleCnt(LocalDate now); //오늘 일정 수
 	
 	//일반페이지 일정 - axios
-	public List<Map<String, Object>> axiosGetList(String schedule_start_time);
+	public List<Map<String, Object>> axiosGetList(@Param("schedule_start_time") String schedule_start_time,
+												  @Param("ent_name") String ent_name);
 	
 	//일정 상세
 	public ScheduleVO getDetail(int schedule_no);
