@@ -9,47 +9,50 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 
+
+import java.util.Properties;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
+
 @Configuration
 @PropertySource("classpath:application.properties")
 public class EmailConfig {
+	
+	@Value("${spring.mail.username}")
+    private String id;
+    @Value("${spring.mail.password}")
+    private String password;
+    @Value("${spring.mail.host}")
+    private String host;
+    @Value("${spring.mail.port}")
+    private int port;
+    
+    @Bean
+    public JavaMailSender javaMailService() {
+        JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
 
-	@Value("${spring.mail.smtp.port}")
-	private int port;
-	@Value("${spring.mail.smtp.socketFactory.port}")
-	private int socketPort;
-	@Value("${spring.mail.smtp.auth}")
-	private boolean auth;
-	@Value("${spring.mail.smtp.starttls.enable}")
-	private boolean starttls;
-	@Value("${spring.mail.smtp.starttls.required}")
-	private boolean startlls_required;
-	@Value("${spring.mail.smtp.socketFactory.fallback}")
-	private boolean fallback;
-	@Value("${spring.AdminMail.id}")
-	private String id;
-	@Value("${spring.AdminMail.password}")
-	private String password;
+        javaMailSender.setHost(host); // smtp 서버 주소
+        javaMailSender.setUsername(id); // 설정(발신) 메일 아이디
+        javaMailSender.setPassword(password); // 설정(발신) 메일 패스워드
+        javaMailSender.setPort(port); //smtp port
+        javaMailSender.setJavaMailProperties(getMailProperties()); // 메일 인증서버 정보 가져온다.
+        javaMailSender.setDefaultEncoding("UTF-8");
+        return javaMailSender;
+    }
 
-	@Bean
-	public JavaMailSender javaMailService() {
-		JavaMailSenderImpl javaMailSender = new JavaMailSenderImpl();
-		javaMailSender.setHost("smtp.gmail.com");
-		javaMailSender.setUsername(id);
-		javaMailSender.setPassword(password);
-		javaMailSender.setPort(port);
-		javaMailSender.setJavaMailProperties(getMailProperties());
-		javaMailSender.setDefaultEncoding("UTF-8");
-		return javaMailSender;
-	}
-	private Properties getMailProperties()
-	{
-		Properties pt = new Properties();
-		pt.put("spring.mail.smtp.socketFactory.port", socketPort);
-		pt.put("spring.mail.smtp.auth", auth);
-		pt.put("spring.mail.smtp.starttls.enable", starttls);
-		pt.put("spring.mail.smtp.starttls.required", startlls_required);
-		pt.put("spring.mail.smtp.socketFactory.fallback",fallback);
-		pt.put("spring.mail.smtp.socketFactory.class", "javax.net.ssl.SSLSocketFactory");
-		return pt;
-	}
+    private Properties getMailProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("mail.transport.protocol", "smtp");
+        properties.setProperty("mail.smtp.auth", "true");
+        properties.setProperty("mail.smtp.starttls.enable", "true");
+        properties.setProperty("mail.debug", "true");
+        properties.setProperty("mail.smtp.ssl.trust","smtp.naver.com");
+        properties.setProperty("mail.smtp.ssl.enable","true");
+        return properties;
+    }
 }

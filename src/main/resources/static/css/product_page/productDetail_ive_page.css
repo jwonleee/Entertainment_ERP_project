@@ -40,13 +40,67 @@ a {
 	
 }
 
+/********* 조장님이 만든 소중한 아이콘들 **********/
+
+.header1_user_bar_box{
+	width: 100%;
+	margin:0;
+	background-color: rgba(248, 238, 219, 0.279);
+	padding: 10px;
+
+}
+
+.header1_user_bar{
+	width: 1200px;
+	height: 45px;
+	line-height: 45px;
+}
+
+.main-header-inner2 {
+  	float: left;
+ 	margin:0;
+  	padding-left: 0px;
+  	 
+}
+
+.main-header-inner2 li {
+  display: inline-block;
+
+}
+
+ .main-header-inner2 li a {
+  display: block;
+  text-decoration: none;
+  cursor: default;
+  width: 50px;
+  box-sizing: border-box;
+   margin: 3px 20px 3px 0px;
+   text-align: center;
+
+}
+
+ .main-header-inner2 .header_middle_user img {
+  width: 35px;
+  height: 36px;
+
+  cursor: pointer;
+}
+
+ .main-header-inner2 li span {
+  display: block;
+  text-align: center;
+  font-size: 10pt;
+
+}
+
+
 /* 메뉴바 드롭다운 부분 */
 .header_main_menu > ul > li > .menu_bar1 {
  display: flex;
  flex-direction: column;
   height: 0px;
   position: absolute;
-  z-index: -30; 
+  z-index: 30; 
   overflow: hidden;
   transition: height ease-out 0.6s 0s;
  
@@ -57,13 +111,12 @@ a {
   height: 40px;
   top: 30px;
   left:0;
-  color:white;
+  color:black;
   font-weight :800;
   font-size: 16px;
-  font-family: 'Nanum Gothic', sans-serif;
-  font-style: italic;
+   font-family: 'Alkatra', cursive;
   cursor: pointer;
-  text-shadow: 1px 1px 2px #bebebe;
+  z-index: 1000000;
 }
 
 
@@ -238,7 +291,7 @@ a {
 
 .ive_main {
 
-	margin-bottom: 300px;
+	margin-bottom: 100px;
 	overflow: hidden;
 }
 
@@ -268,7 +321,7 @@ a {
 
     width: 1000px;
  	margin-top: 80px;
- 	margin-left: 300px;
+ 	margin-left: 320px;
 }
 
 .ive_allProduct_box {
@@ -323,20 +376,19 @@ a {
 	
 /* footer */
 .footer-outer {
-  /* position: fixed;
-  bottom: 0px; */
   position: static;
   bottom: 0px;
   width: 100%;
-  background-color: rgb(119, 119, 119);
+  background-color: rgba(248, 238, 219, 0.279);
   z-index: 5;
-  margin-top: 20px;
+
 }
 
 footer {
-  width: 1080px;
-  height: 120px;
-  padding: 20px 0px;
+  width: 1200px;
+  height: 200px;
+  margin: 0 auto;
+  padding: 25px 0px;
   overflow: hidden;
   box-sizing: border-box;
   z-index: 5;
@@ -345,6 +397,8 @@ footer {
 footer .footer-inner {
   overflow: hidden;
   color: black;
+  height: 200px;
+  padding: 25px 0px;
 }
 
 footer .footer-inner .footer-left {
@@ -352,14 +406,15 @@ footer .footer-inner .footer-left {
 }
 
 footer .footer-inner .footer-left img {
-  width: 110px;
-  height: 80px;
+  width: 130px;
+  height: 95px;
+  margin-right:56px;
   display: inline-block;
 }
 
 footer .footer-inner .footer-left > div {
-  font-size: 12px;
-  margin: 0px 0 0 30px;
+  font-size: 13px;
+  line-height: 25px;
 }
 
 footer .footer-inner .footer-left2 {

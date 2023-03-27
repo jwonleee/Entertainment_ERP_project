@@ -26,8 +26,6 @@ import com.y4j.final_project.user.service.UserService;
 @RestController
 public class AjaxController {
 
-	
-
 	@Autowired
 	AdminService adminService;
 
@@ -40,13 +38,12 @@ public class AjaxController {
 	@Autowired
 	AuditionService auditionService;
 	
+	
 	//아이디 중복체크
-	@PostMapping("/idCheck2")
-	@ResponseBody
-	public int idCheck2(@RequestParam("admin_id") String admin_id) {
+	@PostMapping("/adminIdCheck")
+	public int adminIdCheck(@RequestParam String admin_id) {
 
-		int cnt = adminService.idCheck2(admin_id);
-		return cnt;
+		return adminService.adminIdCheck(admin_id);
 	}
 
 	@PostMapping("/getAdminInfo")
@@ -67,7 +64,8 @@ public class AjaxController {
 	
 	//수신 메세지 목록 조회
 	@PostMapping("/getReceivedMsg")
-	public ArrayList<MessageVO> getReceivedMsg(@RequestBody MessageVO vo) {
+	public ArrayList<MessageVO> getReceivedMsg(HttpSession session,
+			@RequestBody MessageVO vo) {
 
 		return messageService.getReceivedMsg(vo.getMsg_receiver_id());
 	}
@@ -75,7 +73,8 @@ public class AjaxController {
 	
 	//발신 메세지 목록 조회	
 	@PostMapping("/getSentMsg")
-	public ArrayList<MessageVO> getSentMsg(@RequestBody MessageVO vo) {
+	public ArrayList<MessageVO> getSentMsg(HttpSession session,
+			@RequestBody MessageVO vo) {
 
 		return messageService.getSentMsg(vo.getMsg_writer_id());
 	}
@@ -83,14 +82,18 @@ public class AjaxController {
 
 	//메세지 수신 날짜 업데이트
 	@PostMapping("/checkMsg")
-	public int checkMsg(@RequestBody MessageVO vo,
-			HttpSession session, Model model) {
+	public int checkMsg(@RequestBody MessageVO vo, HttpSession session) {
 		
 		messageService.checkMsg(vo.getMsg_no());
 		
-		session.setAttribute("user_id", "manager127");
+		if(session.getAttribute("user_id") != null) {
+			return messageService.getUncheckedMsg(session.getAttribute("user_id"));
 		
-		return messageService.getUncheckedMsg(session.getAttribute("user_id"));
+		} else if(session.getAttribute("admin_id") != null) {
+			return messageService.getUncheckedMsg(session.getAttribute("admin_id"));
+		}
+		
+		return 0;
 	}
 	
 	// 특정 메세지 수신 날짜 업데이트

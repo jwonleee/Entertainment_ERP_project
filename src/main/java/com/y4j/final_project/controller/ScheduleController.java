@@ -67,6 +67,7 @@ public class ScheduleController {
 		return "schedule/admin_scheduleList";
 	}
 	
+	
 	//일정 상세
 	@GetMapping("/admin_scheduleDetail")
 	public String getDetail(@RequestParam("schedule_no") int schedule_no,

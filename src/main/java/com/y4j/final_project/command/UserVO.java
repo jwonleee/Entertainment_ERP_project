@@ -51,6 +51,8 @@ public class UserVO {
 //	@Pattern (regexp = "(?=.*[0-9])", message = "휴대번호를 정확히 입력하세요")
 	private String user_contact;
 	
+	private String user_zipcode;
+	
 	@NotBlank (message = "주소를 입력하세요")
 	private String user_address;
 	

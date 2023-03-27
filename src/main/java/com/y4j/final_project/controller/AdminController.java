@@ -40,16 +40,8 @@ public class AdminController {
 	
 	
 	@GetMapping("/admin_login")
-	public String admin_login(HttpSession session, AdminVO adminVO, Model model) {
+	public String admin_login() {
 
-		//정상적으로 로그인이 됐을 경우, 세션 생성
-		session.setAttribute("adminId", adminVO.getAdmin_id());
-		session.setAttribute("adminType", adminVO.getAdmin_type());
-		session.setAttribute("entName", adminVO.getEnt_name());
-		model.addAttribute("adminId", session.getAttribute("adminId"));
-		model.addAttribute("adminType", session.getAttribute("adminType"));
-		model.addAttribute("entName", session.getAttribute("entName"));
-		
 		return "admin/admin_login";
 	}
 	
@@ -101,11 +93,6 @@ public class AdminController {
 						  .build();
 		int result2 = authorityService.applyAuthority(vo2);
 		
-		String pw = passwordEncoder.encode(vo1.getAdmin_pw());
-		vo1.setAdmin_pw(pw);
-		
-		adminService.registAdmin(vo1);
-		
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 회원가입 되었습니다.\n관리자 권한 승인을 기다려주세요." : "회원가입에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
 		
@@ -114,27 +101,29 @@ public class AdminController {
 	
 	@PostMapping("/adminLoginForm")
 	public String adminLoginForm(@RequestParam("admin_id") String admin_id, @RequestParam("admin_pw") String admin_pw, 
-			AdminVO vo, HttpServletRequest request, Model model) {
+			HttpServletRequest request, RedirectAttributes ra) {
 
-		int count = adminService.idCheck2(admin_id); //db에 저장되어있는 아이디
+		int count = adminService.adminIdCheck(admin_id); //db에 저장되어있는 아이디
 		String saved_pw = adminService.login(admin_id); //db에 저장되어있는 비밀번호
 
 		//세션이 있으면 세션 반환, 없으면 새로 생성해서 반환
 		//getSession()은 기본값이 true인데 false로 설정할 경우, 세션이 없을 때 새로 생성하지 않고 null 반환
 		HttpSession session = request.getSession();
-
-		if(count == 1 && passwordEncoder.matches(admin_pw, saved_pw) ) {
+		
+		if(count == 1 && passwordEncoder.matches(admin_pw, saved_pw)) {
 
 			//세션에 회원정보 저장 - 아이디로 가져와서
-			session.setAttribute("vo", adminService.getAdminInfo2(vo.getAdmin_id()));
-//		AdminVO adminVO = adminService.getAdminInfo2(admin_id);
-//			session.setAttribute("admin_id", adminVO.getAdmin_id());
-//			session.setAttribute("admin_type", adminVO.getAdmin_type());
+			AdminVO adminVO = adminService.getAdminInfo2(admin_id);
+			session.removeAttribute("user_id");
+			session.setAttribute("admin_id", admin_id);
+			session.setAttribute("admin_type", adminVO.getAdmin_type());
 			
-			return "/";
+			return "admin/admin_home";
+			
 		} else {
-			session.setAttribute("vo", null);
-			return "admin/admin_login";
+			ra.addFlashAttribute("msg", "로그인에 실패했습니다.");
+			
+			return "redirect:/admin/admin_login";
 		}
 	}
 	

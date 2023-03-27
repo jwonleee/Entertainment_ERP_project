@@ -15,7 +15,8 @@ a {
   text-decoration: none;
 }
 
-body, html {
+body,
+html {
   font-family: 'Noto Sans KR', sans-serif;
 }
 
@@ -141,17 +142,17 @@ body, html {
   margin-top: 9px;
 }
 
-.header-bottom .menu_bar > ul {
+.header-bottom .menu_bar>ul {
   padding-left: 0;
 }
 
-.header-bottom .menu_bar > ul > li {
+.header-bottom .menu_bar>ul>li {
   display: inline-block;
   padding: 5px 0px;
   margin-right: 60px;
 }
 
-.header-bottom .menu_bar > ul > li > span {
+.header-bottom .menu_bar>ul>li>span {
   display: inline-block;
   height: 40px;
   line-height: 40px;
@@ -159,7 +160,7 @@ body, html {
   font-weight: 700;
 }
 
-.header-bottom .menu_bar > ul > li > span > a {
+.header-bottom .menu_bar>ul>li>span>a {
   color: black;
   text-decoration: none;
 }
@@ -191,19 +192,19 @@ body, html {
   cursor: pointer;
 }
 
-.menu_bar > ul > li > .snb > .snbLi1 {
+.menu_bar>ul>li>.snb>.snbLi1 {
   font-size: 16px;
   margin-top: 10px;
   cursor: default;
 }
 
-.menu_bar > ul > li > .snb > li > span > a {
+.menu_bar>ul>li>.snb>li>span>a {
   text-decoration: none;
   color: black;
 }
 
 /* 메뉴바 드롭다운 부분 */
-.menu_bar > ul > li > .snb {
+.menu_bar>ul>li>.snb {
   width: 100%;
   height: 0px;
   position: absolute;
@@ -215,10 +216,10 @@ body, html {
 }
 
 .menu_bar .snb li {
- position: relative;
- height: 30px;
- top: 10px;
- left: -32px;
+  position: relative;
+  height: 30px;
+  top: 10px;
+  left: -32px;
 }
 
 /* 메뉴바 상단 고정 관련 CSS */
@@ -237,7 +238,7 @@ body, html {
   margin-left: 160px;
   padding: 80px 50px 30px 80px; */
   margin-top: 85px;
- 
+
   box-sizing: border-box;
   width: 100%;
 }
@@ -294,7 +295,7 @@ footer .footer-inner .footer-left img {
   display: inline-block;
 }
 
-footer .footer-inner .footer-left > div {
+footer .footer-inner .footer-left>div {
   font-size: 12px;
   margin: 0px 0 0 30px;
 }
@@ -346,14 +347,14 @@ aside .aside-wrap .sideMenuBarBtn {
   background-color: #777;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > div {
+aside .aside-wrap .sideMenuBar .mngBar>div {
   border: 2px solid black;
   border-bottom: 6px solid black;
   padding-left: 10px;
   cursor: pointer;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > ul {
+aside .aside-wrap .sideMenuBar .mngBar>ul {
   width: 100%;
   height: 0;
   overflow: hidden;
@@ -361,7 +362,7 @@ aside .aside-wrap .sideMenuBar .mngBar > ul {
   padding-left: 25px;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > ul > li > a {
+aside .aside-wrap .sideMenuBar .mngBar>ul>li>a {
   text-decoration: none;
   color: black;
 }
@@ -373,12 +374,12 @@ aside .aside-wrap .smt.on {
   color: white;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > ul > li.on {
+aside .aside-wrap .sideMenuBar .mngBar>ul>li.on {
   box-sizing: content-box;
   margin-bottom: 2px;
 }
 
-aside .aside-wrap .sideMenuBar .mngBar > ul > li > a.on {
+aside .aside-wrap .sideMenuBar .mngBar>ul>li>a.on {
   font-weight: 700;
   color: whitesmoke;
 }
@@ -396,7 +397,8 @@ aside .aside-wrap .sideMenuBar .mngBar > ul > li > a.on {
   font-family: 'Nanum Gothic', sans-serif;
 } */
 
-.aside_wrap ul, .aside_wrap ol {
+.aside_wrap ul,
+.aside_wrap ol {
   padding: 0px;
 }
 
@@ -408,110 +410,110 @@ aside .aside_wrap {
   height: 100vh;
 }
 
-.aside_wrap_box{
-	padding: 10px 12px;
-	display: flex;
-	align-items: center;
+.aside_wrap_box {
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
   border-top: 1px solid rgba(229, 229, 229, 0.179);
-	border-bottom: 1px solid rgba(229, 229, 229, 0.179);
-	margin: 0;
-	font-size: 15px;
-	font-weight: 500;
+  border-bottom: 1px solid rgba(229, 229, 229, 0.179);
+  margin: 0;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .aside_wrap_box img {
-	margin-left: 10px;
+  margin-left: 10px;
 }
 
 .aside_wrap_box span {
-	margin-left: 15px;
+  margin-left: 15px;
 }
 
 /* 사이드 메뉴바  */
 .aside_menu_bar {
-	font-size:15px;
-	padding:20px 0;
-	width:100%;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	flex-direction:column;
-	color:rgba(251, 245, 245, 0.862);
-	margin: 5px 0;
-	
+  font-size: 15px;
+  padding: 20px 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgba(251, 245, 245, 0.862);
+  margin: 5px 0;
+
 }
 
-.aside_menu_bar .slide{ 
-	z-index: 10;
+.aside_menu_bar .slide {
+  z-index: 10;
 }
 
-.aside_menu_bar_first{
-	font-size:14px;
-	padding:15px 0;
-	width:100%;
-	height: 30px;
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	flex-direction:column;
-	color:rgba(251, 245, 245, 0.862);
-	margin-top: 10px;
+.aside_menu_bar_first {
+  font-size: 14px;
+  padding: 15px 0;
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  color: rgba(251, 245, 245, 0.862);
+  margin-top: 10px;
 }
 
-.aside_menu_bar_first .slide1{
-	cursor: pointer;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin-bottom: 10px;
+.aside_menu_bar_first .slide1 {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
-.aside_menu_bar_first .slide1 > li > a {
-  color:rgba(251, 245, 245, 0.862);
+.aside_menu_bar_first .slide1>li>a {
+  color: rgba(251, 245, 245, 0.862);
 }
 
-.aside_menu_bar_list{
-	margin: 10px 0;
-	width: 100%;
-	position: absolute;
-	z-index:1;
+.aside_menu_bar_list {
+  margin: 10px 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
 }
 
-.aside_menu_bar > ul > li > a {
-  color:rgba(251, 245, 245, 0.862);
+.aside_menu_bar>ul>li>a {
+  color: rgba(251, 245, 245, 0.862);
 }
 
-.aside_menu_bar .aside_menu_bar_list li{
-	 -o-animation: fadein 5s; 
-	line-height: 37px;
-	position: relative;
-	top:55px;
-	left:92px;
+.aside_menu_bar .aside_menu_bar_list li {
+  -o-animation: fadein 5s;
+  line-height: 37px;
+  position: relative;
+  top: 55px;
+  left: 92px;
 }
 
-.aside_menu_bar_list_prod{
-	margin: 15px 0;
-	width: 100%;
-	position: absolute;
-	z-index:1;
-	
+.aside_menu_bar_list_prod {
+  margin: 15px 0;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+
 }
 
-.aside_menu_bar .aside_menu_bar_list_prod li{
-	 -o-animation: fadein 5s; 
-	line-height: 40px;
-	position: relative;
-	top:75px;
-	left:92px;
+.aside_menu_bar .aside_menu_bar_list_prod li {
+  -o-animation: fadein 5s;
+  line-height: 40px;
+  position: relative;
+  top: 75px;
+  left: 92px;
 }
 
-.aside_menu_bar .slide{
-	cursor: pointer;
-	width: 100%;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+.aside_menu_bar .slide {
+  cursor: pointer;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #slide_up_img {
@@ -523,6 +525,129 @@ aside .aside_wrap {
   margin: 25px 0 30px 0;
 }
 
-.aside_menu_bar_1 > ul {
+.aside_menu_bar_1>ul {
   margin: 0;
+}
+
+
+/* 챗봇 및 상단 이동 고정 버튼 */
+.fixedBtn {
+  /* display: none; */
+  display: flex;
+  justify-content: center;
+  position: fixed;
+  right: 60px;
+  bottom: 80px;
+  z-index: 11;
+  box-sizing: border-box;
+}
+
+.fixedBtn .chatBotBtn {
+  display: inline-block;
+  width: 120px;
+  height: 45px;
+  line-height: 30px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  border-radius: 100px;
+  color: black;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.fixedBtn .chatBotBtn span {
+  font-size: 16px;
+  font-weight: 700;
+  color: whitesmoke;
+}
+
+.fixedBtn>img {
+  width: 10px;
+  height: 14px;
+  position: absolute;
+  top: 7px;
+  left: 75px;
+}
+
+.fixedBtn .gotoTopBtn {
+  width: 45px;
+  height: 45px;
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  box-sizing: border-box;
+  border-radius: 50px;
+  display: inline-flex;
+  align-items: center;
+  margin-left: 8px;
+}
+
+/* Chat Bot Modal */
+#y4jchatbotForm .modal-content{
+  overflow: scroll;
+}
+
+/* 챗봇  */
+.cb-logo {
+  width: 50px;
+  height: 40px;
+  margin-right: 20px;
+}
+
+#y4jchatbotForm .modal-header > h1 span {
+  vertical-align: middle;
+}
+
+.chat-container {
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.chat-box {
+  height: 500px;
+  overflow-y: scroll;
+  padding: 10px;
+}
+
+.chat-message {
+  margin-bottom: 10px;
+}
+
+.chat-message p {
+  padding: 5px 10px;
+  border-radius: 10px;
+  max-width: 60%;
+  display: inline-block;
+}
+
+.assistant {
+  background-color: #E5E5EA;
+  color: black;
+  float: left;
+}
+
+.user {
+  background-color: #0B93F6;
+  color: white;
+  float: right;
+}
+
+.chat-input {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 0px;
+  border-top: 1px solid #999;
+}
+
+.chat-input input[type="text"] {
+  width: 80%;
+  padding: 10px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  border: 1px solid #999;
+}
+
+.chat-input button {
+  height: 46px;
+  border: 1px solid #999;
+  border-radius: 10px;
 }

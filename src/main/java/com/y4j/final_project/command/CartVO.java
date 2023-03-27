@@ -20,7 +20,7 @@ public class CartVO {
 	private int cart_prod_discount_rate;
 	private String cart_prod_price;
 	private String user_id;
-	
+	private int cart_total_price;
 	//////////////////////////////////////////////////////
 
 	private int cart_album_no;
@@ -30,6 +30,5 @@ public class CartVO {
 	private String cart_album_cnt;
 	private int cart_album_discount_rate;
 	private String cart_album_price;
-
 
 }

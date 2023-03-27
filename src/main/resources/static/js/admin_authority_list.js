@@ -46,7 +46,7 @@ $(".showModal").click(function (e) {
       str += '<legend class="col-form-label col-sm-2 pt-0">유형</legend>';
       str += '<div class="col-sm-10">';
       str += '<div class="form-check">';
-      str += '<input class="form-check-input" type="radio" name="gridRadios" id="gridRadios0" value="master" disabled>';
+      str += '<input class="form-check-input" type="radio" name="gridRadiose" id="gridRadios0" value="master" disabled>';
       str += '<label class="form-check-label" for="gridRadios0">';
       str += '사이트 관리자';
       str += '</label>';
@@ -134,10 +134,17 @@ $(".modal").click(function (e) {
 
 // //모달 창 내 수정 버튼 클릭 시, 권한 정보 수정
 $("#updateBtn").on("click", function () {
-  //모달 창 내부 수정된 admin_type 값 추출
+  // //모달 창 내부 수정된 admin_type 값 추출
   var adminType = $(".adminType");
+  var entName = $(".ent_name").val();
+
   for (let i = 0; i < adminType.length; i++) {
     if (adminType[i].checked) $(".admin_type").val(adminType[i].value);
+  }
+
+  if($(".admin_type").val() == 'manager' && entName == '') {
+      alert("매니저 유형은 '그룹/배우' 선택이 필수입니다.");
+      return;
   }
 
   $("#updateForm").submit();

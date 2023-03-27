@@ -16,9 +16,11 @@ public class MessageVO {
 	private int msg_no;  //default : auto increment
 	private int msg_writer_no;
 	private String msg_writer_id;
+	private String msg_writer_type;
 	private String msg_writer_name;
 	private int msg_receiver_no;
 	private String msg_receiver_id;
+	private String msg_receiver_type;
 	private String msg_receiver_name;
 	private String msg_title;
 	private String msg_content;

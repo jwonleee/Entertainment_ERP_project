@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-
+<head>
 <!-- 폰트 1 -->
 <link rel="stylesheet" href="/css/product_page/product_page.css" type="text/css" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
@@ -13,10 +13,13 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet">
+<!-- 폰트 4 -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Alkatra:wght@600&display=swap" rel="stylesheet">
 
 <!-- css -->
  <link rel="stylesheet" href="/css/product_page/product_page.css">
-
 <style>
 	html,
 	body {
@@ -49,13 +52,10 @@
 	}
 </style>
 
-<!-- 레이아웃 -->
-<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+</head>
+<th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
 
-	<!-- 본문에 들어갈 내용 -->
-	<div class="fragment">
-
-
+	<div class="fragment" style="margin-top: 200px; width: 1080px">
 		<!-- 스와이퍼 -->
 		<script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-element-bundle.min.js"></script>
 		<swiper-container class="mySwiper" autoplay="true" autoplay-delay="4000" space-between="30" loop="true" speed="1600" style="margin-top: 70px;">
@@ -184,14 +184,15 @@
 					<!-- 검색창 -->
 					<input id="AllprodSearch" class="productSearch" type="text" name="searchName" th:value="${cri.searchName}" placeholder="검색어를 입력해주세요">
 					<img style="width: 25px; height: 25px; margin:0" src="/img/search_icon.png"/>
+					<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="확대경 아이콘">확대경 아이콘  제작자: Ayub Irawan - Flaticon</a> -->
 
 				</div>
 			
 				<div class="prod_hashTag_button">
-					<span data-value="BLACKPINK"># BLACKPINK</span>
-					<span data-value="LEEDOHYUN"># LEEDOHYUN</span>
-					<span  data-value="ALBUM"># ALBUM</span>
-					<span  data-value="CASE"># CASE</span>
+					<span data-value="블랙핑크"># 블랙핑크</span>
+					<span data-value="이도현"># 이도현</span>
+					<span  data-value="앨범"># 앨범</span>
+					<span  data-value="케이스"># 케이스</span>
 				</div>
 				
 			</div>
@@ -212,24 +213,26 @@
 				</div>
 			</div>
 	
+			<!-- 전체 상품 -->
 			<div class="allProduct">
-				<!-- 전체 상품 -->
 			  <a th:each="vo: ${list}"  th:href="@{/product/detail_page(prod_no = ${vo.prod_no})}">
 				<div class="allProduct_list" >
-					<div class="allProduct_list_img" >
-						<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>	
-						<!-- <span>[[${vo.prod_regdate}]]</span> -->	<!-- //////// 나중에 없애야 할 태그 //////// -->
-					</div>
-					<div class="allProduct_list_info_box">
-						<div class="allProduct_list_info"><!-- hover이용해서 상품명이랑 가격 보이게 하기 -->
-							<span>[[${msg1}]]</span>
-							
-							<span>[[${vo.prod_name}]]</span>
-							<p style="color:rgba(227, 3, 3, 0.897)">\[[${vo.prod_price}]]</p>
+					<div class="allProduct_box">
+						<div class="allProduct_list_img" >
+							<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>	
+						</div>
+						<div class="allProduct_list_info_box">
+							<div class="allProduct_list_info" th:with="price=${vo.prod_price}"><!-- hover이용해서 상품명이랑 가격 보이게 하기 -->
+								<span>[[${vo.prod_name}]]</span>
+								<p style="color:rgba(227, 3, 3, 0.897)" th:text="${#numbers.formatInteger(price, 3, 'COMMA')}+'원'"></p>
+							</div>
 						</div>
 					</div>
 				</div>
-				</a>
+			  </a>
+				<div class="more_button" style="margin-top:30px">
+					<button type="button" id="more" ><span>more<span></span></button>
+				</div>
 			</div>
 		</form>
 	</div>

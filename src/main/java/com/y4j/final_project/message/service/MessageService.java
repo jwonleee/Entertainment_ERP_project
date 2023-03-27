@@ -10,10 +10,10 @@ public interface MessageService {
 	public int sendMsg(MessageVO vo);
 	
 	//받은 쪽지 조회 메서드(id 기준)
-	public ArrayList<MessageVO> getReceivedMsg(String receiver);
+	public ArrayList<MessageVO> getReceivedMsg(Object receiver);
 	
 	//보낸 쪽지 조회 메서드(id 기준)
-	public ArrayList<MessageVO> getSentMsg(String writer);
+	public ArrayList<MessageVO> getSentMsg(Object writer);
 
 	//미확인 쪽지 개수 반환 메서드
 	public int getUncheckedMsg(Object receiver);
@@ -22,6 +22,6 @@ public interface MessageService {
 	public int checkMsg(int msg_no);
 	
 	//특정 쪽지 정보 반환 메서드
-	public MessageVO getMsgInfo(int msg_no);	
+	public MessageVO getMsgInfo(int msg_no);
 	
 }

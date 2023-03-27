@@ -34,7 +34,7 @@ public interface AdminMapper {
 	public int approveAuth(AuthorityVO vo);
 	
 	//관리자 아이디 중복 검사 및 로그인 시 아이디 유무 확인
-	public int idCheck2(String admin_id);
+	public int adminIdCheck(String admin_id);
 	
 	//관리자 로그인
 	public String login(String admin_id);

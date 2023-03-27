@@ -9,18 +9,25 @@
   	 <!--  전체 상품 데이터 - 검색 기능 추가 -->
    	<select id="productList" resultType="ProductVO">
    		select * from product
-   		<if test="searchName != null and searchName != ''">
-   			where prod_name like concat('%',#{searchName } , '%')
-   			or prod_artist like concat('%', #{searchName }, '%')
-   			or prod_type like concat('%', #{searchName }, '%')
-
+   		<if test="cri.searchName != null and cri.searchName != ''">
+   			where prod_name like concat('%',#{cri.searchName } , '%')
+   			or prod_artist like concat('%', #{cri.searchName }, '%')
+   			or prod_type like concat('%', #{cri.searchName }, '%')
    		</if>
-   		<if test="searchContent == '최신순'">
+   		<if test="cri.searchContent == '최신순'">
    			order by  prod_regdate desc
    		</if>
-   		<if test="searchContent == '판매량순'">
+   		<if test="cri.searchContent == '판매량순'">
    			order by  prod_regdate
    		</if>
+   		limit #{vo.startIndex}, #{vo.prod_total}
+   	</select>
+   	
+   	
+   	<!-- 메인 상품 페이지 - 페이지네이션(전체 상품 갯수) -->
+   	<select id="getProdMore" resultType="int">
+   		select count(*) from product
+   		
    	</select>
    	
 	<!-- 상품 상세 페이지 -->
@@ -29,37 +36,125 @@
 		where prod_no = #{prod_no}
 	</select>
 	
+	<!-- ======================결제 페이지 ================================ -->
 	
-	<select id="userOrderRightNow" resultType="UserOrderVO">
-		select * from `user_order` 
+	<!-- 회원 정보 가져오기  -->
+ 	<select id="userOrderRightNow" resultType="UserVO">
+		select
+		   user_name,
+		   user_email,
+		   user_contact,
+		   user_zipcode,
+		   user_address
+	    from users
+	    where user_id = "gmlwjd852369"
+	</select> 
+	
+	
+	
+	<!-- 결제 페이지에서 작성한 정보 결제내역으로 보내기 -->
+	<insert id="user_order" >
+	    insert into `order_history`(
+	    	user_id,
+	    	prod_no,
+	    	order_prod_no,
+	    	order_addressee,
+	    	order_zipcode,
+	    	order_shipping_address,
+	    	order_addressee_contact,
+	    	order_prod_name,
+	    	order_cnt,
+	    	order_prod_cnt,
+	    	order_date,
+	    	order_total_price,
+	        order_shipping_message,
+	    	order_payment_method,
+	    	order_state
+	    
+	      )
+	    values(
+	    	#{user_id},
+	    	#{prod_no},
+	    	#{order_prod_no},
+	    	#{order_addressee},
+	    	#{order_zipcode},
+	    	#{order_shipping_address},
+	    	#{order_addressee_contact},
+	    	#{order_prod_name},
+	    	#{order_cnt},
+	    	#{order_prod_cnt},
+	    	#{order_date},
+	    	#{order_total_price},
+	        #{order_shipping_message},
+	    	#{order_payment_method},
+	    	#{order_state}
+	    )
+	</insert> 
+	
+	<!-- 결제 내역 -->
+	<select id="user_orderList" resultType="OrderHistoryVO">
+	   select 
+	   		order_prod_no,
+	   		order_date,
+	   		order_prod_name, 
+	   		order_total_price,
+	   		order_state
+	   	from order_history
+	   	where user_id = "gmlwjd852369"<!-- 로그인 아이디 세션 값 기준 -->
+	   	<if test="cri.searchName == '오늘' and cri.searchName != 'null'" >
+	   		and order_date = DATE_FORMAT(now(), '%Y-%m-%d')
+	   	</if>
+	   	<if test="cri.searchName == '1주일' and cri.searchName != 'null'">
+	   	 	<![CDATA[and order_date >= DATE_ADD(NOW(), INTERVAL-1 WEEK)]]>
+	   	</if>
+	   	<if test="cri.searchName == '1개월' and cri.searchName != 'null'">
+	   		<![CDATA[and order_date >= DATE_ADD(NOW(), INTERVAL-1 MONTH)]]>
+	   	</if>  
+	    <if test="cri.searchName == '3개월' and cri.searchName != 'null'">
+	   		<![CDATA[and order_date >= DATE_ADD(NOW(), INTERVAL-3 MONTH)]]>
+	   	</if>
+	   	<if test="cri.startDate!= null and cri.startDate != '' and cri.endDate!= null and cri.endDate != ''">
+	   		<![CDATA[and order_date between date_format (#{cri.startDate},'%Y-%m-%d')  and date_format (#{cri.endDate},'%Y-%m-%d') ]]>
+	   	</if>
+	   order by order_date desc<!-- 주문 날짜 최신순 기준 -->
+	   limit #{cri.pageStart}, #{cri.amount}
+	</select> 
+	
+    <select id="getProdOrderTotal" resultType="int">
+   		select count(*) from order_history
+   		where user_id = "gmlwjd852369"<!-- 나중에 로그인 세션 처리 -->
+   	</select>
+	
+	<!-- 결제 내역 상세 페이지 -->
+	<select id="user_orderList_detail" resultType="hashmap">
+		select distinct
+			   oh.*,
+			   p.prod_img_path,
+			   p.prod_price,
+			   p.prod_discount_rate,
+			   u.user_name
+		from `order_history` oh
+		left join `product` p
+			on oh.prod_no = p.prod_no
+		left join `users` u
+			on oh.user_id = u.user_id
+		where oh.order_prod_no = #{order_prod_no}
+		
+		
 	</select>
 	
-	
-	
-	<!-- 결제 페이지 -->
-<!--    <select id="buyRightnow" resultType="ProductVO">
-   		select u.user_id,
-			   p.*
-			from product p 
-		    left outer join order_history oh
-			on p.prod_no = oh.prod_no 
-			left outer join users u
-			on oh.user_id = u.user_id
-		where p.prod_no = #{prod_no}
-   		
-   </select> -->
+
  <!-- ============================================ 블랙핑크 상품 페이지 =========================================  -->
  	   
  	<!-- 블랙핑크 전체상품 목록 -->
    <select id="productList_blackpink" resultType="ProductVO">
-   		select * from product where prod_artist = 'BLACKPINK'
+   		select * from product where prod_artist = '블랙핑크'
    	 		<!-- 블핑 각 굿즈에 대한 목록 -->
    			<if test="searchName != null and searchName != ''">
    				and prod_type = #{searchName}
    			</if>
-   		
    			<!-- 블핑 전체 상품에 대한 최신순 / 판매량순 -->
-  				<if test="searchContent != null and searchContent == '판매량순'">
+  			<if test="searchContent != null and searchContent == '판매량순'">
    			order by prod_regdate asc
    			
 	   		</if>
@@ -75,7 +170,7 @@
 
 	<!-- 아이브 전체상품 목록 -->
    <select id="productList_ive" resultType="ProductVO">
-   		select * from product where prod_artist = 'IVE'
+   		select * from product where prod_artist = '아이브'
    	 		<!-- 아이브 각 굿즈에 대한 목록 -->
    			<if test="searchName != null and searchName != ''">
    				and prod_type = #{searchName}
@@ -97,7 +192,7 @@
  
 	<!-- 뉴진스 전체상품 목록 -->
    <select id="productList_newjeans" resultType="ProductVO">
-   		select * from product where prod_artist = 'NEWJEANS'
+   		select * from product where prod_artist = '뉴진스'
    	 		<!-- 뉴진스 각 굿즈에 대한 목록 -->
    			<if test="searchName != null and searchName != ''">
    				and prod_type = #{searchName}
@@ -117,7 +212,7 @@
 
 	<!-- 이도현 전체상품 목록 -->
    <select id="productList_dohyun" resultType="ProductVO">
-   		select * from product where prod_artist = 'LEEDOHYUN'
+   		select * from product where prod_artist = '이도현'
 			<!-- <if test="searchType != null and searchType !=''">
 				and prod_type like concat("%", "#{searchType}", "%")
 			
@@ -141,7 +236,7 @@
  
 	<!-- 채수빈 전체상품 목록 -->
    <select id="productList_soobin" resultType="ProductVO">
-   		select * from product where prod_artist = 'CHAESOOBIN'
+   		select * from product where prod_artist = '채수빈'
 			<!-- <if test="searchType != null and searchType !=''">
 				and prod_type like concat("%", "#{searchType}", "%")
 			
