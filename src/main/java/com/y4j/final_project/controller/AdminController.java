@@ -73,30 +73,33 @@ public class AdminController {
 			}
 			model.addAttribute("vo1", vo1);
 			
-			return "admin/admin_join";
+			return "redirect:/admin/admin_join";
 		}
 		
 		//비밀번호 암호화
 		vo1.setAdmin_pw(passwordEncoder.encode(vo1.getAdmin_pw()));
 
 		//관리자 회원가입
+		String adminType = vo1.getAdmin_type();
+		vo1.setAdmin_type("none");
 		int result1 = adminService.registAdmin(vo1);
 		
-		//권한 신청
+		//권한 신청 vo 빌드
 		AuthorityVO vo2 = AuthorityVO.builder()
 						  .authority_mng_no(authorityService.getAuthorityApplyTotal(cri) + 1)
 						  .authority_mng_admin_no(adminService.getAdminInfo2(vo1.getAdmin_id()).getAdmin_no())
 						  .authority_mng_admin_id(vo1.getAdmin_id())
 						  .authority_mng_admin_name(vo1.getAdmin_name())
-						  .authority_mng_admin_apply_type(vo1.getAdmin_type())
+						  .authority_mng_admin_apply_type(adminType)
 						  .ent_name(vo1.getEnt_name())
 						  .build();
+		//권한 신청
 		int result2 = authorityService.applyAuthority(vo2);
 		
 		String msg = (result1 == 1 && result2 == 1) ? "정상적으로 회원가입 되었습니다.\n관리자 권한 승인을 기다려주세요." : "회원가입에 실패했습니다.";
 		ra.addFlashAttribute("msg", msg);
 		
-		return "admin/admin_login";
+		return "redirect:/admin/admin_login";
 	}
 	
 	@PostMapping("/adminLoginForm")

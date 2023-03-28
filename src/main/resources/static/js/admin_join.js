@@ -1,8 +1,8 @@
 /*<!-- 아이디 중복 검사 -->*/
-function checkId2() {
+function adminIdCheck() {
     var admin_id = $('#admin_id').val(); //id값이 "id"인 입력란의 값을 저장
     $.ajax({
-        url: '../idCheck2', //Controller에서 요청 받을 주소
+        url: '../adminIdCheck', //Controller에서 요청 받을 주소
         type: 'post', //POST 방식으로 전달
         data: { "admin_id": admin_id },
         success: function (cnt) { //컨트롤러에서 넘어온 cnt값을 받는다 
@@ -18,7 +18,7 @@ function checkId2() {
             }
         },
         error: function () {
-            alert("에러입니다");
+            // alert("에러입니다");
         }
     });
 };
