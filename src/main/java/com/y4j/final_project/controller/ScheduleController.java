@@ -79,25 +79,26 @@ public class ScheduleController {
 	public String registForm(@Valid ScheduleVO vo, Errors errors, Model model,
 							 EntertainerScheduleVO vo2,
 							 RedirectAttributes ra) {
-//		if(errors.hasErrors()) { //에러 존재시 true
-//			
-//			List<FieldError> list = errors.getFieldErrors(); //에러가 발생된 목록
-//			for(FieldError err : list) {
-//				System.out.println(err.getField()); //에러 필드명
-//				System.out.println(err.getDefaultMessage()); //에러 메세지
-//				
-//				if(err.isBindingFailure()) { //유효성 검사의 실패가 아니라, 자바 내부의 에러라면 true 반환
-//					model.addAttribute("valid_" + err.getField(), "형식이 올바르지 않습니다");
-//				} else { //유효성 검사에 실패한 목록
-//					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage());
-//				}
-//			} //end
-//			
-//			//사용자가 적은 값은 VO에 담김
-//			model.addAttribute("vo", vo); //사용자가 작성한 값을 화면으로
-//			
-//			return "schedule/admin_scheduleReg"; //원래 화면으로
-//		}//유효성 검사 end
+		System.out.println("error 없음");
+		if(errors.hasErrors()) { //에러 존재시 true
+			System.out.println("error존재");
+			List<FieldError> list = errors.getFieldErrors(); //에러가 발생된 목록
+			for(FieldError err : list) {
+				System.out.println(err.getField()); //에러 필드명
+				System.out.println(err.getDefaultMessage()); //에러 메세지
+				
+				if(err.isBindingFailure()) { //유효성 검사의 실패가 아니라, 자바 내부의 에러라면 true 반환
+					model.addAttribute("valid_" + err.getField(), "형식이 올바르지 않습니다");
+				} else { //유효성 검사에 실패한 목록
+					model.addAttribute("valid_" + err.getField(), err.getDefaultMessage());
+				}
+			} //end
+			
+			//사용자가 적은 값은 VO에 담김
+			model.addAttribute("vo", vo); //사용자가 작성한 값을 화면으로
+			
+			return "schedule/admin_scheduleReg"; //원래 화면으로
+		}//유효성 검사 end
 		
 		//아티스트 선택 option 처리
 		int result = scheduleService.regist(vo);

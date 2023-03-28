@@ -54,7 +54,7 @@ $('#modify_btn').click(function(e){
 				str += '	<tr>';
 				str += '		<th>제목</th>';
 				str += '		<td>';
-				str += '			<input type="text" name="schedule_ent_name" class="form-control schedule_width70" value= " <%=' + vo.schedule_ent_name + ' %> " >';
+				str += '			<input type="text" name="schedule_ent_name" class="form-control schedule_width70" value= "' + vo.schedule_ent_name + '" >';
 				str += '		</td>';
 				str += '	</tr>';
 				str += '	<tr>';

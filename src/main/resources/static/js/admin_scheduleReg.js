@@ -92,6 +92,12 @@ function addTimeList (data) {
 		let selectedEndDate = item.schedule_end_time.substring(0, 10); //종료 날짜
 		let selectedEndTime = item.schedule_end_time.substring(11, 16); //종료 시간
 
+		let result = selectedStartTime;
+		//시간 사이 넣기
+		console.log(result);
+		// console.log(selectedStartTime-selectedEndTime);
+		// console.log(selectedEndTime);
+		
 		if(!Object.keys(specificDates).includes(selectedStartDate)) { //같은 날짜가 없으면
 			specificDates[selectedStartDate] = [selectedStartTime];
 		}
