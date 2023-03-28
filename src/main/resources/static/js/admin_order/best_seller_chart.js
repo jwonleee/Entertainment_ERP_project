@@ -4,6 +4,7 @@ $(document).ready(() => {
     var pdata = [];
 
     var topP = $("#pdata").val();
+    
     topP = topP.replace("[", "");
     topP = topP.replace("]", "");
     var topParr = topP.split("}, ");
@@ -69,7 +70,9 @@ $(document).ready(() => {
             }]
         },
         options: {//차트 모양 꾸미기
+           
             scales: {
+				
                 y: {
                     beginAtZero: true
                 }
