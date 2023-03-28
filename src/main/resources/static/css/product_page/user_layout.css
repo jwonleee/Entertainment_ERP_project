@@ -1,6 +1,6 @@
 * {margin: 0 auto; list-style: none;}
 a {text-decoration: none; color:inherit;}
-img {max-width: 100%; height: auto;}
+img {height: auto;}
 
   
 /* header */
@@ -145,7 +145,7 @@ img {max-width: 100%; height: auto;}
 }
 
 .header_main_menu .menu_bar1 li span a:hover{
-	color:#cecece;
+	color:#0B93F6;
 	transition: ease-in 0.3s;
 }
 

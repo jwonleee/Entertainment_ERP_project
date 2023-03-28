@@ -210,6 +210,11 @@ body {
   border-top: 3px solid #777;
 }
 
+.snb > ul > li > a{
+	text-decoration: none;
+	color: #ffff;
+}
+
 .snb2 {
   margin-right: 25px;
 }
