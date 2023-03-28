@@ -5,8 +5,6 @@ import java.util.Base64;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -43,22 +41,14 @@ public class AuditionController {
 	
 	//오디션 공고 페이지
 	@GetMapping("/audition_notice")
-	public String audition_notice(HttpSession session, Model model) {
+	public String audition_notice() {
 	
-//		session.setAttribute("user_id", "ajsdkladsf");
-		session.setAttribute("user_id", "eee555");
-		
-		Object user_id = session.getAttribute("user_id");
-		
-		model.addAttribute("userVO", userService.getUserInfo2(user_id));
-		
 		return "audition/audition_notice";
 	}
 	
 	//오디션 지원자 목록
 	@GetMapping("/admin_audition_list")
-	public String admin_audition_list(Model model,
-			HttpSession session, Criteria cri) {
+	public String admin_audition_list(Model model, Criteria cri) {
 		
 		ArrayList<AuditionVO> list = auditionService.getAudList(cri);
 		model.addAttribute("list", list);

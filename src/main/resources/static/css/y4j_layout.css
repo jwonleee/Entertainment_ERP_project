@@ -204,7 +204,7 @@ html {
 }
 
 .menu_bar>ul>li>.snb>li>span>a {
-	margin-left:200px;
+	/* margin-left:200px; */
   text-decoration: none;
   color: black;
 }
@@ -215,7 +215,8 @@ html {
   height: 0px;
   position: absolute;
   z-index: 5;
-  background-color: white;
+  /* background-color: white; */
+  background-color: transparent;
   margin-top: 11px;
   overflow: hidden;
   transition: height ease-out 0.5s 0s;
