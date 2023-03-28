@@ -45,14 +45,7 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<UserVO> userOrderRightNow(UserVO vo) {
 		return productMapper.userOrderRightNow(vo);
 	}
-	
-	//상품 상세 페이지 -> 장바주니 담기
-	@Override
-	public int addCart(CartVO vo) {
-		//주문 폼 등록 완료 여부 확인
-		int result = productMapper.addCart(vo);
-		return result;
-	}
+
 	
 	//장바구니 리스트 뽑기
 	@Override

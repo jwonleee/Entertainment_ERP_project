@@ -40,7 +40,5 @@ public class productAjaxController {
 		 
 		return productService.productList(cri, vo);
 	}
-	
-	
 
 }

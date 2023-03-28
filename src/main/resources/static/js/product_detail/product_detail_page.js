@@ -96,7 +96,7 @@ $("#cartButton").click(function(){
 			alert("장바구니 담기가 정상적으로 완료되었습니다.")
 			location.replace("/user/cart");
 		}, error: function(){
-			alert("장바구니 담기에 실패하였습니다.")
+		
 			
 		}
 		
