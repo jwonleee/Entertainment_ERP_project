@@ -55,7 +55,7 @@
    	<div class="header1">
    		<div class="header1-bottom">
     		<div>
-	    		<img style="width:100%; height:800px;object-fit:cover" src="/img/newjeans_main.jpg"/>
+	    		<img style="width:100%; height:800px;object-fit:cover; object-position: 2px -10px" src="/img/newjeans_main.jpg"/>
     		</div>
     		<div class="main_content_box">
     			<div class="main_content_img">
@@ -108,12 +108,11 @@
 	                            </ul>
 	                         </li>
 	                         <li>
-	                            <span class="menu_bar_name"><a href="#">AUDITION</a></span>
+	                            <span class="menu_bar_name"><a href="/audition/audition_notice">AUDITION</a></span>
 	                            <ul class="menu_bar1">
-	                              	<li class="menu_bar_content">AUDITION</li>
+	                              	<li class="menu_bar_content"><a href="/audition/audition_notice">AUDITION</a></li>
 	                            </ul>
 	                       	</li>
-                       
 		    			<!-- 메뉴 상단바 y4j 로고 -->
 		    			<li>
 		    				<a href="/product/NEWJEANS">
@@ -199,10 +198,10 @@
 									<span name="prod_name" >[[${newjeans.prod_name}]]</span>
 								</div>
 								<div class="newjeans_allproduct_info" th:with="result = ${newjeans.prod_price}">
-									<span class="info_price" name="prod_price" th.text=${}></span>
+									<span class="info_price" name="prod_price" th:text="${#numbers.formatInteger(result, 3, 'COMMA')}+'원'"></span>
 									<span class="info_rate" style="color:red" name="prod_discount_rate">[[${newjeans.prod_discount_rate}]]%</span>
 								</div>
-								<span>[[${newjeans.prod_regdate}]]</span><!-- 나중에 삭제해야 함 -->
+				
 							</li>
 						</a>
 					</ul>

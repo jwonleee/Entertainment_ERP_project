@@ -93,8 +93,8 @@ $("#cartButton").click(function(){
 		type:'post',
 		data: data,
 		success:function(){
-			alert("장바구니 담기가 정상적으로 완료되었습니다.")
-			location.replace("/user/cart");
+		   console.log("성공적!!");
+
 		}, error: function(){
 		
 			

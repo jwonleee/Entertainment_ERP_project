@@ -42,15 +42,8 @@ public class ProductServiceImpl implements ProductService {
 	
 	//상품 상세 페이지 -> 결제 페이지
 	@Override
-	public ArrayList<UserVO> userOrderRightNow(UserVO vo) {
-		return productMapper.userOrderRightNow(vo);
-	}
-
-	
-	//장바구니 리스트 뽑기
-	@Override
-	public ArrayList<CartVO> prod_cartList(CartVO vo) {
-		return productMapper.prod_cartList(vo);
+	public ArrayList<UserVO> userOrderRightNow(String user_id) {
+		return productMapper.userOrderRightNow(user_id);
 	}
 
 	
@@ -77,14 +70,14 @@ public class ProductServiceImpl implements ProductService {
 	
 	//결제 페이지 -> 결제 내역 페이지
 	@Override
-	public ArrayList<OrderHistoryVO> user_orderList(OrderHistoryVO vo, Criteria cri) {
-		return productMapper.user_orderList(vo, cri);
+	public ArrayList<OrderHistoryVO> user_orderList( Criteria cri,  OrderHistoryVO vo) {
+		return productMapper.user_orderList(cri, vo);
 	}
 	
 	
 	@Override
-	public int getProdOrderTotal(Criteria cri) {
-		return productMapper.getProdOrderTotal(cri);
+	public int getProdOrderTotal(String user_id) {
+		return productMapper.getProdOrderTotal(user_id);
 	}
 
 	//결제 내역 상세 페이지

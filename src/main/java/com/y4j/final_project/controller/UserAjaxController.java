@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.CartListVO1;
@@ -31,15 +32,21 @@ public class UserAjaxController {
 	}
 		//장바구니 상품 담기
 	   @PostMapping("/prod_addCart")
-	   public int prod_addCart(CartVO vo, HttpSession session, UserVO vo1) {
+	   public String prod_addCart(CartVO vo, HttpSession session, UserVO vo1, RedirectAttributes ra) {
 	   
 		   String user_id=(String)session.getId();
 		   vo.setUser_id(user_id);
 		   System.out.println(user_id);
+		   
+			if(user_id == null) {
+				 String msg = "회원이 아닐 경우 이용이 불가합니다";
+				 ra.addFlashAttribute("msg", msg);
+				return "redirect:/user/user_login";
+			}
 	      
 	      int result = userService.addCart(vo);
 	      System.out.println(result + "정상적으로 장바구니 담기 완료");
-	      return result;
+	      return "redirect:/user/cart";
 	   }
 
 	//유저의 장바구니 상품별 삭제

@@ -64,7 +64,6 @@
 	    	order_shipping_address,
 	    	order_addressee_contact,
 	    	order_prod_name,
-	    	order_cnt,
 	    	order_prod_cnt,
 	    	order_date,
 	    	order_total_price,
@@ -82,7 +81,6 @@
 	    	#{order_shipping_address},
 	    	#{order_addressee_contact},
 	    	#{order_prod_name},
-	    	#{order_cnt},
 	    	#{order_prod_cnt},
 	    	#{order_date},
 	    	#{order_total_price},
@@ -101,7 +99,7 @@
 	   		order_total_price,
 	   		order_state
 	   	from order_history
-	   	where user_id = #{user_id}<!-- 로그인 아이디 세션 값 기준 -->
+	   	where user_id = #{vo.user_id}<!-- 로그인 아이디 세션 값 기준 -->
 	   	<if test="cri.searchName == '오늘' and cri.searchName != 'null'" >
 	   		and order_date = DATE_FORMAT(now(), '%Y-%m-%d')
 	   	</if>
@@ -140,7 +138,7 @@
 		left join `users` u
 			on oh.user_id = u.user_id
 		where oh.order_prod_no = #{order_prod_no}
-		
+ 
 		
 	</select>
 	
