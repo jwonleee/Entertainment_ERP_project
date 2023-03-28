@@ -36,7 +36,7 @@ $(document).on("click", "#sendMsgBtn", function (e) {
   if(receiver_type.val() == 'user') {
     var result1 = 1;
     $.ajax({
-      url: "/idCheck",
+      url: "../idCheck",
       type: "post",
       data: { "user_id": msgReceiverId },
       success: function (data) {
@@ -60,7 +60,7 @@ $(document).on("click", "#sendMsgBtn", function (e) {
   } else if(receiver_type.val() == 'admin') {
     var result2 = 1;
     $.ajax({
-      url: "/adminIdCheck",
+      url: "../adminIdCheck",
       type: "post",
       data: { "admin_id": msgReceiverId },
       success: function (data) {
@@ -101,7 +101,7 @@ function footerFixed() {
 // 푸터 및 스크롤 처리 ajax 방식
 function footerFixedAjax() {
   $.ajax({
-    url: "/noDataReturn",
+    url: "../noDataReturn",
     type: "post",
     async: false,
     success: function (data) {
@@ -133,7 +133,7 @@ function getReceivedMsgList() {
   var msg_receiver_id = $('.msg_writer_id').val();
 
   $.ajax({
-    url: "/getReceivedMsg",
+    url: "../getReceivedMsg",
     type: "post",
     data: JSON.stringify({ msg_receiver_id: msg_receiver_id }),
     contentType: "application/json",
@@ -198,7 +198,7 @@ function getSentMsgList() {
   var msg_writer_id = $('.msg_writer_id').val();
 
   $.ajax({
-    url: "/getSentMsg",
+    url: "../getSentMsg",
     type: "post",
     data: JSON.stringify({ msg_writer_id: msg_writer_id }),
     contentType: "application/json",
@@ -263,7 +263,7 @@ $(".sent").click(getSentMsgList);
 $(document).on("click", ".receivedMsg .accordion-button", function (e) {
 
   $.ajax({
-    url: "/noDataReturn",
+    url: "../noDataReturn",
     type: "post",
     async: false,
     success: function (data) {
@@ -300,7 +300,7 @@ $(document).on("click", ".receivedMsg .accordion-button", function (e) {
 
       // 쪽지 확인 시, 확인일자 업데이트 및 미확인 쪽지 수 변경값 실시간 반영
       $.ajax({
-        url: "/checkMsg",
+        url: "../checkMsg",
         type: "post",
         data: JSON.stringify({ msg_no: msgNo }),
         contentType: "application/json",
@@ -337,7 +337,7 @@ $(document).on("click", ".receivedMsg .accordion-button", function (e) {
 // 쪽지 확인 시, 업데이트 된 확인일자 불러와서 실시간 반영
 function getMsgInfo(msgNo, headerCheckDate, checkedDate) {
   $.ajax({
-    url: "/getMsgInfo",
+    url: "../getMsgInfo",
     type: "post",
     data: JSON.stringify({ msg_no: msgNo }),
     contentType: "application/json",

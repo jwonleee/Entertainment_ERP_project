@@ -29,6 +29,18 @@ public class UserAjaxController {
 		int cnt = userService.idCheck(user_id);
 		return cnt;
 	}
+		//장바구니 상품 담기
+	   @PostMapping("/prod_addCart")
+	   public int prod_addCart(CartVO vo, HttpSession session, UserVO vo1) {
+	   
+		   String user_id=(String)session.getId();
+		   vo.setUser_id(user_id);
+		   System.out.println(user_id);
+	      
+	      int result = userService.addCart(vo);
+	      System.out.println(result + "정상적으로 장바구니 담기 완료");
+	      return result;
+	   }
 
 	//유저의 장바구니 상품별 삭제
 	@PostMapping("/deleteCartOne")

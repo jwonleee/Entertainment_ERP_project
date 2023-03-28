@@ -22,8 +22,7 @@
 									<tr>
 										<th>관리자 ID</th>
 										<td>
-											<!-- <input id="pickup-date" name="pickup-date" placeholder="Start date and time" readonly="readonly" type="text"/> -->
-											<input type="text" class="form-control" name="schedule_writer" style="width:154px" value="manager" placeholder="manager" readonly/>
+											<input type="text" class="form-control" name="schedule_writer" style="width:154px" th:value="${session.admin_id}" readonly/>
 										</td>
 									</tr>
 									<tr>

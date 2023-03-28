@@ -19,11 +19,14 @@ img {max-width: 100%; height: auto;}
 }
 
 .search_wrap h1 {
-    line-height: 200px;
+    font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: rgb(112, 112, 112);
+    text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
+    line-height: 215px;
     height: 200px;
     width: 340px;
     padding-left: 15px;
-    font-size: 50px;
+    font-size: 65px;
 }
 .search_right .left_wrap {
     float: left;
@@ -104,7 +107,6 @@ html, body {
     text-align: center;
     cursor: default;
     margin-top: 35px;
-    margin-right: 50px;
   }
   
   .my-calendar .calendar-box {

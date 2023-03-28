@@ -305,5 +305,36 @@
   		update order_history set order_state=#{order_state} where order_no=#{order_no};
   	</update>
   	
+ <!--  	<insert id="dummyhistory">
+  		insert into order_history(order_addressee
+  								,order_addressee_contact
+  								,order_date
+  								,order_payment_method
+  								,order_prod_cnt
+  								,order_prod_name
+  								,order_prod_no
+  								,prod_no
+  								,order_shipping_address
+  								,order_shipping_message
+  								,order_state
+  								,order_total_price
+  								,order_zipcode
+  								,user_id)
+  			values(#{order_addressee}
+  								,#{order_addressee_contact}
+  								,#{order_date}
+  								,#{order_payment_method}
+  								,#{order_prod_cnt}
+  								,#{order_prod_name}
+  								,#{order_prod_no}
+  								,#{prod_no}
+  								,#{order_shipping_address}
+  								,#{order_shipping_message}
+  								,#{order_state}
+  								,#{order_total_price}
+  								,#{order_zipcode}
+  								,#{user_id})
+  	</insert> -->
+  	
   </mapper>
   

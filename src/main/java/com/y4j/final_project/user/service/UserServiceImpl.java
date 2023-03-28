@@ -89,10 +89,13 @@ public class UserServiceImpl implements UserService {
 	////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	//유저의 장바구니 상품 추가
-//	@Override
-//	public int addCart(CartVO cvo) {
-//		return userMapper.addCart(cvo);
-//	}
+	  //상품 상세 페이지 -> 장바구니 담기
+	   @Override
+	   public int addCart(CartVO vo) {
+	      //주문 폼 등록 완료 여부 확인
+	      int result = userMapper.addCart(vo);
+	      return result;
+	   }
 
 	//유저의 장바구니 리스트 조회 - product
 	@Override

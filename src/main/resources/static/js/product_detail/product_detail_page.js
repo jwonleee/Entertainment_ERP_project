@@ -94,7 +94,7 @@ $("#cartButton").click(function(){
 		data: data,
 		success:function(){
 			alert("장바구니 담기가 정상적으로 완료되었습니다.")
-			location.replace("/product/product_cart");
+			location.replace("/user/cart");
 		}, error: function(){
 		
 			

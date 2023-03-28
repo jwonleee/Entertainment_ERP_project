@@ -12,19 +12,10 @@ a:hover{
     
 }
 
-/*=========== header부분 ==============*/
-header {
-   padding: 20px;
-    margin: 0 auto;
-}
-header > h3 {
-    color: #1F2124;
-    font-size: 30px;
-}
-
 /*================ mypage 부분 ===============*/
 .mypage_section{
     margin: 0 auto;
+    margin-bottom:70px;
 }
 
 .mypage_innerbox{
@@ -104,14 +95,4 @@ header > h3 {
 .content_box .content_detail{
     color: #8f8f8f;
     font-size: 11.5px;
-}
-
-/*============== footer부분 =============*/
-footer {
-    
-    padding: 20px;
-}
-
-footer h3 {
-    text-align: center;
 }

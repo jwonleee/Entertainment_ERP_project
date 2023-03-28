@@ -71,7 +71,6 @@ public class productController {
 		return "product/productDetail_page";
 	}
 	
-
 	//구매 페이지
 	@PostMapping("/buy_page")
 	public String userOrderRightNow(Model model, UserOrderVO vo1,UserVO vo, HttpSession session,RedirectAttributes ra) {

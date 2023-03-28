@@ -77,8 +77,13 @@ html {
 .main-header .main-header-inner2 .header_middle_user img {
   width: 35px;
   height: 36px;
-  margin: 10px 22px 0px;
+  margin: 5px 15px 0px;
   cursor: pointer;
+}
+
+.main-header .main-header-inner2 .adminMsg img {
+  width: 38px;
+  height: 40px;
 }
 
 .main-header .main-header-inner2 li span {
@@ -109,7 +114,7 @@ html {
   height: 60px;
   z-index: 5;
   /* background-image: linear-gradient(to right, rgb(111, 111, 111), rgb(166, 166, 166) 50%, rgb(222, 222, 222)); */
-  background-color: #777;
+  background-color: rgb(83, 83, 83);
 }
 
 .menuTable-outer {
@@ -199,6 +204,7 @@ html {
 }
 
 .menu_bar>ul>li>.snb>li>span>a {
+	margin-left:200px;
   text-decoration: none;
   color: black;
 }
@@ -266,7 +272,7 @@ html {
   position: static;
   bottom: 0px;
   width: 100%;
-  background-color: rgb(119, 119, 119);
+  background-color: rgb(83, 83, 83);
   z-index: 5;
   margin-top: 20px;
 }
@@ -319,7 +325,7 @@ footer .footer-inner .footer-right span {
 /* aside */
 aside {
   position: absolute;
-  top: 102px;
+  top: 101px;
   left: 0px;
   z-index: 1;
   padding-top: 50px;
@@ -405,7 +411,7 @@ aside .aside-wrap .sideMenuBar .mngBar>ul>li>a.on {
 aside .aside_wrap {
   /* width: 100%; */
   /* background-color:rgba(11, 10, 10, 0.792); */
-  background-color: rgb(119, 119, 119);
+  background-color: rgb(83, 83, 83);
   width: 220px;
   height: 100vh;
 }
@@ -606,27 +612,30 @@ aside .aside_wrap {
   padding: 10px;
 }
 
-.chat-message {
-  margin-bottom: 10px;
+.chat-message.bot-msg {
+  text-align: left;
 }
 
-.chat-message p {
+.chat-message.user-msg {
+  text-align: right;
+}
+
+.chat-message p.assistant {
   padding: 5px 10px;
   border-radius: 10px;
   max-width: 60%;
+  background-color: #E5E5EA;
+  color: black;
   display: inline-block;
 }
 
-.assistant {
-  background-color: #E5E5EA;
-  color: black;
-  float: left;
-}
-
-.user {
+.chat-message p.user {
+  padding: 5px 10px;
+  border-radius: 10px;
+  max-width: 60%;
   background-color: #0B93F6;
   color: white;
-  float: right;
+  display: inline-block;
 }
 
 .chat-input {
@@ -639,6 +648,7 @@ aside .aside_wrap {
 
 .chat-input input[type="text"] {
   width: 80%;
+  height: 42px;
   padding: 10px;
   border-radius: 10px;
   border: none;
@@ -647,7 +657,7 @@ aside .aside_wrap {
 }
 
 .chat-input button {
-  height: 46px;
+  height: 42px;
   border: 1px solid #999;
   border-radius: 10px;
 }

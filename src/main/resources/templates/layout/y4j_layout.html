@@ -62,24 +62,24 @@
                     <a href="/admin/admin_home"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
                   </div>
                   <ul class="main-header-inner main-header-inner2">
-                    <li class="header_middle_user">
-                      <a href="/admin/admin_login">
-                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+                    <li th:if="${session.admin_id != null}" class="header_middle_user adminLogout">
+                      <a href="/admin/adminLogoutForm">
+                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png">
                         <!-- <span>LOGIN</span> -->
                       </a>
                     </li>
-                    <li class="header_middle_user">
-                      <a href="/admin/admin_join">
-                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
-                        <!-- <span>JOIN</span> -->
-                      </a>
-                    </li>
-                    <li class="header_middle_user">
-                      <a href="/message">
-                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+                    <li th:if="${session.admin_id != null}" class="header_middle_user adminMsg">
+                      <a href="/admin/admin_msg">
+                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MESSAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png">
                         <!-- <span>MY PAGE</span> -->
                       </a>
                     </li>
+                    <!-- <li class="header_middle_user adminJoin">
+                      <a href="/admin/admin_join">
+                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+                        <span>JOIN</span>
+                      </a>
+                    </li> -->
                   </ul>
                 </div>
               </div>
@@ -125,7 +125,7 @@
                               </ul>
                             </li>
                           </ul>
-                          <img class="sticky-logo"
+                          <img class="sticky-logo" onclick="location.href='/admin/admin_home';"
                             src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_white.png" />
                         </div>
                       </div>
@@ -149,14 +149,14 @@
         <div class="aside_wrap">
           <div class="aside_wrap_box">
             <!-- 여기 메인으로 가는 경로 다시 지정해야 함 -->
-            <span style="color:rgba(251, 245, 245, 0.862);">"[[${session.admin_id}]]"님</span>
+            <span style="color:rgba(251, 245, 245, 0.862);">[[${session.admin_name}]]님</span>
           </div>
-            <div class="aside_menu_bar aside_menu_bar_1">
+            <!-- <div class="aside_menu_bar aside_menu_bar_1">
               <ul class="slide">
                 <li style="margin-left: 36px; margin-right: 10px;"><img style="width: 23px; height: 23px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/dashboardTab.png" /></li>
                 <li style="margin-left: 23px; padding-bottom: 4px"><a href="#"><div>대시보드</div></a></li>
               </ul>
-            </div>
+            </div> -->
             <div class="aside_menu_bar">
               <ul class="slide">
                 <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 27px; height: 27px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/authorityTab.png"/></li>
@@ -178,7 +178,7 @@
               </ul>
               
               <ul class="aside_menu_bar_list_prod">
-                <li><a href="/order/orderReg">신규 발주 등록</a></li>
+                <li style="margin-top: 40px;"><a href="/order/orderReg">신규 발주 등록</a></li>
                 <li><a href="/order/orderList">발주 조회</a></li>
                 <li><a href="/order/categoryReg">카테고리 등록</a></li>
                 <li><a href="/order/bestSellerChart">주문 현황</a></li>
@@ -305,7 +305,7 @@
 
                 <div id="chat" class="chat-container">
                   <div class="chat-box">
-                    <div class="chat-message">
+                    <div class="chat-message bot-msg">
                       <p class="assistant">소속 엔터테이너에 대해서 물어봐 주세요!</p>
                     </div>
                     <!-- 채팅 내용 -->
@@ -314,7 +314,7 @@
                     <i class="fa fa-spinner fa-spin"></i>
                   </div>
                   <div class="chat-input">
-                    <input type="text" placeholder="Type your message here...">
+                    <input type="text" placeholder="질문 내용을 입력해주세요.">
                     <button type="button" class="btn btn-outline-dark" onclick="spinner()">전송</button>
                   </div>
                 </div>
