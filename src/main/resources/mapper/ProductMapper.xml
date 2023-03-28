@@ -36,30 +36,6 @@
 		where prod_no = #{prod_no}
 	</select>
 	
-	<!-- 장바구니 담기 -->
-	<insert id="addCart">
-		insert into `cart`(
-				cart_prod_image_path,
-				cart_prod_name,
-				cart_prod_cnt,
-				cart_prod_price
-			)
-		values(
-			   #{cart_prod_image_path},
-			   #{cart_prod_name},
-			   #{cart_prod_cnt},
-			   #{cart_prod_price}
-		)
-	</insert>
-	
-	<!-- 장바구니 리스트 -->
-	<select id="prod_cartList" resultType="CartVO">
-		select 	cart_prod_image_path,
-				cart_prod_name,
-				cart_prod_cnt,
-				cart_prod_price
-		from cart
-	</select>
 	
 	<!-- ======================결제 페이지 ================================ -->
 	
@@ -72,7 +48,7 @@
 		   user_zipcode,
 		   user_address
 	    from users
-	    where user_id = "gmlwjd852369"
+	    where user_id = #{user_id}
 	</select> 
 	
 	
@@ -125,7 +101,7 @@
 	   		order_total_price,
 	   		order_state
 	   	from order_history
-	   	where user_id = "gmlwjd852369"<!-- 로그인 아이디 세션 값 기준 -->
+	   	where user_id = #{user_id}<!-- 로그인 아이디 세션 값 기준 -->
 	   	<if test="cri.searchName == '오늘' and cri.searchName != 'null'" >
 	   		and order_date = DATE_FORMAT(now(), '%Y-%m-%d')
 	   	</if>
@@ -147,7 +123,7 @@
 	
     <select id="getProdOrderTotal" resultType="int">
    		select count(*) from order_history
-   		where user_id = "gmlwjd852369"<!-- 나중에 로그인 세션 처리 -->
+   		where user_id = #{user_id}
    	</select>
 	
 	<!-- 결제 내역 상세 페이지 -->
@@ -180,7 +156,7 @@
    			</if>
    			<!-- 블핑 전체 상품에 대한 최신순 / 판매량순 -->
   			<if test="searchContent != null and searchContent == '판매량순'">
-   			order by prod_regdate asc
+   			order by prod_sales_volume desc
    			
 	   		</if>
 	   		<if test="searchContent != null and searchContent == '최신순'">
@@ -206,7 +182,7 @@
 	   			order by prod_regdate desc
 	   		</if>
   				<if test="searchContent != null and searchContent == '판매량순'">
-   			order by prod_regdate asc	   			
+   				order by prod_sales_volume desc   			
 	   		</if>
 	
    		
@@ -228,7 +204,7 @@
 	   			order by prod_regdate desc
 	   		</if>
   				<if test="searchContent != null and searchContent == '판매량순'">
-   			order by prod_regdate asc	   			
+   				order by prod_sales_volume desc 			
 	   		</if>
    		
    </select>
@@ -238,10 +214,6 @@
 	<!-- 이도현 전체상품 목록 -->
    <select id="productList_dohyun" resultType="ProductVO">
    		select * from product where prod_artist = '이도현'
-			<!-- <if test="searchType != null and searchType !=''">
-				and prod_type like concat("%", "#{searchType}", "%")
-			
-			</if> -->
    	 		<!-- 이도현 각 굿즈에 대한 목록 -->
    			<if test="searchName != null and searchName != ''">
    				and prod_type = #{searchName}
@@ -252,7 +224,7 @@
 	   			order by prod_regdate desc
 	   		</if>
   				<if test="searchContent != null and searchContent == '판매량순'">
-   			order by prod_regdate asc	   			
+   				order by prod_sales_volume desc			
 	   		</if>
    		
    </select>
@@ -262,10 +234,6 @@
 	<!-- 채수빈 전체상품 목록 -->
    <select id="productList_soobin" resultType="ProductVO">
    		select * from product where prod_artist = '채수빈'
-			<!-- <if test="searchType != null and searchType !=''">
-				and prod_type like concat("%", "#{searchType}", "%")
-			
-			</if> -->
    	 		<!-- 채수빈 각 굿즈에 대한 목록 -->
    			<if test="searchName != null and searchName != ''">
    				and prod_type = #{searchName}
@@ -276,7 +244,7 @@
 	   			order by prod_regdate desc
 	   		</if>
   				<if test="searchContent != null and searchContent == '판매량순'">
-   			order by prod_regdate asc	   			
+   				order by prod_sales_volume desc	   			
 	   		</if>
    		
    </select>

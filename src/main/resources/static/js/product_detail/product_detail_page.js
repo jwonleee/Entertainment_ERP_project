@@ -63,7 +63,7 @@ $("#buyButton").click(function(){
 $("#cartButton").click(function(){
 	
 	var cart_prod_name = $("#prod_name_rightnow").val();
-	var cart_prod_image_path = $("#prod_img_cart").val();
+	var cart_prod_img_path = $("#prod_img_cart").val();
 	var cart_prod_cnt = $("#decide_cnt").val();
 	
 	var discount=$("#discount_sum").val()*$('#decide_cnt').val();
@@ -82,7 +82,7 @@ $("#cartButton").click(function(){
 	var data = {
 		
 			cart_prod_name : cart_prod_name,
-			cart_prod_image_path : cart_prod_image_path,
+			cart_prod_img_path : cart_prod_img_path,
 			cart_prod_price:cart_prod_price,
 			cart_prod_cnt: cart_prod_cnt
 		
@@ -96,7 +96,7 @@ $("#cartButton").click(function(){
 			alert("장바구니 담기가 정상적으로 완료되었습니다.")
 			location.replace("/product/product_cart");
 		}, error: function(){
-			alert("장바구니 담기에 실패하였습니다.")
+		
 			
 		}
 		

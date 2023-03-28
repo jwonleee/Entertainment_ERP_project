@@ -41,12 +41,5 @@ public class productAjaxController {
 		return productService.productList(cri, vo);
 	}
 	
-	@PostMapping("/prod_addCart")
-	public int prod_addCart(CartVO vo) {
-		
-		int result = productService.addCart(vo);
-		System.out.println(result + "정상적으로 장바구니 담기 완료");
-		return result;
-	}
 
 }

@@ -80,4 +80,13 @@
     
 </body>
 
+	<!-- msg -->
+	<script th:inline="javascript">
+		var msg = JSON.parse('[[${msg}]]');
+		if(msg != null) {
+			alert(msg);
+		}
+	</script>
+ 
+
 </html>

@@ -23,8 +23,7 @@ public interface ProductService {
 	
 	//상품 상세 페이지 -> 결제 페이지
 	public ArrayList<UserVO> userOrderRightNow(UserVO vo);
-	//상품 상세 페이지 -> 장바구니 담기
-	public int addCart(CartVO vo);
+	
 	//장바구니 리스트 
 	public ArrayList<CartVO> prod_cartList(CartVO vo);
 	

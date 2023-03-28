@@ -37,22 +37,6 @@ $('#prod_search').submit();
 
 /* 더보기 버튼 기능 구현 */
 $("#more").click(function(){
-	
-/*  <a th:each="vo: ${list}"  th:href="@{/product/detail_page(prod_no = ${vo.prod_no})}">
-		<div class="allProduct_list" >
-			<div class="allProduct_list_img" >
-				<img style="width: 230px; height: 230px;" th:src="@{${vo.prod_img_path}}"/>	
-				<!-- <span>[[${vo.prod_regdate}]]</span> -->	<!-- //////// 나중에 없애야 할 태그 //////// -->
-			</div>
-			<div class="allProduct_list_info_box">
-				<div class="allProduct_list_info" th:with="price=${vo.prod_price}"><!-- hover이용해서 상품명이랑 가격 보이게 하기 -->
-					<span>[[${vo.prod_name}]]</span>
-					<p style="color:rgba(227, 3, 3, 0.897)" th:text="${#numbers.formatInteger(price, 3, 'COMMA')}+'원'"></p>
-				</div>
-			</div>
-		</div>
-		</a>*/
-		
 
 	const endIndex = $(".allProduct_list .allProduct_box").length;
 	

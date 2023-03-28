@@ -62,42 +62,38 @@ public class productController {
 	
 	//상품 상세 페이지 형식
 	@GetMapping("/detail_page")
-	public String productDetail(@RequestParam("prod_no") int prod_no,  Model model) {
+	public String productDetail(@RequestParam("prod_no") int prod_no,  Model model ) {
+		
+		
 		
 		ArrayList<ProductVO> detail =  productService.productDetailList(prod_no);
 		model.addAttribute("detail", detail);
 		return "product/productDetail_page";
 	}
 	
-	//장바구니 담기 - 화면 출력
-	@GetMapping("/product_cart")
-	public String product_cart (CartVO vo, Model model) {
-		
-		ArrayList<CartVO> cart = productService.prod_cartList(vo);
-		model.addAttribute("cart", cart);
-		return "product/product_cart";
-	}
-	
+
 	//구매 페이지
 	@PostMapping("/buy_page")
-	public String userOrderRightNow(Model model, UserOrderVO vo1, HttpSession session, UserVO vo) {
+	public String userOrderRightNow(Model model, UserOrderVO vo1,UserVO vo, HttpSession session,RedirectAttributes ra) {
 		
 		//세션에 로그인 아이디 정보가 있다고 할 때,
 		//회원이라고 가정할 때 구매와 장바구니 담기 가능 
-		//session.setAttribute("user_id", "");
-		//String user_id=(String)session.getAttribute("user_id");
+
 		
 		//일반 회원이 아니라면
 		//if(!user_id.equals("")) {
 			//return "redirect:/user/user_login";
 		//}
 		
-		
+
+		String user_id=(String)session.getAttribute("user_id");
 		//내가 가상으로 로그인 했다면 (해결완)
-		String user_id = "gmlwjd852369";
-		if(!user_id.equals(vo1.getUser_id())) {
+		if(user_id == null) {
+			 String msg = "회원이 아닐 경우 이용이 불가합니다";
+			 ra.addFlashAttribute("msg", msg);
 			return "redirect:/user/user_login";
 		}
+	
 
 		ArrayList<UserVO> user= productService.userOrderRightNow(vo);
 		model.addAttribute("user", user);
