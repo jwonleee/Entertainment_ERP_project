@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html xmlns:th=“http://www.thymeleaf.org”>
-<html lang="en">
 
 <head>
 <meta charset="UTF-8">
@@ -8,13 +7,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Document</title>
 
-<link rel="stylesheet" href="/css/mypage.css">
 </head>
 
-<body>
-	<header>
-		<h3>Y4J</h3>
-	</header>
+<link rel="stylesheet" href="/css/mypage.css">
+<th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
+   
+<div class="fragment" style="margin-top: 110px;">
+
+
 
 	<div class="mypage_section">
 		<div class="mypage_box">
@@ -63,10 +63,10 @@
 							</button>
 						</div>
 
-						<!-- 배송주소록 관리 -->
+						<!-- 쪽지 -->
 						<div class="content_box">
-							<button type="submit" onclick="location.href='/user/cart'" style="border: none; background-color: inherit; cursor: pointer;">
-								<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png" alt="배송지">
+							<button type="submit" onclick="location.href='/user/user_msg';" style="border: none; background-color: inherit; cursor: pointer;">
+								<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png" alt="쪽지">
 
 								<div class="content_title" style="font-size: 13.3333px;">
 									<h3>Message</h3>
@@ -104,9 +104,9 @@
 	</div>
 
 
-	<footer>
-		<h3>footer입니다</h3>
-	</footer>
-</body>
+	
+</div>
+ 
+</th:block>
 
 </html>

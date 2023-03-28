@@ -48,8 +48,8 @@ public interface UserMapper {
 
 	//////////////////////////////////////////////////////////////////////
 
-	// 유저의 장바구니 상품 추가
-//	public int addCart(CartVO cvo);
+	 //상품 상세 페이지 -> 장바구니 담기
+	public int addCart(CartVO vo);
 
 	// 유저의 장바구니 리스트 조회
 	public List<CartVO> getCartList(String user_id);

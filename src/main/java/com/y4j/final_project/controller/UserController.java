@@ -1,5 +1,6 @@
 package com.y4j.final_project.controller;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -162,15 +163,27 @@ public class UserController {
 		if (count == 1 && passwordEncoder.matches(user_pw, saved_pw)) {
 
 			// 세션에 회원정보 저장 - 아이디로 가져와서
-			session.setAttribute("vo", userService.getUserInfo2(vo.getUser_id()));
-			// session.setAttribute("user_id", user_id);
-			// model.addAttribute("vo", vo);
+			session.removeAttribute("admin_id");
+			session.removeAttribute("admin_type");
+			session.removeAttribute("admin_name");
+			session.setAttribute("user_id", user_id);
+			session.setAttribute("vo", userService.getUserInfo2(user_id));
+			 
 			return "user/mypage";
 		} else {
 			session.setAttribute("vo", null);
 			// model.addAttribute("vo", null);
 			return "user/user_login";
 		}
+	}
+	
+	@GetMapping("/userLogoutForm")
+	public String userLogoutForm(HttpSession session, RedirectAttributes ra) {
+		
+		session.invalidate();
+		ra.addFlashAttribute("msg", "정상적으로 로그아웃 되었습니다.");
+		
+		return "redirect:/";
 	}
 
 	// 아이디 찾기
@@ -254,21 +267,29 @@ public class UserController {
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
+//	//장바구니 담기 - 화면 출력
+//	@GetMapping("/product_cart")
+//	public String product_cart (CartVO vo, Model model) {
+//		
+//		ArrayList<CartVO> cart = productService.prod_cartList(vo);
+//		model.addAttribute("cart", cart);
+//		return "product/product_cart";
+//	}
+	
 	// 장바구니 리스트
 	@GetMapping("/cart")
-	public String cart(HttpSession session, Model model, UserVO vo) {
+	public String cart(HttpSession session, Model model, UserVO vo, CartVO cvo, RedirectAttributes ra) {
 
 		// 세션에 저장되어 있는 유저 아이디 가져오기
-		vo = (UserVO) session.getAttribute("vo");
-		String user_id = vo.getUser_id();
-		//		System.out.println(vo.toString());
-		//		System.out.println(user_id);
+		   String user_id=(String)session.getId();
+		   vo.setUser_id(user_id);
+
 		if (user_id == null) {
 			return "redirect:/user/user_login";
 		}
 		// 장바구니 리스트 가져와서 화면에 보내기
-		List<CartVO> cvo = userService.getCartList(user_id);
-		model.addAttribute("cvo", cvo);
+		List<CartVO> cvo1 = userService.getCartList(user_id);
+		model.addAttribute("cvo1", cvo1);
 		return "user/cart";
 	}
 

@@ -199,6 +199,7 @@ html {
 }
 
 .menu_bar>ul>li>.snb>li>span>a {
+	margin-left:200px;
   text-decoration: none;
   color: black;
 }
