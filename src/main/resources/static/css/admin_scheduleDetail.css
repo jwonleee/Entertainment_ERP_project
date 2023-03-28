@@ -114,5 +114,7 @@ img {max-width: 100%; height: auto;}
 .schedule_type {
     border: 1px solid #b1b1b1 !important;
     width: 27.5% !important;
-    height: 37px;
+    height: 30px;
+    font-size: 15px !important;
+    padding: 0 10px !important;
 }

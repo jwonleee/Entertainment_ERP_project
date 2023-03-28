@@ -39,12 +39,9 @@ public class ScheduleController {
 	}
 	
 	//일정 리스트
-	//////////////////////권한 처리 해야함
 	@GetMapping("/admin_scheduleList")
 	public String list(Model model,
 					   Criteria cri) {
-//		System.out.println(cri.getSearchName());
-//		System.out.println(cri.toString());
 		ArrayList<ScheduleVO> list = scheduleService.getList(cri);
 		
 		if(list.isEmpty()) {
@@ -61,7 +58,6 @@ public class ScheduleController {
 		//pagination 처리
 		int total = scheduleService.getScheduleTotal(cri);
 		PageVO pageVO = new PageVO(cri, total);
-//		System.out.println(pageVO.toString());
 		model.addAttribute("pageVO", pageVO);
 
 		return "schedule/admin_scheduleList";
@@ -73,7 +69,6 @@ public class ScheduleController {
 	public String getDetail(@RequestParam("schedule_no") int schedule_no,
 							Model model) {
 		ScheduleVO vo = scheduleService.getDetail(schedule_no);
-//		System.out.println(vo.toString());
 		model.addAttribute("vo", vo);
 		
 		return "schedule/admin_scheduleDetail";
