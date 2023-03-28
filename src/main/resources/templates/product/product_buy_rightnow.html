@@ -51,7 +51,7 @@
 				</div>
 				
 				<div  class="logo_img">
-					<img  src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>	
+					<img style="width: 80px; height: 55px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"/>	
 				</div>			
 				
 				<div class="logo_icon">
@@ -185,8 +185,8 @@
 				<input type="hidden" name="order_prod_cnt" th:value="${uo.user_order_prod_cnt}"> <!-- 주문한 상품의 갯수 -->
 				<input type="hidden" name="order_date" th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"> <!-- 주문 날짜 -->
 				<input type="hidden" name="order_state" value="주문 완료"><!-- 주문 상태 -->
-				<input type="hidden" name="order_prod_no" value=""><!-- 주문 상태 -->
-				<input type="hidden" name="prod_no" th:value="${uo.user_order_prod_no}"> 
+				<input type="hidden" name="order_prod_no" value=""><!-- 주문 번호 -->
+				<input type="hidden" name="prod_no" th:value="${uo.user_order_prod_no}"> <!-- 상품 번호 -->
 				
 				<div style="border-bottom: 1px solid rgba(5, 3, 3, 0.328)"  >
 					<div class="order_product_wrap">

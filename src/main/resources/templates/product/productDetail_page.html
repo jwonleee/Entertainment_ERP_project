@@ -66,7 +66,7 @@
     <div style="display:flex; width:1080px; margin-top:50px; flex-direction:'row'; justify-content:center; align-items:center; position: relative; margin-bottom:30px; padding-bottom: 70px"  th:each="pd: ${detail}">
     	<!-- 상품 이미지 -->
     	<div style=" display: flex; flex-direction:column; overflow: hidden; margin:0;">
-    		<input type="hidden" name="user_order_prod_img" th:value="${pd.prod_img_path}">
+    		<input id="prod_img_cart" type="hidden" name="user_order_prod_img" th:value="${pd.prod_img_path}">
     		<img style="float:left; margin-bottom: 20px; margin-top:170px; width: 540px; height: 490px; margin-right: 30px;  padding-right: 30px" th:src="${pd.prod_img_path}"/>	
    		</div>
    		
@@ -97,9 +97,7 @@
     			<!-- <div class="decide_box">
 			    	<span>회원아이디</span>
     			</div> -->
-	  		
- 
-    			<div class="decide_box_price" style="overflow:hidden; width: 420px; height: 45px; margin: 0; line-height: 45px;">
+	   			<div class="decide_box_price" style="overflow:hidden; width: 420px; height: 45px; margin: 0; line-height: 45px;">
 					<div  class="decide_cnt_box" style="float: left; margin-left: 2px; margin-right:40px; display: flex; justify-content: center; align-items: center;">
 						<button type="button" id="decide_cnt_minus" style="cursor:pointer; border: none; width: 35px; height: 40px; text-align: center">-</button>
 						
@@ -110,8 +108,8 @@
 					<div th:with="result =(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" style="float: right; margin-right: 2px;">
 		    			<span id="total_price" th:value="(${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})" th:text="${#numbers.formatInteger(result, 3, 'COMMA')} +'원'"></span>
 					</div>
-    			</div>
-    			    		    	
+	   			</div>
+	   			    		    	
     		</div>
     		
     		<div style=" overflow: hidden; margin-top: 29px; margin-bottom: 14px" th:with="result1 = (${pd.prod_price})-(${pd.prod_discount_rate}*0.01*${pd.prod_price})">

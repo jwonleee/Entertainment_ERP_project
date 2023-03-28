@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mysql.cj.Session;
+import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.UserVO;
@@ -66,6 +67,15 @@ public class productController {
 		ArrayList<ProductVO> detail =  productService.productDetailList(prod_no);
 		model.addAttribute("detail", detail);
 		return "product/productDetail_page";
+	}
+	
+	//장바구니 담기 - 화면 출력
+	@GetMapping("/product_cart")
+	public String product_cart (CartVO vo, Model model) {
+		
+		ArrayList<CartVO> cart = productService.prod_cartList(vo);
+		model.addAttribute("cart", cart);
+		return "product/product_cart";
 	}
 	
 	//구매 페이지

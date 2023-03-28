@@ -58,3 +58,49 @@ $("#buyButton").click(function(){
 		$("#user_order_total_price").val(newTotal2);
 	}
 })
+
+//장바구니 버튼 눌렀을 때 데이터 보내기
+$("#cartButton").click(function(){
+	
+	var cart_prod_name = $("#prod_name_rightnow").val();
+	var cart_prod_image_path = $("#prod_img_cart").val();
+	var cart_prod_cnt = $("#decide_cnt").val();
+	
+	var discount=$("#discount_sum").val()*$('#decide_cnt').val();
+	$("#discount_sum").val(discount);
+ 	if($('#decide_cnt').val()== 1){
+		var newTotal = Math.floor( $("#total_price").attr('value'));
+		$("#user_order_total_price").val(newTotal);		 
+	}else{
+		var newTotal2 = Math.floor($("#total_price").attr('value')*$('#decide_cnt').val());
+		$("#user_order_total_price").val(newTotal2);
+	}
+	
+	
+	var cart_prod_price = $("#user_order_total_price").val();
+	
+	var data = {
+		
+			cart_prod_name : cart_prod_name,
+			cart_prod_image_path : cart_prod_image_path,
+			cart_prod_price:cart_prod_price,
+			cart_prod_cnt: cart_prod_cnt
+		
+	};
+	
+	$.ajax ({
+		url:'/prod_addCart',
+		type:'post',
+		data: data,
+		success:function(){
+			alert("장바구니 담기가 정상적으로 완료되었습니다.")
+			location.replace("/product/product_cart");
+		}, error: function(){
+			alert("장바구니 담기에 실패하였습니다.")
+			
+		}
+		
+	})
+	
+	
+})

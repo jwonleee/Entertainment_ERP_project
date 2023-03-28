@@ -6,6 +6,8 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import com.y4j.final_project.command.CartListVO1;
+import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.UserVO;
@@ -25,6 +27,10 @@ public interface ProductMapper {
 	
 	//상품 상세 페이지 -> 결제 페이지
 	public ArrayList<UserVO> userOrderRightNow(UserVO vo);
+	//상품 상세 페이지 -> 장바구니 담기
+	public int addCart(CartVO vo);
+	//장바구니 리스트 
+	public ArrayList<CartVO> prod_cartList(CartVO vo);
 	
 	//결제페이지 등록
 	public int user_order(OrderHistoryVO vo);
