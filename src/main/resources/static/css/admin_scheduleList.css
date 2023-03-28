@@ -449,6 +449,7 @@ thead {
 .pagination{
     margin: 0 auto;
     width:900px;
+    padding: 20px 0;
 }
 
 .pages{
@@ -469,11 +470,12 @@ thead {
     text-decoration: none;/* 밑줄제거 */
     font-size:15px;
     font-weight: 500;
-    color:black;
+    color: #666666;
+    border-radius: 5px;
 }
 
 .pages a:hover{
-    background-color: #7e7e7e;
+    background-color: #ebeaea;
 }
 
 .pointer_location {
@@ -483,7 +485,4 @@ thead {
 .page_num{
     height: 30px;
     line-height: 30px;
-}
-.page_num:hover{
-    color:white;
 }
