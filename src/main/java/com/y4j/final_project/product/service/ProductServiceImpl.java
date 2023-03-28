@@ -8,6 +8,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.y4j.final_project.command.CartListVO1;
+import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.UserVO;
@@ -44,6 +46,21 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.userOrderRightNow(vo);
 	}
 	
+	//상품 상세 페이지 -> 장바주니 담기
+	@Override
+	public int addCart(CartVO vo) {
+		//주문 폼 등록 완료 여부 확인
+		int result = productMapper.addCart(vo);
+		return result;
+	}
+	
+	//장바구니 리스트 뽑기
+	@Override
+	public ArrayList<CartVO> prod_cartList(CartVO vo) {
+		return productMapper.prod_cartList(vo);
+	}
+
+	
 	//결제 페이지 
 	@Override
 	public int user_order(OrderHistoryVO vo) {
@@ -70,6 +87,7 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<OrderHistoryVO> user_orderList(OrderHistoryVO vo, Criteria cri) {
 		return productMapper.user_orderList(vo, cri);
 	}
+	
 	
 	@Override
 	public int getProdOrderTotal(Criteria cri) {
@@ -107,6 +125,9 @@ public class ProductServiceImpl implements ProductService {
 	public ArrayList<ProductVO> productList_soobin(Criteria cri){
 		return productMapper.productList_soobin(cri);
 	}
+
+	
+
 
 
 

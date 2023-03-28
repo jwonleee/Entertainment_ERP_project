@@ -160,16 +160,6 @@
        </div>
    </div>
 
-    <!-- 상단, 하단으로 가는 버튼 -->
-    <div class="arrow_btn">
-        <a href="#" class="top_btn">
-            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
-        </a><br />
-        <a href="#" class="bottom_btn">
-            <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
-        </a>
-    </div>
-
 
 </div>
  
@@ -177,9 +167,6 @@
 
 
 
-
- <!-- js 링크 -->
-<script src="/js/product_detail/order_list.js"></script>
 <script th:inline="javascript">
 	var msg = JSON.parse('[[${msg}]]');
 
@@ -187,5 +174,8 @@
 		alert(msg);
 	}
   </script>
+
+ <!-- js 링크 -->
+<script src="/js/product_detail/order_list.js"></script>
 
 </html>
