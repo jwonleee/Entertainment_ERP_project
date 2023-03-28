@@ -69,14 +69,7 @@ public class productController {
 		return "product/productDetail_page";
 	}
 	
-	//장바구니 담기 - 화면 출력
-	@GetMapping("/product_cart")
-	public String product_cart (CartVO vo, Model model) {
-		
-		ArrayList<CartVO> cart = productService.prod_cartList(vo);
-		model.addAttribute("cart", cart);
-		return "product/product_cart";
-	}
+
 	
 	//구매 페이지
 	@PostMapping("/buy_page")

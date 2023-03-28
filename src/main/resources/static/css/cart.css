@@ -7,27 +7,13 @@
 a {
     text-decoration: none;
 }
-
-
 .cart_box {
     margin: 0 auto;
 }
-
-/* 장바구니 헤더 */
-.cart_box .cart_header {
-    text-align: center;
-    padding: 30px;
-    margin-bottom: 30px;
-    font-size: 50px;
-    font-weight: 600;
-
-}
-
 /* 장바구니 시작 */
 .cart_innerbox {
     margin: 0 auto;
     width: 80%;
-   
 }
 
 /* 장바구니 양식 표 제목 */
@@ -264,41 +250,4 @@ a {
     margin: 0 5px;
 }
 
-/* 상단, 하단으로 가는 버튼 */
-.arrow_btn{
-    scroll-behavior: smooth;
-    display: block;
-    text-align:center;
-    margin:auto;
-   
-    width: 350px;
-    height: 250px;
-}
-.arrow_btn a >img {
-    width: 30px;
-    height: 30px;
-}
-.arrow_btn .top_btn{
-    position:fixed;
-    bottom:100px; 
-    right:40px; 
-    width:40px; 
-    height:40px; 
-    z-index:1; 
-    opacity:0.8;
-    cursor: pointer;
-    margin-bottom: 15px;
-    scroll-behavior: smooth;
-}
-.arrow_btn .bottom_btn{
-    position:fixed;
-    bottom:50px; 
-    right:40px; 
-    width:40px; 
-    height:40px; 
-    z-index:1; 
-    opacity:0.8;
-    cursor: pointer;
-    scroll-behavior: smooth;
-}
 

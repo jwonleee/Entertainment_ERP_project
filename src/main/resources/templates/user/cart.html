@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-<html lang="en">
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
@@ -9,37 +8,16 @@
 
 <link rel="stylesheet" href="/css/cart.css">
 
-<!-- 상단, 하단 버튼 jQuery -->
 <script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-	$(function() {
-		$(".top_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
 
-		$(".bottom_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : document.body.scrollHeight
-			}, 400);
-			return false;
-		});
-	});
-</script>
 </head>
 
-<body>
-	<!-- 헤더 -->
-	<header style="font-size: 50px; font-weight: bold;"> Y4J 헤더 </header>
-
+<th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
+	<div class="fragment" style="margin-top: 110px;">
 	<div class="cart_section">
 		<div class="cart_box">
 			<!-- 장바구니 헤더 -->
-			<div class="cart_header">
-				<em>Cart</em>
-			</div>
+		
 
 
 			<div class="cart_innerbox">
@@ -59,32 +37,32 @@
 				</div>
 
 				<!-- 장바구니에 넣은 상품들 정보 -->
-				<th:block th:each="cvo:${cvo}">
+				<th:block th:each="cvo1:${cvo1}">
 
 					<div class="cart_content_box" style="margin: 0 auto;">
 
 						<div class="cart_content_innerbox " style="display: flex; justify-content: space-around; height: inherit;">
 							<!-- 개별 상품 체크박스 -->
 							<div class="product_check left" style="margin-left: 10px;">
-								<input type="checkbox" name="check" class="check" onclick="checkOne()" checked style="height: 18.4px;" th:value="${cvo.cart_no}" data-cart_no="${cvo.cart_no}">
+								<input type="checkbox" name="check" class="check" onclick="checkOne()" checked style="height: 18.4px;" th:value="${cvo1.cart_no}" data-cart_no="${cvo1.cart_no}">
 							</div>
 
 							<!-- 상품 번호 -->
 							<div class="product_code left">
-								<input type="text" th:value="${cvo.cart_prod_no}" name="cart_prod_no" readonly>
+								<input type="text" th:value="${cvo1.cart_prod_no}" name="cart_prod_no" readonly>
 							</div>
 
 							<!-- 상품 이미지 -->
 							<div class="product_img left">
-								<img th:src="${cvo.cart_prod_img_path}"  alt="박명수짤" name="cart_prod_img_path" style="width: 100px; height: 100px;">
+								<img th:src="${cvo1.cart_prod_img_path}"  alt="박명수짤" name="cart_prod_img_path" style="width: 100px; height: 100px;">
 							</div>
 
 							<!-- 상품 정보 -->
 							<div class="product_info left">
 								<div>
 									<a href="/product.html">
-										<em name="cart_prod_artist">[ [[${cvo.cart_prod_artist}]] ] </em> <br /> 
-										<span name="cart_prod_name">[[${cvo.cart_prod_name}]]</span>
+										<em name="cart_prod_artist"> </em> <br /> 
+										<span name="cart_prod_name">[[${cvo1.cart_prod_name}]]</span>
 									</a>
 								</div>
 							</div>
@@ -93,7 +71,7 @@
 							<div class="product_quantity aaa left">
 								<button type="button" class="quantity_subtract" onclick="quantity_minus()" style="border: none; background-color: inherit; cursor: pointer; font-size: 27px;">-</button>
 
-								<input type="text" class="prod_quantity" name="cart_prod_cnt" th:value="${cvo.cart_prod_cnt}" size="3">
+								<input type="text" class="prod_quantity" name="cart_prod_cnt" th:value="${cvo1.cart_prod_cnt}" size="3">
 
 								<button type="button" class="quantity_add" onclick="quantity_add()" style="border: none; background-color: inherit; cursor: pointer; font-size: 20px;">+</button>
 							</div>
@@ -101,11 +79,12 @@
 							<!-- 상품 수량 별 가격 -->
 							<div class="product_price left">
 								<div class="product_price_inner">
-									<em style="color: crimson; font-weight: 600;">[[${cvo.cart_prod_discount_rate}]]%</em>
-									<input type="text" class="cart_prod_price" name="cart_prod_price" th:value="${cvo.cart_prod_price}" readonly>
+									<em style="color: crimson; font-weight: 600;"></em>
+									<input type="text" class="cart_prod_price" name="cart_prod_price" th:value="${cvo1.cart_prod_price}" readonly>
 								</div>
 							</div>
-
+<!-- [[${session.user_id}]]
+<div th:if="${session.user_id == null}"></div> -->
 							<!-- 배송비 -->
 							<div class="delivery_fee left">
 								<p style="font-size: 14.5px;">무료</p>
@@ -119,7 +98,7 @@
 									<!-- </form> -->
 								
 									<form action="deleteCartOne" method="post" class="deleteCartOne">
-										<button type="submit" class="delete_btn" onclick="deleteCartOne()" style="cursor: pointer;" th:value="${cvo.cart_no}">
+										<button type="submit" class="delete_btn" onclick="deleteCartOne()" style="cursor: pointer;" th:value="${cvo1.cart_no}">
 											<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/delete.png" alt="휴지통아이콘" style="width: 19px; height: 19px; vertical-align: middle;"> 삭제
 										</button>
 									</form>
@@ -160,32 +139,18 @@
 				</div>
 
 
-				<!--  cart_innerbox -->
+			<!--  cart_innerbox -->	
 			</div>
 
 		</div>
 
-		<!-- 상단, 하단으로 가는 버튼 -->
-		<div class="arrow_btn">
-			<a href="#" class="top_btn">
-				<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
-			</a>
-			<br />
-			<a href="#" class="bottom_btn">
-				<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
-			</a>
-		</div>
-
 	</div>
 
-
-	<footer> Footer 부분 </footer>
-
 	<script th:inline="javascript">
-		var cvo = JSON.parse('[[${cvo}]]');
-		//console.log(cvo)
+		var cvo1 = JSON.parse('[[${cvo1}]]');
+		//console.log(cvo1)
 		var sum = 0;
-		cvo.forEach(item => {
+		cvo1.forEach(item => {
 			sum += parseInt(item.cart_total_price);
 		})
 		
@@ -193,7 +158,8 @@
 		$(".total_price").html(sum+"원");
    </script>
 
-</body>
+		</div>
+</th:block>
 
 <script src="/js/cart.js"></script>
 
