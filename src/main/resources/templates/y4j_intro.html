@@ -186,6 +186,12 @@
     }, 100);
   </script>
   <script src="js/y4j_intro.js"></script>
+  <script th:inline="javascript">
+    var msg = '[[${msg}]]';
+    if (msg != 'null') {
+        alert(msg);
+    }
+</script>
 </body>
 
 </html>

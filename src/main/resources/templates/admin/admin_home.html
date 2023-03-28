@@ -15,12 +15,5 @@
 	</div>
 
 </th:block>
-<script th:inline="javascript">
-	var msg = JSON.parse('[[${msg}]]');
-console.log(msg + 1);	// - 접근 권한 없는 페이지 접근 시도 시, 경고 메세지 뜨도록 조치 필요
-	if(msg != null) {
-		alert(msg);
-	};
-</script>
 
 </html>

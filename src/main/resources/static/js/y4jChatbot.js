@@ -10,6 +10,7 @@ const sendMessage = async () => {
   const chatInput = document.querySelector('.chat-input input');
   const chatMessage = document.createElement('div');
   chatMessage.classList.add('chat-message');
+  chatMessage.classList.add('user-msg');
   chatMessage.innerHTML = `<p class='user'>${chatInput.value}</p>`;
   chatBox.appendChild(chatMessage);
 
@@ -37,10 +38,18 @@ const sendMessage = async () => {
   //assistantMessage 메세지 추가
   assistantMessages.push(data.assistant);
 
-  const astrologerMessage = document.createElement('div');
-  astrologerMessage.classList.add('chat-message');
-  astrologerMessage.innerHTML = `<p class='assistant'>${data.assistant}</p>`;
-  chatBox.appendChild(astrologerMessage);
+  const botMsg = document.createElement('div');
+  botMsg.classList.add('chat-message');
+  botMsg.classList.add('bot-msg');
+  botMsg.innerHTML = `<p class='assistant'>${data.assistant}</p>`;
+  chatBox.appendChild(botMsg);
 };
 document.querySelector('.chat-input button').addEventListener('click', sendMessage);
 
+//질문 내용 입력 input 태그 내에서 엔터키 누를 시 디폴트 액션 방지 및 전송 처리
+$('.chat-input > input').keypress(function(e) {
+  if(e.keyCode == 13) {
+    e.preventDefault();
+    sendMessage();
+  }
+});
