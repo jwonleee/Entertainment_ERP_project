@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,13 +7,12 @@
     <title>Document</title>
 
     <link rel="stylesheet" href="/css/user_login.css">
-
     <script src="/js/jquery-1.12.1.min.js"></script>
-    
  	<script src="/js/user_login.js"></script>
+ 	
 </head>
-
 <body>
+
     <header>
         <h3>Y$J</h3>
     </header>
@@ -31,11 +29,11 @@
                 <div class="login_content">
                     <!-- 로그인 입력 칸 -->
                     <div class="login_input">
-                        <input type="text" class="id"  name="user_id" placeholder="아이디" required><br />
+                        <input type="text" class="id"  id="user_id" name="user_id" placeholder="아이디" required><br />
                         <input type="password" class="pw" name="user_pw" placeholder="비밀번호" required><br />
 
                         <div class="login_input_under">
-                            <span class="left"><input type="checkbox" class="save_id" id="save_id" name="save_id"  onclick="sendit()">아이디 저장</span>
+                            <span class="left"><input type="checkbox" class="save_id" id="save_id" name="save_id"  onclick="saveid()">아이디 저장</span>
                             <span class="find_user_info right">
                                 <a href="user_find_id" class="find_id">아이디 찾기</a> /
                                 <a href="user_find_pw" class="find_pw">비밀번호 찾기</a>

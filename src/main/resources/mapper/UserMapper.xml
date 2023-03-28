@@ -11,10 +11,10 @@
 
 		user_id,
 		user_pw,
-		user_pw2,
 		user_name,
 		user_birth,
 		user_contact,
+		user_zipcode,
 		user_address,
 		user_email,
 		user_gender,
@@ -24,10 +24,10 @@
 
 		#{user_id},
 		#{user_pw},
-		#{user_pw2},
 		#{user_name},
 		#{user_birth},
 		#{user_contact},
+		#{user_zipcode},
 		#{user_address},
 		#{user_email},
 		#{user_gender},
@@ -102,76 +102,46 @@
 
 	<!-- ////////////////////////////////////////////////////////////////////// -->
 
+	<!-- 장바구니 상품 추가 아 모르겠다 -->
+	<!-- <insert id="addCart" parameterType="CartVO">
+		insert into(
+		cart_prod_no,
+		cart_prod_img_path,
+		cart_prod_artist,
+		cart_prod_name,
+		cart_prod_cnt,
+		cart_prod_discount_rate,
+		cart_prod_price)
+		values
+		(ran()*10000000, #{cart_prod_image_path}, #{cart_prod_artist}, #{cart_prod_name},
+		#{cart_prod_cnt}, #{cart_prod_discount_rate}, #{cart_prod_price})
+		where
+		user_id=#{user_id}
+	</insert> -->
+
 	<!-- 장바구니 상품 조회(product) -->
-	<select id="getCartList" resultType="CartListVO1">
-		select 
-			c.cart_no,
-			c.cart_prod_no,
-			p.prod_img_path,
-			p.prod_artist,
-			p.prod_name,
-			c.cart_prod_cnt,
-			p.prod_discount_rate,
-			p.prod_price,
-        	c.cart_total_price
-    from cart c
-	inner join product p
-    on c.cart_prod_name = p.prod_name
-    where c.user_id = #{user_id}
-    order by c.cart_no;
+	<select id="getCartList" resultType="CartVO">
+		select *
+		from cart
+		where user_id = #{user_id}
+		order by
+		cart_no;
 	</select>
-	
-	<!-- 장바구니 상품 조회(album) -->
-	 <select id="getAlbumList" resultType="AlbumCartVO">
-	 select
-		c.cart_no,
-        c.cart_album_no,
-        a.album_img_path,
-        a.album_artist,
-        a.album_title,
-        c.cart_album_cnt,
-        a.album_discount_rate,
-        a.album_price,
-        c.cart_total_price
-	from cart c
-    inner join album a
-    on c.cart_prod_name = a.album_title
-    where c.user_id = #{user_id}
-    order by c.cart_no;
-	 </select>
-	
+
+	<!-- <select id="getCartList" resultType="CartListVO1"> select c.cart_no, c.cart_prod_no, p.prod_img_path, 
+		p.prod_artist, p.prod_name, c.cart_prod_cnt, p.prod_discount_rate, p.prod_price, c.cart_total_price from 
+		cart c inner join product p on c.cart_prod_name = p.prod_name where c.user_id = #{user_id} order by c.cart_no; 
+		</select> -->
 
 	<!-- 유저의 장바구니 상품 삭제 - 개별, 선택 -->
 	<delete id="deleteCartOne" parameterType="Integer">
 		delete from cart where cart_no = #{cart_no}
 	</delete>
 
-	<!-- 유저의 주문하기 -> 결제창 주문한 상품 정보 -->
-	<!-- <insert id="orderCart">
-		insert into user_Order(
-		user_order_no,
-		user_id,
-		user_order_prod_cnt,
-		user_order_total_price,
-		user_order_prod_name,
-		user_order_prod_img,
-		user_discount_rate,
-		user_delivery_fee)
-		values(
-		#{user_order_no},
-		#{user_id},
-		#{user_order_prod_cnt},
-		#{user_order_total_price},
-		#{user_order_prod_name},
-		#{user_order_prod_img},
-		#{user_discount_rate},
-		#{user_delivery_fee})
-	</insert> -->
-
-	<!-- 유저의 주문하기 -> 결제창 주문 상세정보 -->
-	<!-- <insert id="orderCartDetail">
+	<!-- 유저의 주문하기 -> 결제창 주문 상세정보 아 이것도 모르겠어~~ -->
+	<!-- <insert id="orderCart" parameterMap="OrderHistoryVO">
 		insert into order_history(
-		order_no, user_id,
+		order_no,
 		order_prod_name,
 		order_prod_no,
 		order_prod_cnt,
@@ -182,11 +152,8 @@
 		order_shipping_message,
 		order_payment_method,
 		order_state)
-
 		values (
-
 		#{order_no},
-		#{user_id},
 		#{order_prod_name},
 		#{order_prod_no},
 		#{order_prod_cnt},
@@ -194,7 +161,8 @@
 		#{order_address},
 		#{order_shipping_address},
 		#{order_address_contact},
-		#{order_shipping_message}, #{order_state})
-		where user_id = ${user_id}
+		#{order_shipping_message},
+		#{order_state})
+		where user_id = ${user_id};
 	</insert> -->
 </mapper>

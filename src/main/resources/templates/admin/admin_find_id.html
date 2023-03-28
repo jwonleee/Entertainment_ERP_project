@@ -7,23 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-    <link rel="stylesheet" href="/css/user_find_id_result.css">
-
+    <link rel="stylesheet" href="/css/user_find_id.css">
 </head>
 <body>
+    
+
     <div class="find_id_section">
+    <form action="userFindIdForm"  class="userFindIdForm" method="post">
         <div class="find_id_box">
             <div class="find_id_innerbox">
                 <!-- 아이디 찾기, 비밀번호 찾기 버튼 -->
                 <div class="find_account">
                     <div class="find_user_id left">
-                        <h3>아이디 찾기가 완료되었습니다</h3>
+                        <a href="#">아이디 찾기</a>    
                     </div>
-                   
+                    <div class="find_user_pw left">
+                        <a href="user_find_pw">비밀번호 찾기</a>    
+                    </div>
                 </div>
 
                 <!-- 이름, 이메일 입력 부분 -->
-                <div class="find_id_content" style="margin-bottom: 40px;">
+                <div class="find_id_content">
                     <div class="find_id_outercontent" style="margin-bottom: 15px;">
                         <div class="find_id_innercontent">
                             <div>
@@ -31,7 +35,7 @@
                                     <span>이름</span>
                                 </div>
                                 <div class="content_input right">
-                                    <input type="text"  class="right" name="user_name"  th:value="${vo.user_name}"  readonly required>
+                                    <input type="text"  class="right" name="user_name" required>
                                 </div>
                             </div>
                         </div>
@@ -41,10 +45,10 @@
                     <div class="find_id_outercontent" style="margin-bottom: 15px;">
                         <div class="find_id_innercontent">
                             <div class="content_detail left">
-                                <span>아이디</span>
+                                <span>이메일</span>
                             </div>
                             <div class="content_input right">
-                                <input type="text"  class="right user_id"  id="user_id" name="user_id"  th:value="${vo.user_id}" readonly required>
+                                <input type="email" class="right" name="user_email" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
                             </div>
                         </div>
                     </div>
@@ -52,16 +56,13 @@
 
                 <!-- 확인 버튼 -->
                 <div class="find_id_btn">
-                    <div class=" left">
-                        <a href="user_login" style="color: whitesmoke; background-color: #171449; width: 110.28px;">로그인</a>
-                    </div>
-                    <div class=" left">
-                        <a  href="user_find_pw" style="color: whitesmoke; background-color: #171449; ">비밀번호 찾기</a>
-                    </div>
+                    <button type="submit" >확인</button>
                 </div>
-                
             </div>
         </div>
+        </form>
     </div>
 </body>
+
+
 </html>

@@ -130,6 +130,36 @@ public class AdminController {
 		}
 	}
 	
+	// 아이디 찾기
+	@GetMapping("admin_find_id")
+	public String admin_find_id() {
+
+		return "admin/admin_find_id";
+	}
+
+	@PostMapping("/adminFindIdForm")
+	public String adminFindIdForm(AdminVO vo, Model model) {
+		AdminVO result = adminService.getAdminInfo2(vo.getAdmin_id()); // db에 담겨있는 vo값들
+		// System.out.println(result);
+
+		model.addAttribute("vo", result); // model에 담아서 화면에 뿌리기
+		return "admin/admin_find_id_result"; // 결과페이지로
+	}
+
+	// 아이디찾기 결과
+	@GetMapping("user_find_id_result")
+	public String user_find_id_result() {
+
+		return "user/user_find_id_result";
+	}
+
+	// 비밀번호 찾기
+	@GetMapping("user_find_pw")
+	public String user_find_pw() {
+
+		return "user/user_find_pw";
+	}
+	
 	@GetMapping("/accessDenied")
 	public String accessDenied(RedirectAttributes ra) {
 		
