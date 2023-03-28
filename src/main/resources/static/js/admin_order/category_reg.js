@@ -349,7 +349,7 @@ $("#category_submit_btn").click(() => {
          });//end each문
          if ($("input[name='check_mid']:checked").length == successCount) {//정상등록시
              alert('등록성공!');
-             location.replace('/order/orderList');
+             location.replace('/order/categoryReg');
          } else {
              alert('등록실패');
          }
