@@ -6,7 +6,7 @@
  <mapper namespace="com.y4j.final_project.schedule.service.ScheduleMapper">
 	
 	<insert id="regist" parameterType="ScheduleVO">
-		insert into SCHEDULE(schedule_start_time,
+		insert into schedule(schedule_start_time,
 							 schedule_end_time,
 							 schedule_writer,
 							 schedule_type,
@@ -27,7 +27,7 @@
 			select LAST_INSERT_ID() as schedule_no
 		</selectKey>
 		
-		insert into ENTERTAINER_SCHEDULE (ent_name,
+		insert into entertainer_schedule (ent_name,
 										  schedule_no)
 		values(#{ent_name},
 			   #{schedule_no})
@@ -35,10 +35,10 @@
 	
 	<!-- 그룹, 이름  -->
 	<select id="getEntType" resultType="EntertainerVO">
-		select DISTINCT(ent_group_name) from ENTERTAINER where ent_type = #{ent_type}
+		select DISTINCT(ent_group_name) from entertainer where ent_type = #{ent_type}
 	</select>
 	<select id="getEntType2" resultType="EntertainerVO">
-		select ent_name from ENTERTAINER where ent_type = #{ent_type}
+		select ent_name from entertainer where ent_type = #{ent_type}
 	</select>
 	
 	<!-- 아티스트-스케줄 유무 -->
@@ -52,7 +52,7 @@
 	<!-- 권한 user 설정 안함 -->
 	<!-- 일정 전체 개수 -->
 	<select id="getScheduleTotal" resultType="int">
-		select count(*) as total from `schedule` s left join ENTERTAINER_SCHEDULE es on es.schedule_no = s.schedule_no
+		select count(*) as total from `schedule` s left join entertainer_schedule es on es.schedule_no = s.schedule_no
 		<where>
 			<if test="searchContent != null and searchContent != ''">
 			     and schedule_ent_name like concat('%', #{searchContent}, '%')
@@ -85,10 +85,10 @@
 			   s.schedule_ent_name,
 			   s.schedule_location,
 			   es.ent_name
-		from `SCHEDULE` s
-		left join ENTERTAINER_SCHEDULE es
+		from `schedule` s
+		left join entertainer_schedule es
 			on es.schedule_no = s.schedule_no
-		left join ENTERTAINER e
+		left join entertainer e
 			on es.ent_name = e.ent_name
 		<where>
 			<!-- 제목 검색 -->
@@ -126,10 +126,10 @@
 			   s.schedule_type,
 			   s.schedule_ent_name,
 			   es.ent_name
-		from `SCHEDULE` s
-		left join ENTERTAINER_SCHEDULE es
+		from `schedule` s
+		left join entertainer_schedule es
 			on es.schedule_no = s.schedule_no
-		left join ENTERTAINER e
+		left join entertainer e
 			on es.ent_name = e.ent_name
 		where SUBSTR(s.schedule_start_time, 1, 10) = #{schedule_start_time}
 		  and es.ent_name = #{ent_name}
@@ -176,7 +176,7 @@
 
 	<!-- 일정 수정 기능 -->
 	<update id="scheduleModify" parameterType="ScheduleVO">
-		update SCHEDULE
+		update schedule
 		set schedule_start_time = #{schedule_start_time},
 			schedule_end_time = #{schedule_end_time},
 		    schedule_type = #{schedule_type},
@@ -189,8 +189,8 @@
 	<!-- 일정 삭제 -->
 	<delete id="scheduleDelete">
 		delete s, es
-		from `SCHEDULE` as s
-		left join ENTERTAINER_SCHEDULE as es
+		from `schedule` as s
+		left join entertainer_schedule as es
 		on s.schedule_no = es.schedule_no
 		where s.schedule_no = #{schedule_no}
 	</delete>
