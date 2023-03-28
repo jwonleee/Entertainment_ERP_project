@@ -72,39 +72,7 @@ pw.onchange = validatePassword;
 pw2.onkeyup = validatePassword;
 
 
-/* 이메일 인증 발송 */
-function checkEmail() {
-	var user_email = $('#user_email').val();
-	$.ajax({
-		type: "POST",
-		url: "user/emailConfirm",
-		data: {
-			"user_email": user_email
-		},
-		success: function() {
-			alert("해당 이메일로 인증번호 발송이 완료되었습니다. \n 확인부탁드립니다.")
-			/*console.log("data : "+data);
-			chkEmailConfirm(data, $memailconfirm, $memailconfirmTxt);*/
-		}
-	})
-}
-/* 상단, 하단 버튼 jQuery */
-
-$(".top_btn").click(function() {
-	$('html, body').animate({
-		scrollTop: 0
-	}, 400);
-	return false;
-});
-
-$(".bottom_btn").click(function() {
-	$('html, body').animate({
-		scrollTop: document.body.scrollHeight
-	}, 400);
-	return false;
-});
-
-// admin_contact 조합 구문
+// user_contact 조합 구문
 var c1 = document.querySelector(".region_num");
 var c2 = document.querySelector(".phone_num1");
 var c3 = document.querySelector(".phone_num2");
@@ -116,5 +84,8 @@ function contactCombine() {
 c1.addEventListener("change", contactCombine);
 c2.addEventListener("change", contactCombine);
 c3.addEventListener("change", contactCombine);
+
+
+
 
 

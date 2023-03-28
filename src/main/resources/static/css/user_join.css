@@ -40,8 +40,10 @@ button {
     /* margin: 0 auto; */
     width: 50%;
     border: 0.5px solid #d7d7d7;
-    border-radius: 8px;
-
+    border-radius: 8px 8px 0 0;
+}
+.join_info_box2{
+	border-radius: 0 0 8px 8px;
 }
 
 .join_info_innerbox {
@@ -112,7 +114,7 @@ button {
 
 /* 생년월일 */
 .join_info_content>.birth {
-    width: 25%;
+    width: 28.7%;
     text-align: center;
     padding: 5.2px;
     border: none;
@@ -145,9 +147,11 @@ button {
 }
 
 /* 휴대전화 */
-.join_info_content .region_num {
-    width: 15%;
-    height: 22px;
+.join_info_content > .region_num {
+    width: 24%;
+   border: none; 
+   border-bottom: 0.5px solid #dfdfdf; 
+   padding-bottom: 5px;
     margin-right: 7px;
     text-align: center;
     font-size: 14px;
@@ -286,7 +290,10 @@ button {
     display: flex;
     justify-content: space-between;
 }
-
+.contract_content >  h3{
+	margin:0;
+	
+}
 .contract_content h3>span {
     font-weight: 600;
     color: rgb(247, 70, 70);

@@ -36,9 +36,6 @@ public class UserVO {
 	@Pattern (regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 영문 숫자 특수문자를 모두 포함하여 8~16자로 입력하세요")
 	private String user_pw;
 	
-	@NotBlank(message = "비밀번호를 입력하세요")
-	private String user_pw2;
-	
 	@NotBlank (message = "이름을 입력하세요")
 	@Pattern (regexp = "(?=.*[a-zA-Z가-힣]).{1,16}", message = "이름은 숫자를 입력할 수 없습니다")
 	private String user_name;
