@@ -55,10 +55,10 @@
 				</div>			
 				
 				<div class="logo_icon">
-					<a href="#"><img  src="/img/shopping_cart.png" /></a>
+					<a href="/user/cart"><img  src="/img/shopping_cart.png" /></a>
 <!-- 					<a href="https://www.flaticon.com/kr/free-icons/-" title="장바구니 추가 아이콘">장바구니 추가 아이콘  제작자: Corner Pixel - Flaticon</a> -->
 					
-					<a href="#"><img style="width:23px; height:23px;" src="/img/user.png"/></a>
+					<a href="/user/mypage"><img style="width:23px; height:23px;" src="/img/user.png"/></a>
 					<!-- <a href="https://www.flaticon.com/kr/free-icons/" title="사람 아이콘">사람 아이콘  제작자: Muhammad Yafinuha - Flaticon</a> -->
 				</div>
 			
@@ -179,8 +179,7 @@
 			
 			<!-- 주문 상품 정보-->
 			<div th:each="uo: ${user_order}">
-				<input type="hidden" name="user_id" value="gmlwjd852369">
-				<input type="hidden" name="order_cnt" value="1"> <!-- 구매한 물품 종류 1개 (바로 구매하기 기준) -->
+				<input type="hidden" name="user_id" value="">
 				<input type="hidden" name="order_prod_name" th:value="${uo.user_order_prod_name}"> <!-- 주문한 상품명 -->
 				<input type="hidden" name="order_prod_cnt" th:value="${uo.user_order_prod_cnt}"> <!-- 주문한 상품의 갯수 -->
 				<input type="hidden" name="order_date" th:value="${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"> <!-- 주문 날짜 -->

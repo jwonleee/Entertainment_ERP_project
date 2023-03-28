@@ -65,7 +65,6 @@ public class productController {
 	public String productDetail(@RequestParam("prod_no") int prod_no,  Model model ) {
 		
 		
-		
 		ArrayList<ProductVO> detail =  productService.productDetailList(prod_no);
 		model.addAttribute("detail", detail);
 		return "product/productDetail_page";
@@ -78,15 +77,10 @@ public class productController {
 		//세션에 로그인 아이디 정보가 있다고 할 때,
 		//회원이라고 가정할 때 구매와 장바구니 담기 가능 
 
-		
-		//일반 회원이 아니라면
-		//if(!user_id.equals("")) {
-			//return "redirect:/user/user_login";
-		//}
-		
-
 		String user_id=(String)session.getAttribute("user_id");
-		//내가 가상으로 로그인 했다면 (해결완)
+		vo1.setUser_id(user_id);
+		System.out.println(user_id);
+		
 		if(user_id == null) {
 			 String msg = "회원이 아닐 경우 이용이 불가합니다";
 			 ra.addFlashAttribute("msg", msg);
@@ -94,7 +88,7 @@ public class productController {
 		}
 	
 
-		ArrayList<UserVO> user= productService.userOrderRightNow(vo);
+		ArrayList<UserVO> user= productService.userOrderRightNow(user_id);
 		model.addAttribute("user", user);
 		
 		//데이터베이스까지 안 가고 직전에 바로 꺼내오기 
@@ -113,8 +107,13 @@ public class productController {
 	
 	//주문 폼(페이지)
 	@PostMapping("/orderform")
-	public String user_order(OrderHistoryVO vo, RedirectAttributes ra) {
+	public String user_order(OrderHistoryVO vo, RedirectAttributes ra, HttpSession session) {
 	
+		
+
+		//회원 주문내역을 위한 세션 처리
+		String user_id=(String)session.getAttribute("user_id");
+		vo.setUser_id(user_id);
 		
 		int new_order_total = vo.getOrder_total_price();
 		if( new_order_total < 50000) {
@@ -131,15 +130,18 @@ public class productController {
 	
 	//주문내역 페이지
 	@GetMapping("/user_orderList")
-	public String user_orderList( Model model, OrderHistoryVO vo, Criteria cri) {
-		ArrayList<OrderHistoryVO> user_orderList =  productService.user_orderList(vo, cri);
-		System.out.println(cri.getSearchName());
+	public String user_orderList( Model model, OrderHistoryVO vo, Criteria cri, HttpSession session) {
+		
+		ArrayList<OrderHistoryVO> user_orderList =  productService.user_orderList(cri, vo);
+		
+		//회원 주문내역을 위한 세션 처리
+		String user_id=(String)session.getAttribute("user_id");
 
 		model.addAttribute("cri", cri);
 		model.addAttribute("user_orderList", user_orderList);
 		
 		//페이지네이션 처리
-		int total = productService.getProdOrderTotal(cri);
+		int total = productService.getProdOrderTotal(user_id);
 		PageVO pageVO = new PageVO(cri, total);
 		model.addAttribute("pageVO", pageVO);
 		

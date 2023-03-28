@@ -26,17 +26,14 @@ public interface ProductMapper {
 	public ArrayList<ProductVO> productDetailList(int prod_no);
 	
 	//상품 상세 페이지 -> 결제 페이지
-	public ArrayList<UserVO> userOrderRightNow(UserVO vo);
-
-	//장바구니 리스트 
-	public ArrayList<CartVO> prod_cartList(CartVO vo);
+	public ArrayList<UserVO> userOrderRightNow(String user_id);
 	
 	//결제페이지 등록
 	public int user_order(OrderHistoryVO vo);
 	
 	//결제 페이지 -> 결제 내역 페이지
-	public ArrayList<OrderHistoryVO> user_orderList(OrderHistoryVO vo, @Param("cri") Criteria cri);
-	public int getProdOrderTotal(Criteria cri);
+	public ArrayList<OrderHistoryVO> user_orderList( @Param("cri") Criteria cri, @Param("vo") OrderHistoryVO vo);
+	public int getProdOrderTotal(String user_id);
 	
 	//결제 내역 상세 페이지
 	public ArrayList<OrderHistoryVO> user_orderList_detail(@Param("order_prod_no") String order_prod_no);

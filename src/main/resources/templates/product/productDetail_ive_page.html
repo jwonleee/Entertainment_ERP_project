@@ -102,9 +102,9 @@
 	                            </ul>
 	                         </li>
 	                         <li>
-	                            <span class="menu_bar_name"><a href="#">AUDITION</a></span>
+	                            <span class="menu_bar_name"><a href="/audition/audition_notice">AUDITION</a></span>
 	                            <ul class="menu_bar1">
-	                              	<li class="menu_bar_content">AUDITION</li>
+	                              	<li class="menu_bar_content"><a href="/audition/audition_notice">AUDITION</a></li>
 	                            </ul>
 	                       	</li>
 			    			<!-- 메뉴 상단바 y4j 로고 -->
@@ -194,11 +194,10 @@
 							<div class="ive_allproduct_name">
 								<span name="prod_name" >[[${ive.prod_name}]]</span>
 							</div>
-							<div  class="ive_allproduct_info">
-								<span class="info_price" name="prod_price">\[[${ive.prod_price}]]</span>
+							<div  class="ive_allproduct_info" th:with="result = ${ive.prod_price}">
+								<span class="info_price" name="prod_price" th:text="${#numbers.formatInteger(result, 3, 'COMMA')}+'원'"></span>
 								<span class="info_rate" style="color:red" name="prod_discount_rate">[[${ive.prod_discount_rate}]]%</span>
 							</div>
-							<span>[[${ive.prod_regdate}]]</span>
 						</li>
 					</a>
 				</ul>
