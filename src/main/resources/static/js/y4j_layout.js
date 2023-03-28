@@ -34,10 +34,10 @@ function menuBarFixed() {
   } else {
     topMenu.classList.remove("sticky");
     // headerBottomInner.style.backgroundImage = "linear-gradient(to right, rgb(111, 111, 111), rgb(166, 166, 166) 50%, rgb(222, 222, 222))";
-    headerBottomInner.style.backgroundColor = "rgb(119, 119, 119)";
+    headerBottomInner.style.backgroundColor = "rgb(83, 83, 83)";
     stickyLogo.style.display = "none";
-    footerOuter.style.backgroundColor = "rgb(119, 119, 119)";
-    aside_wrap.style.backgroundColor = "rgb(119, 119, 119)";
+    footerOuter.style.backgroundColor = "rgb(83, 83, 83)";
+    aside_wrap.style.backgroundColor = "rgb(83, 83, 83)";
     $('footer .footer-inner .footer-left').css("color", "black");
     $('footer .footer-inner .footer-right').css("color", "black");
     $('.menu_bar > ul > li > span > a').css("color", "black")
@@ -58,7 +58,7 @@ function sideMenuBarFixed() {
 
   } else {
     sideMenuBar.style.position = "absolute";
-    sideMenuBar.style.top = "102px";
+    sideMenuBar.style.top = "101px";
     // document.querySelector(".aside-wrap").style.backgroundColor = "#777";
     sideMenuBar.style.color = "black";
     // document.querySelector("aside .aside-wrap .sideMenuBarBtn").style.backgroundColor = "#777";
@@ -98,7 +98,7 @@ $(document).ready(function () {
 
     if ($(this).closest("ul").hasClass("mngBar3")) {
       $(this).closest('ul').next().slideDown();
-      $(this).closest("div").css("margin-bottom", "110px");
+      $(this).closest("div").css("margin-bottom", "140px");
       $(this).closest("div").css("transition", "all 2s ease 0s");
       $(this).css("display", "none");
       $(this).next('li').css("display", "block");

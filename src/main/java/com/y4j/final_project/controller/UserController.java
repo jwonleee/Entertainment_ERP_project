@@ -25,6 +25,7 @@ import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.user.service.UserService;
 import com.y4j.final_project.util.GoogleAPI;
 import com.y4j.final_project.util.KakaoAPI;
@@ -39,6 +40,9 @@ public class UserController {
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private MessageService messageService;
 
 	//	@Autowired
 	//	private EmailService emailService;
@@ -296,6 +300,19 @@ public class UserController {
 	@GetMapping("/empty_cart")
 	public String empty_cart() {
 		return "user/empty_cart";
+	}
+	
+	@GetMapping("/user_msg")
+	public String user_msg(HttpSession session, Model model) {
+
+		if(session.getAttribute("user_id") != null) {
+			model.addAttribute("uncheckedMsgNum", messageService.getUncheckedMsg(session.getAttribute("user_id")));
+		
+		} else if(session.getAttribute("admin_id") != null) {
+			model.addAttribute("uncheckedMsgNum", messageService.getUncheckedMsg(session.getAttribute("admin_id")));
+		}
+			
+		return "user/user_msg";
 	}
 
 }

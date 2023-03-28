@@ -22,7 +22,7 @@ import com.y4j.final_project.admin.service.AdminService;
 import com.y4j.final_project.authority.service.AuthorityService;
 import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.AuthorityVO;
-import com.y4j.final_project.command.UserVO;
+import com.y4j.final_project.message.service.MessageService;
 import com.y4j.final_project.util.Criteria;
 
 @Controller
@@ -37,6 +37,9 @@ public class AdminController {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
+	private MessageService messageService;
 	
 	
 	@GetMapping("/admin_login")
@@ -55,6 +58,19 @@ public class AdminController {
 	public String admin_home() {
 		
 		return "admin/admin_home";
+	}
+	
+	@GetMapping("/admin_msg")
+	public String admin_msg(HttpSession session, Model model) {
+
+		if(session.getAttribute("user_id") != null) {
+			model.addAttribute("uncheckedMsgNum", messageService.getUncheckedMsg(session.getAttribute("user_id")));
+		
+		} else if(session.getAttribute("admin_id") != null) {
+			model.addAttribute("uncheckedMsgNum", messageService.getUncheckedMsg(session.getAttribute("admin_id")));
+		}
+			
+		return "admin/admin_msg";
 	}
 	
 	@PostMapping("/adminJoinForm")
@@ -120,6 +136,7 @@ public class AdminController {
 			session.removeAttribute("user_id");
 			session.setAttribute("admin_id", admin_id);
 			session.setAttribute("admin_type", adminVO.getAdmin_type());
+			session.setAttribute("admin_name", adminVO.getAdmin_name());
 			
 			return "admin/admin_home";
 			
@@ -128,6 +145,15 @@ public class AdminController {
 			
 			return "redirect:/admin/admin_login";
 		}
+	}
+	
+	@GetMapping("/adminLogoutForm")
+	public String adminLogoutForm(HttpSession session, RedirectAttributes ra) {
+		
+		session.invalidate();
+		ra.addFlashAttribute("msg", "정상적으로 로그아웃 되었습니다.");
+		
+		return "redirect:/admin/admin_login";
 	}
 	
 	// 아이디 찾기
