@@ -58,7 +58,13 @@
     color: white;
 }
 
-
+.pname_td_detail{
+	display:block;
+    white-space:nowrap;
+    width:120px;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
 /* 버튼 */
 .OrderStateNow{
     font-size:13px;

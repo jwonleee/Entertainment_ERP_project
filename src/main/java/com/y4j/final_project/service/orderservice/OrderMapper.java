@@ -62,4 +62,6 @@ public interface OrderMapper {
 	//order_history state 변경
 	public int updateOrderHistoryState(OrderHistoryVO vo);
 	
+	//public void dummyhistory(OrderHistoryVO vo);//더미데이터
+	
 }
