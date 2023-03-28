@@ -70,13 +70,11 @@ $(document).ready(() => {
             }]
         },
         options: {//차트 모양 꾸미기
-           
-            scales: {
-				
-                y: {
-                    beginAtZero: true
-                }
-            }
+           scales: {
+                	y: {
+                   	 beginAtZero: true
+                	}
+           	},
         }
     });
 
