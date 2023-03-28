@@ -74,15 +74,17 @@ a{text-decoration: none; cursor: pointer;}
     margin-top: 50px;
     text-align: center;
 }
-.find_id_btn a{
-    padding: 10px 184px;
+.find_id_btn button{
+    padding: 15px ;
+    width:100%;
     color: whitesmoke;
     font-size: 15px;
     font-weight: 600;
     background-color: #04022a;
     border-radius: 10px;
-
+	cursor:pointer;
 }
+
 
 
 

@@ -36,14 +36,14 @@
 				<form id="adminLoginForm" action="adminLoginForm" method="post">
 	                <div class="login_content">
 	                    <div class="login_input">
-	                        <input type="text" class="id" name="admin_id" placeholder="아이디" required><br />
+	                        <input type="text" class="id"  id="admin_id" name="admin_id" placeholder="아이디" required><br />
 	                        <input type="password" class="pw" name="admin_pw" placeholder="비밀번호" required><br />
 	
 	                        <div class="login_input_under">
-	                            <span class="left"><input type="checkbox" class="save_id"> 아이디 저장</span>
+	                            <span class="left"><input type="checkbox" class="save_id"  id="save_id" name="save_id"  onclick="saveid()"> 아이디 저장</span>
 	                            <span class="find_user_info right">
-	                                <a href="#" class="find_id">아이디 찾기</a> /
-	                                <a href="#" class="find_pw">비밀번호 찾기</a>
+	                                <a href="admin_find_id" class="find_id">아이디 찾기</a> /
+	                                <a href="admin_find_pw" class="find_pw">비밀번호 찾기</a>
 	                            </span>
 	                        </div>
 	                    </div>

@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-
 import org.apache.ibatis.annotations.Mapper;
 
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
@@ -48,16 +48,16 @@ public interface UserMapper {
 
 	//////////////////////////////////////////////////////////////////////
 
-	// 유저의 장바구니 리스트 조회
-	public List<CartListVO1> getCartList(String user_id);
+	// 유저의 장바구니 상품 추가
+//	public int addCart(CartVO cvo);
 
-	// 유저의 장바구니 album 리스트 조회
-	public List<AlbumCartVO> getAlbumList(String user_id);
+	// 유저의 장바구니 리스트 조회
+	public List<CartVO> getCartList(String user_id);
 
 	// 유저의 장바구니 상품 삭제 - 개별, 선택
 	public int deleteCartOne(CartVO cvo);
 
 //	// 유저의 장바구니 주문
-//	public int orderCart(UserOrderVO ovo);
+//	public int orderCart(OrderHistoryVO ovo);
 
 }

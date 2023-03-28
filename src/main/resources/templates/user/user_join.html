@@ -136,11 +136,11 @@
 							<input type="text" value="010" readonly name="user_contact" class="region_num left" style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
 
 							<span> - </span>
-							<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4" maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
+							<input type="text" name="user_contact" class="phone_num phone_num1" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4" maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
 							<span> - </span>
-							<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4" maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
+							<input type="text" name="user_contact" class="phone_num phone_num2" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" minlength="4" maxlength="4" th:value="${vo != null? vo.user_contact:''}" required>
 							<span style="color: red; font-size: 12px;">[[${valid_user_contact}]]</span>
-							<!-- <input type="hidden" class="adminContact" name="admin_contact" value="" /> -->
+							<input type="hidden" class="userContact" name="user_contact" />
 						</div>
 					</div>
 
@@ -151,7 +151,7 @@
 							<strong>주소 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 						</div>
 						<div class="join_info_content right address">
-							<input type="text" name="zipcode" id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" required readonly>
+							<input type="text" name="user_zipcode" id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" required readonly>
 							<input type="button" value="우편번호찾기" id="zipcode" name="user_address" class="address_btn" onclick="kakaopost()" required>
 							<br />
 							<input type="text" name="user_address" id="address" size="70" th:value="${vo != null? vo.user_address:''}">
@@ -189,7 +189,7 @@
 							</div>
 
 							<div class="entertainer">
-								<span>이도현</span><br /> <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/kiyong.png"><br />
+								<span>이도현</span><br /> <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/leedo1.jpg"><br />
 								<input type="radio" name="user_fav_ent" class="entertainer" value="이도현" required>
 							</div>
 

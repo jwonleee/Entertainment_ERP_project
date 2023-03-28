@@ -7,6 +7,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Errors;
 
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
@@ -48,17 +49,18 @@ public interface UserService {
 	public UserVO getUserInfo2(Object user_id);
 
 	///////////////////////////////////////////////////////
+	
+	//유저의 장바구니 상품 추가
+//	public int addCart(CartVO cvo);
 
 	// 유저의 장바구니 product 리스트 조회
-	public List<CartListVO1> getCartList(String user_id);
+	public List<CartVO> getCartList(String user_id);
 	
-	//유저의 장바구니 album 리스트 조회
-	public List<AlbumCartVO> getAlbumList(String user_id);
-	
+
 	// 유저의 장바구니 상품 삭제 - 개별, 선택
 	public int deleteCartOne(CartVO cvo);
 
 //	// 유저의 장바구니 주문
-//	public int orderCart(UserOrderVO ovo);
+//	public int orderCart(OrderHistoryVO ovo);
 
 }

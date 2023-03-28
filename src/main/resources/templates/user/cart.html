@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
+<title>Cart</title>
 
 <link rel="stylesheet" href="/css/cart.css">
 
@@ -48,12 +48,18 @@
 				<div class="cart_content_title">
 					<div style="display: flex; justify-content: space-around;">
 						<input type="checkbox" class="check_btn" id="check_all" onclick="checkAll()" checked style="margin-left: -5px;">
-						<span class="title_code" style="margin-left: -55px;">상품번호</span> <span class="title_img" style="margin-left: -10px;">이미지</span> <span class="title_info" style="margin-left: 0px;">상품정보</span> <span class="title_quantity" style="margin-left: 80px;">수량</span> <span class="title_price">상품구매금액</span> <span class="title_fee">배송비</span> <span class="title_select" style="margin-left: -15px;">선택</span>
+						<span class="title_code" style="margin-left: -55px;">상품번호</span> 
+						<span class="title_img" style="margin-left: -10px;">이미지</span> 
+						<span class="title_info" style="margin-left: 0px;">상품정보</span> 
+						<span class="title_quantity" style="margin-left: 80px;">수량</span> 
+						<span class="title_price">상품구매금액</span>
+						 <span class="title_fee">배송비</span> 
+						 <span class="title_select" style="margin-left: -15px;">선택</span>
 					</div>
 				</div>
 
 				<!-- 장바구니에 넣은 상품들 정보 -->
-				<th:block th:each="cvo:${map.cvo}">
+				<th:block th:each="cvo:${cvo}">
 
 					<div class="cart_content_box" style="margin: 0 auto;">
 
@@ -70,14 +76,15 @@
 
 							<!-- 상품 이미지 -->
 							<div class="product_img left">
-								<img th:src="${cvo.prod_img_path}" alt="박명수짤" style="width: 100px; height: 100px;">
+								<img th:src="${cvo.cart_prod_img_path}"  alt="박명수짤" name="cart_prod_img_path" style="width: 100px; height: 100px;">
 							</div>
 
 							<!-- 상품 정보 -->
 							<div class="product_info left">
 								<div>
 									<a href="/product.html">
-										<em name="">[ [[${cvo.prod_artist}]] ] </em> <br /> <span name="prod_name">[[${cvo.prod_name}]]</span>
+										<em name="cart_prod_artist">[ [[${cvo.cart_prod_artist}]] ] </em> <br /> 
+										<span name="cart_prod_name">[[${cvo.cart_prod_name}]]</span>
 									</a>
 								</div>
 							</div>
@@ -94,8 +101,8 @@
 							<!-- 상품 수량 별 가격 -->
 							<div class="product_price left">
 								<div class="product_price_inner">
-									<em style="color: crimson; font-weight: 600;">[[${cvo.prod_discount_rate}]]%</em>
-									<input type="text" class="cart_prod_price" name="cart_prod_price" th:value="${cvo.prod_price}" readonly>
+									<em style="color: crimson; font-weight: 600;">[[${cvo.cart_prod_discount_rate}]]%</em>
+									<input type="text" class="cart_prod_price" name="cart_prod_price" th:value="${cvo.cart_prod_price}" readonly>
 								</div>
 							</div>
 
@@ -107,9 +114,9 @@
 							<!-- 주문 및 삭제 버튼 -->
 							<div class="decision_btn select_btn left">
 								<div>
-									<form action="orderOne" method="post" class="orderOne">
+									<!-- <form action="order" method="post" class="orderOne"> -->
 									<button type="submit" class="applicable_order_btn" style="cursor: pointer;" onclick="orderOne()">주문하기</button>
-									</form>
+									<!-- </form> -->
 								
 									<form action="deleteCartOne" method="post" class="deleteCartOne">
 										<button type="submit" class="delete_btn" onclick="deleteCartOne()" style="cursor: pointer;" th:value="${cvo.cart_no}">
@@ -123,82 +130,6 @@
 					</div>
 				</th:block>
 	
-	<!-- //////////////////////////////////////////////////////////////////////////////////////////////////////////////////// -->
-	
-			<!-- 	<!-- 앨범 부분  -->
-				<th:block th:each="avo:${map.avo}">
-
-					<div class="cart_content_box" style="margin: 0 auto;">
-
-						<div class="cart_content_innerbox " style="display: flex; justify-content: space-around; height: inherit;">
-							개별 상품 체크박스
-							<div class="product_check left" style="margin-left: 10px;">
-								<input type="checkbox" name="check" class="check" onclick="checkOne()" checked style="height: 18.4px;" th:value="${avo.cart_no}" data-cart_no="${avo.cart_no}">
-							</div>
-
-							상품 번호
-							<div class="product_code left">
-								<input type="text" th:value="${avo.cart_album_no}" name="cart_album_no" readonly>
-							</div>
-
-							상품 이미지
-							<div class="product_img left">
-								<img th:src="${avo.album_img_path}" alt="박명수짤" style="width: 100px; height: 100px;">
-							</div>
-
-							상품 정보
-							<div class="product_info left">
-								<div>
-									<a href="/product.html">
-										<em name="">[ [[${avo.album_artist}]] ] </em> <br /> <span name="album_title">[[${avo.album_title}]]</span>
-									</a>
-								</div>
-							</div>
-
-							상품 수량
-							<div class="product_quantity aaa left">
-								<button type="button" class="quantity_subtract" onclick="quantity_minus()" style="border: none; background-color: inherit; cursor: pointer; font-size: 27px;">-</button>
-
-								<input type="text" class="prod_quantity" name="cart_album_cnt" th:value="${avo.cart_album_cnt}" size="3">
-
-								<button type="button" class="quantity_add" onclick="quantity_add()" style="border: none; background-color: inherit; cursor: pointer; font-size: 20px;">+</button>
-							</div>
-
-							상품 수량 별 가격
-							<div class="product_price left">
-								<div class="product_price_inner">
-									<em style="color: crimson; font-weight: 600;">[[${avo.album_discount_rate}]]%</em>
-									<input type="text" class="cart_album_price" name="cart_album_price" th:value="${avo.album_price}" readonly>
-								</div>
-							</div>
-
-							배송비
-							<div class="delivery_fee left">
-								<p style="font-size: 14.5px;">무료</p>
-							</div>
-
-							주문 및 삭제 버튼
-							<div class="decision_btn select_btn left">
-								<div>
-									<form action="orderOne" method="post" class="orderOne">
-									<button type="submit" class="applicable_order_btn" style="cursor: pointer;" onclick="orderOne()">주문하기</button>
-									</form>
-								
-									<form action="deleteCartOne" method="post" class="deleteCartOne">
-										<button type="submit" class="delete_btn" onclick="deleteCartOne()" style="cursor: pointer;" th:value="${avo.cart_no}">
-											<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/delete.png" alt="휴지통아이콘" style="width: 19px; height: 19px; vertical-align: middle;"> 삭제
-										</button>
-									</form>
-
-								</div>
-							</div>
-						</div>
-					</div>
-				</th:block>
-				 -->
-				
-				
-
 				<!-- 선택 상품 삭제 버튼 -->
 				<form action="checkedDelCart" class="checkedDelCart" method="post">
 					<div class="checked_delete">
@@ -207,8 +138,6 @@
 						</div>
 					</div>
 				</form>
-
-
 
 				<!-- 총 결제 금액 -->
 				<div class="price_box">

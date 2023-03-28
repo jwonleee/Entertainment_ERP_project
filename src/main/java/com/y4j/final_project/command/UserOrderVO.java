@@ -11,9 +11,6 @@ import lombok.NoArgsConstructor;
 @Builder
 public class UserOrderVO {
 	
-
-	
-
 	private int user_order_no;
 	private String user_id;
 	private int user_order_prod_cnt;

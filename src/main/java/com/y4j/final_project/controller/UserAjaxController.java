@@ -34,8 +34,7 @@ public class UserAjaxController {
 	@PostMapping("/deleteCartOne")
 	@ResponseBody
 	public int deleteCartOne(@RequestParam(value = "cart_no", required = false) int cart_no, CartVO cvo) {
-		System.out.println(cvo.toString());
-		if (cvo == null) {
+		if(cvo == null) {
 			return 0;
 		}
 		int result = userService.deleteCartOne(cvo);

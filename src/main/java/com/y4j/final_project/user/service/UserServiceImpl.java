@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserOrderVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.util.Criteria;
@@ -84,19 +85,19 @@ public class UserServiceImpl implements UserService {
 	public UserVO getUserInfo2(Object user_id) {
 		return userMapper.getUserInfo2(user_id);
 	}
-
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	
+	//유저의 장바구니 상품 추가
+//	@Override
+//	public int addCart(CartVO cvo) {
+//		return userMapper.addCart(cvo);
+//	}
 
 	//유저의 장바구니 리스트 조회 - product
 	@Override
-	public List<CartListVO1> getCartList(String user_id) {
-
+	public List<CartVO> getCartList(String user_id) {
 		return userMapper.getCartList(user_id);
-	}
-	
-	//유저의 장바구니 리스트 조회 - album
-	@Override
-	public List<AlbumCartVO> getAlbumList(String user_id) {
-		return userMapper.getAlbumList(user_id);
 	}
 	
 	//유저의 장바구니 상품 삭제 - 개별, 선택
@@ -105,10 +106,13 @@ public class UserServiceImpl implements UserService {
 		return userMapper.deleteCartOne(cvo);
 	}
 
+
+
 //	//유저의 장바구니 상품 주문
 //	@Override
-//	public int orderCart(UserOrderVO ovo) {
+//	public int orderCart(OrderHistoryVO ovo) {
 //		return userMapper.orderCart(ovo);
 //	}
+
 
 }

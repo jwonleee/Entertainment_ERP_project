@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 
-<link rel="stylesheet" href="/css/user_find_pw.css">
+    <link rel="stylesheet" href="/css/user_find_pw_result.css">
 
 </head>
 <body>
@@ -15,32 +15,14 @@
             <div class="find_pw_innerbox">
                 <!-- 아이디 찾기, 비밀번호 찾기 버튼 -->
                 <div class="find_account">
-                    <div class="find_user_id left">
-                        <a href="user_find_id">아이디 찾기</a>    
-                    </div>
                     <div class="find_user_pw left">
-                        <a href="user_find_pw">비밀번호 찾기</a>    
+                        <h3>비밀번호 찾기가 완료되었습니다</h3>
                     </div>
+                   
                 </div>
 
-                <!-- 아이디, 이름, 이메일 입력 부분 -->
-
-                <div class="find_pw_content">
-                    <div class="find_pw_outercontent" style="margin-bottom: 15px;">
-                        <div class="find_pw_innercontent">
-                            <div>
-                                <div class="content_detail left">
-                                    <span>아이디</span>
-                                </div>
-                                <div class="content_input right">
-                                    <input type="text"  class="right"  name="user_id" required>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-
-                <div class="find_pw_content">
+                <!-- 이름, 이메일 입력 부분 -->
+                <div class="find_pw_content" style="margin-bottom: 40px;">
                     <div class="find_pw_outercontent" style="margin-bottom: 15px;">
                         <div class="find_pw_innercontent">
                             <div>
@@ -48,7 +30,7 @@
                                     <span>이름</span>
                                 </div>
                                 <div class="content_input right">
-                                    <input type="text"  class="right" name="user_name" required>
+                                    <input type="text"  class="right" value="알려줘" readonly required>
                                 </div>
                             </div>
                         </div>
@@ -58,10 +40,10 @@
                     <div class="find_pw_outercontent" style="margin-bottom: 15px;">
                         <div class="find_pw_innercontent">
                             <div class="content_detail left">
-                                <span>이메일</span>
+                                <span>아이디</span>
                             </div>
                             <div class="content_input right">
-                                <input type="email" class="right" pattern="[a-zA-Z0-9]+[@][a-zA-Z0-9]+[.]+[a-zA-Z]+[.]*[a-zA-Z]*" required>
+                                <input type="text"  class="right" value="알려줘" readonly required>
                             </div>
                         </div>
                     </div>
@@ -69,8 +51,9 @@
 
                 <!-- 확인 버튼 -->
                 <div class="find_pw_btn">
-                    <button onclick="location.href='/user/user_find_pw_result.html'">확인</button>
+                        <a href="user_login.html" >로그인</a>
                 </div>
+                
             </div>
         </div>
     </div>

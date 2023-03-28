@@ -102,6 +102,8 @@ function checkedDelCart() {
 /* 장바구니 개별 상품 주문 */
 function orderOne(){
 	confirm("해당 상품을 주문하시겠습니까?")
+	
+	
 }
 
 function checkedOrder(){

@@ -14,7 +14,7 @@ $(function(){
    } else {
     expdate.setTime(expdate.getTime() - 1); // 쿠키 삭제조건
    }
-   setCookie("save_id", $("#user_id").val(), expdate);
+   setCookie("save_id", $("#admin_id").val(), expdate);
  } //saveid()
  
  function setCookie (name, value, expires) {
@@ -41,7 +41,7 @@ $(function(){
  function getid() {
   var saveId = getCookie("save_id");
   if(saveId != "") {
-   $("#user_id").val(saveId);
+   $("#admin_id").val(saveId);
    $("#save_id").prop("checked",true);
   }
  } //getid()
