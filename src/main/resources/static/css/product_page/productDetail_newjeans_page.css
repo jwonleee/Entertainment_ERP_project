@@ -350,7 +350,7 @@ a {
 }
 
 .newjeans_allProduct_box a{
-	flex-basis: 25%;
+	flex-basis: 22%;
 	margin: 30px ;
 	flex-flow: row wrap;
   	justify-content: center;
@@ -386,7 +386,7 @@ a {
 
 .newjeans_allproduct_info .info_rate{
 	float:right;
-	margin-right: 20px;
+	margin-right: 50px;
 }
 
 

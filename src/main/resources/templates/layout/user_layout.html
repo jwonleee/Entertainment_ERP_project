@@ -68,7 +68,7 @@
 						</a>
 					</li>
 					<li th:if="${session.user_id == null && session.admin_id == null}"  class="header_middle_user">
-						<a href="/admin/admin_join">
+						<a href="/user/user_join">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN"
 								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
 							<!-- <span>JOIN</span> -->
@@ -84,7 +84,7 @@
 					<li th:if="${session.user_id != null}"  class="header_middle_user">
 						<a href="/user/cart">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART"
-								src="/img/shopping_cart.png">
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/shopping_cart.png">
 							<!-- <span>CART</span> -->
 						</a>
 					</li>

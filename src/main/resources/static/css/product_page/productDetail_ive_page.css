@@ -319,7 +319,7 @@ a {
 
 .ive_allproduct_wrap{
 
-    width: 1000px;
+    width: 1300px;
  	margin-top: 80px;
  	margin-left: 320px;
 }
@@ -333,7 +333,7 @@ a {
 }
 
 .ive_allProduct_box a{
-	flex-basis: 26%;
+	flex-basis: 22%;
 	 margin: 30px ;
 	 
 }
@@ -365,7 +365,7 @@ a {
 
 .ive_allproduct_info .info_rate{
 	float:right;
-	margin-right: 20px;
+	margin-right: 45px;
 }
  
 .ive_allProduct_box a li img{

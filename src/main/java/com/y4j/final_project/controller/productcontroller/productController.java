@@ -104,6 +104,9 @@ public class productController {
 		
 		model.addAttribute("user_order", vo1);
 		System.out.println(vo1.toString());
+		
+
+				
 		return "product/product_buy_rightnow";
 	}
 	
@@ -124,14 +127,16 @@ public class productController {
 		}
 		
 		
+		
 		int result = productService.user_order(vo);
 		String msg = result == 1 ? "결제가 정상적으로 완료되었습니다" : "결제에 실패하였습니다";
 		ra.addFlashAttribute("msg", msg);
-		
-		//판매량 감소
-		int stock = productService.getProdStock();
-		String result1 = stock == 1 ? "성공" : "실패";
-		System.out.println(result1);
+		if(result == 1) {
+			//판매량 감소
+			int stock = productService.getProdStock();
+			String result1 = stock == 1 ? "성공" : "실패";
+			System.out.println(result1);
+		}
 		
 		
 		return "redirect:/product/user_orderList";
@@ -160,7 +165,10 @@ public class productController {
 	
 	//주문 내역 상세페이지
 	@GetMapping("/user_order_details")
-	public String user_order_details (Model model, @RequestParam("order_prod_no")String order_prod_no) {
+	public String user_order_details (Model model, @RequestParam("order_prod_no")String order_prod_no, HttpSession session, OrderHistoryVO vo) {
+		
+		//회원 주문내역을 위한 세션 처리
+		String user_id=(String)session.getAttribute("user_id");
 		
 		ArrayList<OrderHistoryVO> user_order_details = productService.user_orderList_detail(order_prod_no);
 		 model.addAttribute("user_order_details", user_order_details);
