@@ -20,7 +20,7 @@ img {max-width: 100%; height: auto;}
 
 .search_wrap h1 {
     font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: rgb(112, 112, 112);
+    color: #96bdf1;
     text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
     line-height: 215px;
     height: 200px;

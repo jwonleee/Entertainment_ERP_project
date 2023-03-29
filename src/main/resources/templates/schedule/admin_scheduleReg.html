@@ -62,7 +62,7 @@
 									<tr>
 										<th>타입</th>
 										<td>
-											<select class="form-select" id="schedule_type" name="schedule_type" style="width: 154px;">
+											<select class="form-select" id="schedule_type" name="schedule_type" style="width: 154px; display: inline-block;">
 												<option value="">선택</option>
 												<option th:value="TV != null? TV : ''">TV</option>
 												<option th:value="Magazine != null? Magazine : ''">Magazine</option>
@@ -71,22 +71,21 @@
 												<option th:value="Movie != null? Movie : ''">Movie</option>
 												<option th:value="ETC != null? ETC : ''">ETC</option>
 											</select>
-											<form:errors path="schedule_type"/>
-											<span>[[${valid_schedule_type}]]</span>
+											<span style="color:tomato"> [[${valid_schedule_type}]]</span>
 										</td>
 									</tr>
 									<tr>
 										<th>제목</th>
 										<td>
 											<input type="text" class="input90 form-control" name="schedule_ent_name" th:value="${vo != null ? vo.schedule_ent_name : ''}" placeholder="50자 이내로 적어주세요." required/>
-											<span>[[${valid_schedule_ent_name}]]</span>
+											<span style="color:tomato">[[${valid_schedule_ent_name}]]</span>
 										</td>
 									</tr>
 									<tr>
 										<th>장소</th>
 										<td>
-											<input type="text" name="schedule_location" class="input90 form-control" th:value="${vo != null ? vo.schedule_location : ''}" required/>
-											<span>[[${valid_schedule_location}]]</span>
+											<input type="text" class="input90 form-control" name="schedule_location" th:value="${vo != null ? vo.schedule_location : ''}" required/>
+											<span style="color:tomato">[[${valid_schedule_location}]]</span>
 										</td>
 									</tr>
 									<tr>
