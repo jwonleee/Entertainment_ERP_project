@@ -126,14 +126,14 @@
    	
    	<update id="getProdStock">
    	   update product 
-   	   set prod_stock = prod_stock - 1,
-   	   	   prod_sales_volume = prod_sales_volume + 1 
-   	   	   where prod_no=#{prod_no};
+   	   set prod_stock = #{prod_stock},
+   	   	   prod_sales_volume = #{prod_sales_volume} 
+   	   	   where prod_no=#{prod_no}
    	</update>
 	
 	<!-- 결제 내역 상세 페이지 -->
 	<select id="user_orderList_detail" resultType="hashmap">
-		select distinct
+		select
 			   oh.*,
 			   p.prod_img_path,
 			   p.prod_price,

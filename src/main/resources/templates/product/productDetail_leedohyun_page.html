@@ -37,7 +37,7 @@
 						</a>
 					</li>
 					<li th:if="${session.user_id == null}"  class="header_middle_user">
-						<a href="/admin/admin_join">
+						<a href="/user/user_join">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN"
 								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
 							<!-- <span>JOIN</span> -->
@@ -53,7 +53,7 @@
 					<li th:if="${session.user_id != null}"  class="header_middle_user">
 						<a href="/user/cart">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART"
-								src="/img/shopping_cart.png">
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/shopping_cart.png">
 							<!-- <span>CART</span> -->
 							<!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
 						</a>
@@ -66,7 +66,7 @@
     	<div class="header1">
     		<div class="header1-bottom">
 	    		<div>
-		    		<img style="width:100%; height:800px; object-fit:cover" src="/img/dohyun_main.jpg"/>
+		    		<img style="width:100%; height:800px; object-fit:cover" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/dohyun_main.jpg"/>
 	    		</div>
 	    		<div class="main_content_box">
 	    			<div class="main_content_img">
@@ -146,8 +146,8 @@
 	    				<div class="aside_dohyun_goods_box4">
 			    			
 			    			<span>PRODUCT</span>
-			    			<p id="down_img"><img src="/img/down.png"></p>
-			    			<p id="up_img"><img src="/img/up.png"></p>
+			    			<p id="down_img"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/down.png"></p>
+			    			<p id="up_img"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/up.png"></p>
 			  
 			    			<!-- <a href="https://www.flaticon.com/free-icons/down-arrow" title="down arrow icons">Down arrow icons created by Arkinasi - Flaticon</a> -->
 			    			<!-- <a href="https://www.flaticon.com/free-icons/swipe-up" title="swipe up icons">Swipe up icons created by artfath - Flaticon</a> -->
@@ -194,7 +194,7 @@
 				<ul class="dohyun_allProduct_box" >
 					<a th:each="dohyun: ${dohyun_list}" th:href="@{/product/detail_page(prod_no = ${dohyun.prod_no})}" >
 						<li class="dohyun_allproduct">
-							<img style="width: 230px; height: 230px; text-align: center" name="prod_img_path" th:src="@{${dohyun.prod_img_path}}"/>
+							<img style="width: 230px; height: 230px; object-fit:cover; text-align: center" name="prod_img_path" th:src="@{${dohyun.prod_img_path}}"/>
 							<div class="dohyun_allproduct_name">
 								<span name="prod_name" >[[${dohyun.prod_name}]]</span>
 							</div>
