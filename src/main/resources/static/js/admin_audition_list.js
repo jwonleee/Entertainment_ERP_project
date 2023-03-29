@@ -88,7 +88,7 @@ $(".showModal").click(function (e) {
 
         str += '<div class="mb-3 vid-outer">';
           str += '<label for="audition_cv_file3" class="form-label">영상</label>';
-          str += '<video class="audVidFile" controls ></video>';
+          str += '<video class="audVidFile" controls muted="false" ></video>';
         str += '</div>';
         
       str += '<div class="modal-body-inner">';
@@ -163,7 +163,7 @@ $(".failBtn").click(function(e) {
 });
 
 // datepicker
-$( function() {
+$(function() {
   $( "#datepicker_start" ).datepicker({
     showOn: "button",
     dateFormat: "yy-mm-dd",
@@ -178,4 +178,11 @@ $( function() {
     buttonImageOnly: true,
     buttonText: "Select date"
   });
-} );
+});
+
+//검색 폼 내, 초기화 버튼 클릭 시, 검색 타입 및 내용 초기화
+$('.resetSearchBtn').click(function() {
+  $(".searchType").val("name");
+  $(".searchValue").val("");
+  $(".dateSearch > input").val("");
+});

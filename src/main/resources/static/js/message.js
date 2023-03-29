@@ -25,7 +25,7 @@ $(document).on("click", "#sendMsgBtn", function (e) {
     e.preventDefault();
     return;
 
-  } else if(msgReceiverId == "Administrator" || msgReceiverId == "administrator") {
+  } else if(msgReceiverId == "Administrator" || msgReceiverId == "administrator" || msgReceiverId == "master" || msgReceiverId == "Master") {
     alert("사이트 관리자에게는 쪽지를 보낼 수 없습니다.\n아이디를 다시 입력하세요.");
     $("#msgReceiverId").focus();
     e.preventDefault();
