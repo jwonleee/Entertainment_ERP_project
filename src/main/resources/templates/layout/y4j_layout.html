@@ -62,16 +62,16 @@
                     <a href="/admin/admin_home"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/y4j_logo_black.png"></a>
                   </div>
                   <ul class="main-header-inner main-header-inner2">
-                    <li th:if="${session.admin_id != null}" class="header_middle_user adminLogout">
-                      <a href="/admin/adminLogoutForm">
-                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png">
-                        <!-- <span>LOGIN</span> -->
-                      </a>
-                    </li>
                     <li th:if="${session.admin_id != null}" class="header_middle_user adminMsg">
                       <a href="/admin/admin_msg">
                         <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MESSAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png">
-                        <!-- <span>MY PAGE</span> -->
+                        <!-- <span>MESSAGE</span> -->
+                      </a>
+                    </li>
+                    <li th:if="${session.admin_id != null}" class="header_middle_user adminLogout">
+                      <a href="/admin/adminLogoutForm">
+                        <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png">
+                        <!-- <span>LOGOUT</span> -->
                       </a>
                     </li>
                     <!-- <li class="header_middle_user adminJoin">
@@ -188,7 +188,6 @@
             <div class="aside_menu_bar ">
               <ul class="slide">
                 <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 27px; height: 27px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/scheduleTab.png"/></li>
-                <!-- <a href="https://www.flaticon.com/kr/free-icons/" title="달력 아이콘">달력 아이콘  제작자: Freepik - Flaticon</a> -->
                 <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">일정 관리</span></li>
                 <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 0" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
                 <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 2px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
@@ -202,7 +201,6 @@
             <div class="aside_menu_bar ">
               <ul class="slide">
                 <li style="margin-left: 35px; margin-right: 10px;"><img style="width: 28px; height: 28px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/auditionTab.png"/></li>
-                <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="소프트웨어 어플리케이션 아이콘">소프트웨어 어플리케이션 아이콘  제작자: NajmunNahar - Flaticon</a> -->
                 <li style="margin-left: 20px; padding-bottom: 4px"><span style="margin: 0;">오디션 관리</span></li>
                 <li id="slide_down_img"><img style=" width: 29px; height: 29px; margin-right: 7px" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowDown.png"/></li>
                 <li id="slide_up_img"><img style="width: 12px; height: 12px; margin-right: 9px;" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/arrowUp.png"/></li>
@@ -335,28 +333,7 @@
     <script th:inline="javascript">
       var menu = JSON.parse('[[${uri}]]');
 
-      //a태그
-      $('a[href*=' + '[[${uri}]]' + ']').addClass("on");
-      //.sub_menu -> li
-      $('a[href*=' + '[[${uri}]]' + ']').parent().addClass("on");
-      //.smt -> ul(.slide)
-      $('a[href*=' + '[[${uri}]]' + ']').parent().parent().addClass("on");
-
-      if($('a[href*=' + '[[${uri}]]' + ']').parent().parent().hasClass("mngBar3")) {
-
-      } else {
-
-      }
-
-      // if ($('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").prev().hasClass("mngBar3")) {
-      //   $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "90px");
-      // } else {
-      //   $('a[href*=' + '[[${uri}]]' + ']').closest(".sub_menu").css("height", "65px");
-      // }
-
       $('.sideMenuTitle').html($('a[href*=' + '[[${uri}]]' + ']').parent().parent().parent().children(0).find("span").html());
-      // console.log($('a[href*=' + '[[${uri}]]' + ']').parent().parent().parent().first().find("span").html());
-      // console.log($('a[href*=' + '[[${uri}]]' + ']').parent().parent().html());
       $('.sideMenuContent').html($('a[href*=' + '[[${uri}]]' + ']').html());
     </script>
     <script>

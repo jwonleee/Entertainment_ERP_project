@@ -21,8 +21,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+
+import com.y4j.final_project.admin.service.AdminService;
+import com.y4j.final_project.command.AdminVO;
+import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
+import com.y4j.final_project.command.MessageVO;
 import com.y4j.final_project.command.OrderHistoryVO;
 import com.y4j.final_project.command.UserVO;
 import com.y4j.final_project.message.service.MessageService;
@@ -37,6 +42,9 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
+	
+	@Autowired
+	private AdminService adminService;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -333,6 +341,112 @@ public class UserController {
 		}
 			
 		return "user/user_msg";
+	}
+	
+	@PostMapping("/sendMsgForm")
+	public String sendMsgForm(MessageVO vo, RedirectAttributes ra) {
+		
+		MessageVO msgVO = null;
+		
+		if(vo.getMsg_writer_type().equals("user") && vo.getMsg_receiver_type().equals("user")) {
+			UserVO writerVO = userService.getUserInfo2(vo.getMsg_writer_id());
+			UserVO receiverVO = userService.getUserInfo2(vo.getMsg_receiver_id());
+			
+			try {
+				msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getUser_no())
+						  .msg_writer_id(writerVO.getUser_id())
+						  .msg_writer_type(vo.getMsg_writer_type())
+						  .msg_writer_name(writerVO.getUser_name())
+						  .msg_receiver_no(receiverVO.getUser_no())
+						  .msg_receiver_id(receiverVO.getUser_id())
+						  .msg_receiver_type(vo.getMsg_receiver_type())
+						  .msg_receiver_name(receiverVO.getUser_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+				
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "쪽지 발송에 실패했습니다.");
+				return "redirect:/user/user_msg";
+			}
+			
+		} else if(vo.getMsg_writer_type().equals("user") && vo.getMsg_receiver_type().equals("admin")) {
+			UserVO writerVO = userService.getUserInfo2(vo.getMsg_writer_id());
+			AdminVO receiverVO = adminService.getAdminInfo2(vo.getMsg_receiver_id());
+			
+			try {
+				msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getUser_no())
+						  .msg_writer_id(writerVO.getUser_id())
+						  .msg_writer_type(vo.getMsg_writer_type())
+						  .msg_writer_name(writerVO.getUser_name())
+						  .msg_receiver_no(receiverVO.getAdmin_no())
+						  .msg_receiver_id(receiverVO.getAdmin_id())
+						  .msg_receiver_type(vo.getMsg_receiver_type())
+						  .msg_receiver_name(receiverVO.getAdmin_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+				
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "쪽지 발송에 실패했습니다.");
+				return "redirect:/user/user_msg";
+			}
+			
+		} else if(vo.getMsg_writer_type().equals("admin") && vo.getMsg_receiver_type().equals("user")) {
+			AdminVO writerVO = adminService.getAdminInfo2(vo.getMsg_writer_id());
+			UserVO receiverVO = userService.getUserInfo2(vo.getMsg_receiver_id());
+			
+			try {
+				msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getAdmin_no())
+						  .msg_writer_id(writerVO.getAdmin_id())
+						  .msg_writer_type(vo.getMsg_writer_type())
+						  .msg_writer_name(writerVO.getAdmin_name())
+						  .msg_receiver_no(receiverVO.getUser_no())
+						  .msg_receiver_id(receiverVO.getUser_id())
+						  .msg_receiver_type(vo.getMsg_receiver_type())
+						  .msg_receiver_name(receiverVO.getUser_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+				
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "쪽지 발송에 실패했습니다.");
+				return "redirect:/user/user_msg";
+			}
+			
+		} else if(vo.getMsg_writer_type().equals("admin") && vo.getMsg_receiver_type().equals("admin")) {
+			AdminVO writerVO = adminService.getAdminInfo2(vo.getMsg_writer_id());
+			AdminVO receiverVO = adminService.getAdminInfo2(vo.getMsg_receiver_id());
+			
+			try {
+				msgVO = MessageVO.builder()
+						  .msg_writer_no(writerVO.getAdmin_no())
+						  .msg_writer_id(writerVO.getAdmin_id())
+						  .msg_writer_type(vo.getMsg_writer_type())
+						  .msg_writer_name(writerVO.getAdmin_name())
+						  .msg_receiver_no(receiverVO.getAdmin_no())
+						  .msg_receiver_id(receiverVO.getAdmin_id())
+						  .msg_receiver_type(vo.getMsg_receiver_type())
+						  .msg_receiver_name(receiverVO.getAdmin_name())
+						  .msg_title(vo.getMsg_title())
+						  .msg_content(vo.getMsg_content())
+						  .build();
+				
+			} catch (Exception e) {
+				ra.addFlashAttribute("msg", "쪽지 발송에 실패했습니다.");
+				return "redirect:/user/user_msg";
+			}
+			
+		}
+		
+		int result = messageService.sendMsg(msgVO);
+		String msg = (result == 1) ? "정상적으로 발송 처리되었습니다." : "쪽지 발송에 실패했습니다.";
+		ra.addFlashAttribute("msg", msg);
+		
+		return "redirect:/user/user_msg";
 	}
 
 }
