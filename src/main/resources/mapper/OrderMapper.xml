@@ -305,7 +305,7 @@
   		update order_history set order_state=#{order_state} where order_no=#{order_no};
   	</update>
   	
- <!--  	<insert id="dummyhistory">
+ <!-- <insert id="dummyhistory">
   		insert into order_history(order_addressee
   								,order_addressee_contact
   								,order_date

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -37,7 +36,7 @@ public class OrderController {
 
 	//목록화면
 	@GetMapping("/orderList")
-	public String orderList(HttpSession session, Model model, Criteria cri) {
+	public String orderList(Model model, Criteria cri) {
 		
 		//발주리스트 가져오기
 		ArrayList<Admin_orderVO> orderList=orderService.getOrderList(cri);
@@ -97,7 +96,7 @@ public class OrderController {
 	//////////////////////////////////
 	//초기발주
 	@GetMapping("/orderReg")
-	public String orderReg(HttpSession session) {
+	public String orderReg() {
 		return "order/orderReg";
 	}
 
