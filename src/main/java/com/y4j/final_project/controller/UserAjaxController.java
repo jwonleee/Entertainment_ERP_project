@@ -45,6 +45,8 @@ public class UserAjaxController {
 		 */
       
       int result = userService.addCart(vo);
+      String success = result == 1 ? "장바구니 담기에 성공하였습니다." : "장바구니 담기에 실패하였습니다.";
+      ra.addFlashAttribute("success", success);
       return "user/cart";
    }
 

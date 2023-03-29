@@ -127,16 +127,10 @@ public class productController {
 		}
 		
 		
-		
+	
 		int result = productService.user_order(vo);
 		String msg = result == 1 ? "결제가 정상적으로 완료되었습니다" : "결제에 실패하였습니다";
 		ra.addFlashAttribute("msg", msg);
-		if(result == 1) {
-			//판매량 감소
-			int stock = productService.getProdStock();
-			String result1 = stock == 1 ? "성공" : "실패";
-			System.out.println(result1);
-		}
 		
 		
 		return "redirect:/product/user_orderList";
