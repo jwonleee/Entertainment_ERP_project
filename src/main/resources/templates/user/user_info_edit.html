@@ -7,39 +7,8 @@
 <title>Edit Info</title>
 
 <link rel="stylesheet" href="/css/user_info_edit.css">
-
-<!-- 카카오 우편번호 API -->
+<!-- 카카오 우편번호 API  -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-	function kakaopost() {
-		new daum.Postcode({
-			oncomplete : function(data) {
-				document.querySelector("#zipcode").value = data.zonecode;
-				document.querySelector("#address").value = data.address
-			}
-		}).open();
-	}
-</script>
-
-<!-- 상단, 하단 버튼 jQuery -->
-<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
-<script>
-	$(function() {
-		$(".top_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : 0
-			}, 400);
-			return false;
-		});
-
-		$(".bottom_btn").click(function() {
-			$('html, body').animate({
-				scrollTop : document.body.scrollHeight
-			}, 400);
-			return false;
-		});
-	});
-</script>
 </head>
 
 <th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
@@ -114,7 +83,7 @@
 								<strong>아이디 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 							</div>
 							<div class="edit_info_content right">
-								<input type="text" name="user_id" class="input id" minlength="4" maxlength="16" pattern="^([a-z0-9_]){4,16}$" th:value="${session.vo.user_id}" readonly>
+								<input type="text" name="user_id" class="input id" minlength="4" maxlength="16" pattern="^([a-z0-9_]){4,16}$" th:value="${session.user_id}" readonly>
 							</div>
 
 							<!-- 비밀번호 -->
@@ -159,9 +128,9 @@
 									<input type="text" value="010" readonly name="start_num" class="region_num left" style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
 
 									<span> - </span>
-									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4" th:value="${session.vo.user_contact.substring(0,4)}" required>
+									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(4,8)}" required>
 									<span> - </span>
-									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" maxlength="4" th:value="${session.vo.user_contact.substring(5,9)}" required>
+									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(9,13)}" required>
 									<span style="color: red; font-size: 12px;">[[${valid_user_contact}]]</span>
 								</div>
 							</div>
@@ -173,7 +142,7 @@
 									<strong>주소 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 								</div>
 								<div class="edit_info_content right address" style="margin-bottom: 50px;">
-									<input type="text" name="zipcode" id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" readonly>
+									<input type="text"  name="user_zipcode"  id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" readonly>
 									<input type="button" value="우편번호찾기" id="zipcode" name="user_address" class="address_btn" onclick="kakaopost()" required>
 									<br />
 									<input type="text" name="user_address" id="address" size="70" th:value="${session.vo.user_address}">
@@ -233,34 +202,9 @@
 				</div>
 			</form>
 
-			<!-- 상단, 하단으로 가는 버튼 -->
-			<div class="arrow_btn">
-				<a href="#" class="top_btn">
-					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_top.png" alt="상단버튼">
-				</a>
-				<br />
-				<a href="#" class="bottom_btn">
-					<img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/go_to_bottom.png" alt="하단버튼">
-				</a>
-			</div>
+	
 	</div>
 		</div>
 </th:block>
-
-<!-- /* 비밀번호 일치 확인 */ -->
-<script>
-	var pw = document.getElementById("pw")
-	var pw2 = document.getElementById("pw2");
-
-	function validatePassword() {
-		if (pw.value != pw2.value) {
-			pw2.setCustomValidity("비밀번호가 일치하지 않습니다");
-		} else {
-			pw2.setCustomValidity(''); // 오류가 없으면 메시지를 빈 문자열로 설정해야한다. 오류 메시지가 비어 있지 않은 한 양식은 유효성 검사를 통과하지 않고 제출되지 않는다.
-		}
-	}
-	pw.onchange = validatePassword;
-	pw2.onkeyup = validatePassword;
-</script>
 
 </html>

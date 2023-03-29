@@ -21,7 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.y4j.final_project.command.AlbumCartVO;
 import com.y4j.final_project.command.CartListVO1;
 import com.y4j.final_project.command.CartVO;
 import com.y4j.final_project.command.OrderHistoryVO;
@@ -77,17 +76,16 @@ public class UserController {
 				}
 			}
 			model.addAttribute("vo", null);
-
+			/* ra.addFlashAttribute("message", "회원가입에 실패하였습니다"); */
 			return "user/user_join"; // 실패하면 원래 화면으로
 		}
-
 		// 비밀번호 암호화
 		String pw = passwordEncoder.encode(vo.getUser_pw());
 		vo.setUser_pw(pw);
-
 		userService.registUser(vo);
 		model.addAttribute("vo", vo); // 사용자가 작성한 값을 화면으로 보내기(vo에 사용자가 작성한 값 들어있음)
-
+		/* ra.addFlashAttribute("message", "반갑습니다 ${user_id}님!"); */
+		
 		return "user/user_login";
 	}
 
@@ -155,7 +153,7 @@ public class UserController {
 
 	@PostMapping("/userLoginForm")
 	public String userLoginForm(@RequestParam("user_id") String user_id, @RequestParam("user_pw") String user_pw,
-			UserVO vo, HttpServletRequest request, Model model) {
+			UserVO vo, HttpServletRequest request, Model model, RedirectAttributes ra) {
 
 		int count = userService.idCheck(user_id); // db에 저장되어있는 아이디
 		String saved_pw = userService.login(user_id); // db에 저장되어있는 비밀번호
@@ -176,7 +174,8 @@ public class UserController {
 			return "user/mypage";
 		} else {
 			session.setAttribute("vo", null);
-			// model.addAttribute("vo", null);
+			//model.addAttribute("vo",vo);
+			
 			return "user/user_login";
 		}
 	}

@@ -1,4 +1,4 @@
-
+/* 아이디 저장 쿠키	*/
 $(function(){
  getid();
   $("#save_id").click(function(){
@@ -45,3 +45,6 @@ $(function(){
    $("#save_id").prop("checked",true);
   }
  } //getid()
+ 
+
+ 
