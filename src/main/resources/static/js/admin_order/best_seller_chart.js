@@ -36,7 +36,7 @@ $(document).ready(() => {
     // 상품차트
     const pctx = $("#prodChart");
     const prodChart = new Chart(pctx, {
-        type: 'bar',//차트 종류를 지정. bar/bubble/pie/doughnut/line 등
+        type: 'horizontalBar',//차트 종류를 지정. bar/bubble/pie/doughnut/line 등
         data: {//차트 데이터를 넣는다. labels는 축 제목, datasets는 각 축에 들어갈 데이터, 색이나 두께 같은 꾸밈 요소지정
             labels: plabel,
             datasets: [{
@@ -70,18 +70,16 @@ $(document).ready(() => {
             }]
         },
         options: {//차트 모양 꾸미기
-           
-            scales: {
-				
-                y: {
-                    beginAtZero: true
-                }
-            }
+           scales: {
+                	y: {
+                   	 beginAtZero: true
+                	}
+           	},
         }
     });
 
 
-    //////////////////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////////////
 
 
     //앨범
