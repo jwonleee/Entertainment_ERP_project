@@ -27,7 +27,7 @@
 							<div style="display: flex; justify-content: space-around;">
 								<input type="checkbox" class="check_btn" id="check_all" onclick="checkAll()" checked >
 								<span class="title_code"  style="margin-right:70px;">상품번호</span> 
-								<span class="title_img" style="margin-right:70px;">이미지</span> <span class="title_info" >상품정보</span> <span class="title_quantity" style="margin-left: 80px;">수량</span> <span class="title_price">상품구매금액</span> <span class="title_fee">배송비</span> <span class="title_select" style="margin-left: -15px;">선택</span>
+								<span class="title_img" style="margin-right:70px;">이미지</span> <span class="title_info" >상품정보</span> <span class="title_quantity" style="margin-left: 80px;">수량</span> <span class="title_price">상품구매금액</span> <span class="title_fee" style="margin-left:18px;">배송비</span> <span class="title_select" style="margin-left: -15px;">선택</span>
 							</div>
 						</div>
 
@@ -36,7 +36,7 @@
 
 							<div class="cart_content_box" style="margin: 0 auto;">
 
-								<div class="cart_content_innerbox " style="display:flex; height: inherit;">
+								<div class="cart_content_innerbox " style="display:flex; justify-content: space-between; height: inherit;">
 									<!-- 개별 상품 체크박스 -->
 									<div class="product_check left" style="margin-left: 10px;">
 										<input type="checkbox" name="check" class="check" onclick="checkOne()" checked style="height: 18.4px;" th:value="${cvo1.cart_no}" data-cart_no="${cvo1.cart_no}">
@@ -49,7 +49,7 @@
 
 									<!-- 상품 이미지 -->
 									<div class="product_img left">
-										<img th:src="${cvo1.cart_prod_img_path}" alt="박명수짤" name="cart_prod_img_path" style="width: 100px; height: 100px;">
+										<img th:src="${cvo1.cart_prod_img_path}" alt="박명수짤" name="cart_prod_img_path" style="width: 120px; height: 100px;">
 									</div>
 
 									<!-- 상품 정보 -->
