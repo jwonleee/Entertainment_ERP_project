@@ -7,10 +7,11 @@
 		
 			<h2>관리자 페이지입니다.</h2>
 			
-			<h3 style="margin-top: 30px">사이드 메뉴바에서 담당하는 분야를 클릭하세요.</h3>
+			<h3 style="margin-top: 30px">사이드 메뉴에서 담당하는 분야를 클릭하세요.</h3>
 			
-			<p th:if="${session.admin_id} != null">아이디 : [[${session.admin_id}]]</p>
-			<p th:if="${session.admin_id != null}">관리자 유형 : [[${session.admin_type}]]</p>
+			<h5 th:if="${session.admin_id} != null" style="margin-top: 50px">아이디 : [[${session.admin_id}]]</h5>
+			<h5 th:if="${session.admin_id != null}">관리자 유형 : [[${session.admin_type}]]</h5>
+
 		</div>
 	</div>
 

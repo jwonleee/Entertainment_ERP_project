@@ -111,6 +111,9 @@ header h3 {
     overflow: hidden;
     border-bottom: 0.5px solid #d7d7d7;
 }
+.btn.joinBtn {
+    margin-top: 10px;
+}
 
 .btn button {
     width: 100%;

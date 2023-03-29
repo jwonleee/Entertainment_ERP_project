@@ -60,7 +60,7 @@
 			<![CDATA[ and audition_cv_regdate >= #{startDate} ]]>
 		</if>
 		<if test="endDate != null and endDate != '' ">
-      		<![CDATA[ and audition_cv_regdate <= date_add(#{endDate}, interval 1 day) ]]>
+      		<![CDATA[ and audition_cv_regdate < date_add(#{endDate}, interval 1 day) ]]>
 		</if>
 		
 		order by audition_cv_no desc limit #{pageStart}, #{amount}

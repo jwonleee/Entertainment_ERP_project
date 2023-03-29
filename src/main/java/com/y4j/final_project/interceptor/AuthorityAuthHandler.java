@@ -12,18 +12,15 @@ public class AuthorityAuthHandler implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		System.out.println("AuthorityAuthHandler - preHandle Execute!");
-		
 		HttpSession session = request.getSession();
 		String admin_type = (String)session.getAttribute("admin_type");
 		
-		if(!admin_type.equals("master")) {
-//			response.sendRedirect(request.getContextPath() + "/admin/accessDenied");
-			response.sendRedirect(request.getContextPath() + "/admin/admin_home");
-			return false;  //컨트롤러 실행(X)
+		if(admin_type.equals("master")) {
+			return true;  //컨트롤러 실행(O)
 			
 		} else {
-			return true;  //컨트롤러 실행(O)
+			response.sendRedirect(request.getContextPath() + "/admin/admin_hold");
+			return false;  //컨트롤러 실행(X)
 		}
 	}
 	
