@@ -1,10 +1,12 @@
 package com.y4j.final_project;import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.y4j.final_project.admin.service.AdminMapper;
 import com.y4j.final_project.authority.service.AuthorityMapper;
 import com.y4j.final_project.aws.service.AwsS3Service;
+import com.y4j.final_project.command.AdminVO;
 import com.y4j.final_project.command.MessageVO;
 import com.y4j.final_project.message.service.MessageMapper;
 
@@ -22,6 +24,9 @@ public class TestCode {
 	
 	@Autowired
 	private MessageMapper messageMapper;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 
 	//	@Test
@@ -30,20 +35,22 @@ public class TestCode {
 	//		System.out.println(imgPath);
 	//	}
 
-	//	@Test
-	//	public void adminTestData() {
-	//		for(int i=1; i<=120; i++) {
-	//			AdminVO vo = AdminVO.builder().admin_id("test_admin_id"+(6+i))
-	//										  .admin_pw("testadminpw"+(6+i))
-	//										  .admin_name("관리자"+(6+i))
-	//										  .admin_contact("010-1000"+(1006+i))
-	//										  .admin_address("주소"+(6+i))
-	//										  .admin_gender(i % 2 == 0 ? "M" : "F")
-	//										  .admin_email("test_admin_email" + (6+i) + "@y4j.com")
-	//										  .build();
-	//			adminMapper.registAdmin(vo);
-	//		}
-	//	}
+//		@Test
+//		public void adminTestData() {
+//			for(int i=1; i<=90; i++) {
+//				AdminVO vo = AdminVO.builder().admin_id("test_admin_id"+(6+i))
+//											  .admin_pw(passwordEncoder.encode("testadminpw"+(6+i)))
+//											  .admin_name("관리자"+(6+i))
+//											  .admin_type("none")
+//											  .ent_name("")
+//											  .admin_contact("010-1000-"+(1006+i))
+//											  .admin_address("주소"+(6+i))
+//											  .admin_gender(i % 2 == 0 ? "M" : "F")
+//											  .admin_email("test_admin_email" + (6+i) + "@y4j.com")
+//											  .build();
+//				adminMapper.registAdmin(vo);
+//			}
+//		}
 
 	//	@Test
 	//	public void AuthorityTestData() {
