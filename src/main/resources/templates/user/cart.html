@@ -151,10 +151,18 @@
 		//console.log($(".total_price"))
 		$(".total_price").html(sum+"원");
    </script>
-
 		</div>
+		
 	</th:block>
 </body>
+
+		<!-- msg -->
+	<script th:inline="javascript">
+		var success = JSON.parse('[[${success}]]');
+		if(success != null) {
+			alert(success);
+		}
+	</script>
 <script src="/js/cart.js"></script>
 
 
