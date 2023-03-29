@@ -70,9 +70,16 @@ public class ProductServiceImpl implements ProductService {
 	
 	//결제 페이지 -> 결제 내역 페이지
 	@Override
-	public ArrayList<OrderHistoryVO> user_orderList( Criteria cri,  OrderHistoryVO vo) {
-		return productMapper.user_orderList(cri, vo);
+	public ArrayList<OrderHistoryVO> user_orderList( Criteria cri,  String user_id) {
+		return productMapper.user_orderList(cri, user_id);
 	}
+	
+	@Override
+	public int getProdStock() {
+		int result1 = productMapper.getProdStock();
+		return result1;
+	}
+
 	
 	
 	@Override
@@ -112,6 +119,7 @@ public class ProductServiceImpl implements ProductService {
 		return productMapper.productList_soobin(cri);
 	}
 
+	
 	
 
 

@@ -62,6 +62,9 @@ $("#buyButton").click(function(){
 //장바구니 버튼 눌렀을 때 데이터 보내기
 $("#cartButton").click(function(){
 	
+
+	
+	
 	var cart_prod_name = $("#prod_name_rightnow").val();
 	var cart_prod_img_path = $("#prod_img_cart").val();
 	var cart_prod_cnt = $("#decide_cnt").val();
@@ -93,8 +96,13 @@ $("#cartButton").click(function(){
 		type:'post',
 		data: data,
 		success:function(){
-		   console.log("성공적!!");
-
+			if($("#detail_user_id").val()!= null){
+			  location.replace("/user/cart");
+			  alert("장바구니 담기에 성공하였습니다.");
+				
+			}else{
+				alert("회원이 아닐 경우 이용이 불가합니다");
+			}
 		}, error: function(){
 		
 			

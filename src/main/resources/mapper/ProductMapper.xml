@@ -99,7 +99,7 @@
 	   		order_total_price,
 	   		order_state
 	   	from order_history
-	   	where user_id = #{vo.user_id}<!-- 로그인 아이디 세션 값 기준 -->
+	   	where user_id = #{user_id}<!-- 로그인 아이디 세션 값 기준 -->
 	   	<if test="cri.searchName == '오늘' and cri.searchName != 'null'" >
 	   		and order_date = DATE_FORMAT(now(), '%Y-%m-%d')
 	   	</if>
@@ -123,6 +123,13 @@
    		select count(*) from order_history
    		where user_id = #{user_id}
    	</select>
+   	
+   	<update id="getProdStock">
+   	   update product 
+   	   set prod_stock = prod_stock - 1,
+   	   	   prod_sales_volume = prod_sales_volume + 1 
+   	   	   where prod_no=#{prod_no};
+   	</update>
 	
 	<!-- 결제 내역 상세 페이지 -->
 	<select id="user_orderList_detail" resultType="hashmap">

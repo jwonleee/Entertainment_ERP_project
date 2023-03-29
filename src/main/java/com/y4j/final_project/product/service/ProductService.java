@@ -28,8 +28,9 @@ public interface ProductService {
 	public int user_order(OrderHistoryVO vo);
 	
 	//결제 페이지 -> 결제 내역 페이지
-	public ArrayList<OrderHistoryVO> user_orderList(Criteria cri,  OrderHistoryVO vo);
+	public ArrayList<OrderHistoryVO> user_orderList(Criteria cri,  String user_id);
 	public int getProdOrderTotal(String user_id); 
+	public int getProdStock();
 	
 	//결제 내역 상세 페이지
 	public ArrayList<OrderHistoryVO> user_orderList_detail(String order_prod_no);
