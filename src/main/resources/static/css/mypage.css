@@ -20,7 +20,7 @@ a:hover{
 
 .mypage_innerbox{
     margin:0 auto; 
-    padding: 40px; 
+/*     padding: 100px 80px;  */
     /* border: 1px solid #d4cdcd; */ 
     width: 70%;
 }
@@ -48,15 +48,17 @@ a:hover{
     border-bottom: 0.5px solid #817e7e; 
     line-height: 25px;
 }
+.user_grade > h3{
+	font-size:25px;
+	font-weight:600;
+}
 .user_simple_data .user_grade > p{
     margin-bottom: 40px;
 }
-
 /* 페이지 연결 */
 .connect_page{
     display: inline;
     width: 100%;
-    
     text-align: center;
     height: 300px;
 }
@@ -66,8 +68,8 @@ a:hover{
 }
 .connect_page_content .content_box{
     
-    width: 20%;
-    height: 180px;
+    width: 32%;
+    height: 280px;
     margin: 0 20px;
     padding: 40px;
     border: 0.5px solid #d6d5d5;
@@ -94,5 +96,5 @@ a:hover{
 }
 .content_box .content_detail{
     color: #8f8f8f;
-    font-size: 11.5px;
+    font-size: 12px;
 }

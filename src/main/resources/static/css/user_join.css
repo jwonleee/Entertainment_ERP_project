@@ -13,8 +13,7 @@ button {
 
 /*=============== 회원가입 부분 ===============*/
 .join_section {
-    margin-top: 200px;
-    margin-bottom: 100px;
+    margin: 0 auto;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* text-align: center; */
@@ -22,6 +21,7 @@ button {
 }
 
 .join_section .join_section_title {
+	margin-top: 80px;
     font-size: 40px;
     height: 80px;
     line-height: 80px;
@@ -36,9 +36,10 @@ button {
 }
 
 .join_info_box {
+	 margin: 0 auto;
     padding: 30px;
     /* margin: 0 auto; */
-    width: 50%;
+    width: 45%;
     border: 0.5px solid #d7d7d7;
     border-radius: 8px 8px 0 0;
 }
@@ -114,7 +115,7 @@ button {
 
 /* 생년월일 */
 .join_info_content>.birth {
-    width: 28.7%;
+    width: 32.5%;
     text-align: center;
     padding: 5.2px;
     border: none;
@@ -148,7 +149,7 @@ button {
 
 /* 휴대전화 */
 .join_info_content > .region_num {
-    width: 24%;
+    width: 26%;
    border: none; 
    border-bottom: 0.5px solid #dfdfdf; 
    padding-bottom: 5px;
@@ -160,7 +161,7 @@ button {
 }
 
 .join_info_content>.phone_num {
-    width: 33.3333%;
+    width: 30%;
     text-align: center;
     margin-left: 5px;
     padding: 5px;
@@ -255,13 +256,10 @@ button {
     backface-visibility: hidden;
 }
 
-
-
 /* 약관 동의 부분 */
 .join_contract {
     text-align: left;
 }
-
 .join_contract h3 {
     color: #474c54;
     font-size: 16px;
@@ -269,7 +267,6 @@ button {
     height: 55px;
     line-height: 55px;
 }
-
 .join_contract .join_contract_title {
     color: #2d2f43;
     font-size: 17px;
@@ -292,7 +289,6 @@ button {
 }
 .contract_content >  h3{
 	margin:0;
-	
 }
 .contract_content h3>span {
     font-weight: 600;
@@ -321,6 +317,7 @@ button {
 
 /* 가입버튼, 취소버튼 */
 .join_btn {
+	margin-bottom:80px;
     text-align: center;
     overflow: hidden;
 }
@@ -343,4 +340,41 @@ button {
     margin-right: 5px;
     border: none;
     background-color: #A593E0;
+}
+
+.arrow_btn{
+    scroll-behavior: smooth;
+    display: block;
+    text-align:center;
+    margin:auto;
+    width: 350px;
+    height:50px;
+    
+}
+.arrow_btn a >img {
+    width: 35px;
+    height: 35px;
+}
+.arrow_btn .top_btn{
+    position:fixed;
+    bottom:50px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    margin-bottom: 15px;
+    scroll-behavior: smooth;
+}
+.arrow_btn .bottom_btn{
+    position:fixed;
+    bottom:50px; 
+    right:60px; 
+    width:40px; 
+    height:40px; 
+    z-index:1; 
+    opacity:0.8;
+    cursor: pointer;
+    scroll-behavior: smooth;
 }

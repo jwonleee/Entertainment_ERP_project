@@ -29,11 +29,11 @@ public class UserVO {
 	private int user_no;
 	
 	@NotBlank (message = "아이디를 입력하세요")
-	@Pattern (regexp = "(?=.*[a-z0-9]).{4,16}", message = "아이디는 영소문자와 숫자로만 입력하세요")
+	@Pattern (regexp = "[a-zA-Z0-9]{4,16}", message = "아이디는 영소문자와 숫자로만 입력하세요")
 	private String user_id;
 	
 	@NotBlank(message = "비밀번호를 입력하세요")
-	@Pattern (regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 영문 숫자 특수문자를 모두 포함하여 8~16자로 입력하세요")
+	@Pattern (regexp="(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,16}", message = "비밀번호는 영문 숫자 특수문자를 모두 포함하여 8~16자로 입력하세요")
 	private String user_pw;
 	
 	@NotBlank (message = "이름을 입력하세요")
@@ -41,11 +41,10 @@ public class UserVO {
 	private String user_name;
 	
 	@NotBlank (message = "생년월일을 입력하세요")
-	@Pattern (regexp = "(?=.*[0-9]).{2,}", message = "생년월일을 정확히 입력하세요")
 	private String user_birth;
 	
 	@NotBlank (message = "휴대전화를 입력하세요")
-//	@Pattern (regexp = "(?=.*[0-9])", message = "휴대번호를 정확히 입력하세요")
+	//@Pattern (regexp = "[0-9]{4}", message = "휴대번호를 정확히 입력하세요")
 	private String user_contact;
 	
 	@NotBlank(message="우편번호를 입력하세요")
