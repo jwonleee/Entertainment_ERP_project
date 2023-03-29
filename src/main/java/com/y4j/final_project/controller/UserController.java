@@ -1,6 +1,8 @@
 package com.y4j.final_project.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -288,10 +290,22 @@ public class UserController {
 	
 	// 장바구니 리스트
 	@GetMapping("/cart")
-	public String cart(HttpSession session, Model model, UserVO vo, CartVO cvo, RedirectAttributes ra) {
+	public String cart(HttpSession session, Model model, UserVO vo1, CartVO cvo, RedirectAttributes ra, OrderHistoryVO vo) {
 
 		// 세션에 저장되어 있는 유저 아이디 가져오기
 		String user_id=(String)session.getAttribute("user_id");
+		
+	      //현재 날짜 기준으로 랜덤 주문번호 생성
+	      Date date = new Date();
+	      SimpleDateFormat sdft = new SimpleDateFormat("yyyyMMdd");
+	      String ran = sdft.format(date);
+	      
+	      for(int i=1; i<6;i++) {
+	         ran += (int)( Math.floor(Math.random() * i) + 1);   
+	      }
+	      System.out.println(ran);
+	      
+	      vo.setOrder_prod_no(ran); //주문 번호 생성
 		
 
 		// 장바구니 리스트 가져와서 화면에 보내기
