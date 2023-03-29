@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
+import com.y4j.final_project.interceptor.AdminAuthHandler;
 import com.y4j.final_project.interceptor.AuditionAuthHandler;
 import com.y4j.final_project.interceptor.AuthorityAuthHandler;
 import com.y4j.final_project.interceptor.MenuHandler;
@@ -48,6 +49,11 @@ public class WebConfig implements WebMvcConfigurer{
 		return new UserAuthHandler();
 	}
 	
+	@Bean
+	public AdminAuthHandler adminAuthHandler() {
+		return new AdminAuthHandler();
+	}
+	
 	
 	@Override
 	public void addInterceptors(InterceptorRegistry registry) {
@@ -78,10 +84,14 @@ public class WebConfig implements WebMvcConfigurer{
 
 		//일반 회원 접근 권한 처리
 		registry.addInterceptor(userAuthHandler())
-			.addPathPatterns("/user/mypage", "/user/user_msg", "/user/cart");
+			.addPathPatterns("/user/mypage", "/user/user_msg", "/user/cart", "/audition/");
 //			.addPathPatterns("/user/*")
 //			.excludePathPatterns("/user/login")
 //			.excludePathPatterns("/user/join");
+		
+		//관리자 페이지 접근 권한 처리
+		registry.addInterceptor(adminAuthHandler())
+		.addPathPatterns("/admin/admin_home", "/admin/admin_msg", "/admin/admin_hold");
 		
 		//권한 관리 탭 접근 권한 처리
 		registry.addInterceptor(authorityAuthHandler())
@@ -97,7 +107,8 @@ public class WebConfig implements WebMvcConfigurer{
 		
 		//오디션 관리 탭 접근 권한 처리
 		registry.addInterceptor(auditionAuthHandler())
-			.addPathPatterns("/audition/*");
+			.addPathPatterns("/audition/*")
+			.excludePathPatterns("/audition/audition_notice");
 		
 		
 	}
