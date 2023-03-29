@@ -32,8 +32,9 @@ public interface ProductMapper {
 	public int user_order(OrderHistoryVO vo);
 	
 	//결제 페이지 -> 결제 내역 페이지
-	public ArrayList<OrderHistoryVO> user_orderList( @Param("cri") Criteria cri, @Param("vo") OrderHistoryVO vo);
+	public ArrayList<OrderHistoryVO> user_orderList( @Param("cri") Criteria cri, @Param("user_id") String user_id);
 	public int getProdOrderTotal(String user_id);
+	public int getProdStock();
 	
 	//결제 내역 상세 페이지
 	public ArrayList<OrderHistoryVO> user_orderList_detail(@Param("order_prod_no") String order_prod_no);

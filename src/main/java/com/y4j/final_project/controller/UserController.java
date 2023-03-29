@@ -292,12 +292,9 @@ public class UserController {
 	public String cart(HttpSession session, Model model, UserVO vo, CartVO cvo, RedirectAttributes ra) {
 
 		// 세션에 저장되어 있는 유저 아이디 가져오기
-		   String user_id=(String)session.getId();
-		   vo.setUser_id(user_id);
+		String user_id=(String)session.getAttribute("user_id");
+		
 
-		if (user_id == null) {
-			return "redirect:/user/user_login";
-		}
 		// 장바구니 리스트 가져와서 화면에 보내기
 		List<CartVO> cvo1 = userService.getCartList(user_id);
 		model.addAttribute("cvo1", cvo1);

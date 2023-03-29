@@ -67,6 +67,8 @@ public class productController {
 		
 		ArrayList<ProductVO> detail =  productService.productDetailList(prod_no);
 		model.addAttribute("detail", detail);
+		
+		
 		return "product/productDetail_page";
 	}
 	
@@ -80,13 +82,13 @@ public class productController {
 		String user_id=(String)session.getAttribute("user_id");
 		vo1.setUser_id(user_id);
 		System.out.println(user_id);
-		
+		  
 		if(user_id == null) {
-			 String msg = "회원이 아닐 경우 이용이 불가합니다";
-			 ra.addFlashAttribute("msg", msg);
+			 String msg1 = "회원이 아닐 경우 이용이 불가합니다";
+			 ra.addFlashAttribute("msg1", msg1);
 			return "redirect:/user/user_login";
 		}
-	
+      
 
 		ArrayList<UserVO> user= productService.userOrderRightNow(user_id);
 		model.addAttribute("user", user);
@@ -125,6 +127,13 @@ public class productController {
 		int result = productService.user_order(vo);
 		String msg = result == 1 ? "결제가 정상적으로 완료되었습니다" : "결제에 실패하였습니다";
 		ra.addFlashAttribute("msg", msg);
+		
+		//판매량 감소
+		int stock = productService.getProdStock();
+		String result1 = stock == 1 ? "성공" : "실패";
+		System.out.println(result1);
+		
+		
 		return "redirect:/product/user_orderList";
 	}
 	
@@ -132,14 +141,15 @@ public class productController {
 	@GetMapping("/user_orderList")
 	public String user_orderList( Model model, OrderHistoryVO vo, Criteria cri, HttpSession session) {
 		
-		ArrayList<OrderHistoryVO> user_orderList =  productService.user_orderList(cri, vo);
-		
 		//회원 주문내역을 위한 세션 처리
 		String user_id=(String)session.getAttribute("user_id");
+		ArrayList<OrderHistoryVO> user_orderList =  productService.user_orderList(cri, user_id);
+		System.out.println(user_orderList);
 
 		model.addAttribute("cri", cri);
 		model.addAttribute("user_orderList", user_orderList);
 		
+	
 		//페이지네이션 처리
 		int total = productService.getProdOrderTotal(user_id);
 		PageVO pageVO = new PageVO(cri, total);
@@ -175,7 +185,7 @@ public class productController {
 	@GetMapping("/LEEDOHYUN")
 	public String dohyun(Model model, Criteria cri) {
 		
-		ArrayList<ProductVO> dohyun_list =  productService.productList_soobin(cri);
+		ArrayList<ProductVO> dohyun_list =  productService.productList_dohyun(cri);
 		model.addAttribute("dohyun_list", dohyun_list);
 	
 		

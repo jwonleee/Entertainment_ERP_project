@@ -22,32 +22,43 @@
     <div class="header1_user_bar_box">
 		<div class="header1_user_bar">
 		 	<ul class="main-header-inner main-header-inner2">
-		      <li class="header_middle_user">
-		        <a href="/user/user_login">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
-		          <!-- <span>LOGIN</span> -->
-		        </a>
-		      </li>
-		      <li class="header_middle_user">
-		        <a href="/admin/admin_join">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
-		          <!-- <span>JOIN</span> -->
-		        </a>
-		      </li>
-		      <li class="header_middle_user">
-		        <a href="/user/mypage">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
-		          <!-- <span>MY PAGE</span> -->
-		        </a>
-		      </li>
-		      <li class="header_middle_user">
-		        <a href="/user/cart">
-		          <img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART" src="/img/shopping_cart.png">
-		          <!-- <span>CART</span> -->
-		          <!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
-		        </a>
-		      </li>
-		   	</ul>
+					<li th:if="${session.user_id == null}" class="header_middle_user">
+						<a href="/user/user_login">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN"
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
+							<!-- <span>LOGIN</span> -->
+						</a>
+					</li>
+					<li th:if="${session.user_id != null}"  class="header_middle_user">
+						<a href="/user/userLogoutForm">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT"
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png">
+							<!-- <span>LOGOUT</span> -->
+						</a>
+					</li>
+					<li th:if="${session.user_id == null}"  class="header_middle_user">
+						<a href="/admin/admin_join">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN"
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
+							<!-- <span>JOIN</span> -->
+						</a>
+					</li>
+					<li th:if="${session.user_id != null}"  class="header_middle_user">
+						<a href="/user/mypage">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE"
+								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png">
+							<!-- <span>MY PAGE</span> -->
+						</a>
+					</li>
+					<li th:if="${session.user_id != null}"  class="header_middle_user">
+						<a href="/user/cart">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART"
+								src="/img/shopping_cart.png">
+							<!-- <span>CART</span> -->
+							<!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
+						</a>
+					</li>
+				</ul>
 		</div>
 	</div>
 
@@ -150,12 +161,11 @@
 		    				</div>
 		    				<div class="aside_newjeans_sidebar">
 		    					<input id="aside_newjeans_input1" type="hidden" name="searchName" th:value="${searchName}">
-				    			<ul class="aside_newjeans_sidebar_check">
-				    				<li>ALBUM</li>
-				    				<li>PHOTO CARD</li>
-				    				<li>CLOTH</li>
-				    				<li>PHONECASE</li>
-				    				
+				    			<ul class="aside_newjeans_sidebar_check" >
+				    				<li style="font-family: 'Nanum Gothic', sans-serif; font-weight: 700">앨범</li>
+				    				<li style="font-family: 'Nanum Gothic', sans-serif; font-weight: 700">포토카드</li>
+				    				<li style="font-family: 'Nanum Gothic', sans-serif; font-weight: 700">옷</li>
+				    				<li style="font-family: 'Nanum Gothic', sans-serif; font-weight: 700">케이스</li>	
 				    			</ul>
 		    				</div>
 		    			</div>
