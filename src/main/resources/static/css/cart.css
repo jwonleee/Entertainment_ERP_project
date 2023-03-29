@@ -20,16 +20,15 @@ a {
 .cart_innerbox .cart_content_title {
     width: 100%;
     padding: 20px 0;
-    margin: 0 auto;
+    margin: 200px auto 0;
     color: rgb(150, 149, 149);
     font-size: 14.3px;
     font-weight: 600;
     border-bottom: 1px solid rgb(65, 63, 63);
 }
 .cart_innerbox .cart_content_title > div{
-    width: 100%;
+    width: 1350px;
     display: inline-block;
-    
     vertical-align: middle;
 }
 
@@ -45,7 +44,6 @@ a {
 /* 장바구니에 넣은 상품들 정보  */
 .cart_content_box {
     overflow: hidden;
-    padding:20px 0; 
     height: 140px;
     line-height: 140px;
     border-bottom: 0.5px solid #c4c3c3;
@@ -57,9 +55,8 @@ a {
 
 /* 상품 번호 */
 .product_code {
-    margin-left:-30px;
-    width: 80px;
-}
+    margin-left:-70px;
+    }
 .product_code > input{
     font-size: 14px;
     width: 70px;
@@ -69,14 +66,13 @@ a {
 
 /* 상품 이미지 */
 .product_img {
-    margin-left: -20px;
-    margin-top: 21px;
+    margin-left:10px;
 }
 
 /* 상품정보 */
 .product_info {
    
-    margin: 0 55px 0 -20px;
+    margin-left: 10px;
     font-weight: bold;
 }
 .product_info > div {
@@ -117,18 +113,17 @@ a {
 
 /* 상품 구매 가격 */
 .product_price {
-    margin-left: 5px;
-   margin-right:45px;
+   margin-left:50px ;
 }
 .product_price .product_price_inner {
-    width:80px;
+    
     font-size: 14px;
     line-height: 15px;
     display: inline-block;
     vertical-align: middle;
 }
 .product_price_inner > input {
-    width:80px;
+    margin:0;
     border: none;
     text-align: center;
 }
@@ -136,12 +131,12 @@ a {
 
 /* 배송비 */
 .delivery_fee {
-    
+    margin-right:50px;
 }
 
 /* 주문 및 삭제 버튼 */
 .decision_btn {
-    margin-left: 0px;
+    margin-left: 30px;
     font-size: 14.5px;
 }
 .decision_btn > div{
@@ -151,13 +146,13 @@ a {
     line-height: 40px;
 } 
 .decision_btn .applicable_order_btn {
-    padding: 7px;
+    
     color: white;
     background-color: rgb(41, 51, 61);
     border-radius: 5px;
 }
 .decision_btn .delete_btn{
-    padding: 7px 9px;
+    
     color: rgb(41, 51, 61);
     background-color: inherit;
     border-radius: 5px;
@@ -170,7 +165,7 @@ a {
     border-bottom: 1px solid #333;
 }
 .checked_delete> div{
-    margin: 10px 0 100px;
+    margin: 10px x 100px;
 }
 .checked_delete button{
     float: left;
@@ -208,9 +203,9 @@ a {
     border-bottom: 1px solid #333;
 }
 .total_price_innerbox{
-    padding: 50px 10px;
+    padding: 50px  120px;
     display: flex;
-    justify-content: space-evenly;
+    justify-content: space-between;
 }
 .total_price_innerbox span{
     font-size: 30px;

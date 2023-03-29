@@ -5,13 +5,14 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Edit Info</title>
-
 <link rel="stylesheet" href="/css/user_info_edit.css">
+
 <!-- 카카오 우편번호 API  -->
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 </head>
 
 <th:block th:replace="~{/layout/user_layout :: function(~{:: .fragment})}">
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
 	<div class="fragment" style="margin-top: 110px;">
@@ -22,8 +23,7 @@
 
 			<div class="edit_info_title" style="text-align: center;">
 				<h5>
-					<em style="font-size: 50px; color: rgb(31, 30, 30); margin-bottom: 30px;">My Page</em> <br />
-					<br /></br>회원 정보 수정
+					<em style="font-size: 50px; color: rgb(31, 30, 30); margin-bottom: 30px;">My Page</em> <br /> <br /></br>회원 정보 수정
 				</h5>
 			</div>
 
@@ -52,14 +52,10 @@
 								<strong>생년월일 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 							</div>
 							<div class="edit_info_content right">
-
-								<input type="text" maxlength="4" class="birth" name="user_birth" th:value="${session.vo.user_birth.substring(0,4)}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
-								<span>년</span>
-								<input type="text" maxlength="2" class="birth" name="user_birth" th:value="${session.vo.user_birth.substring(5,7)}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
-								<span>월</span>
-								<input type="text" maxlength="2" class="birth" name="user_birth" th:value="${session.vo.user_birth.substring(8,10)}" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" readonly>
-								<span>일</span>
-
+								<select id="year" class="year birth"></select>
+								<select id="month" class="month birth"></select>
+								<select id="day" class="day birth"></select>
+								<input type="hidden" class="userBirth" name="user_birth" />
 							</div>
 						</div>
 
@@ -125,13 +121,14 @@
 									<strong>휴대전화 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 								</div>
 								<div class="edit_info_content right">
-									<input type="text" value="010" readonly name="start_num" class="region_num left" style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
+									<input type="text" value="010" readonly name="userContact" class="region_num left" style="border: none; border-bottom: 0.5px solid #dfdfdf; padding-bottom: 2px;">
 
 									<span> - </span>
-									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');"  pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(4,8)}" required>
+									<input type="text" name="phone_num phone_num1" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(4,8)}" required>
 									<span> - </span>
-									<input type="text" name="user_contact" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(9,13)}" required>
+									<input type="text" name="phone_num phone_num2" class="phone_num" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*)\./g, '$1');" pattern="/^\d{4}$/" th:value="${session.vo.user_contact.substring(9,13)}" required>
 									<span style="color: red; font-size: 12px;">[[${valid_user_contact}]]</span>
+									<input type="hidden" class="userContact" name="user_contact" />
 								</div>
 							</div>
 
@@ -142,7 +139,7 @@
 									<strong>주소 <img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/red_circle.png" alt="필수사항표시"></strong>
 								</div>
 								<div class="edit_info_content right address" style="margin-bottom: 50px;">
-									<input type="text"  name="user_zipcode"  id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" readonly>
+									<input type="text" name="user_zipcode" id="zipcode" size="7" placeholder="우편번호" style="border-bottom: 0.5px solid #dfdfdf;" onclick="kakaopost()" readonly>
 									<input type="button" value="우편번호찾기" id="zipcode" name="user_address" class="address_btn" onclick="kakaopost()" required>
 									<br />
 									<input type="text" name="user_address" id="address" size="70" th:value="${session.vo.user_address}">
@@ -202,9 +199,10 @@
 				</div>
 			</form>
 
-	
-	</div>
+
 		</div>
+	</div>
 </th:block>
 
+	<script src="/js/user_edit_info.js"></script>
 </html>
