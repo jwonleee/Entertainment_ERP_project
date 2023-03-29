@@ -76,28 +76,29 @@ public class WebConfig implements WebMvcConfigurer{
 		registry.addInterceptor(menuHandler())
 			.addPathPatterns("/authority/*", "/audition/*", "/schedule/*", "/order/*");
 
-//		//일반 회원 접근 권한 처리
-//		registry.addInterceptor(userAuthHandler())
+		//일반 회원 접근 권한 처리
+		registry.addInterceptor(userAuthHandler())
+			.addPathPatterns("/user/mypage", "/user/user_msg", "/user/cart");
 //			.addPathPatterns("/user/*")
 //			.excludePathPatterns("/user/login")
 //			.excludePathPatterns("/user/join");
-//		
-//		//권한 관리 탭 접근 권한 처리
-//		registry.addInterceptor(authorityAuthHandler())
-//			.addPathPatterns("/authority/*");
-//		
-//		//일정 관리 탭 접근 권한 처리
-//		registry.addInterceptor(scheduleAuthHandler())
-//			.addPathPatterns("/schedule/*");
-//		
-//		//상품 관리 탭 접근 권한 처리
-//		registry.addInterceptor(saleAuthHandler())
-//			.addPathPatterns("/order/*");
-//		
-//		//오디션 관리 탭 접근 권한 처리
-//		registry.addInterceptor(auditionAuthHandler())
-//			.addPathPatterns("/audition/*");
-//		
+		
+		//권한 관리 탭 접근 권한 처리
+		registry.addInterceptor(authorityAuthHandler())
+			.addPathPatterns("/authority/*");
+		
+		//일정 관리 탭 접근 권한 처리
+		registry.addInterceptor(scheduleAuthHandler())
+			.addPathPatterns("/schedule/*");
+		
+		//상품 관리 탭 접근 권한 처리
+		registry.addInterceptor(saleAuthHandler())
+			.addPathPatterns("/order/*");
+		
+		//오디션 관리 탭 접근 권한 처리
+		registry.addInterceptor(auditionAuthHandler())
+			.addPathPatterns("/audition/*");
+		
 		
 	}
 	

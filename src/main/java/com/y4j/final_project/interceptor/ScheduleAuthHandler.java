@@ -12,20 +12,18 @@ public class ScheduleAuthHandler implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
-		System.out.println("ScheduleAuthHandler - preHandle Execute!");
-		
 		HttpSession session = request.getSession();
 		String admin_type = (String)session.getAttribute("admin_type");
 		
 		if(admin_type.equals("master")) {
 			return true;
 			
-		} else if(!admin_type.equals("manager")) {
-			response.sendRedirect(request.getContextPath() + "/admin/admin_home");
-			return false;  //컨트롤러 실행(X)
+		} else if(admin_type.equals("manager")) {
+			return true;  //컨트롤러 실행(O)
 			
 		} else {
-			return true;  //컨트롤러 실행(O)
+			response.sendRedirect(request.getContextPath() + "/admin/admin_hold");
+			return false;  //컨트롤러 실행(X)
 		}
 	}
 	

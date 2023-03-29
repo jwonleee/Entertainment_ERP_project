@@ -91,8 +91,14 @@
           <img class="menuTableOpenBtn" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/btn_menu.svg" />
         </div>
         <div class="top-right">
-          <img class="login" onclick="location.href='user/user_login'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png"/>
-          <img class="join" onclick="location.href='user/user_join'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png" />
+          <img th:if="${session.user_id == null && session.admin_id == null}" class="login" onclick="location.href='user/user_login'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN"/>
+          <img th:if="${session.user_id == null && session.admin_id == null}" class="join" onclick="location.href='user/user_join'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN"/>
+          <img th:if="${session.user_id != null}" class="mypage" onclick="location.href='user/mypage'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginMember.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="MY PAGE"/>
+          <img th:if="${session.user_id != null}" class="cart" onclick="location.href='user/cart'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/shopping_cart.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="CART"/>
+          <img th:if="${session.user_id != null}" class="logout" onclick="location.href='user/userLogoutForm'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT"/>
+          <img th:if="${session.admin_id != null}" class="admin_page" onclick="location.href='admin/admin_home'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/manage_page.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="ADMIN PAGE"/>
+          <img th:if="${session.admin_id != null}" class="message" onclick="location.href='admin/admin_msg'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="MESSAGE"/>
+          <img th:if="${session.admin_id != null}" class="logout" onclick="location.href='admin/adminLogoutForm'" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png" data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT"/>
         </div>
       </div>
     </div>
@@ -183,6 +189,13 @@
       document.querySelector(".swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal").style.top = "revert";
       document.querySelector(".swiper-pagination-progressbar .swiper-pagination-progressbar-fill").style.background = "rgb(170, 170, 170)";
     }, 100);
+  </script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+  <script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+    var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+      return new bootstrap.Tooltip(tooltipTriggerEl)
+    });
   </script>
   <script src="js/y4j_intro.js"></script>
   <script th:inline="javascript">

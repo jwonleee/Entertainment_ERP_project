@@ -53,7 +53,7 @@
 		<div class="header1_user_bar_box">
 			<div class="header1_user_bar">
 				<ul class="main-header-inner main-header-inner2">
-					<li th:if="${session.user_id == null}" class="header_middle_user">
+					<li th:if="${session.user_id == null && session.admin_id == null}" class="header_middle_user">
 						<a href="/user/user_login">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGIN"
 								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginPassword.png">
@@ -67,7 +67,7 @@
 							<!-- <span>LOGOUT</span> -->
 						</a>
 					</li>
-					<li th:if="${session.user_id == null}"  class="header_middle_user">
+					<li th:if="${session.user_id == null && session.admin_id == null}"  class="header_middle_user">
 						<a href="/admin/admin_join">
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="JOIN"
 								src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/loginJoin.png">
@@ -86,7 +86,24 @@
 							<img data-bs-toggle="tooltip" data-bs-placement="bottom" style="width:32px; height: 29px;" title="CART"
 								src="/img/shopping_cart.png">
 							<!-- <span>CART</span> -->
-							<!-- <a href="https://www.flaticon.com/kr/free-icons/-" title="쇼핑하러 가다 아이콘">쇼핑하러 가다 아이콘  제작자: I Wayan Wika - Flaticon</a> -->
+						</a>
+					</li>
+					<li th:if="${session.admin_id != null}" class="header_middle_user adminPage">
+						<a href="/admin/admin_home">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="ADMIN PAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/manage_page.png">
+							<!-- <span>ADMIN PAGE</span> -->
+						</a>
+					</li>
+					<li th:if="${session.admin_id != null}" class="header_middle_user adminMsg">
+						<a href="/admin/admin_msg">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="MESSAGE" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/chat1.png">
+							<!-- <span>MESSAGE</span> -->
+						</a>
+					</li>
+					<li th:if="${session.admin_id != null}" class="header_middle_user adminLogout">
+						<a href="/admin/adminLogoutForm">
+							<img data-bs-toggle="tooltip" data-bs-placement="bottom" title="LOGOUT" src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/logout_icon.png">
+							<!-- <span>LOGOUT</span> -->
 						</a>
 					</li>
 				</ul>

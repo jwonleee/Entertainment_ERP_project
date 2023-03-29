@@ -71,7 +71,10 @@ body {
   z-index: 0;
 }
 
-.swiper-horizontal>.swiper-pagination-progressbar, .swiper-pagination-progressbar.swiper-pagination-horizontal, .swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite, .swiper-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
+.swiper-horizontal>.swiper-pagination-progressbar,
+.swiper-pagination-progressbar.swiper-pagination-horizontal,
+.swiper-pagination-progressbar.swiper-pagination-vertical.swiper-pagination-progressbar-opposite,
+.swiper-vertical>.swiper-pagination-progressbar.swiper-pagination-progressbar-opposite {
   bottom: 0;
 }
 
@@ -85,6 +88,7 @@ body {
   display: flex;
   justify-content: center;
 }
+
 .companyLogo {
   width: 160px;
   height: 100px;
@@ -110,6 +114,7 @@ body {
   height: 55px;
   line-height: 55px;
 }
+
 .menuTable-header-inner {
   display: inline-flex;
   align-items: center;
@@ -140,9 +145,31 @@ body {
 }
 
 .login,
-.join {
-  width: 45px;
-  height: 45px;
+.join,
+.mypage,
+.message {
+  width: 46px;
+  height: 46px;
+  cursor: pointer;
+}
+
+.logout {
+  width: 42px;
+  height: 42px;
+  cursor: pointer;
+  margin-left: 7px;
+}
+
+.cart {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.admin_page {
+  width: 42px;
+  height: 42px;
+  margin-right: 5px;
   cursor: pointer;
 }
 
@@ -156,6 +183,7 @@ body {
   height: 35px;
   cursor: pointer;
 }
+
 .menuTableCloseBtn {
   width: 24px;
   height: 28px;
@@ -203,16 +231,16 @@ body {
   margin-bottom: 24px;
 }
 
-.snb > ul > li > span {
+.snb>ul>li>span {
   display: inline-block;
   width: 100%;
   height: 4px;
   border-top: 3px solid #777;
 }
 
-.snb > ul > li > a{
-	text-decoration: none;
-	color: #ffff;
+.snb>ul>li>a {
+  text-decoration: none;
+  color: #ffff;
 }
 
 .snb2 {
@@ -237,9 +265,11 @@ body {
   z-index: 5;
   text-align: center;
 }
+
 .y4j-sns-link ul li {
   display: inline-block;
 }
+
 .y4j-sns-link img {
   width: 48px;
   height: 48px;
@@ -258,14 +288,17 @@ body {
   z-index: 5;
   padding-bottom: 30px;
 }
+
 .bottom-banner-left {
   float: left;
   margin-left: 30px;
 }
+
 .bottom-banner-right {
   float: right;
   margin-right: 30px;
 }
+
 .bottom-banner-right span {
   margin-left: 20px;
   cursor: pointer;

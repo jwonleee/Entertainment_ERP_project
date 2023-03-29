@@ -72,6 +72,11 @@ img {height: auto;}
   cursor: pointer;
 }
 
+.main-header-inner2 .adminMsg img {
+  width: 35px;
+  height: 41px;
+}
+
  .main-header-inner2 li span {
   display: block;
   text-align: center;

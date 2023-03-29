@@ -13,7 +13,7 @@ button{
 }
 /*=============== 회원 정보 부분 ===============*/
 .edit_info_section{
-    margin-top:200px;
+    margin-top:150px;
     padding: 0;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     /* text-align: center; */
@@ -27,7 +27,7 @@ button{
     text-align: center; 
 }
 .edit_info_title > h5 {
-	margin-bottom: 50px;
+	margin: 0 ;
 }
 
 /* 회원 정보 수정 */
@@ -37,15 +37,19 @@ button{
     margin: 0 auto;
     width: 50%;
     border: 0.5px solid #d7d7d7;
-    
+    margin-top:150px;
 }
 .edit_box1{
     padding-top: 40px;
     padding-bottom: none;
     text-align: center; 
 }
+.edit_box2{
+	margin-top:-150px;
+}
 .edit_info_box1{
     border-radius: 8px 8px 0 0;
+   
 }
 
 .edit_info_innerbox{
@@ -137,7 +141,8 @@ button{
 
 /* 휴대전화 */
 .edit_info_content .region_num{
-   width: 15%;
+   width: 25%;
+  padding-bottom:30px;
     height: 22px;
     margin-right: 7px;
     text-align: center;
@@ -242,7 +247,7 @@ button{
 .edit_btn{
     text-align: center;
     overflow: hidden;
-    
+    margin: 50px 0;
 }
 .edit_btn button{
     border: 0.1px solid #b8bbbb;
@@ -265,42 +270,3 @@ button{
     background-color: #343838;
    
 }
-
-/* 상단, 하단으로 가는 버튼 */
-.arrow_btn{
-    scroll-behavior: smooth;
-    display: block;
-    text-align:center;
-    margin:auto;
-   
-    width: 350px;
-    height: 250px;
-}
-.arrow_btn a >img {
-    width: 35px;
-    height: 35px;
-}
-.arrow_btn .top_btn{
-    position:fixed;
-    bottom:100px; 
-    right:60px; 
-    width:40px; 
-    height:40px; 
-    z-index:1; 
-    opacity:0.8;
-    cursor: pointer;
-    margin-bottom: 15px;
-    scroll-behavior: smooth;
-}
-.arrow_btn .bottom_btn{
-    position:fixed;
-    bottom:50px; 
-    right:60px; 
-    width:40px; 
-    height:40px; 
-    z-index:1; 
-    opacity:0.8;
-    cursor: pointer;
-    scroll-behavior: smooth;
-}
-

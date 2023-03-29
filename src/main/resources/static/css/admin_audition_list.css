@@ -22,10 +22,11 @@ a {
 
 .aal-top-right .searchType {
   border: 1px solid rgb(133, 133, 133);
-  width: 110px;
+  width: 80px;
   height: 30px;
   padding-top: 2px;
   font-size: 16px;
+  text-align: center;
   display: inline-block;
 }
 
@@ -36,6 +37,7 @@ a {
 }
 
 .aal-top-right .searchValue {
+  width: 140px;
   height: 30px;
   line-height: 30px;
   padding-left: 10px;
@@ -131,10 +133,10 @@ a {
   width: 138px;
   height: 30px;
   line-height: 30px;
-  padding-left: 10px;
   margin-right: 5px;
   border-radius: 5px;
   border: 1px solid rgb(133, 133, 133);
+  text-align: center;
 }
 
 .dateSearch > img {
