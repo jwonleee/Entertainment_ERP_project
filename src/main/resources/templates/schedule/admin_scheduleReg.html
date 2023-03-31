@@ -7,7 +7,7 @@
 <!-- timepicker css -->
 <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" /> -->
 
-<th:block th:replace="~{/layout/y4j_layout :: funcLayout(~{:: .fragment})}">
+<th:block th:replace="~{./layout/y4j_layout :: funcLayout(~{:: .fragment})}">
 
 	<div class="fragment">
 
@@ -71,21 +71,21 @@
 												<option th:value="Movie != null? Movie : ''">Movie</option>
 												<option th:value="ETC != null? ETC : ''">ETC</option>
 											</select>
-											<span style="color:tomato"> [[${valid_schedule_type}]]</span>
+											<!--<span style="color:tomato"> [[${valid_schedule_type}]]</span>-->
 										</td>
 									</tr>
 									<tr>
 										<th>제목</th>
 										<td>
 											<input type="text" class="input90 form-control" name="schedule_ent_name" th:value="${vo != null ? vo.schedule_ent_name : ''}" placeholder="50자 이내로 적어주세요." required/>
-											<span style="color:tomato">[[${valid_schedule_ent_name}]]</span>
+											<!--<span style="color:tomato">[[${valid_schedule_ent_name}]]</span>-->
 										</td>
 									</tr>
 									<tr>
 										<th>장소</th>
 										<td>
 											<input type="text" class="input90 form-control" name="schedule_location" th:value="${vo != null ? vo.schedule_location : ''}" required/>
-											<span style="color:tomato">[[${valid_schedule_location}]]</span>
+											<!--<span style="color:tomato">[[${valid_schedule_location}]]</span>-->
 										</td>
 									</tr>
 									<tr>
