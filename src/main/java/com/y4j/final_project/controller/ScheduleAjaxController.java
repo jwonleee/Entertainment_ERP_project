@@ -18,7 +18,7 @@ import com.y4j.final_project.schedule.service.ScheduleService;
 public class ScheduleAjaxController {
 	
 	@Autowired
-	public ScheduleService scheduleService;
+	private ScheduleService scheduleService;
 	
 	//그룹 이름
 	@PostMapping("/getEntType")
