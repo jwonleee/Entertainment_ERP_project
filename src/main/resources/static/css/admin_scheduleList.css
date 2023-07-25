@@ -18,7 +18,7 @@ img {max-width: 100%; height: auto;}
     overflow: hidden;
 }
 
-.search_wrap h1 {
+.search_wrap a {
     font-family:  'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     color: #96bdf1;
     text-shadow: -1px 0 #666666, 0 1px #666666, 1px 0 #666666, 0 -1px #666666;
@@ -27,7 +27,13 @@ img {max-width: 100%; height: auto;}
     width: 340px;
     padding-left: 15px;
     font-size: 65px;
+    font-weight: 500;
+    text-decoration: none;
 }
+.search_wrap a:hover {
+    color: #96bdf1;
+}
+
 .search_right .left_wrap {
     float: left;
     overflow: hidden;

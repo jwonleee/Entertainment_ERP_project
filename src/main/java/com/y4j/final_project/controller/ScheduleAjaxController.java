@@ -40,9 +40,9 @@ public class ScheduleAjaxController {
 	
 	//아티스트-스케줄 유무 확인
 	@GetMapping("/getSchedule/{artistSelected}")
-	public ArrayList<ScheduleVO> getSchedule(@PathVariable("artistSelected") String artistSelec) {
-		System.out.println(artistSelec);
-		return scheduleService.getSchedule(artistSelec);
+	public ArrayList<ScheduleVO> getSchedule(@PathVariable("artistSelected") String artistSelect) {
+		System.out.println(artistSelect);
+		return scheduleService.getSchedule(artistSelect);
 	}
 	
 

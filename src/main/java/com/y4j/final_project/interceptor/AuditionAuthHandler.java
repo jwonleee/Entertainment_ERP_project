@@ -8,7 +8,7 @@ import org.springframework.web.servlet.HandlerInterceptor;
 
 public class AuditionAuthHandler implements HandlerInterceptor {
 
-	//상품 관리 섹션 접근 권한 처리
+	//오디션 관리 섹션 접근 권한 처리
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 		
