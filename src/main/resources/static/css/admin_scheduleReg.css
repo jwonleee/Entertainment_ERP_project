@@ -21,6 +21,16 @@ img {max-width: 100%; height: auto;}
     width: 100%;
 }
 
+.artistList_td .artistList_wrap {
+	margin-right: 10px;
+    display: inline-block;
+}
+
+.warning {
+	color: #f15a4e;
+	font-size: 14px;
+}
+
 #date_timepicker_start {
   width:154px;
   display: inline; 

@@ -79,10 +79,7 @@ public class ScheduleController {
 	public String registForm(@Valid ScheduleVO vo, Errors errors, Model model,
 							 EntertainerScheduleVO vo2,
 							 RedirectAttributes ra) {
-		System.out.println("error 없음");
-		
 		if(errors.hasErrors()) { //에러 존재시 true
-			
 			System.out.println("error존재");
 			List<FieldError> list = errors.getFieldErrors(); //에러가 발생된 목록
 			for(FieldError err : list) {
@@ -124,7 +121,6 @@ public class ScheduleController {
 	public String deleteForm(@RequestParam("schedule_no") int schedule_no,
 														  RedirectAttributes ra) {
 		int result = scheduleService.scheduleDelete(schedule_no);
-//		System.out.println("삭제될때 나오는 값은?" + result);
 		String msg = ( result == 2 ? "일정이 삭제되었습니다." : "삭제에 실패했습니다." );
 		ra.addFlashAttribute("msg", msg);
 		

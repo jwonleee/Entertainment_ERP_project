@@ -124,13 +124,16 @@ $(function(){
 		$('#date_timepicker_start').datetimepicker({
 			format:'Y-m-d H:i',
 			onShow:function( ct ){
-				
+			
 			//아티스트 선택 안 했을 경우
-			if($('.artistList_wrap').val() == '') {
-				alert("해당 아티스트를 선택해주세요.");
-				document.location.reload(true);	
+			if($('.artistList_wrap').val() === '') {
+				$('.artistWarning').text("해당 아티스트를 선택해주세요.");
+				$('.artistList_wrap').focus();
+				return false;
+			} else {
+				$('.artistWarning').text("");
 			}
-
+			
 			this.setOptions({
 				maxDate: $('#date_timepicker_end').val()? $('#date_timepicker_end').val() : false,
 				minDate: "d",
@@ -170,10 +173,22 @@ $(function(){
 			format:'Y-m-d H:i',
 			onShow:function( ct ){
 				
+				//아티스트 선택 안 했을 경우
+				if($('.artistList_wrap').val() === '') {
+					$('.artistWarning').text("해당 아티스트를 선택해주세요.");
+					$('.artistList_wrap').focus();
+					return false;
+				} else {
+					$('.artistWarning').text("");
+				}
+				
 				//시작 일정 선택 안 했을 경우
-				if($('#date_timepicker_start').val() == '') {
-					alert("시작 일정의 날짜와 시간을 선택해주세요.");
-					document.location.reload(true);	
+				if($('#date_timepicker_start').val() === '') {	
+					$('.datetimepickerWarning').text("시간과 날짜를 선택해주세요");
+					$('#date_timepicker_start').focus();
+					return false;
+				} else {
+					$('.datetimepickerWarning').text("");
 				}
 				
 				this.setOptions({

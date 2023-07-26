@@ -44,10 +44,11 @@
 										<td class="artistList_td">
 											<select class="form-select input-sm artistList_wrap" name="ent_name" style="width: 150px;" required>
 												<option value="">선택</option>
-												<!-- <option value="blackpink">Blackpink</option>
+										   <!-- <option value="blackpink">Blackpink</option>
 												<option value="newjeans">Newjeans</option>
 												<option value="ive">Ive</option> -->
 											</select>
+											<span class="artistWarning warning"></span>
 										</td>
 									</tr>
 									<tr>
@@ -57,6 +58,7 @@
 													<label for="date_timepicker_start"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label> ~ 
 											<input type='text' class='datetimepicker form-control timepicker_block' name='schedule_end_time' id='date_timepicker_end' readonly required placeholder='종료날짜'/>
 													<label for="date_timepicker_end"><img src="https://jafp.s3.ap-northeast-2.amazonaws.com/y4j/calendar.png"/></label>
+											<span class="datetimepickerWarning warning"></span>
 										</td>
 									</tr>
 									<tr>
@@ -71,7 +73,7 @@
 												<option th:value="Movie != null? Movie : ''">Movie</option>
 												<option th:value="ETC != null? ETC : ''">ETC</option>
 											</select>
-											<!--<span style="color:tomato"> [[${valid_schedule_type}]]</span>-->
+											<span style="color:tomato"> [[${valid_schedule_type}]]</span>
 										</td>
 									</tr>
 									<tr>
