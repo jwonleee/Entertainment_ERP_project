@@ -31,12 +31,9 @@ public class ScheduleVO {
 
 	private int schedule_no;
 	
-//	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
-	@NotBlank(message = "날짜는 공백일 수 없습니다")
+	@NotBlank(message = "시간과 날짜를 선택해주세요")
 	private String schedule_start_time;
-	
-//	@FutureOrPresent(message = "오늘 이후의 날짜만 선택할 수 있습니다")
-	@NotBlank(message = "날짜는 공백일 수 없습니다")
+	@NotBlank(message = "시간과 날짜를 선택해주세요")
 	private String schedule_end_time;
 	
 	private String schedule_writer;
@@ -50,7 +47,6 @@ public class ScheduleVO {
 	private String schedule_content;
 	
 	//아티스트 타입, 이름
-//	@NotBlank(message = "아티스트 종류를 선택하세요")
 	private String ent_type;
 	private String ent_name; 
 	

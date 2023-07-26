@@ -80,12 +80,9 @@ public class ScheduleController {
 							 EntertainerScheduleVO vo2,
 							 RedirectAttributes ra) {
 		if(errors.hasErrors()) { //에러 존재시 true
-			System.out.println("error존재");
 			List<FieldError> list = errors.getFieldErrors(); //에러가 발생된 목록
 			for(FieldError err : list) {
-				System.out.println(err.getField()); //에러 필드명
-				System.out.println(err.getDefaultMessage()); //에러 메세지
-				
+				//System.out.println(err.getField() + ", " + err.getDefaultMessage()); //에러 필드명, 에러 메세지
 				if(err.isBindingFailure()) { //유효성 검사의 실패가 아니라, 자바 내부의 에러라면 true 반환
 					model.addAttribute("valid_" + err.getField(), "형식이 올바르지 않습니다");
 				} else { //유효성 검사에 실패한 목록

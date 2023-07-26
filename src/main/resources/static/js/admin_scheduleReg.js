@@ -49,12 +49,12 @@ $(".type_wrap").click(function(e) {
 })
 
 
-//DB에 담겨있어야 하는 날짜와 시간들, array형식으로 저장
+//DB에 담겨있어야 하는 날짜와 시간들 ▶ 객체에 key: 날짜, value: 시간 (array형식으로 저장)
 let specificDates = {};
 
 //아티스트 선택하면 해당 아티스트의 기존 스케줄 가져와서 배열에 담기
 $(".artistList_wrap").on("change", function() {
-	var artistSelect = $(this).val(); //blackpink
+	var artistSelect = $(this).val();
 
 	//아티스트 선택시 ajax 태움
 	if(artistSelect != '') {
@@ -79,8 +79,7 @@ $(".artistList_wrap").on("change", function() {
 
 })
 
-/////////////////////////////////////////////////시작-종료 사이 시간 넣어야 함///////////////////////////////////////////////
-// date, time List에 담는 함수
+//특정 날짜의 시작 시간과 끝나는 시간을 List에 담기
 function addTimeList (data) {
 	
 	//반복문
@@ -88,29 +87,28 @@ function addTimeList (data) {
 
 		let selectedStartDate = item.schedule_start_time.substring(0, 10); //시작 날짜: 2023-03-04
 		let selectedStartTime = item.schedule_start_time.substring(11, 16); //시작 시간: 13:00
-
 		let selectedEndDate = item.schedule_end_time.substring(0, 10); //종료 날짜
 		let selectedEndTime = item.schedule_end_time.substring(11, 16); //종료 시간
-
-		let result = selectedStartTime;
-		//시간 사이 넣기
-		console.log(result);
-		// console.log(selectedStartTime-selectedEndTime);
-		// console.log(selectedEndTime);
 		
-		if(!Object.keys(specificDates).includes(selectedStartDate)) { //같은 날짜가 없으면
-			specificDates[selectedStartDate] = [selectedStartTime];
-		}
-		else { //같은 날짜가 있으면 그 날짜의 뒤에 시간 담기
-			specificDates[selectedStartDate].push(...[selectedStartTime]);
-		}
-
-		if(!Object.keys(specificDates).includes(selectedEndDate)) { //같은 날짜가 없으면
-			specificDates[selectedEndDate] = [selectedEndTime];
-		}
-		else { //같은 날짜가 있으면 그 날짜의 뒤에 시간 담기
-			specificDates[selectedEndDate].push(...[selectedEndTime]);
-		}
+		// 시작 시간과 종료 시간을 30분 단위로 쪼개서 배열에 추가
+	    let startHour = parseInt(selectedStartTime.substring(0, 2));
+	    let startMinute = parseInt(selectedStartTime.substring(3, 5));
+	    let endHour = parseInt(selectedEndTime.substring(0, 2));
+	    let endMinute = parseInt(selectedEndTime.substring(3, 5));
+	
+	    let scheduleTimeArray = [];
+	
+	    while (startHour < endHour || (startHour === endHour && startMinute <= endMinute)) {
+	      scheduleTimeArray.push(("0" + startHour).slice(-2) + ":" + ("0" + startMinute).slice(-2)); //00:00 형식
+	      startMinute += 30;
+	      if (startMinute >= 60) {
+	        startHour += 1;
+	        startMinute -= 60;
+	      }
+	    }
+	
+	    specificDates[selectedStartDate] = specificDates[selectedStartDate] || []; //specificDates[selectedStartDate] 유무 확인
+	    specificDates[selectedStartDate].push(...scheduleTimeArray);
 
 	})
 	console.log(specificDates);
@@ -119,24 +117,25 @@ function addTimeList (data) {
 
 // datetimepicker
 $(function(){
-
+		
+		
 		//시작 날짜
 		$('#date_timepicker_start').datetimepicker({
 			format:'Y-m-d H:i',
 			onShow:function( ct ){
-			
-			//아티스트 선택 안 했을 경우
-			if($('.artistList_wrap').val() === '') {
-				$('.artistWarning').text("해당 아티스트를 선택해주세요.");
-				$('.artistList_wrap').focus();
-				return false;
-			} else {
-				$('.artistWarning').text("");
-			}
-			
-			this.setOptions({
-				maxDate: $('#date_timepicker_end').val()? $('#date_timepicker_end').val() : false,
-				minDate: "d",
+				//아티스트 선택 안 했을 경우
+				if($('.artistList_wrap').val() === '') {
+					$('.artistWarning').text("해당 아티스트를 선택해주세요.");
+					$('.artistList_wrap').focus();
+					return false;
+				} else {
+					$('.artistWarning').text("");
+				}
+	
+				this.setOptions({
+					minDate: "d",
+					maxDate: $('#date_timepicker_end').val()?
+							 $('#date_timepicker_end').val() : false,
 				})
 			},
 			timepicker:true,
@@ -192,7 +191,9 @@ $(function(){
 				}
 				
 				this.setOptions({
-					minDate:$('#date_timepicker_start').val() ? $('#date_timepicker_start').val() : false,
+					minDate:$('#date_timepicker_start').val() ?
+							$('#date_timepicker_start').val() : false,
+					maxDate: "+2y"
 				})
 			},
 			timepicker:true,
@@ -230,6 +231,18 @@ $(function(){
 $(document).ready(function() {
 	$('#schedule_type').change(function() {
 		var typeSelect = $(this).val()
-		console.log(typeSelect);
 	})
 });
+
+
+//제목, 장소, 세부내용 유효성 검사
+function hideMessageIfValueExists(inputElement, warningElementId) {
+  var value = inputElement.val().trim();
+  var warningElement = $(warningElementId);
+  
+  if (value !== '') {
+    warningElement.hide();
+  } else {
+    warningElement.show();
+  }
+}
