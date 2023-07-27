@@ -1,12 +1,3 @@
-//일정 삭제
-$('#delete_btn').click(function(e) {
-	e.preventDefault();
-
-	if(confirm("일정을 삭제하시겠습니까?")) {
-		document.actionForm.submit();
-	}
-})
-
 //Modal - 수정 버튼 클릭시 나옴
 $('#modify_btn').click(function(e){
     e.preventDefault();
@@ -75,15 +66,32 @@ $('#modify_btn').click(function(e){
 				str += '		</td>';
 				str += '	</tr>';
 				str += '</tbody>';
+				
+				// 아티스트의 모든 스케줄 데이터를 가져와서 vo에 추가 - 시간 막기
+				var artistName = encodeURIComponent(vo.ent_name);
+	            $.ajax({
+	                url: '../getSchedule/' + artistName,
+				    type: 'get',
+				    async:false,
+				    success: function(allSchedules) {
+				        // 현재 모든 스케줄 데이터(allSchedules) 처리
+				        addTimeList(allSchedules);
+				    },
+				    error: function(err) {
+				        console.log(err);
+				    }
+	            });
 
                 $("#schedule_detail").html(str); //지워지고 다시 그려짐
+				$('#ModifyModal').modal("show");
             },
+            
             error: function (err) {
                 console.log(err);
             }
         });
     
-    $('#ModifyModal').modal("show");
+    
 });
 
 // datetimepicker
@@ -91,11 +99,12 @@ $(document).on("click", ".schedule_calendar", function(){
 	$('#date_timepicker_start').datetimepicker({
 		format:'Y-m-d H:i',
 		onShow:function( ct ){
-		this.setOptions({
-			maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
-			minDate: 0
-			})
+			this.setOptions({
+				maxDate:$('#date_timepicker_end').val()?$('#date_timepicker_end').val():false,
+				minDate: 0
+			});
 		},
+		onGenerate: timeToBlock,
 		timepicker:true,
 		step: 30
 	});
@@ -105,9 +114,20 @@ $(document).on("click", ".schedule_calendar", function(){
 		onShow:function( ct ){
 			this.setOptions({
 				minDate:$('#date_timepicker_start').val()?$('#date_timepicker_start').val():false,
-			})
+			});
 		},
+		onGenerate: timeToBlock,
 		timepicker:true,
 		step: 30
 	});
 });
+
+
+//일정 삭제
+$('#delete_btn').click(function(e) {
+	e.preventDefault();
+
+	if(confirm("일정을 삭제하시겠습니까?")) {
+		document.actionForm.submit();
+	}
+})

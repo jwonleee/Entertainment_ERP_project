@@ -59,6 +59,11 @@ img {max-width: 100%; height: auto;}
     margin: 10px 0 10px;
 }
 
+.table_inner .content pre {
+	font-family: 'Noto Sans KR', sans-serif;
+	font-size: 1em;
+}
+
 .btn_wrap {
     text-align: center;
     padding: 31px 0 1px;

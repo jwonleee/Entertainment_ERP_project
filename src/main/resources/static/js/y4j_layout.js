@@ -43,7 +43,7 @@ function menuBarFixed() {
     $('.menu_bar > ul > li > span > a').css("color", "black")
   };
 }
-document.addEventListener('scroll', menuBarFixed);
+document.addEventListener('scroll', menuBarFixed, { passive: true });
 
 // 사이드 메뉴바 고정
 var sideMenuBar = document.querySelector("aside");
