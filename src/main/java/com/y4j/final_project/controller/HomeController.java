@@ -46,9 +46,10 @@ public class HomeController {
 	}
 
 	// react build 파일 연결
-	@GetMapping({"/about", "/history", "/contact", "/artist/artistList",
-				"/artist/nj/artistDetail_newjeans/main_nj", "/artist/bp/artistDetail_Bp/mainBp", "/artist/ive/artistDetail_ive/main_ive",
-				"/artist/ldh/artistDetail_ldh/main_ldh", "/artist/csb/artistDetail_csb/main_csb"})
+	@GetMapping({"/tab/*", "/artist/*",
+		         "/artist/nj/artistDetail_newjeans/*", "/artist/bp/artistDetail_Bp/*", "/artist/ive/artistDetail_ive/*",
+		         "/artist/ldh/artistDetail_ldh/*", "/artist/csb/artistDetail_csb/*"
+				})
 	public String about() {
 		return "index";
 	}
