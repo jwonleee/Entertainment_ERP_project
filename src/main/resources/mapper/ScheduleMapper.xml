@@ -114,7 +114,7 @@
 		<if test="startDate != null and startDate != ''">
 			s.schedule_start_time desc,
 		</if>		
-		s.schedule_no desc <!--평소에는 글 사용한 순서대로 검색했을때는 날짜 순서대로 못하나?-->
+		s.schedule_start_time desc
 		limit #{pageStart}, #{amount}	
 	</select>
 	

@@ -43,7 +43,7 @@ public class PageVO {
 		
 		this.prev = this.startPage > 1;
 		this.next = realEnd > this.endPage;
-//		this.pageList = IntStream.rangeClosed(this.startPage, this.endPage).boxed().collect(Collectors.toList());
+		
 		this.pageList = new ArrayList<>();
 		for(int i=this.startPage; i<=this.endPage; i++) {
 			pageList.add(i);

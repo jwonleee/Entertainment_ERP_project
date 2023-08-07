@@ -59,10 +59,17 @@ public class ScheduleController {
 		int total = scheduleService.getScheduleTotal(cri);
 		PageVO pageVO = new PageVO(cri, total);
 		model.addAttribute("pageVO", pageVO);
+		
+		System.out.println("시작");
+		System.out.println("this.startPage: " + pageVO.getStartPage());
+		System.out.println("this.prev: " + pageVO.isPrev());
 
+		System.out.println("realEnd: " + pageVO.getRealEnd());
+		System.out.println("this.endPage: " + pageVO.getEndPage());
+		System.out.println("this.next: " + pageVO.isNext());
 		return "schedule/admin_scheduleList";
 	}
-	
+
 	
 	//일정 상세
 	@GetMapping("/admin_scheduleDetail")
